@@ -1,0 +1,9 @@
+{
+  "name": "proyecto_final/grupo-02",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  }
+}
