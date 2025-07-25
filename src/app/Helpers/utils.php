@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+
 class Utils
 {
     public static function getActiveClass(string $page): string

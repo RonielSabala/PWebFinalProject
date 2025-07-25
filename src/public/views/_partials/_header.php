@@ -8,10 +8,10 @@
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="/css/main.css">
-    <title>Incidentes RD</title>
+    <title>Proyecto final. Grupo No. 1</title>
 </head>
 <body>
     <div class="container">
         <div class="text-center" style="margin-bottom: 30px;">
-            <h1 class="website-title">Website title</h1>
+            <h1 class="website-title">Incidencias RD</h1>
         </div>

@@ -1,8 +1,8 @@
 </div>
 <footer style="margin-top: 40px;">
     <hr>
-    <p class="developer text-center">
-        &copy; <strong>Incidentes RD</strong>
+    <p class="company text-center">
+        &copy; 2025 <strong>Incidencias RD</strong>
     </p>
 </footer>
 </div>

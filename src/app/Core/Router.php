@@ -9,28 +9,60 @@ class Router
     {
         global $pdo;
 
-        // Obtener URI
+        // Obtener URI y nombre de la vista
         $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        $parts = explode('/', $uri);
+        if (count($parts) > 1) {
+            $uri = implode('/', array_slice($parts, 0, -1));
+            $view = end($parts);
+        } else {
+            $view = $uri;
+            $uri = '';
+        }
 
         // Rutas y controladores asociados
-        $default = ['page' => 'incident',  'controller' => \App\Controllers\IncidentController::class];
+        $default_page = 'incident';
+        $default_route = ['page' => $default_page,  'controller' => \App\Controllers\IncidentController::class];
         $routes = [
-            ''           => $default,
-            'index.php'  => $default,
-            'incident.php'   => $default,
+            ''              => $default_route,
+            'index.php'     => $default_route,
+            'incident.php'  => $default_route,
+            'list.php'      => ['page' => $default_page, 'controller' => \App\Controllers\ListController::class],
+            'map.php'       => ['page' => $default_page, 'controller' => \App\Controllers\MapController::class],
+            'validator.php' => ['page' => 'validator',   'controller' => \App\Controllers\ValidatorController::class],
+            'admin.php'     => ['page' => 'admin',       'controller' => \App\Controllers\AdminController::class],
         ];
 
         // Obtener ruta
-        if (isset($routes[$uri])) {
-            $page = $routes[$uri]['page'];
-            $controller = new $routes[$uri]['controller']();
+        if (isset($routes[$view])) {
+            $route = $routes[$view];
+            $controller = new $route['controller']();
+            define('CURRENT_PAGE', $route['page']);
         } else {
             header("HTTP/1.0 404 Not Found");
             exit("Página no encontrada...");
         }
 
+        // Determinar nombre de la vista
+        if ($view == '' || $view == 'index.php') {
+            $viewPath = $default_page;
+        } else {
+            $viewPath = preg_replace('/\.php$/', '', $view);
+        }
+
         // Manejar solicitud
-        define('CURRENT_PAGE', $page);
+        if ($uri === '') {
+            if ($viewPath === 'incident') {
+                $viewPath = 'incidents/incident';
+            }
+        } else {
+            $viewPath = $uri . '/' . $viewPath;
+            Template::$partialsPath = $uri;
+        }
+
+        Template::$viewPath = $viewPath;
+
+        // Iniciar vista
         $template = new Template();
         $controller->handle($template, $pdo);
     }

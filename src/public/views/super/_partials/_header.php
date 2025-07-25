@@ -7,11 +7,11 @@
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="/css/super/styles.css">
-    <title>Incidentes RD</title>
+    <link rel="stylesheet" href="/css/super/main.css">
+    <title>Incidencias RD</title>
 </head>
 <body>
     <div class="container">
         <div class="text-center" style="margin-bottom: 30px;">
-            <h1 class="website-title">Super</h1>
+            <h1 class="website-title">Panel administrativo</h1>
         </div>
