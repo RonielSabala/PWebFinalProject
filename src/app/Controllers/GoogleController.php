@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Core\Template;
 use Google\Service\Oauth2 as Google_Service_Oauth2;
+use App\Helpers\Utils;
+
 
 class GoogleController
 {
@@ -32,7 +34,7 @@ class GoogleController
                 header("Location: login/login.php");
                 exit;
             } else {
-                echo "Error al autenticar con Google.";
+                Utils::showAlert("Error al autenticar con Google.", "danger");
             }
         } else {
             header("Location: login/login.php");

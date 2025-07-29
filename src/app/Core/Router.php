@@ -32,6 +32,7 @@ class Router
             'validator.php'         => ['page' => 'validator',   'controller' => \App\Controllers\ValidatorController::class],
             'admin.php'             => ['page' => 'admin',       'controller' => \App\Controllers\AdminController::class],
             'login.php'             => ['page' => '',            'controller' => \App\Controllers\LoginController::class],
+            'signin.php'             => ['page' => '',            'controller' => \App\Controllers\SigninController::class],
             'logout'                => ['page' => '',            'controller' => \App\Controllers\LogoutController::class],
             'forgot_password.php'   => ['page' => '',            'controller' => \App\Controllers\PasswordController::class],
             'GoogleController.php'  => ['page' => '',           'controller' => \App\Controllers\GoogleController::class],
