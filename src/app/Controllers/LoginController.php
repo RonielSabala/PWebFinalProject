@@ -130,7 +130,7 @@ class LoginController
         }
 
         $template->apply([
-            'login_button' => (isset($_SESSION['access_token'])) ? "" : $google_client->createAuthUrl(),
+            'google_button' => (isset($_SESSION['access_token'])) ? "" : $google_client->createAuthUrl(),
         ]);
     }
 }

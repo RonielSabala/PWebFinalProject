@@ -36,7 +36,9 @@ class Router
             'forgot_password.php'  => ['page' => '',            'controller' => \App\Controllers\ForgotPasswordController::class],
             'reset_password.php'   => ['page' => '',            'controller' => \App\Controllers\ResetPasswordController::class],
             'logout.php'           => ['page' => '',            'controller' => \App\Controllers\LogoutController::class],
-            'GoogleController.php' => ['page' => '',            'controller' => \App\Controllers\GoogleController::class],
+            'GoogleController.php'    => ['page' => '',         'controller' => \App\Controllers\GoogleController::class],
+            'MicrosoftController.php' => ['page' => '',         'controller' => \App\Controllers\MicrosoftController::class],
+            'MicrosoftCallbackController.php' => ['page' => '', 'controller' => \App\Controllers\MicrosoftCallbackController::class],
         ];
 
         // Obtener ruta
