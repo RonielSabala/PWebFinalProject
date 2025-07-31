@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Login;
 
 use App\Core\Template;
 use App\Utils\UserUtils;

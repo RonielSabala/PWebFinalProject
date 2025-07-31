@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Super;
 
 use App\Core\Template;
 
 
-class ValidatorController
+class AdminController
 {
     public function handle(Template $template, $pdo)
     {

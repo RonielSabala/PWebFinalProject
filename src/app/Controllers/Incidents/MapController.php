@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Incidents;
 
 use App\Core\Template;
 
 
-class IncidentController
+class MapController
 {
     public function handle(Template $template, $pdo)
     {
