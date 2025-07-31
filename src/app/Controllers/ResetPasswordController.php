@@ -3,74 +3,85 @@
 namespace App\Controllers;
 
 use App\Core\Template;
-use App\Helpers\Utils;
+use App\Utils\UserUtils;
+
 
 class ResetPasswordController
 {
     public function handle(Template $template, $pdo)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if ($_POST['action'] == "validate_code") {
-                $codigo = trim($_POST['codigo'] ?? '');
-
-                // ¿Existe código en sesión y no expiró?
-                if (!isset($_SESSION['reset_codigo']) || time() > $_SESSION['reset_expira']) {
-                    $_SESSION['error'] = "Código expirado. Vuelve a solicitarlo.";
-                    header('Location: forgot_password.php');
-                    exit;
-                } elseif ($codigo == $_SESSION['reset_codigo']) {
-                    $_SESSION['codigo_valido'] = true;
-                } else {
-                    $_SESSION['error'] = "Código incorrecto.";
-                }
-
-                header('Location: reset_password.php');
-                exit;
-            }
-
-            // Sólo si el código fue validado
-            if (empty($_SESSION['codigo_valido'])) {
-                $_SESSION['error'] = "Acceso no autorizado.";
-                header('Location: forgot_password.php');
-                exit;
-            }
-
-            $password = $_POST['password'] ?? '';
-            $confirm  = $_POST['password_confirm'] ?? '';
-            if ($password !== $confirm) {
-                $_SESSION['error'] = "Las contraseñas no coinciden.";
-                header('Location: reset_password.php');
-                exit;
-            }
-
-            // Hashear y actualizar con PDO
-            $sql = "UPDATE usuarios SET password_hash = :pass WHERE email = :email";
-            $hashed = password_hash($password, PASSWORD_DEFAULT);
-            $email  = $_SESSION['reset_email'];
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':pass',  $hashed, \PDO::PARAM_STR);
-            $stmt->bindParam(':email', $email,  \PDO::PARAM_STR);
-            if ($stmt->execute()) {
-                // Limpiar sesión
-                unset(
-                    $_SESSION['reset_codigo'],
-                    $_SESSION['reset_expira'],
-                    $_SESSION['reset_email'],
-                    $_SESSION['codigo_valido']
-                );
-
-                header('Location: login.php');
-            } else {
-                $_SESSION['error'] = "Error al guardar la contraseña. Intenta de nuevo.";
-                header('Location: reset_password.php');
-            }
-
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $template->apply();
             exit;
         }
 
-        $template->apply([
-            'pdo' => $pdo,
-            'showAlert' => [Utils::class, 'showAlert'],
-        ]);
+        if ($_POST['action'] == "validate_code") {
+            $code = trim($_POST['code'] ?? '');
+
+            // ¿Existe código en sesión y no expiró?
+            if (!isset($_SESSION['reset_password_code']) || time() > $_SESSION['reset_password_expiration']) {
+                $_SESSION['error'] = "Código expirado. Vuelve a solicitarlo.";
+                header('Location: forgot_password.php');
+                exit;
+            } elseif ($code == $_SESSION['reset_password_code']) {
+                $_SESSION['is_code_valid'] = true;
+            } else {
+                $_SESSION['error'] = "Código incorrecto.";
+            }
+
+            header('Location: reset_password.php');
+            exit;
+        }
+
+        // Validar código
+        if (empty($_SESSION['is_code_valid'])) {
+            $_SESSION['error'] = "Acceso no autorizado.";
+            header('Location: forgot_password.php');
+            exit;
+        }
+
+        // Validar contraseñas
+        $password = $_POST['password'] ?? '';
+        $confirm  = $_POST['confirm_password'] ?? '';
+        if ($password !== $confirm) {
+            $_SESSION['error'] = "Las contraseñas no coinciden.";
+            header('Location: reset_password.php');
+            exit;
+        }
+
+        // Datos del usuario a usar
+        $email  = $_SESSION['reset_password_email'];
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        // Actualizar contraseña
+        $sql = "UPDATE usuarios SET password_hash = :pass WHERE email = :email";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':pass',  $password, \PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email,  \PDO::PARAM_STR);
+        if (!$stmt->execute()) {
+            $_SESSION['error'] = "Error al guardar la contraseña. Intenta de nuevo.";
+            header('Location: reset_password.php');
+            exit;
+        }
+
+        // Limpiar sesión
+        unset(
+            $_SESSION['reset_password_email'],
+            $_SESSION['reset_password_code'],
+            $_SESSION['reset_password_expiration'],
+            $_SESSION['is_code_valid']
+        );
+
+        // Registrar sesión
+        $usuario = UserUtils::get($email);
+        $_SESSION['usuario'] = [
+            'id'     => $usuario['id'],
+            'nombre' => $usuario['nombre'],
+            'email'  => $usuario['email'],
+            'rol'    => $usuario['rol'],
+        ];
+
+        // Redirigir al index
+        header("Location: /../index.php");
     }
 }

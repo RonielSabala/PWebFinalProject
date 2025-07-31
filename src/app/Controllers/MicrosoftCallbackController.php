@@ -3,37 +3,32 @@
 namespace App\Controllers;
 
 use App\Core\Template;
-use League\OAuth2\Client\Provider\GenericProvider;
+use App\Utils\OAuthUtils;
+use App\Utils\GenericUtils;
+
 
 class MicrosoftCallbackController
 {
     public function handle(Template $template, \PDO $pdo)
     {
-        if (session_status() !== PHP_SESSION_ACTIVE) {
-            session_start();
-        }
+        $oauthClient = OAuthUtils::getMicrosoftClient();
 
-        global $clientId, $clientSecret, $redirectUri, $authority, $scopes;
-        $oauthClient = new GenericProvider([
-            'clientId'                => $clientId,
-            'clientSecret'            => $clientSecret,
-            'redirectUri'             => $redirectUri,
-            'urlAuthorize'            => $authority . '/oauth2/v2.0/authorize',
-            'urlAccessToken'          => $authority . '/oauth2/v2.0/token',
-            'urlResourceOwnerDetails' => 'https://graph.microsoft.com/v1.0/me',
-            'scopes'                  => $scopes,
-        ]);
-
+        // Validar código
         if (!isset($_GET['code'])) {
-            exit('Código de autorización no encontrado');
+            GenericUtils::showAlert('Código de autorización no encontrado', "danger");
+            exit;
         }
 
+        // Validar estado
         if (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
             unset($_SESSION['oauth2state']);
-            exit('El estado no es válido o ha expirado.');
+            GenericUtils::showAlert('El estado no es válido o ha expirado.', "danger");
+            exit;
         }
 
         try {
+            // Obtener datos del usuario
+
             $accessToken = $oauthClient->getAccessToken('authorization_code', [
                 'code' => $_GET['code']
             ]);
@@ -45,19 +40,17 @@ class MicrosoftCallbackController
             );
 
             $response = $oauthClient->getResponse($request);
-            $user = json_decode((string)$response->getBody(), true);
+            $user_data = json_decode((string)$response->getBody(), true);
 
-            // Guardar en sesión para usar en validar_registro
+            // Guardar sesión y redirigir al login
             $_SESSION['microsoft_user'] = [
-                'name' => $user['displayName'],
-                'email' => $user['userPrincipalName']
-
+                'nombre' => $user_data['displayName'],
+                'email' => $user_data['userPrincipalName']
             ];
 
             header("Location: login/login.php");
-            exit;
         } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
-            exit('Error al obtener token: ' . $e->getMessage());
+            GenericUtils::showAlert('Error al obtener token: ' . $e->getMessage(), "danger");
         }
     }
 }

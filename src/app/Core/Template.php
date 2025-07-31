@@ -28,12 +28,26 @@ class Template
             self::$partialsPath = self::$viewsPath . '/_partials';
         }
 
-        include self::$partialsPath . '/_header.php';
-        include self::$partialsPath . '/_nav.php';
+        // Incluir el header si existe
+        $headerPath = self::$partialsPath . '/_header.php';
+        if (file_exists($headerPath)) {
+            include $headerPath;
+        }
+
+        // Incluir el nav si existe
+        $navPath = self::$partialsPath . '/_nav.php';
+        if (file_exists($navPath)) {
+            include $navPath;
+        }
     }
 
     public function __destruct()
     {
-        include self::$partialsPath . '/_footer.php';
+
+        // Incluir el footer si existe
+        $footerPath = self::$partialsPath . '/_footer.php';
+        if (file_exists($footerPath)) {
+            include $footerPath;
+        }
     }
 }

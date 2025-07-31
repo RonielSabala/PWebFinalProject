@@ -24,10 +24,13 @@
                         <button type="submit" class="btn btn-success w-100">Registrarse</button>
                     </form>
                     <hr class="my-4">
+
+                    <!-- Opciones de autenticación externa -->
                     <div class="text-center">
-                        <?= $google_button ?>
-                        <?= $microsoft_button ?>
+                        <a href="<?= $google_auth_url ?>" class="btn btn-outline-danger w-100 mb-2">Google</a>
+                        <a href="MicrosoftController.php" class="btn btn-outline-primary w-100">Microsoft</a>
                     </div>
+
                     <div class="text-center mt-3">
                         <a href="login.php">¿Ya tienes cuenta? Inicia sesión</a>
                     </div>

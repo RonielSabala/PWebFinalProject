@@ -1,3 +1,8 @@
+<?php
+
+use App\Utils\GenericUtils;
+?>
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-5">
@@ -14,7 +19,7 @@
                     </form>
                     <?php
                     if (isset($_SESSION['error'])) {
-                        $showAlert($_SESSION['error'], "danger");
+                        GenericUtils::showAlert($_SESSION['error'], "danger", false);
                         unset($_SESSION['error']);
                     }
                     ?>

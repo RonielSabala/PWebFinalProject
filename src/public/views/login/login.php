@@ -31,7 +31,7 @@
                     <!-- Opciones de autenticación externa -->
                     <div class="text-center">
                         <p>¿No tienes cuenta? <a href="signin.php">Regístrate</a></p>
-                        <a href="<?= $google_button ?>" class="btn btn-outline-danger w-100 mb-2">Google</a>
+                        <a href="<?= $google_auth_url ?>" class="btn btn-outline-danger w-100 mb-2">Google</a>
                         <a href="MicrosoftController.php" class="btn btn-outline-primary w-100">Microsoft</a>
                     </div>
                 </div>

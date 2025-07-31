@@ -9,8 +9,6 @@ class MapController
 {
     public function handle(Template $template, $pdo)
     {
-        $template->apply([
-            'pdo' => $pdo,
-        ]);
+        $template->apply();
     }
 }
