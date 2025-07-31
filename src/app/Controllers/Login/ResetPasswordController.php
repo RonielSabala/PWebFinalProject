@@ -8,7 +8,7 @@ use App\Utils\UserUtils;
 
 class ResetPasswordController
 {
-    public function handle(Template $template, $pdo)
+    public function handle(Template $template)
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $template->apply();
@@ -42,8 +42,8 @@ class ResetPasswordController
 
         // Validar contraseñas
         $password = $_POST['password'] ?? '';
-        $confirm  = $_POST['confirm_password'] ?? '';
-        if ($password !== $confirm) {
+        $confirm_password  = $_POST['confirm_password'] ?? '';
+        if ($password !== $confirm_password) {
             $_SESSION['error'] = "Las contraseñas no coinciden.";
             header('Location: reset_password.php');
             exit;
@@ -51,14 +51,11 @@ class ResetPasswordController
 
         // Datos del usuario a usar
         $email  = $_SESSION['reset_password_email'];
-        $password = password_hash($password, PASSWORD_DEFAULT);
+        $new_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Actualizar contraseña
-        $sql = "UPDATE usuarios SET password_hash = :pass WHERE email = :email";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':pass',  $password, \PDO::PARAM_STR);
-        $stmt->bindParam(':email', $email,  \PDO::PARAM_STR);
-        if (!$stmt->execute()) {
+        $success = UserUtils::updatePassword($email, $new_password);
+        if (!$success) {
             $_SESSION['error'] = "Error al guardar la contraseña. Intenta de nuevo.";
             header('Location: reset_password.php');
             exit;

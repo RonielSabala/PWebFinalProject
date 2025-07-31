@@ -8,7 +8,7 @@ use App\Utils\OAuthUtils;
 
 class MicrosoftController
 {
-    public function handle(Template $template, \PDO $pdo)
+    public function handle(Template $template)
     {
         $oauthClient = OAuthUtils::getMicrosoftClient();
         $authorizationUrl = $oauthClient->getAuthorizationUrl();

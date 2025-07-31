@@ -10,7 +10,7 @@ use App\Utils\GenericUtils;
 
 class LoginController
 {
-    static public function log_user($pdo)
+    static public function log_user()
     {
         // Tipos de acceso
         $por_post = $_SERVER['REQUEST_METHOD'] === 'POST';
@@ -80,9 +80,9 @@ class LoginController
         return true;
     }
 
-    public function handle(Template $template, $pdo)
+    public function handle(Template $template)
     {
-        if (self::log_user($pdo)) {
+        if (self::log_user()) {
             exit;
         }
 

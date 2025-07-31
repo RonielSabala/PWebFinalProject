@@ -9,7 +9,7 @@ use Google\Service\Oauth2 as Google_Service_Oauth2;
 
 class GoogleController
 {
-    public function handle(Template $template, $pdo)
+    public function handle(Template $template)
     {
         global $google_client;
 

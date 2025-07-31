@@ -10,7 +10,7 @@ use PHPMailer\PHPMailer\Exception;
 
 class ForgotPasswordController
 {
-    public function handle(Template $template, $pdo)
+    public function handle(Template $template)
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $template->apply();

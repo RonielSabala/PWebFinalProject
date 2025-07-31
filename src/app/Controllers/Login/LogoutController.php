@@ -7,7 +7,7 @@ use App\Core\Template;
 
 class LogoutController
 {
-    public function handle(Template $template, $pdo)
+    public function handle(Template $template)
     {
         global $google_client;
 

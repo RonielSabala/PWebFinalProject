@@ -8,11 +8,11 @@ use App\Utils\OAuthUtils;
 
 class SigninController
 {
-    public function handle(Template $template, $pdo)
+    public function handle(Template $template)
     {
         // Crear usuario
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            LoginController::log_user($pdo);
+            LoginController::log_user();
             exit;
         }
 

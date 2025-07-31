@@ -6,7 +6,7 @@ $pass = "";
 $db = "incidencias_db";
 
 try {
-    $pdo = new \PDO(
+    $pdo = new PDO(
         "mysql:host=$host;dbname=$db;charset=utf8",
         $user,
         $pass

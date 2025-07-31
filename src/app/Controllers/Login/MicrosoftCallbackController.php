@@ -9,7 +9,7 @@ use App\Utils\GenericUtils;
 
 class MicrosoftCallbackController
 {
-    public function handle(Template $template, \PDO $pdo)
+    public function handle(Template $template)
     {
         $oauthClient = OAuthUtils::getMicrosoftClient();
 

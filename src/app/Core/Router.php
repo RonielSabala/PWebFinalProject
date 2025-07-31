@@ -9,8 +9,6 @@ class Router
 {
     public function dispatch()
     {
-        global $pdo;
-
         // Iniciar la sesión si no está activa
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -62,6 +60,6 @@ class Router
 
         // Iniciar vista
         $template = new Template();
-        $controller->handle($template, $pdo);
+        $controller->handle($template);
     }
 }
