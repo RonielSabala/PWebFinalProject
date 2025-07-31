@@ -11,7 +11,7 @@ class Utils
         return 'custom-link nav-link' . ($current === $page ? ' active' : '');
     }
 
-    public static function showAlert(string $message, string $type = 'success', string $returnRoute = 'home.php'): void
+    public static function showAlert(string $message, string $type = 'success', string $returnRoute = 'index.php'): void
     {
         echo "
         <div class='text-center'>

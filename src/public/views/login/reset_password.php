@@ -6,7 +6,7 @@
           <?php if (!isset($_SESSION['codigo_valido'])): ?>
             <h3 class="mb-4 text-center">Ingresa el código</h3>
             <form method="post">
-              <input type="hidden" name="accion" value="validar_codigo">
+              <input type="hidden" name="action" value="validate_code">
               <div class="mb-3">
                 <label for="codigo">Código recibido</label>
                 <input type="number" name="codigo" class="form-control" required>
@@ -16,7 +16,7 @@
           <?php else: ?>
             <h3 class="mb-4 text-center">Nueva contraseña</h3>
             <form method="post">
-              <input type="hidden" name="accion" value="guardar_contrasena">
+              <input type="hidden" name="action" value="save_password">
               <div class="mb-3">
                 <label for="password">Nueva contraseña</label>
                 <input type="password" name="password" class="form-control" required minlength="6">
@@ -31,7 +31,7 @@
 
           <?php
           if (isset($_SESSION['error'])) {
-            echo '<div class="alert alert-danger mt-3">' . $_SESSION['error'] . '</div>';
+            $showAlert($_SESSION['error'], "danger");
             unset($_SESSION['error']);
           }
           ?>

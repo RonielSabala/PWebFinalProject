@@ -29,7 +29,7 @@
                         <?= $microsoft_button ?>
                     </div>
                     <div class="text-center mt-3">
-                        <a href="login.php">¿Ya tienes cuenta? Inicia sesión aquí</a>
+                        <a href="login.php">¿Ya tienes cuenta? Inicia sesión</a>
                     </div>
                 </div>
             </div>

@@ -24,18 +24,19 @@ class Router
         $default_page = 'incident';
         $default_route = ['page' => $default_page,  'controller' => \App\Controllers\IncidentController::class];
         $routes = [
-            ''                      => $default_route,
-            'index.php'             => $default_route,
-            'incident.php'          => $default_route,
-            'list.php'              => ['page' => $default_page, 'controller' => \App\Controllers\ListController::class],
-            'map.php'               => ['page' => $default_page, 'controller' => \App\Controllers\MapController::class],
-            'validator.php'         => ['page' => 'validator',   'controller' => \App\Controllers\ValidatorController::class],
-            'admin.php'             => ['page' => 'admin',       'controller' => \App\Controllers\AdminController::class],
-            'login.php'             => ['page' => '',            'controller' => \App\Controllers\LoginController::class],
-            'signin.php'             => ['page' => '',            'controller' => \App\Controllers\SigninController::class],
-            'logout'                => ['page' => '',            'controller' => \App\Controllers\LogoutController::class],
-            'forgot_password.php'   => ['page' => '',            'controller' => \App\Controllers\PasswordController::class],
-            'GoogleController.php'  => ['page' => '',           'controller' => \App\Controllers\GoogleController::class],
+            ''                     => $default_route,
+            'index.php'            => $default_route,
+            'incident.php'         => $default_route,
+            'list.php'             => ['page' => $default_page, 'controller' => \App\Controllers\ListController::class],
+            'map.php'              => ['page' => $default_page, 'controller' => \App\Controllers\MapController::class],
+            'validator.php'        => ['page' => 'validator',   'controller' => \App\Controllers\ValidatorController::class],
+            'admin.php'            => ['page' => 'admin',       'controller' => \App\Controllers\AdminController::class],
+            'login.php'            => ['page' => '',            'controller' => \App\Controllers\LoginController::class],
+            'signin.php'           => ['page' => '',            'controller' => \App\Controllers\SigninController::class],
+            'forgot_password.php'  => ['page' => '',            'controller' => \App\Controllers\ForgotPasswordController::class],
+            'reset_password.php'   => ['page' => '',            'controller' => \App\Controllers\ResetPasswordController::class],
+            'logout.php'           => ['page' => '',            'controller' => \App\Controllers\LogoutController::class],
+            'GoogleController.php' => ['page' => '',            'controller' => \App\Controllers\GoogleController::class],
         ];
 
         // Obtener ruta

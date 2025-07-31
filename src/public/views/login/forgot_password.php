@@ -5,7 +5,6 @@
                 <div class="card-body">
                     <h3 class="mb-4 text-center">Recuperar contraseña</h3>
                     <form method="post">
-                        <input type="hidden" name="accion" value="enviar_codigo">
                         <div class="mb-3">
                             <label for="email">Correo electrónico</label>
                             <input type="email" name="email" id="email" class="form-control" required>
@@ -15,12 +14,8 @@
                     </form>
                     <?php
                     if (isset($_SESSION['error'])) {
-                        echo '<div class="alert alert-danger mt-3">' . $_SESSION['error'] . '</div>';
+                        $showAlert($_SESSION['error'], "danger");
                         unset($_SESSION['error']);
-                    }
-                    if (isset($_SESSION['success'])) {
-                        echo '<div class="alert alert-success mt-3">' . $_SESSION['success'] . '</div>';
-                        unset($_SESSION['success']);
                     }
                     ?>
                 </div>

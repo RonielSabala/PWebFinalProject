@@ -3,11 +3,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-include("db.php");
-
-//Include Google Client Library for PHP autoload file
-require_once __DIR__ . '/../vendor/autoload.php';
-
 // Instancia del cliente de Google
 $google_client = new Google_Client();
 

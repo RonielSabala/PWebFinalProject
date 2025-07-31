@@ -1,2 +1,6 @@
 <h2>Incident</h2>
-<a href="logout">Cerrar sesión</a>
+<a href="logout.php">Cerrar sesión</a>
+
+<?php
+var_dump($_SESSION);
+?>

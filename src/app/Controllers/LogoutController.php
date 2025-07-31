@@ -9,7 +9,8 @@ class LogoutController
 {
     public function handle(Template $template, $pdo)
     {
-        include('config/google.php');
+        global $google_client;
+
         $google_client->revokeToken();
         session_destroy();
         header('location:login/login.php');

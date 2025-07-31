@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\Template;
+use App\Helpers\Utils;
 use PDO;
 
 
@@ -10,73 +11,99 @@ class LoginController
 {
     static public function validate_sesion($pdo)
     {
-        // Tipos de registro
-        $es_manual = $_SERVER['REQUEST_METHOD'] === 'POST';
-        $es_google = isset($_SESSION['google_user']);
-        $es_microsoft = isset($_SESSION['microsoft_user']);
-
-        // Validar login
-        if (!($es_manual || $es_google || $es_microsoft)) {
-            return False;
+        // Tipos de acceso
+        $por_post      = $_SERVER['REQUEST_METHOD'] === 'POST';
+        $por_signin    = isset($_POST['nombre']);
+        $por_google    = isset($_SESSION['google_user']);
+        $por_microsoft = isset($_SESSION['microsoft_user']);
+        if (!($por_post || $por_google || $por_microsoft)) {
+            return false;
         }
 
         // Registro manual
-        if ($es_manual) {
-            $nombre = $_POST['nombre'];
-            $email = $_POST['email'];
-            $telefono = $_POST['telefono'];
-            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        if ($por_post) {
+            $nombre   = $_POST['nombre'] ?? "";
+            $email    = $_POST['email'];
+            $telefono = $_POST['telefono'] ?? "";
+            $password = $_POST['password'];
 
             // Registro con Google
-        } elseif ($es_google) {
-            $email = $_SESSION['google_user']['email'];
+        } elseif ($por_google) {
             $nombre = $_SESSION['google_user']['first_name'] . ' ' . $_SESSION['google_user']['last_name'];
+            $email = $_SESSION['google_user']['email'];
             $telefono = '0000000000';
-            $password = password_hash("oauth123", PASSWORD_DEFAULT);
+            $password = "oauth123";
 
             // Registro con Microsoft
         } else {
-            $email = $_SESSION['microsoft_user']['email'];
             $nombre = $_SESSION['microsoft_user']['name'];
+            $email = $_SESSION['microsoft_user']['email'];
             $telefono = '0000000000';
-            $password = password_hash("oauth123", PASSWORD_DEFAULT);
+            $password = "oauth123";
         }
 
-        // 1) Verificar si ya existe el usuario
-        $sql = "SELECT u.id, u.nombre, u.email, r.nombre AS rol
+        // 1) Verificar si existe usuario
+        $sql = "SELECT 1 FROM usuarios WHERE email = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$email]);
+        $usuario_existe = $stmt->fetchColumn() ? true : false;
+
+        if ($usuario_existe) {
+            // Validar que el correo sea único
+            if ($por_signin) {
+                Utils::showAlert("El correo ya está registrado.", "danger", "signin.php");
+                return false;
+            }
+
+            // 2) Verificar contraseña
+            $sql = "SELECT u.id, u.nombre, u.email, u.password_hash, r.nombre AS rol
             FROM usuarios u
             JOIN roles_usuarios ru ON u.id = ru.usuarios_id
             JOIN roles r ON ru.roles_id = r.id
-            WHERE u.email = ?
-        ";
+            WHERE u.email = ?";
 
-        $verificar = $pdo->prepare($sql);
-        $verificar->execute([$email]);
-        $usuarioExistente = $verificar->fetch(PDO::FETCH_ASSOC);
-        if ($usuarioExistente) {
-            $_SESSION['usuario'] = $usuarioExistente;
-            header("Location: /../index.php");
-            exit;
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$email]);
+            $usuario = $stmt->fetch(\PDO::FETCH_ASSOC);
+            if (password_verify($password, $usuario['password_hash'])) {
+                $_SESSION['usuario'] = [
+                    'id'     => $usuario['id'],
+                    'nombre' => $usuario['nombre'],
+                    'email'  => $usuario['email'],
+                    'rol'    => $usuario['rol'],
+                ];
+
+                header("Location: /../index.php");
+                return true;
+            }
+
+            Utils::showAlert("Credenciales incorrectas!", "danger", "login.php");
+            return false;
+        } elseif (!$por_signin && !$por_google && !$por_microsoft) {
+            Utils::showAlert("El correo no está registrado.", "danger", "signin.php");
+            return false;
         }
 
-        // 2) Registrar nuevo usuario
-        $sql = "INSERT INTO usuarios (nombre, email, telefono, contraseña) VALUES (?, ?, ?, ?)";
+        // Registrar usuario
+
+        // 1) Insertar usuario
+        $sql = "INSERT INTO usuarios (nombre, email, telefono, password_hash) VALUES (?, ?, ?, ?)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$nombre, $email, $telefono, $password]);
+        $stmt->execute([$nombre, $email, $telefono, password_hash($password, PASSWORD_DEFAULT)]);
         $usuario_id = $pdo->lastInsertId();
 
-        // 3) Obtener el rol "default
+        // 2) Obtener el id del rol "default"
         $sql = "SELECT id FROM roles WHERE nombre = ?";
-        $rolStmt = $pdo->prepare($sql);
-        $rolStmt->execute(['default']);
-        $rol_id = $rolStmt->fetchColumn();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['default']);
+        $rol_id = $stmt->fetchColumn();
 
-        // 4) Insertar relación usuario–rol
+        // 3) Insertar relación usuario–rol
         $sql = "INSERT INTO roles_usuarios (roles_id, usuarios_id) VALUES (?, ?)";
-        $relacion = $pdo->prepare($sql);
-        $relacion->execute([$rol_id, $usuario_id]);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$rol_id, $usuario_id]);
 
-        // 5) Recuperar datos completos del usuario
+        // 4) Recuperar datos del usuario
         $sql = "SELECT u.id, u.nombre, u.email, r.nombre AS rol
             FROM usuarios u
             JOIN roles_usuarios ru ON u.id = ru.usuarios_id
@@ -84,14 +111,14 @@ class LoginController
             WHERE u.id = ?
         ";
 
-        $final = $pdo->prepare($sql);
-        $final->execute([$usuario_id]);
-        $_SESSION['usuario'] = $final->fetch(PDO::FETCH_ASSOC);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$usuario_id]);
+        $_SESSION['usuario'] = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // 6) Limpiar sesiones de OAuth y redirigir
+        // 6) Limpiar sesiones
         unset($_SESSION['google_user'], $_SESSION['microsoft_user']);
         header("Location: /../index.php");
-        return True;
+        return true;
     }
 
     public function handle(Template $template, $pdo)

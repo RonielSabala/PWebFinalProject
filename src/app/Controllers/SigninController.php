@@ -17,12 +17,10 @@ class SigninController
             exit;
         }
 
-        // Botón de Google si no hay sesión
-        if (!isset($_SESSION['access_token'])) {
-            $google_button = '<a href="' . $google_client->createAuthUrl() . '" class="btn btn-danger w-100 mb-2">Registrarse con Google</a>';
-        }
-
+        // Botones de registro
         $microsoft_button = '<a href="microsoft_login.php" class="btn btn-primary w-100 mb-2">Registrarse con Microsoft</a>';
+        $google_button = '<a href="' . $google_client->createAuthUrl() . '" class="btn btn-danger w-100 mb-2">Registrarse con Google</a>';
+
         $template->apply([
             'google_button' => $google_button ?? "",
             'microsoft_button' => $microsoft_button,
