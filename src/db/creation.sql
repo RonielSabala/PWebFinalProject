@@ -2,9 +2,7 @@ DROP DATABASE IF EXISTS incidencias_db;
 CREATE DATABASE incidencias_db;
 USE incidencias_db;
 
--- -----------------------------------------------------
 -- Usuarios
--- -----------------------------------------------------
 DROP TABLE IF EXISTS usuarios;
 CREATE TABLE usuarios (
     id               INT             PRIMARY KEY AUTO_INCREMENT,
@@ -15,15 +13,14 @@ CREATE TABLE usuarios (
     fecha_creacion   DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- -----------------------------------------------------
--- Roles y relación Usuario–Rol
--- -----------------------------------------------------
+-- Roles
 DROP TABLE IF EXISTS roles;
 CREATE TABLE roles (
     id     INT    PRIMARY KEY AUTO_INCREMENT,
     nombre ENUM('default','reportero','validador','admin') NOT NULL
 );
 
+-- Relación Usuario–Rol
 DROP TABLE IF EXISTS roles_usuarios;
 CREATE TABLE roles_usuarios (
     roles_id     INT NOT NULL,
@@ -33,18 +30,14 @@ CREATE TABLE roles_usuarios (
     FOREIGN KEY (roles_id)     REFERENCES roles(id)    ON DELETE CASCADE
 );
 
--- -----------------------------------------------------
 -- Provincias
--- -----------------------------------------------------
 DROP TABLE IF EXISTS provincias;
 CREATE TABLE provincias (
     id     TINYINT       PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(35)   NOT NULL UNIQUE
 );
 
--- -----------------------------------------------------
 -- Municipios
--- -----------------------------------------------------
 DROP TABLE IF EXISTS municipios;
 CREATE TABLE municipios (
     id            SMALLINT     PRIMARY KEY AUTO_INCREMENT,
@@ -53,9 +46,7 @@ CREATE TABLE municipios (
     FOREIGN KEY (provincia_id) REFERENCES provincias(id) ON DELETE CASCADE
 );
 
--- -----------------------------------------------------
 -- Barrios
--- -----------------------------------------------------
 DROP TABLE IF EXISTS barrios;
 CREATE TABLE barrios (
     id           MEDIUMINT     PRIMARY KEY AUTO_INCREMENT,
@@ -65,18 +56,7 @@ CREATE TABLE barrios (
     UNIQUE (nombre, municipio_id)
 );
 
--- -----------------------------------------------------
--- Etiquetas
--- -----------------------------------------------------
-DROP TABLE IF EXISTS etiquetas;
-CREATE TABLE etiquetas (
-    id     INT          PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(45)  NOT NULL UNIQUE
-);
-
--- -----------------------------------------------------
 -- Incidencias
--- -----------------------------------------------------
 DROP TABLE IF EXISTS incidencias;
 CREATE TABLE incidencias (
     id               INT             PRIMARY KEY AUTO_INCREMENT,
@@ -94,40 +74,20 @@ CREATE TABLE incidencias (
     barrio_id        MEDIUMINT       NOT NULL,
     usuario_id       INT             NULL,
     fecha_creacion   DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (provincia_id) REFERENCES provincias(id)   ON DELETE CASCADE,
-    FOREIGN KEY (municipio_id) REFERENCES municipios(id)   ON DELETE CASCADE,
+    FOREIGN KEY (provincia_id)  REFERENCES provincias(id)  ON DELETE CASCADE,
+    FOREIGN KEY (municipio_id)  REFERENCES municipios(id)  ON DELETE CASCADE,
     FOREIGN KEY (barrio_id)     REFERENCES barrios(id)     ON DELETE CASCADE,
     FOREIGN KEY (usuario_id)    REFERENCES usuarios(id)    ON DELETE SET NULL
 );
 
--- -----------------------------------------------------
--- Fotos de Incidencias
--- -----------------------------------------------------
-DROP TABLE IF EXISTS fotos;
-CREATE TABLE fotos (
-    id            INT           PRIMARY KEY AUTO_INCREMENT,
-    incidencia_id INT           NOT NULL,
-    url           VARCHAR(500)  NOT NULL,
-    FOREIGN KEY (incidencia_id) REFERENCES incidencias(id) ON DELETE CASCADE
+-- Etiquetas de incidencias
+DROP TABLE IF EXISTS etiquetas;
+CREATE TABLE etiquetas (
+    id     INT          PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(45)  NOT NULL UNIQUE
 );
 
--- -----------------------------------------------------
--- Comentarios
--- -----------------------------------------------------
-DROP TABLE IF EXISTS comentarios;
-CREATE TABLE comentarios (
-    id             INT           PRIMARY KEY AUTO_INCREMENT,
-    incidencia_id  INT           NOT NULL,
-    usuario_id     INT           NULL,
-    texto          TEXT          NOT NULL,
-    fecha_creacion DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (incidencia_id) REFERENCES incidencias(id) ON DELETE CASCADE,
-    FOREIGN KEY (usuario_id)    REFERENCES usuarios(id)    ON DELETE SET NULL
-);
-
--- -----------------------------------------------------
--- Incidencias–Etiquetas (m:n)
--- -----------------------------------------------------
+-- Relación Incidencias-Etiquetas
 DROP TABLE IF EXISTS incidencias_etiquetas;
 CREATE TABLE incidencias_etiquetas (
     incidencia_id INT NOT NULL,
@@ -137,9 +97,28 @@ CREATE TABLE incidencias_etiquetas (
     FOREIGN KEY (etiqueta_id)   REFERENCES etiquetas(id)   ON DELETE CASCADE
 );
 
--- -----------------------------------------------------
+-- Fotos de incidencias
+DROP TABLE IF EXISTS fotos;
+CREATE TABLE fotos (
+    id            INT           PRIMARY KEY AUTO_INCREMENT,
+    incidencia_id INT           NOT NULL,
+    url           VARCHAR(500)  NOT NULL,
+    FOREIGN KEY (incidencia_id) REFERENCES incidencias(id) ON DELETE CASCADE
+);
+
+-- Comentarios
+DROP TABLE IF EXISTS comentarios;
+CREATE TABLE comentarios (
+    id             INT           PRIMARY KEY AUTO_INCREMENT,
+    incidencia_id  INT           NOT NULL,
+    usuario_id     INT           NULL,
+    texto          TEXT          NOT NULL,
+    fecha_creacion DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (incidencia_id)  REFERENCES incidencias(id) ON DELETE CASCADE,
+    FOREIGN KEY (usuario_id)     REFERENCES usuarios(id)    ON DELETE SET NULL
+);
+
 -- Correcciones
--- -----------------------------------------------------
 DROP TABLE IF EXISTS correcciones;
 CREATE TABLE correcciones (
     id             INT           PRIMARY KEY AUTO_INCREMENT,
@@ -148,15 +127,6 @@ CREATE TABLE correcciones (
     valores        JSON          NOT NULL,
     esta_aprobada  TINYINT(1)    NOT NULL DEFAULT 0,
     fecha_creacion DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (incidencia_id) REFERENCES incidencias(id) ON DELETE CASCADE,
-    FOREIGN KEY (usuario_id)    REFERENCES usuarios(id)    ON DELETE SET NULL
+    FOREIGN KEY (incidencia_id)  REFERENCES incidencias(id) ON DELETE CASCADE,
+    FOREIGN KEY (usuario_id)     REFERENCES usuarios(id)    ON DELETE SET NULL
 );
-
--- -----------------------------------------------------
--- Datos iniciales
--- -----------------------------------------------------
-INSERT INTO roles (nombre) VALUES
-('default'),
-('reportero'),
-('validador'),
-('admin');
