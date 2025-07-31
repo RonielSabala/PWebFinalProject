@@ -1,19 +1,21 @@
-# Proyecto Final
+# Proyecto final de Programación Web
+
+### App de incidencias
 
 - Integrantes del proyecto
 
 > **Roniel Antonio Sabala Germán**  
 >  Matrícula: `20240212`
-
+>
 > **Jeremy Reyes González**  
 >  Matrícula: `20240227`
-
+>
 > **Abel Eduardo Martínez Robles**  
 >  Matrícula: `20240227`
 
 ---
 
-# Instrucciones para ejecutar el proyecto:
+# Instrucciones para la ejecución el proyecto
 
 _Requisitos_:
 
@@ -39,7 +41,7 @@ composer require league/oauth2-client
 
 ## 4. Ejecución
 
-Ejecuta el siguiente comando para iniciar el servidor:
+Ejecuta el siguiente comando para iniciar el servidor PHP:
 
 ```bash
 php -S localhost:1111 -t src/public
@@ -47,7 +49,7 @@ php -S localhost:1111 -t src/public
 
 ## 5. Inicio de sesión
 
-Regístrate, o inicia sesión con Google o Microsoft para acceder al sistema.
+Regístrate o inicia sesión con Google/Microsoft para acceder al sistema.
 
 ---
 
