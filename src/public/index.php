@@ -17,14 +17,14 @@ const ROUTES = [
     'map.php'              => ['page' => DEFAULT_PAGE, 'controller' => \App\Controllers\Incidents\MapController::class],
     'validator.php'        => ['page' => 'validator',  'controller' => \App\Controllers\Super\ValidatorController::class],
     'admin.php'            => ['page' => 'admin',      'controller' => \App\Controllers\Super\AdminController::class],
-    'login.php'            => ['controller' => \App\Controllers\Login\LoginController::class],
-    'logout.php'           => ['controller' => \App\Controllers\Login\LogoutController::class],
-    'signin.php'           => ['controller' => \App\Controllers\Login\SigninController::class],
-    'forgot_password.php'  => ['controller' => \App\Controllers\Login\ForgotPasswordController::class],
-    'reset_password.php'   => ['controller' => \App\Controllers\Login\ResetPasswordController::class],
-    'GoogleController.php'    => ['controller' => \App\Controllers\Login\GoogleController::class],
-    'MicrosoftController.php' => ['controller' => \App\Controllers\Login\MicrosoftController::class],
-    'MicrosoftCallbackController.php' => ['controller' => \App\Controllers\Login\MicrosoftCallbackController::class],
+    'login.php'            => ['controller' => \App\Controllers\Auth\LoginController::class],
+    'logout.php'           => ['controller' => \App\Controllers\Auth\LogoutController::class],
+    'signin.php'           => ['controller' => \App\Controllers\Auth\SigninController::class],
+    'forgot_password.php'  => ['controller' => \App\Controllers\Auth\ForgotPasswordController::class],
+    'reset_password.php'   => ['controller' => \App\Controllers\Auth\ResetPasswordController::class],
+    'GoogleController.php'    => ['controller' => \App\Controllers\Auth\GoogleController::class],
+    'MicrosoftController.php' => ['controller' => \App\Controllers\Auth\MicrosoftController::class],
+    'MicrosoftCallbackController.php' => ['controller' => \App\Controllers\Auth\MicrosoftCallbackController::class],
 ];
 
 $router = new App\Core\Router();

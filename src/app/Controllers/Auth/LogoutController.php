@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Login;
+namespace App\Controllers\Auth;
 
 use App\Core\Template;
 
@@ -14,6 +14,6 @@ class LogoutController
         // Cerrar sesión y redirigir al login
         $google_client->revokeToken();
         session_destroy();
-        header('location:login/login.php');
+        header('location:auth/login.php');
     }
 }

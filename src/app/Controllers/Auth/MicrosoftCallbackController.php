@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Login;
+namespace App\Controllers\Auth;
 
 use App\Core\Template;
 use App\Utils\OAuthUtils;
@@ -49,7 +49,7 @@ class MicrosoftCallbackController
                 'email' => $user_data['userPrincipalName']
             ];
 
-            header("Location: login/login.php");
+            header("Location: login.php");
         } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
             GenericUtils::showAlert('Error al obtener token: ' . $e->getMessage(), "danger");
         }

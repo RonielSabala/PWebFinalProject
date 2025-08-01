@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Login;
+namespace App\Controllers\Auth;
 
 use App\Core\Template;
 use App\Utils\GenericUtils;
@@ -15,7 +15,7 @@ class GoogleController
 
         // Validar código
         if (!isset($_GET['code'])) {
-            header("Location: login/login.php");
+            header("Location: login.php");
             exit;
         }
 
@@ -39,6 +39,6 @@ class GoogleController
             'email' => $user_data['email']
         ];
 
-        header("Location: login/login.php");
+        header("Location: login.php");
     }
 }
