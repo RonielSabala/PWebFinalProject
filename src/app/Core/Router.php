@@ -2,55 +2,56 @@
 
 namespace App\Core;
 
+use App\Utils\GenericUtils;
+
 
 class Router
 {
     public function dispatch()
     {
-        global $pdo;
+        // Iniciar la sesión si no está activa
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
         // Obtener URI y nombre de la vista
         $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-        $parts = explode('/', $uri);
-        if (count($parts) > 1) {
-            $uri = implode('/', array_slice($parts, 0, -1));
-            $view = end($parts);
+        $uri_parts = explode('/', $uri);
+        if (count($uri_parts) > 1) {
+            $uri = implode('/', array_slice($uri_parts, 0, -1));
+            $view = end($uri_parts);
         } else {
             $view = $uri;
             $uri = '';
         }
 
-        // Rutas y controladores asociados
-        $default_page = 'incident';
-        $default_route = ['page' => $default_page,  'controller' => \App\Controllers\IncidentController::class];
-        $routes = [
-            ''              => $default_route,
-            'index.php'     => $default_route,
-            'incident.php'  => $default_route,
-            'list.php'      => ['page' => $default_page, 'controller' => \App\Controllers\ListController::class],
-            'map.php'       => ['page' => $default_page, 'controller' => \App\Controllers\MapController::class],
-            'validator.php' => ['page' => 'validator',   'controller' => \App\Controllers\ValidatorController::class],
-            'admin.php'     => ['page' => 'admin',       'controller' => \App\Controllers\AdminController::class],
-        ];
+        // Re-dirección al login si no hay un usuario en sesión
+        if (!(isset($_SESSION['user']) || $uri == "auth")) {
+            header("Location: /auth/login.php");
+            exit;
+        }
 
         // Obtener ruta
-        if (isset($routes[$view])) {
-            $route = $routes[$view];
+        if (isset(ROUTES[$view])) {
+            $route = ROUTES[$view];
             $controller = new $route['controller']();
-            define('CURRENT_PAGE', $route['page']);
+            if (isset($route['page'])) {
+                define('CURRENT_PAGE', $route['page']);
+            }
         } else {
+            GenericUtils::showAlert("Página no encontrada...", "danger");
             header("HTTP/1.0 404 Not Found");
-            exit("Página no encontrada...");
+            exit;
         }
 
         // Determinar nombre de la vista
-        if ($view == '' || $view == 'index.php') {
-            $viewPath = $default_page;
+        if ($view === '' || $view === 'index.php') {
+            $viewPath = DEFAULT_PAGE;
         } else {
             $viewPath = preg_replace('/\.php$/', '', $view);
         }
 
-        // Manejar solicitud
+        // Pre-configurar template
         if ($uri === '') {
             if ($viewPath === 'incident') {
                 $viewPath = 'incidents/incident';
@@ -60,10 +61,11 @@ class Router
             Template::$partialsPath = $uri;
         }
 
+        // Pasar la nueva vista
         Template::$viewPath = $viewPath;
 
         // Iniciar vista
         $template = new Template();
-        $controller->handle($template, $pdo);
+        $controller->handle($template);
     }
 }

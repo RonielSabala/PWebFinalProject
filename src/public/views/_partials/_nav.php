@@ -1,13 +1,20 @@
 <?php
 
-use App\Helpers\Utils;
+use App\Utils\GenericUtils;
 ?>
 
 <div class="divMenu">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="<?= Utils::getActiveClass('incident') ?>"
+            <a class="<?= GenericUtils::getActiveClass('incident') ?>"
                 href="/incident.php">Inicio</a>
+        </li>
+        <li class="nav-item ms-auto">
+            <a
+                href="logout.php"
+                class="btn btn-outline-danger btn-sm">
+                Cerrar sesión
+            </a>
         </li>
     </ul>
 </div>
