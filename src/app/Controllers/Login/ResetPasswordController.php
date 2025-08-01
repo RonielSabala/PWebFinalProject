@@ -4,6 +4,7 @@ namespace App\Controllers\Login;
 
 use App\Core\Template;
 use App\Utils\UserUtils;
+use App\Utils\GenericUtils;
 
 
 class ResetPasswordController
@@ -19,24 +20,24 @@ class ResetPasswordController
             $code = trim($_POST['code'] ?? '');
 
             // ¿Existe código en sesión y no expiró?
-            if (!isset($_SESSION['reset_password_code']) || time() > $_SESSION['reset_password_expiration_time']) {
-                $_SESSION['error'] = "Código expirado. Vuelve a solicitarlo.";
-                header('Location: forgot_password.php');
-                exit;
+            if (!isset($_SESSION['reset_password_code']) || time() > $_SESSION['reset_password_code_expiration_time']) {
+                GenericUtils::showAlert("Código expirado. Vuelve a solicitarlo.", "danger", returnRoute: "forgot_password.php");
+                $template->apply();
             } elseif ($code == $_SESSION['reset_password_code']) {
                 $_SESSION['is_code_valid'] = true;
+                header('Location: reset_password.php');
             } else {
-                $_SESSION['error'] = "Código incorrecto.";
+                GenericUtils::showAlert("Código incorrecto.", "danger", false);
+                $template->apply();
             }
 
-            header('Location: reset_password.php');
             exit;
         }
 
         // Validar código
         if (empty($_SESSION['is_code_valid'])) {
-            $_SESSION['error'] = "Acceso no autorizado.";
-            header('Location: forgot_password.php');
+            GenericUtils::showAlert("Acceso no autorizado.", "danger", returnRoute: "forgot_password.php");
+            $template->apply();
             exit;
         }
 
@@ -44,8 +45,8 @@ class ResetPasswordController
         $password = $_POST['password'] ?? '';
         $confirm_password  = $_POST['confirm_password'] ?? '';
         if ($password !== $confirm_password) {
-            $_SESSION['error'] = "Las contraseñas no coinciden.";
-            header('Location: reset_password.php');
+            GenericUtils::showAlert("Las contraseñas no coinciden.", "danger", false);
+            $template->apply();
             exit;
         }
 
@@ -54,18 +55,13 @@ class ResetPasswordController
         $new_password = password_hash($password, PASSWORD_DEFAULT);
         $success_response = UserUtils::updatePassword($email, $new_password);
         if (!$success_response) {
-            $_SESSION['error'] = "Error al guardar la contraseña. Intenta de nuevo.";
-            header('Location: reset_password.php');
+            GenericUtils::showAlert("Error al actualizar la contraseña. Intenta de nuevo.", "danger", false);
+            $template->apply();
             exit;
         }
 
         // Limpiar sesión
-        unset(
-            $_SESSION['reset_password_email'],
-            $_SESSION['reset_password_code'],
-            $_SESSION['reset_password_expiration_time'],
-            $_SESSION['is_code_valid']
-        );
+        session_unset();
 
         // Registrar sesión
         $user = UserUtils::get_by($email);

@@ -18,7 +18,7 @@ class LoginController
         $by_google = isset($_SESSION['google_user']);
         $by_microsoft = isset($_SESSION['microsoft_user']);
 
-        // Verificar al menos una condición se cumple
+        // Verificar que al menos una condición se cumple
         if (!($by_post || $by_google || $by_microsoft)) {
             return false;
         }
@@ -32,10 +32,10 @@ class LoginController
             $user_session = $by_google ? $_SESSION['google_user'] : $_SESSION['microsoft_user'];
             $user_session['phone'] = '0000000000';
             $user_session['password'] = 'oauth123';
-
-            // Limpiar sesión
-            unset($_SESSION['google_user'], $_SESSION['google_access_token'], $_SESSION['microsoft_user']);
         }
+
+        // Limpiar sesión
+        session_unset();
 
         // Datos del usuario
         $username = $user_session['username'] ?? '';
@@ -48,7 +48,7 @@ class LoginController
         if ($user_exists) {
             // Evitar registro si el usuario ya existe
             if ($by_signin) {
-                GenericUtils::showAlert("El correo proporcionado ya se encuentra registrado.", "danger", returnRoute: "signin.php");
+                GenericUtils::showAlert("El correo proporcionado ya se encuentra registrado.", "danger", false);
                 return false;
             }
         } elseif ($by_signin || $by_google || $by_microsoft) {

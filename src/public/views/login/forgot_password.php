@@ -1,8 +1,3 @@
-<?php
-
-use App\Utils\GenericUtils;
-?>
-
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-5">
@@ -17,14 +12,6 @@ use App\Utils\GenericUtils;
                         <button type="submit" class="btn btn-primary w-100">Enviar código</button>
                         <div class="text-center mt-3"><a href="login.php">Volver</a></div>
                     </form>
-                    <?php
-                    if (isset($_SESSION['error'])) {
-                        GenericUtils::showAlert($_SESSION['error'], "danger", false);
-
-                        // Limpiar sesión
-                        unset($_SESSION['error']);
-                    }
-                    ?>
                 </div>
             </div>
         </div>

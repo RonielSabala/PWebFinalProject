@@ -12,7 +12,11 @@ class SigninController
     {
         // Crear usuario
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            LoginController::log_user();
+            $success_response = LoginController::log_user();
+            if (!$success_response) {
+                $template->apply();
+            }
+
             exit;
         }
 

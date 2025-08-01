@@ -24,7 +24,7 @@ class MicrosoftCallbackController
             GenericUtils::showAlert('El estado no es válido o ha expirado.', "danger");
 
             // Limpiar sesión
-            unset($_SESSION['oauth2state']);
+            session_unset();
             exit;
         }
 
