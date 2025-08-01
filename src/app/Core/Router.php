@@ -10,7 +10,7 @@ class Router
     public function dispatch()
     {
         // Iniciar la sesión si no está activa
-        if (session_status() == PHP_SESSION_NONE) {
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
@@ -23,6 +23,12 @@ class Router
         } else {
             $view = $uri;
             $uri = '';
+        }
+
+        // Re-dirección al login si no hay un usuario en sesión
+        if (!(isset($_SESSION['user']) || $uri == "auth")) {
+            header("Location: auth/login.php");
+            exit;
         }
 
         // Obtener ruta
@@ -39,7 +45,7 @@ class Router
         }
 
         // Determinar nombre de la vista
-        if ($view == '' || $view == 'index.php') {
+        if ($view === '' || $view === 'index.php') {
             $viewPath = DEFAULT_PAGE;
         } else {
             $viewPath = preg_replace('/\.php$/', '', $view);
@@ -55,6 +61,7 @@ class Router
             Template::$partialsPath = $uri;
         }
 
+        // Pasar la nueva vista
         Template::$viewPath = $viewPath;
 
         // Iniciar vista

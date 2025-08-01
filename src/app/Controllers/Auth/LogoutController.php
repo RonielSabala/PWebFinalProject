@@ -14,6 +14,6 @@ class LogoutController
         // Cerrar sesión y redirigir al login
         $google_client->revokeToken();
         session_destroy();
-        header('location:auth/login.php');
+        header('location: auth/login.php');
     }
 }

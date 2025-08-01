@@ -41,15 +41,15 @@ class MicrosoftCallbackController
             );
 
             $response = $oauthClient->getResponse($request);
-            $user_data = json_decode((string)$response->getBody(), true);
+            $user_metadata = json_decode((string)$response->getBody(), true);
 
-            // Guardar sesión y redirigir al login
-            $_SESSION['microsoft_user'] = [
-                'username' => $user_data['displayName'],
-                'email' => $user_data['userPrincipalName']
+            // Guardar sesión y hacer login
+            $_SESSION['user'] = [
+                'username' => $user_metadata['displayName'],
+                'email' => $user_metadata['userPrincipalName']
             ];
 
-            header("Location: login.php");
+            LoginController::log_user();
         } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
             GenericUtils::showAlert('Error al obtener token: ' . $e->getMessage(), "danger");
         }

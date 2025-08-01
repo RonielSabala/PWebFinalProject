@@ -15,7 +15,7 @@ class GoogleController
 
         // Validar código
         if (!isset($_GET['code'])) {
-            header("Location: login.php");
+            GenericUtils::showAlert('Código de autorización no encontrado', "danger");
             exit;
         }
 
@@ -30,15 +30,15 @@ class GoogleController
         $access_token = $token['access_token'];
         $google_client->setAccessToken($access_token);
         $google_service = new Google_Service_Oauth2($google_client);
-        $user_data = $google_service->userinfo->get();
+        $user_metadata = $google_service->userinfo->get();
 
-        // Guardar sesión y redirigir al login
+        // Guardar sesión y hacer login
         $_SESSION['google_access_token'] = $access_token;
-        $_SESSION['google_user'] = [
-            'username' => $user_data['givenName'] . ' ' . $user_data['familyName'],
-            'email' => $user_data['email']
+        $_SESSION['user'] = [
+            'username' => $user_metadata['givenName'] . ' ' . $user_metadata['familyName'],
+            'email' => $user_metadata['email']
         ];
 
-        header("Location: login.php");
+        LoginController::log_user();
     }
 }

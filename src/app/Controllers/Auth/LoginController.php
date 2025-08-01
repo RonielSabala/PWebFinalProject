@@ -15,11 +15,10 @@ class LoginController
         // Tipos de acceso
         $by_post = $_SERVER['REQUEST_METHOD'] === 'POST';
         $by_signin = isset($_POST['username']);
-        $by_google = isset($_SESSION['google_user']);
-        $by_microsoft = isset($_SESSION['microsoft_user']);
+        $by_external_service = isset($_SESSION['user']);
 
-        // Verificar que al menos una condición se cumple
-        if (!($by_post || $by_google || $by_microsoft)) {
+        // Verificar interacción con el login
+        if (!($by_post || $by_external_service)) {
             return false;
         }
 
@@ -29,7 +28,7 @@ class LoginController
             $user_session = $_POST;
         } else {
             // Registro con Google/Microsoft
-            $user_session = $by_google ? $_SESSION['google_user'] : $_SESSION['microsoft_user'];
+            $user_session = $_SESSION['user'];
             $user_session['phone'] = '0000000000';
             $user_session['password'] = 'oauth123';
         }
@@ -51,7 +50,7 @@ class LoginController
                 GenericUtils::showAlert("El correo proporcionado ya se encuentra registrado.", "danger", false);
                 return false;
             }
-        } elseif ($by_signin || $by_google || $by_microsoft) {
+        } elseif ($by_signin || $by_external_service) {
             // Registrar usuario
             UserUtils::create($username, $email, $phone, $password);
         } else {
@@ -59,12 +58,12 @@ class LoginController
             return false;
         }
 
-        // Recuperar datos del usuario
+        // Recuperar usuario
         $user = UserUtils::get_by($email);
 
         // Verificar contraseña
         $user_password = $user['password_hash'];
-        $is_valid_pass = $by_google || $by_microsoft || password_verify($password, $user_password);
+        $is_valid_pass = $by_external_service || password_verify($password, $user_password);
         if ($user_exists && !$is_valid_pass) {
             GenericUtils::showAlert("Credenciales incorrectas!", "danger", false);
             return false;
