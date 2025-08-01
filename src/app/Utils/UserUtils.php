@@ -50,12 +50,12 @@ class UserUtils
         $stmt->execute([$username, $email, $phone, password_hash($password, PASSWORD_DEFAULT)]);
         $user_id = $pdo->lastInsertId();
 
-        // 2) Obtener el role_id
+        // 2) Obtener role_id
         $stmt = $pdo->prepare(self::$getRoleIdSQL);
         $stmt->execute(['default']);
         $role_id = $stmt->fetchColumn();
 
-        // 3) Insertar relación entre usuario y rol
+        // 3) Insertar relación Usuario-Rol
         $stmt = $pdo->prepare(self::$createUserRoleSQL);
         $stmt->execute([$user_id, $role_id]);
     }

@@ -11,9 +11,9 @@ class Template
 
     private function include_partial(string $partialView)
     {
-        $partial_path = self::$partialsPath . $partialView;
-        if (file_exists($partial_path)) {
-            include $partial_path;
+        $file_path = self::$partialsPath . $partialView;
+        if (file_exists($file_path)) {
+            include $file_path;
         }
     }
 
@@ -37,12 +37,15 @@ class Template
     public function apply(array $data = [])
     {
         // Incluir el CSS de la vista
-        $view = self::$viewPath;
         echo '
-        <link rel="stylesheet" href="/css/' . $view . '.css">
+        <link rel="stylesheet" href="/css/' . self::$viewPath . '.css">
         ';
 
-        extract($data, EXTR_SKIP);
-        include self::$basePath . '/' . $view . '.php';
+        // Incluir la vista solo si existe
+        $file_path = self::$basePath . '/' . self::$viewPath . '.php';
+        if (file_exists($file_path)) {
+            extract($data, EXTR_SKIP);
+            include $file_path;
+        }
     }
 }

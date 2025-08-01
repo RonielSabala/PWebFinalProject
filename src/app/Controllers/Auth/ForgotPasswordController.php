@@ -24,7 +24,7 @@ class ForgotPasswordController
         // Validar correo
         $email = $_POST['email'] ?? '';
         if (!UserUtils::exists($email)) {
-            GenericUtils::showAlert("El correo proporcionado no está registrado.", "danger", false);
+            GenericUtils::showAlert("El correo proporcionado no está registrado.", "danger", showReturn: false);
             $template->apply();
             exit;
         }

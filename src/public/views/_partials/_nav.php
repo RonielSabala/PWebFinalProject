@@ -9,6 +9,13 @@ use App\Utils\GenericUtils;
             <a class="<?= GenericUtils::getActiveClass('incident') ?>"
                 href="/incident.php">Inicio</a>
         </li>
+        <li class="nav-item ms-auto">
+            <a
+                href="logout.php"
+                class="btn btn-outline-danger btn-sm">
+                Cerrar sesión
+            </a>
+        </li>
     </ul>
 </div>
 <div class="view-content">

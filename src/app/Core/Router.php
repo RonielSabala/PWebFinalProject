@@ -27,7 +27,7 @@ class Router
 
         // Re-dirección al login si no hay un usuario en sesión
         if (!(isset($_SESSION['user']) || $uri == "auth")) {
-            header("Location: auth/login.php");
+            header("Location: /auth/login.php");
             exit;
         }
 

@@ -22,7 +22,7 @@ class GoogleController
         // Validar token
         $token = $google_client->fetchAccessTokenWithAuthCode($_GET['code']);
         if (isset($token['error'])) {
-            GenericUtils::showAlert("Error al autenticar con Google.", "danger", false);
+            GenericUtils::showAlert("Error al autenticar con Google.", "danger", showReturn: false);
             exit;
         }
 

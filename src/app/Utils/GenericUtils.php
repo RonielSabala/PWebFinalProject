@@ -14,8 +14,8 @@ class GenericUtils
     public static function showAlert(
         string $message,
         string $type = 'success',
-        bool $showReturn = true,
-        string $returnRoute = 'index.php'
+        string $returnRoute = 'index.php',
+        bool $showReturn = true
     ) {
         echo "
         <div class='text-center'>
