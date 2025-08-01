@@ -21,14 +21,15 @@ class MicrosoftCallbackController
 
         // Validar estado
         if (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
-            unset($_SESSION['oauth2state']);
             GenericUtils::showAlert('El estado no es válido o ha expirado.', "danger");
+
+            // Limpiar sesión
+            unset($_SESSION['oauth2state']);
             exit;
         }
 
         try {
-            // Obtener datos del usuario
-
+            // Obtener los datos del usuario
             $accessToken = $oauthClient->getAccessToken('authorization_code', [
                 'code' => $_GET['code']
             ]);
@@ -44,7 +45,7 @@ class MicrosoftCallbackController
 
             // Guardar sesión y redirigir al login
             $_SESSION['microsoft_user'] = [
-                'nombre' => $user_data['displayName'],
+                'username' => $user_data['displayName'],
                 'email' => $user_data['userPrincipalName']
             ];
 

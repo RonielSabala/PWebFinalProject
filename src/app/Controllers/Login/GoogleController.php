@@ -13,6 +13,7 @@ class GoogleController
     {
         global $google_client;
 
+        // Validar código
         if (!isset($_GET['code'])) {
             header("Location: login/login.php");
             exit;
@@ -25,7 +26,7 @@ class GoogleController
             exit;
         }
 
-        // Obtener datos del usuario
+        // Obtener los datos del usuario
         $access_token = $token['access_token'];
         $google_client->setAccessToken($access_token);
         $google_service = new Google_Service_Oauth2($google_client);
@@ -34,7 +35,7 @@ class GoogleController
         // Guardar sesión y redirigir al login
         $_SESSION['google_access_token'] = $access_token;
         $_SESSION['google_user'] = [
-            'nombre' => $user_data['givenName'] . ' ' . $user_data['familyName'],
+            'username' => $user_data['givenName'] . ' ' . $user_data['familyName'],
             'email' => $user_data['email']
         ];
 

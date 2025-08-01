@@ -37,6 +37,8 @@ use App\Utils\GenericUtils;
           <?php
           if (isset($_SESSION['error'])) {
             GenericUtils::showAlert($_SESSION['error'], "danger", false);
+
+            // Limpiar sesión
             unset($_SESSION['error']);
           }
           ?>

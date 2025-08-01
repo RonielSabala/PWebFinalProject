@@ -10,6 +10,9 @@ use PHPMailer\PHPMailer\Exception;
 
 class ForgotPasswordController
 {
+    // Expiration time in seconds
+    private static $code_expiration_time = 300;
+
     public function handle(Template $template)
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -20,16 +23,16 @@ class ForgotPasswordController
         // Validar correo
         $email = $_POST['email'] ?? '';
         if (!UserUtils::exists($email)) {
-            $_SESSION['error'] = "El correo no está registrado.";
+            $_SESSION['error'] = "El correo proporcionado no está registrado.";
             header("Location: forgot_password.php");
             exit;
         }
 
         // Datos para recuperar el correo
-        $code = random_int(100000, 999999);
+        $reset_password_code = random_int(100000, 999999);
         $_SESSION['reset_password_email'] = $email;
-        $_SESSION['reset_password_code'] = $code;
-        $_SESSION['reset_password_expiration'] = time() + 300;
+        $_SESSION['reset_password_code'] = $reset_password_code;
+        $_SESSION['reset_password_expiration_time'] = time() + self::$code_expiration_time;
 
         // Enviar correo
         $mail = new PHPMailer(true);
@@ -48,7 +51,7 @@ class ForgotPasswordController
             $mail->addAddress($email);
             $mail->isHTML(true);
             $mail->Subject = 'Code to reset your password';
-            $mail->Body    = "Your code is: <b>{$code}</b>. Valid for 5 minutes.";
+            $mail->Body    = "Your code is: <b>{$reset_password_code}</b>. Valid for " . intval(self::$code_expiration_time / 60) . " minutes.";
 
             // Enviar código de recuperación y redirigir            
             $mail->send();

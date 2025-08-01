@@ -15,12 +15,11 @@ class Router
         }
 
         // Obtener URI y nombre de la vista
-        $view = '';
         $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-        $parts = explode('/', $uri);
-        if (count($parts) > 1) {
-            $uri = implode('/', array_slice($parts, 0, -1));
-            $view = end($parts);
+        $uri_parts = explode('/', $uri);
+        if (count($uri_parts) > 1) {
+            $uri = implode('/', array_slice($uri_parts, 0, -1));
+            $view = end($uri_parts);
         } else {
             $view = $uri;
             $uri = '';
@@ -34,8 +33,8 @@ class Router
                 define('CURRENT_PAGE', $route['page']);
             }
         } else {
-            header("HTTP/1.0 404 Not Found");
             GenericUtils::showAlert("Página no encontrada...", "danger");
+            header("HTTP/1.0 404 Not Found");
             exit;
         }
 

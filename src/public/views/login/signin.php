@@ -7,7 +7,7 @@
                     <form method="post">
                         <div class="mb-3">
                             <label>Nombre</label>
-                            <input type="text" name="nombre" class="form-control" required>
+                            <input type="text" name="username" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label>Email</label>
@@ -15,7 +15,7 @@
                         </div>
                         <div class="mb-3">
                             <label>Teléfono</label>
-                            <input type="text" name="telefono" class="form-control" required>
+                            <input type="phone" name="phone" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label>Contraseña</label>

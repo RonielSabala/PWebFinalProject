@@ -19,7 +19,7 @@ class ResetPasswordController
             $code = trim($_POST['code'] ?? '');
 
             // ¿Existe código en sesión y no expiró?
-            if (!isset($_SESSION['reset_password_code']) || time() > $_SESSION['reset_password_expiration']) {
+            if (!isset($_SESSION['reset_password_code']) || time() > $_SESSION['reset_password_expiration_time']) {
                 $_SESSION['error'] = "Código expirado. Vuelve a solicitarlo.";
                 header('Location: forgot_password.php');
                 exit;
@@ -49,13 +49,11 @@ class ResetPasswordController
             exit;
         }
 
-        // Datos del usuario a usar
-        $email  = $_SESSION['reset_password_email'];
-        $new_password = password_hash($password, PASSWORD_DEFAULT);
-
         // Actualizar contraseña
-        $success = UserUtils::updatePassword($email, $new_password);
-        if (!$success) {
+        $email = $_SESSION['reset_password_email'];
+        $new_password = password_hash($password, PASSWORD_DEFAULT);
+        $success_response = UserUtils::updatePassword($email, $new_password);
+        if (!$success_response) {
             $_SESSION['error'] = "Error al guardar la contraseña. Intenta de nuevo.";
             header('Location: reset_password.php');
             exit;
@@ -65,17 +63,17 @@ class ResetPasswordController
         unset(
             $_SESSION['reset_password_email'],
             $_SESSION['reset_password_code'],
-            $_SESSION['reset_password_expiration'],
+            $_SESSION['reset_password_expiration_time'],
             $_SESSION['is_code_valid']
         );
 
         // Registrar sesión
-        $usuario = UserUtils::get($email);
-        $_SESSION['usuario'] = [
-            'id'     => $usuario['id'],
-            'nombre' => $usuario['nombre'],
-            'email'  => $usuario['email'],
-            'rol'    => $usuario['rol'],
+        $user = UserUtils::get_by($email);
+        $_SESSION['user'] = [
+            'id' => $user['id'],
+            'username' => $user['username'],
+            'email' => $user['email'],
+            'role_name' => $user['role_name'],
         ];
 
         // Redirigir al index

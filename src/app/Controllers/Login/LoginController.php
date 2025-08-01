@@ -13,66 +13,69 @@ class LoginController
     static public function log_user()
     {
         // Tipos de acceso
-        $por_post = $_SERVER['REQUEST_METHOD'] === 'POST';
-        $por_signin = isset($_POST['nombre']);
-        $por_google = isset($_SESSION['google_user']);
-        $por_microsoft = isset($_SESSION['microsoft_user']);
+        $by_post = $_SERVER['REQUEST_METHOD'] === 'POST';
+        $by_signin = isset($_POST['username']);
+        $by_google = isset($_SESSION['google_user']);
+        $by_microsoft = isset($_SESSION['microsoft_user']);
 
         // Verificar al menos una condición se cumple
-        if (!($por_post || $por_google || $por_microsoft)) {
+        if (!($by_post || $by_google || $by_microsoft)) {
             return false;
         }
 
         // Obtener sesión correspondiente
-        if ($por_post) {
+        if ($by_post) {
             // Registro manual
-            $session = $_POST;
+            $user_session = $_POST;
         } else {
             // Registro con Google/Microsoft
-            $session = $por_google ? $_SESSION['google_user'] : $_SESSION['microsoft_user'];
-            $session['telefono'] = '0000000000';
-            $session['password'] = 'oauth123';
+            $user_session = $by_google ? $_SESSION['google_user'] : $_SESSION['microsoft_user'];
+            $user_session['phone'] = '0000000000';
+            $user_session['password'] = 'oauth123';
 
             // Limpiar sesión
             unset($_SESSION['google_user'], $_SESSION['google_access_token'], $_SESSION['microsoft_user']);
         }
 
         // Datos del usuario
-        $nombre = $session['nombre'] ?? '';
-        $email = $session['email'];
-        $telefono = $session['telefono'] ?? '';
-        $password = $session['password'];
+        $username = $user_session['username'] ?? '';
+        $email = $user_session['email'];
+        $phone = $user_session['phone'] ?? '';
+        $password = $user_session['password'];
 
-        $usuario_existe = UserUtils::exists($email);
-        if ($usuario_existe) {
+        // Comprobar si el usuario existe
+        $user_exists = UserUtils::exists($email);
+        if ($user_exists) {
             // Evitar registro si el usuario ya existe
-            if ($por_signin) {
-                GenericUtils::showAlert("El correo ya se encuentra registrado.", "danger", returnRoute: "signin.php");
+            if ($by_signin) {
+                GenericUtils::showAlert("El correo proporcionado ya se encuentra registrado.", "danger", returnRoute: "signin.php");
                 return false;
             }
-        } elseif ($por_signin || $por_google || $por_microsoft) {
+        } elseif ($by_signin || $by_google || $by_microsoft) {
             // Registrar usuario
-            UserUtils::create($nombre, $email, $telefono, $password);
+            UserUtils::create($username, $email, $phone, $password);
         } else {
-            GenericUtils::showAlert("El correo no está registrado.", "danger", false);
+            GenericUtils::showAlert("El correo proporcionado no está registrado.", "danger", false);
             return false;
         }
 
-        $usuario = UserUtils::get($email);
+        // Recuperar datos del usuario
+        $user = UserUtils::get_by($email);
 
         // Verificar contraseña
-        $es_valida = $por_google || $por_microsoft || password_verify($password, $usuario['password_hash']);
-        if ($usuario_existe && !$es_valida) {
+        $user_password = $user['password_hash'];
+        $is_valid_pass = $by_google || $by_microsoft || password_verify($password, $user_password);
+        if ($user_exists && !$is_valid_pass) {
             GenericUtils::showAlert("Credenciales incorrectas!", "danger", false);
             return false;
         }
 
         // Registrar sesión
-        $_SESSION['usuario'] = [
-            'id'     => $usuario['id'],
-            'nombre' => $usuario['nombre'],
-            'email'  => $usuario['email'],
-            'rol'    => $usuario['rol'],
+        $_SESSION['user'] = [
+            'id' => $user['id'],
+            'username' => $user['username'],
+            'email' => $user['email'],
+            'role_name' => $user['role_name'],
         ];
 
         // Redirigir al index
