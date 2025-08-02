@@ -1,6 +1,9 @@
 <?php
 
 use App\Utils\GeneralUtils;
+
+$uri = GeneralUtils::getURI();
+$route = GeneralUtils::splitURI($uri)[0];
 ?>
 
 <div class="divMenu">
@@ -9,10 +12,12 @@ use App\Utils\GeneralUtils;
             <a class="<?= GeneralUtils::getActiveClass('home'); ?>"
                 href="/home.php">Inicio</a>
         </li>
-        <li class="nav-item">
-            <a class="<?= GeneralUtils::getActiveClass('incidence'); ?>"
-                href="">Incidencias</a>
-        </li>
+        <?php if ($route === 'incidents'): ?>
+            <li class="nav-item">
+                <a class="<?= GeneralUtils::getActiveClass('incidence'); ?>"
+                    href="">Incidencias</a>
+            </li>
+        <?php endif; ?>
         <?= GeneralUtils::setLogoutButton(); ?>
     </ul>
 </div>

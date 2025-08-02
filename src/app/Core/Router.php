@@ -15,28 +15,20 @@ class Router
         }
 
         // Obtener URI y nombre de la vista
-        $original_uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-        $uri = $original_uri;
-        $uri_parts = explode('/', $uri);
-        if (count($uri_parts) > 1) {
-            $uri = implode('/', array_slice($uri_parts, 0, -1));
-            $view = end($uri_parts);
-        } else {
-            $view = $uri;
-            $uri = '';
-        }
+        $uri = GeneralUtils::getURI();
+        [$route, $view] = GeneralUtils::splitURI($uri);
 
         // Re-dirección al login si no hay un usuario en sesión
-        if (!(isset($_SESSION['user']) || $uri == 'auth')) {
+        if (!(isset($_SESSION['user']) || $route == 'auth')) {
             header('Location: /auth/login.php');
             exit;
         }
 
         // Obtener ruta
-        if (isset(ROUTES[$original_uri])) {
-            $route = ROUTES[$original_uri];
-            $controller = new $route['controller']();
-            define('CURRENT_PAGE', $route['page'] ?? '');
+        $uri_route = ROUTES[$uri] ?? null;
+        if ($uri_route) {
+            $controller = new $uri_route['controller']();
+            define('CURRENT_PAGE', $uri_route['page'] ?? '');
         } else {
             GeneralUtils::showAlert("Página no encontrada...", "danger");
             header("HTTP/1.0 404 Not Found");
@@ -51,8 +43,8 @@ class Router
         }
 
         // Configurar paths
-        Template::$partialsPath = $uri;
-        Template::$viewPath = $uri . '/' . $viewName;
+        Template::$partialsPath = $route;
+        Template::$viewPath = $route . '/' . $viewName;
 
         // Ejecutar controlador
         $controller->handle(new Template());

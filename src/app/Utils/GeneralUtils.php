@@ -38,4 +38,21 @@ class GeneralUtils
         </li>
         ';
     }
+
+    public static function getURI(): string
+    {
+        return trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+    }
+
+    public static function splitURI($uri)
+    {
+        $uri_parts = explode('/', $uri);
+        if (count($uri_parts) == 1) {
+            return ['', $uri];
+        }
+
+        $uri = implode('/', array_slice($uri_parts, 0, -1));
+        $view = end($uri_parts);
+        return [$uri, $view];
+    }
 }
