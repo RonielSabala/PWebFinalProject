@@ -7,13 +7,13 @@ require_once BASE_PATH . '/config/microsoft.php';
 
 
 // Rutas y controladores asociados
-const DEFAULT_PAGE = 'incident';
-const DEFAULT_ROUTE = ['page' => DEFAULT_PAGE, 'controller' => \App\Controllers\Incidents\IncidentController::class];
+const DEFAULT_PAGE = 'incidence';
+const DEFAULT_ROUTE = ['page' => DEFAULT_PAGE, 'controller' => \App\Controllers\Incidents\IncidenceController::class];
 const ROUTES = [
+    // Incidence views
     ''                                => DEFAULT_ROUTE,
     'index.php'                       => DEFAULT_ROUTE,
-    'incident.php'                    => DEFAULT_ROUTE,
-    // Incident views
+    'incidence.php'                   => DEFAULT_ROUTE,
     'map.php'                         => ['page' => DEFAULT_PAGE, 'controller' => \App\Controllers\Incidents\MapController::class],
     'list.php'                        => ['page' => DEFAULT_PAGE, 'controller' => \App\Controllers\Incidents\ListController::class],
     // Super routes
@@ -29,6 +29,17 @@ const ROUTES = [
     'MicrosoftController.php'         => ['controller' => \App\Controllers\Auth\MicrosoftController::class],
     'MicrosoftCallbackController.php' => ['controller' => \App\Controllers\Auth\MicrosoftCallbackController::class],
 ];
+
+// Crear pdo
+try {
+    $pdo = new PDO(
+        "mysql:host=$host;dbname=$db;charset=utf8",
+        $user,
+        $pass
+    );
+} catch (PDOException $e) {
+    die("Error de BD: " . $e->getMessage());
+}
 
 // Manejar rutas
 $router = new App\Core\Router();

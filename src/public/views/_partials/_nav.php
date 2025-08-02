@@ -6,8 +6,8 @@ use App\Utils\GenericUtils;
 <div class="divMenu">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="<?= GenericUtils::getActiveClass('incident') ?>"
-                href="/incident.php">Inicio</a>
+            <a class="<?= GenericUtils::getActiveClass('incidence') ?>"
+                href="/incidence.php">Inicio</a>
         </li>
         <li class="nav-item ms-auto">
             <a

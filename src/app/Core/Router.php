@@ -26,8 +26,14 @@ class Router
         }
 
         // Re-dirección al login si no hay un usuario en sesión
-        if (!(isset($_SESSION['user']) || $uri == "auth")) {
-            header("Location: /auth/login.php");
+        if (!(isset($_SESSION['user']) || $uri == 'auth')) {
+            header('Location: /auth/login.php');
+            exit;
+        }
+
+        // Re-dirección al incidente si no hay una vista definida
+        if ($uri === '') {
+            header("Location: /incidents/" . ($view === '' ? 'incidence.php' : $view));
             exit;
         }
 
@@ -52,17 +58,8 @@ class Router
         }
 
         // Pre-configurar template
-        if ($uri === '') {
-            if ($viewPath === 'incident') {
-                $viewPath = 'incidents/incident';
-            }
-        } else {
-            $viewPath = $uri . '/' . $viewPath;
-            Template::$partialsPath = $uri;
-        }
-
-        // Pasar la nueva vista
-        Template::$viewPath = $viewPath;
+        Template::$partialsPath = $uri;
+        Template::$viewPath = $uri . '/' . $viewPath;
 
         // Iniciar vista
         $template = new Template();

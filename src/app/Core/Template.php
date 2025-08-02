@@ -47,5 +47,10 @@ class Template
             extract($data, EXTR_SKIP);
             include $file_path;
         }
+
+        // Incluir el script.js al final
+        echo '
+        <script src="/js/' . self::$viewPath . '.js"></script>
+        ';
     }
 }

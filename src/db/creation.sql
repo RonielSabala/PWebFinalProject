@@ -59,29 +59,29 @@ CREATE TABLE neighborhoods (
 -- Incidencias
 DROP TABLE IF EXISTS incidents;
 CREATE TABLE incidents (
-    id                   INT           PRIMARY KEY AUTO_INCREMENT,
-    title                VARCHAR(200)  NOT NULL,
-    incident_description TEXT          NOT NULL,
-    occurrence_date      DATETIME      NOT NULL,
-    latitude             DOUBLE        NOT NULL,
-    longitude            DOUBLE        NOT NULL,
-    is_approved          TINYINT(1)    NOT NULL DEFAULT 0,
-    n_deaths             INT           DEFAULT 0,
-    n_injured            INT           DEFAULT 0,
-    n_losses             DECIMAL(15,2) DEFAULT 0,
-    province_id          TINYINT       NOT NULL,
-    municipality_id      SMALLINT,
-    neighborhood_id      SMALLINT,
-    group_hash           VARCHAR(255),
-    user_id              INT           NOT NULL,
-    creation_date        DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    id                    INT           PRIMARY KEY AUTO_INCREMENT,
+    title                 VARCHAR(200)  NOT NULL,
+    incidence_description TEXT          NOT NULL,
+    occurrence_date       DATETIME      NOT NULL,
+    latitude              DOUBLE        NOT NULL,
+    longitude             DOUBLE        NOT NULL,
+    is_approved           TINYINT(1)    NOT NULL DEFAULT 0,
+    n_deaths              INT           DEFAULT 0,
+    n_injured             INT           DEFAULT 0,
+    n_losses              DECIMAL(15,2) DEFAULT 0,
+    province_id           TINYINT       NOT NULL,
+    municipality_id       SMALLINT,
+    neighborhood_id       SMALLINT,
+    group_hash            VARCHAR(255),
+    user_id               INT           NOT NULL,
+    creation_date         DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (province_id)     REFERENCES provinces(id)      ON DELETE CASCADE,
     FOREIGN KEY (municipality_id) REFERENCES municipalities(id) ON DELETE SET NULL,
     FOREIGN KEY (neighborhood_id) REFERENCES neighborhoods(id)  ON DELETE SET NULL,
     FOREIGN KEY (user_id)         REFERENCES users(id)          ON DELETE CASCADE
 );
 
--- Etiquetas de incidentes
+-- Etiquetas de incidencias
 DROP TABLE IF EXISTS labels;
 CREATE TABLE labels (
     id         INT         PRIMARY KEY AUTO_INCREMENT,
