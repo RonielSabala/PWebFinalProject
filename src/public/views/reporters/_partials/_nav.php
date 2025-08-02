@@ -1,11 +1,11 @@
 <?php
 
-use App\Utils\GenericUtils;
+use App\Utils\GeneralUtils;
 ?>
 
 <div class="divMenu">
     <ul class="nav nav-tabs">
-        <?= GenericUtils::setLogoutButton(); ?>
+        <?= GeneralUtils::setLogoutButton(); ?>
     </ul>
 </div>
 <div class="view-content">

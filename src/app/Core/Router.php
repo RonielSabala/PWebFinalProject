@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-use App\Utils\GenericUtils;
+use App\Utils\GeneralUtils;
 
 
 class Router
@@ -38,7 +38,7 @@ class Router
             $controller = new $route['controller']();
             define('CURRENT_PAGE', $route['page'] ?? '');
         } else {
-            GenericUtils::showAlert("Página no encontrada...", "danger");
+            GeneralUtils::showAlert("Página no encontrada...", "danger");
             header("HTTP/1.0 404 Not Found");
             exit;
         }

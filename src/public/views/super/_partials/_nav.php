@@ -1,19 +1,19 @@
 <?php
 
-use App\Utils\GenericUtils;
+use App\Utils\GeneralUtils;
 ?>
 
 <div class="divMenu">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="<?= GenericUtils::getActiveClass('validator') ?>"
+            <a class="<?= GeneralUtils::getActiveClass('validator') ?>"
                 href="/super/validator.php">Validador</a>
         </li>
         <li class="nav-item">
-            <a class="<?= GenericUtils::getActiveClass('admin') ?>"
+            <a class="<?= GeneralUtils::getActiveClass('admin') ?>"
                 href="/super/admin.php">Administrador</a>
         </li>
-        <?= GenericUtils::setLogoutButton(); ?>
+        <?= GeneralUtils::setLogoutButton(); ?>
     </ul>
 </div>
 <div class="view-content">

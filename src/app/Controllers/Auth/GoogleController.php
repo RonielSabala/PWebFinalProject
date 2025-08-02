@@ -3,7 +3,7 @@
 namespace App\Controllers\Auth;
 
 use App\Core\Template;
-use App\Utils\GenericUtils;
+use App\Utils\GeneralUtils;
 use Google\Service\Oauth2 as Google_Service_Oauth2;
 
 
@@ -15,14 +15,14 @@ class GoogleController
 
         // Validar código
         if (!isset($_GET['code'])) {
-            GenericUtils::showAlert('Código de autorización no encontrado', "danger");
+            GeneralUtils::showAlert('Código de autorización no encontrado', "danger");
             exit;
         }
 
         // Validar token
         $token = $google_client->fetchAccessTokenWithAuthCode($_GET['code']);
         if (isset($token['error'])) {
-            GenericUtils::showAlert("Error al autenticar con Google.", "danger", showReturn: false);
+            GeneralUtils::showAlert("Error al autenticar con Google.", "danger", showReturn: false);
             exit;
         }
 

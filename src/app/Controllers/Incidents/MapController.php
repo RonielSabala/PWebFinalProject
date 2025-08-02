@@ -3,9 +3,9 @@
 namespace App\Controllers\Incidents;
 
 use App\Core\Template;
-use App\Utils\ProvinceUtils;
-use App\Utils\IncidenceUtils;
-use App\Utils\CommentUtils;
+use App\Utils\Entities\ProvinceUtils;
+use App\Utils\Entities\IncidenceUtils;
+use App\Utils\Entities\CommentUtils;
 
 
 class MapController

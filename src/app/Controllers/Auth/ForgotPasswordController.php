@@ -3,8 +3,8 @@
 namespace App\Controllers\Auth;
 
 use App\Core\Template;
-use App\Utils\UserUtils;
-use App\Utils\GenericUtils;
+use App\Utils\GeneralUtils;
+use App\Utils\Entities\UserUtils;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -24,7 +24,7 @@ class ForgotPasswordController
         // Validar correo
         $email = $_POST['email'] ?? '';
         if (!UserUtils::exists($email)) {
-            GenericUtils::showAlert("El correo proporcionado no está registrado.", "danger", showReturn: false);
+            GeneralUtils::showAlert("El correo proporcionado no está registrado.", "danger", showReturn: false);
             $template->apply();
             exit;
         }
@@ -58,7 +58,7 @@ class ForgotPasswordController
             $mail->send();
             header("Location: reset_password.php");
         } catch (Exception $e) {
-            GenericUtils::showAlert("Error al enviar el correo: " . $mail->ErrorInfo, "danger", false);
+            GeneralUtils::showAlert("Error al enviar el correo: " . $mail->ErrorInfo, "danger", false);
             $template->apply();
         }
     }

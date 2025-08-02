@@ -3,8 +3,8 @@
 namespace App\Controllers\Reporters;
 
 use App\Core\Template;
-use App\Utils\ProvinceUtils;
-use App\Utils\LabelUtils;
+use App\Utils\Entities\ProvinceUtils;
+use App\Utils\Entities\LabelUtils;
 
 
 class EditIncidenceController
