@@ -10,7 +10,7 @@ use App\Utils\Entities\UserUtils;
 
 class LoginController
 {
-    static public function log_user()
+    public static function log_user()
     {
         // Tipos de acceso
         $by_post = $_SERVER['REQUEST_METHOD'] === 'POST';
@@ -52,7 +52,7 @@ class LoginController
             }
         } elseif ($by_signin || $by_external_service) {
             // Registrar usuario
-            UserUtils::create($username, $email, $phone, $password);
+            UserUtils::create([$username, $email, $phone, password_hash($password, PASSWORD_DEFAULT)]);
         } else {
             GeneralUtils::showAlert("El correo proporcionado no está registrado.", "danger", showReturn: false);
             return false;

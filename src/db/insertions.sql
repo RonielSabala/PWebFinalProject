@@ -95,6 +95,18 @@ INSERT INTO incidents (
     3
 );
 
+-- Etiquetas
+INSERT INTO labels (label_name) VALUES
+('Accidente de tráfico'),
+('Desastre natural'),
+('Protesta social');
+
+-- Etiquetas de incidencias
+INSERT INTO incidence_labels (incidence_id, label_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3);
+
 -- Comentarios
 INSERT INTO comments (incidence_id, user_id, comment_text) VALUES
 (1, 1, "Que peligrosa situación!"),

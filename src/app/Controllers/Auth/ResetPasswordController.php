@@ -53,8 +53,8 @@ class ResetPasswordController
         // Actualizar contraseña
         $email = $_SESSION['reset_password_email'];
         $new_password = password_hash($password, PASSWORD_DEFAULT);
-        $success_response = UserUtils::updatePassword($email, $new_password);
-        if (!$success_response) {
+        $success = UserUtils::updatePassword($email, $new_password);
+        if (!$success) {
             GeneralUtils::showAlert("Error al actualizar la contraseña. Intenta de nuevo.", "danger", showReturn: false);
             $template->apply();
             exit;

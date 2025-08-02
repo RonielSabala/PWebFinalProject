@@ -81,6 +81,15 @@ CREATE TABLE incidents (
     FOREIGN KEY (user_id)         REFERENCES users(id)          ON DELETE CASCADE
 );
 
+-- Fotos de incidencias
+DROP TABLE IF EXISTS photos;
+CREATE TABLE photos (
+    id           INT          PRIMARY KEY AUTO_INCREMENT,
+    incidence_id INT          NOT NULL,
+    photo_url    VARCHAR(500) NOT NULL,
+    FOREIGN KEY (incidence_id) REFERENCES incidents(id) ON DELETE CASCADE
+);
+
 -- Etiquetas de incidencias
 DROP TABLE IF EXISTS labels;
 CREATE TABLE labels (
@@ -96,15 +105,6 @@ CREATE TABLE incidence_labels (
     PRIMARY KEY (incidence_id, label_id),
     FOREIGN KEY (incidence_id) REFERENCES incidents(id) ON DELETE CASCADE,
     FOREIGN KEY (label_id)     REFERENCES labels(id)    ON DELETE CASCADE
-);
-
--- Fotos de incidencias
-DROP TABLE IF EXISTS photos;
-CREATE TABLE photos (
-    id           INT          PRIMARY KEY AUTO_INCREMENT,
-    incidence_id INT          NOT NULL,
-    photo_url    VARCHAR(500) NOT NULL,
-    FOREIGN KEY (incidence_id) REFERENCES incidents(id) ON DELETE CASCADE
 );
 
 -- Comentarios
