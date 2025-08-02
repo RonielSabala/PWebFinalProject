@@ -1,11 +1,10 @@
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <div class="container mt-5">
     <div class="card shadow">
         <div class="card-header bg-primary text-white">
             <h4>Datos de la incidencia</h4>
         </div>
         <div class="card-body">
-            <form action="index.php" method="POST" enctype="multipart/form-data">
+            <form method="post">
                 <div class="mb-3">
                     <label class="form-label">Título</label>
                     <input type="text" name="title" class="form-control" required>

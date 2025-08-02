@@ -15,7 +15,8 @@ class Router
         }
 
         // Obtener URI y nombre de la vista
-        $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        $original_uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        $uri = $original_uri;
         $uri_parts = explode('/', $uri);
         if (count($uri_parts) > 1) {
             $uri = implode('/', array_slice($uri_parts, 0, -1));
@@ -31,19 +32,11 @@ class Router
             exit;
         }
 
-        // Re-dirección al incidente si no hay una vista definida
-        if ($uri === '') {
-            header("Location: /incidents/" . ($view === '' ? 'incidence.php' : $view));
-            exit;
-        }
-
         // Obtener ruta
-        if (isset(ROUTES[$view])) {
-            $route = ROUTES[$view];
+        if (isset(ROUTES[$original_uri])) {
+            $route = ROUTES[$original_uri];
             $controller = new $route['controller']();
-            if (isset($route['page'])) {
-                define('CURRENT_PAGE', $route['page']);
-            }
+            define('CURRENT_PAGE', $route['page'] ?? '');
         } else {
             GenericUtils::showAlert("Página no encontrada...", "danger");
             header("HTTP/1.0 404 Not Found");
@@ -52,17 +45,16 @@ class Router
 
         // Determinar nombre de la vista
         if ($view === '' || $view === 'index.php') {
-            $viewPath = DEFAULT_PAGE;
+            $viewName = DEFAULT_PAGE;
         } else {
-            $viewPath = preg_replace('/\.php$/', '', $view);
+            $viewName = preg_replace('/\.php$/', '', $view);
         }
 
-        // Pre-configurar template
+        // Configurar paths
         Template::$partialsPath = $uri;
-        Template::$viewPath = $uri . '/' . $viewPath;
+        Template::$viewPath = $uri . '/' . $viewName;
 
-        // Iniciar vista
-        $template = new Template();
-        $controller->handle($template);
+        // Ejecutar controlador
+        $controller->handle(new Template());
     }
 }

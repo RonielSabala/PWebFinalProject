@@ -5,28 +5,38 @@ namespace App\Core;
 
 class Template
 {
-    static public $viewPath = '';
-    static public $partialsPath = '';
     static private $basePath = __DIR__ . "/../../public/views";
+    static public $partialsPath = '';
+    static public $viewPath = '';
 
     private function include_partial(string $partialView)
     {
         $file_path = self::$partialsPath . $partialView;
         if (file_exists($file_path)) {
             include $file_path;
+        } else {
+            # Fallback
+            include self::$basePath . '/_partials/' . $partialView;
         }
     }
 
     public function __construct()
     {
+        $path = self::$partialsPath;
+
         // Obtener la ruta a las vistas parciales
-        self::$partialsPath = self::$basePath . '/' . self::$partialsPath . '/_partials';
+        self::$partialsPath = self::$basePath . '/' . $path . '/_partials';
         if (!is_dir(self::$partialsPath)) {
             self::$partialsPath = self::$basePath . '/_partials';
         }
 
         self::include_partial('/_header.php');
         self::include_partial('/_nav.php');
+
+        // Incluir el CSS
+        echo '
+        <link rel="stylesheet" href="/css/' . $path . '/main.css">
+        ';
     }
 
     public function __destruct()

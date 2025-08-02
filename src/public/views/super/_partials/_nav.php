@@ -13,13 +13,7 @@ use App\Utils\GenericUtils;
             <a class="<?= GenericUtils::getActiveClass('admin') ?>"
                 href="/super/admin.php">Administrador</a>
         </li>
-        <li class="nav-item ms-auto">
-            <a
-                href="logout.php"
-                class="btn btn-outline-danger btn-sm">
-                Cerrar sesión
-            </a>
-        </li>
+        <?= GenericUtils::setLogoutButton(); ?>
     </ul>
 </div>
 <div class="view-content">

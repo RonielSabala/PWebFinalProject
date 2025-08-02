@@ -11,6 +11,19 @@ class GenericUtils
         return 'custom-link nav-link' . ($current === $page ? ' active' : '');
     }
 
+    public static function setLogoutButton()
+    {
+        echo '
+        <li class="nav-item ms-auto">
+            <a
+                href="auth/logout.php"
+                class="btn btn-outline-danger btn-sm">
+                Cerrar sesión
+            </a>
+        </li>
+        ';
+    }
+
     public static function showAlert(
         string $message,
         string $type = 'success',
