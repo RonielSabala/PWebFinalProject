@@ -16,6 +16,8 @@ const ROUTES = [
     'incidence.php'                   => DEFAULT_ROUTE,
     'map.php'                         => ['page' => DEFAULT_PAGE, 'controller' => \App\Controllers\Incidents\MapController::class],
     'list.php'                        => ['page' => DEFAULT_PAGE, 'controller' => \App\Controllers\Incidents\ListController::class],
+    // Reporters views
+    'edit_incidence.php'              => ['page' => DEFAULT_PAGE, 'controller' => \App\Controllers\Reporters\EditIncidenceController::class],
     // Super routes
     'admin.php'                       => ['page' => 'admin', 'controller' => \App\Controllers\Super\AdminController::class],
     'validator.php'                   => ['page' => 'validator', 'controller' => \App\Controllers\Super\ValidatorController::class],
