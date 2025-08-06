@@ -33,7 +33,7 @@ class Template
         self::include_partial('/_header.php');
         self::include_partial('/_nav.php');
 
-        // Incluir el CSS
+        // Incluir el CSS de las partials
         echo '
         <link rel="stylesheet" href="/css/' . $path . '/main.css">
         ';

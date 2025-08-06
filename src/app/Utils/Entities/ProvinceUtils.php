@@ -13,7 +13,7 @@ class ProvinceUtils
     {
         global $pdo;
 
-        $stmt = $pdo->query(Self::$getAllSQL);
+        $stmt = $pdo->query(self::$getAllSQL);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

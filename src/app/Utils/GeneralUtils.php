@@ -31,7 +31,7 @@ class GeneralUtils
         echo '
         <li class="nav-item ms-auto">
             <a
-                href="auth/logout.php"
+                href="/auth/logout.php"
                 class="btn btn-outline-danger btn-sm">
                 Cerrar sesión
             </a>
