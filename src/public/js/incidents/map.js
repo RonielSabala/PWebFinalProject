@@ -1,37 +1,27 @@
 $(document).ready(() => {
   initMap();
   initFilters();
+  setDefaultDates();
   renderIncidents();
 });
 
-// Variables
-let mapInstance;
-let incidentLayer;
+// Variables mapa
+let mapInstance, incidentLayer;
+const defaultLat = 18.7357,
+  defaultLng = -70.1627,
+  defaultZoom = 8;
 const popup = L.popup();
 
-// Posición inicial del mapa
-const defaultLat = 18.7357;
-const defaultLng = -70.1627;
-const defaultZoom = 8;
-
-// Funciones
-
 function initMap() {
-  // Crear mapa y capa de marcadores
   mapInstance = L.map("incidents-map").setView(
     [defaultLat, defaultLng],
     defaultZoom
   );
-
-  // Crear capa de marcadores
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution: "&copy; OpenStreetMap",
   }).addTo(mapInstance);
-
   incidentLayer = L.layerGroup().addTo(mapInstance);
-
-  // Click sobre el mapa para ver coordenadas
   mapInstance.on("click", onMapClick);
 }
 
@@ -99,36 +89,60 @@ function onMapClick(e) {
 }
 
 function initFilters() {
-  $("#provinceFilter, #titleFilter, #fromFilter, #toFilter").on(
-    "input change",
-    renderIncidents
-  );
+  // Búsqueda al cambiar cualquiera de los inputs
+  $("#provinceFilter, #fromFilter, #toFilter").on("change", renderIncidents);
+
+  // Buscar al escribir titulo y presionar Enter
+  $("#titleFilter").on("keydown", (e) => {
+    if (e.key === "Enter") renderIncidents();
+  });
+
+  // Si el campo queda vacío, buscar
+  $("#titleFilter").on("input", function () {
+    if (this.value.trim() === "") {
+      renderIncidents();
+    }
+  });
+
+  // Botón de lupa
+  $("#searchButton").on("click", renderIncidents);
+}
+
+function setDefaultDates() {
+  const now = new Date();
+  const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+  $("#fromFilter").val(yesterday.toISOString().substring(0, 10));
 }
 
 function renderIncidents() {
   incidentLayer.clearLayers();
+  const prov = $("#provinceFilter").val();
+  const title = $("#titleFilter").val().toLowerCase();
+  const from = $("#fromFilter").val();
+  const to = $("#toFilter").val();
 
-  const provFilter = $("#provinceFilter").val().toLowerCase();
-  const titleFilter = $("#titleFilter").val().toLowerCase();
-  const fromDate = $("#fromFilter").val();
-  const toDate = $("#toFilter").val();
-
-  // Filtramos según provincia, título y fecha
   const filtered = incidents.filter((m) => {
-    const date = m.occurrence_date;
-    const okProv = !provFilter || String(m.province_id) === provFilter;
-    const okTitle = !titleFilter || m.title.toLowerCase().includes(titleFilter);
-    const okDate =
-      (!fromDate || date >= fromDate) && (!toDate || date <= toDate);
-    return okProv && okTitle && okDate;
+    return (
+      (!prov || m.province_id == prov) &&
+      (!title || m.title.toLowerCase().includes(title)) &&
+      (!from || m.occurrence_date >= from) &&
+      (!to || m.occurrence_date <= to)
+    );
   });
 
-  // Agrupar en clusters por provincia
-  const clusters = {};
-  filtered.forEach((m) => addMarkerToCluster(m, clusters));
+  // Actualizar contador
+  $("#resultsCount").text(`Se encontraron ${filtered.length} incidencias.`);
 
-  // Añadir todos los clusters al mapa
-  Object.values(clusters).forEach((cluster) => incidentLayer.addLayer(cluster));
+  // Clusterizar
+  const clusters = {};
+  filtered.forEach((m) => {
+    const pid = m.province_id;
+    if (!clusters[pid]) clusters[pid] = L.markerClusterGroup();
+    const marker = L.marker([m.latitude, m.longitude]);
+    marker.on("click", () => onMarkerClick(m));
+    clusters[pid].addLayer(marker);
+  });
+  Object.values(clusters).forEach((c) => incidentLayer.addLayer(c));
 }
 
 function addMarkerToCluster(m, clusters) {
