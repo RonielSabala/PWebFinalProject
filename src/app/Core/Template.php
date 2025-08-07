@@ -5,7 +5,8 @@ namespace App\Core;
 
 class Template
 {
-    static private $basePath = __DIR__ . "/../../public/views";
+    static private $basePath = __DIR__ . "/../../public";
+    static private $viewsPath = __DIR__ . "/../../public/views";
     static public $partialsPath = '';
     static public $viewPath = '';
     private static bool $jsonMode = false;
@@ -17,15 +18,14 @@ class Template
         header('Content-Type: application/json; charset=utf-8');
     }
 
-    private function include_partial(string $partialView)
+    private function include_partial_if_exists(string $partialView)
     {
         $file_path = self::$partialsPath . $partialView;
-        if (file_exists($file_path)) {
-            include $file_path;
-        } else {
-            # Fallback
-            include self::$basePath . '/_partials/' . $partialView;
+        if (!file_exists($file_path)) {
+            $file_path = self::$viewsPath . '/_partials/' . $partialView;
         }
+
+        include $file_path;
     }
 
     public function __construct()
@@ -34,21 +34,24 @@ class Template
             return;
         }
 
-        $path = self::$partialsPath;
-
         // Obtener la ruta a las vistas parciales
-        self::$partialsPath = self::$basePath . '/' . $path . '/_partials';
+        $path = self::$partialsPath;
+        self::$partialsPath = self::$viewsPath . '/' . $path . '/_partials';
         if (!is_dir(self::$partialsPath)) {
-            self::$partialsPath = self::$basePath . '/_partials';
+            self::$partialsPath = self::$viewsPath . '/_partials';
         }
 
-        self::include_partial('/_header.php');
-        self::include_partial('/_nav.php');
+        // Incluir los partials
+        self::include_partial_if_exists('/_header.php');
+        self::include_partial_if_exists('/_nav.php');
 
-        // Incluir el CSS de las partials
-        echo '
-        <link rel="stylesheet" href="/css/' . $path . '/main.css">
-        ';
+        // Incluir el CSS de las partials solo si existe
+        $css_path = self::$basePath . '/css/' . $path . '/main.css';
+        if (file_exists($css_path)) {
+            echo '
+            <link rel="stylesheet" href="/css/' . $path . '/main.css">
+            ';
+        }
     }
 
     public function __destruct()
@@ -57,7 +60,7 @@ class Template
             return;
         }
 
-        self::include_partial('/_footer.php');
+        self::include_partial_if_exists('/_footer.php');
     }
 
     public function apply(array $data = [])
@@ -66,21 +69,28 @@ class Template
             return;
         }
 
-        // Incluir el CSS de la vista
-        echo '
-        <link rel="stylesheet" href="/css/' . self::$viewPath . '.css">
-        ';
+        // Incluir el CSS de la vista solo si existe
+        $path = self::$viewPath;
+        $css_path = self::$basePath . '/css/' . $path . '.css';
+        if (file_exists($css_path)) {
+            echo '
+            <link rel="stylesheet" href="/css/' . $path . '.css">
+            ';
+        }
 
         // Incluir la vista solo si existe
-        $file_path = self::$basePath . '/' . self::$viewPath . '.php';
+        $file_path = self::$viewsPath . '/' . $path . '.php';
         if (file_exists($file_path)) {
             extract($data, EXTR_SKIP);
             include $file_path;
         }
 
-        // Incluir el script.js al final
-        echo '
-        <script src="/js/' . self::$viewPath . '.js"></script>
-        ';
+        // Incluir el js de la vista solo si existe
+        $js_path = self::$basePath . '/js/' . $path . '.js';
+        if (file_exists($js_path)) {
+            echo '
+            <script src="/js/' . $path . '.js"></script>
+            ';
+        }
     }
 }

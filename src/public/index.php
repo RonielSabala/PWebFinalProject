@@ -6,8 +6,6 @@ require_once BASE_PATH . '/config/google.php';
 require_once BASE_PATH . '/config/microsoft.php';
 
 
-ob_start();
-
 // Rutas y controladores asociados
 const DEFAULT_PAGE = 'home';
 const DEFAULT_ROUTE = ['page' => DEFAULT_PAGE, 'controller' => \App\Controllers\HomeController::class];
@@ -16,9 +14,9 @@ const ROUTES = [
     'home.php'  => DEFAULT_ROUTE,
     'index.php' => DEFAULT_ROUTE,
     // Incidence views
-    'incidents/incidence.php' => ['page' => 'incidence', 'controller' => \App\Controllers\Incidents\IncidenceController::class],
     'incidents/map.php'       => ['page' => 'incidence', 'controller' => \App\Controllers\Incidents\MapController::class],
     'incidents/list.php'      => ['page' => 'incidence', 'controller' => \App\Controllers\Incidents\ListController::class],
+    'incidents/incidence.php' => ['page' => 'incidence', 'controller' => \App\Controllers\Incidents\IncidenceController::class],
     // Reporters views
     'reporters/home.php'           => ['controller' => \App\Controllers\Reporters\HomeController::class],
     'reporters/edit_incidence.php' => ['controller' => \App\Controllers\Reporters\EditIncidenceController::class],
@@ -50,4 +48,3 @@ try {
 // Manejar rutas
 $router = new App\Core\Router();
 $router->dispatch();
-ob_end_flush();
