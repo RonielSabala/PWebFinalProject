@@ -55,4 +55,19 @@ class GeneralUtils
         $view = end($uri_parts);
         return [$uri, $view];
     }
+
+    public static function executeSql($sql, $params): bool
+    {
+        global $pdo;
+
+        try {
+            // Ejecutar consulta
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute($params);
+            return true;
+        } catch (\PDOException $e) {
+            self::showAlert($e->getMessage(), 'danger');
+            return false;
+        }
+    }
 }

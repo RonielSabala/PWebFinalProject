@@ -3,6 +3,7 @@
 namespace App\Utils\Entities;
 
 use PDO;
+use App\Utils\GeneralUtils;
 
 
 class UserUtils
@@ -21,9 +22,9 @@ class UserUtils
 
     private static $createUserRoleSQL = "INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)";
 
-    private static $updatePasswordSQL = "UPDATE users SET password_hash = :pass WHERE email = :email";
+    private static $updatePasswordSQL = "UPDATE users SET password_hash = ? WHERE email = ?";
 
-    public static function exists(string $email)
+    public static function exists(string $email): bool
     {
         global $pdo;
 
@@ -56,17 +57,11 @@ class UserUtils
         $role_id = $stmt->fetchColumn();
 
         // Insertar relación Usuario-Rol
-        $stmt = $pdo->prepare(self::$createUserRoleSQL);
-        $stmt->execute([$user_id, $role_id]);
+        GeneralUtils::executeSql(self::$createUserRoleSQL, [$user_id, $role_id]);
     }
 
     public static function updatePassword($email, $new_password)
     {
-        global $pdo;
-
-        $stmt = $pdo->prepare(self::$updatePasswordSQL);
-        $stmt->bindParam(':email', $email,  PDO::PARAM_STR);
-        $stmt->bindParam(':pass',  $new_password, PDO::PARAM_STR);
-        return $stmt->execute();
+        GeneralUtils::executeSql(self::$updatePasswordSQL, [$new_password, $email]);
     }
 }

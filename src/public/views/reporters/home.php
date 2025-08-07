@@ -10,7 +10,7 @@
             <th>No.</th>
             <th>Título</th>
             <th>Descripción</th>
-            <th>Fecha de ocurrencia</th>
+            <th>Fecha registrada</th>
             <th>Comentarios</th>
         </tr>
     </thead>

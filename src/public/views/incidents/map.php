@@ -41,9 +41,12 @@
             </div>
         </div>
     </div>
+
+    <!-- Mapa -->
     <div id="incidents-map">
-        <!-- Mapa -->
     </div>
+
+    <!-- Modal -->
     <div class="modal fade" id="incidenceModal" tabindex="-1" aria-labelledby="incidenceModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -51,9 +54,11 @@
                     <h5 class="modal-title" id="incidenceModalLabel">Detalles de incidencia</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
-                <div class="modal-body" id="modalBody">
 
+                <!-- Contenido -->
+                <div class="modal-body" id="modalBody">
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>

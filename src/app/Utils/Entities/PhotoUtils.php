@@ -2,6 +2,7 @@
 
 namespace App\Utils\Entities;
 
+use App\Utils\GeneralUtils;
 
 class PhotoUtils
 {
@@ -9,9 +10,6 @@ class PhotoUtils
 
     public static function create($fields)
     {
-        global $pdo;
-
-        $stmt = $pdo->prepare(self::$createSQL);
-        $stmt->execute($fields);
+        GeneralUtils::executeSql(self::$createSQL, $fields);
     }
 }
