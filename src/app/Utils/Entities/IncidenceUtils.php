@@ -8,7 +8,19 @@ use App\Utils\GeneralUtils;
 
 class IncidenceUtils
 {
-    private static $getAllSQL = "SELECT * FROM incidents";
+    private static $getAllSQL = "SELECT
+        i.*, 
+        GROUP_CONCAT(l.label_name) AS labels,
+        GROUP_CONCAT(l.id) AS label_ids
+    FROM
+        incidents i
+    LEFT JOIN
+        incidence_labels il ON i.id = il.incidence_id
+    LEFT JOIN
+        labels l ON il.label_id = l.id
+    GROUP BY
+        i.id
+    ";
     private static $getAllByReporterIdSQL = "SELECT
         i.id,
         i.title,
@@ -49,7 +61,16 @@ class IncidenceUtils
         global $pdo;
 
         $stmt = $pdo->query(self::$getAllSQL);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $incidents = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return array_map(function ($incident) {
+            $incident['labels'] = !empty($incident['labels'])
+                ? explode(',', $incident['labels'])
+                : [];
+            $incident['label_ids'] = !empty($incident['label_ids'])
+                ? explode(',', $incident['label_ids'])
+                : [];
+            return $incident;
+        }, $incidents);
     }
 
     public static function getAllByReporterId($reporterId)

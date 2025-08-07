@@ -721,8 +721,7 @@ VALUES
     ('Accidente de tráfico'),
     ('Robo'),
     ('Incendio'),
-    ('Inundación'),
-    ('Daños en infraestructura'),
+    ('Asesinato'),
     ('Violencia'),
     ('Desastre natural');
 
@@ -732,20 +731,16 @@ INSERT INTO
 VALUES
     (1, 1),
     (2, 2),
-    (2, 6),
+    (2, 5),
     (3, 3),
-    (4, 4),
-    (4, 5),
-    (5, 6),
+    (4, 6),
+    (5, 5),
     (6, 1),
-    (6, 6),
-    (7, 5),
-    (7, 7),
-    (8, 7),
+    (7, 6),
+    (8, 6),
     (9, 2),
-    (9, 6),
-    (10, 3),
-    (10, 5);
+    (9, 5),
+    (10, 6);
 
 -- Comentarios
 INSERT INTO

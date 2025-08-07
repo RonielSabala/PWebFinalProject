@@ -88,7 +88,6 @@ CREATE TABLE
         province_id TINYINT NOT NULL,
         municipality_id SMALLINT,
         neighborhood_id SMALLINT,
-        group_hash VARCHAR(255),
         user_id INT NOT NULL,
         creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (province_id) REFERENCES provinces (id) ON DELETE CASCADE,

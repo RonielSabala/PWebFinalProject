@@ -33,14 +33,23 @@
   flex-shrink: 0;
 }
 
-#searchButton:hover {
-  background-color: #026dd8;
-  color: #fff;
+#titleFilter {
+  padding-left: 35px;
 }
 
 #fromFilter,
 #toFilter {
   width: 275px;
+}
+
+#searchButton {
+  padding-left: 15px;
+  padding-right: 25px;
+}
+
+#searchButton:hover {
+  background-color: #026dd8;
+  color: #fff;
 }
 
 #resultsCount {

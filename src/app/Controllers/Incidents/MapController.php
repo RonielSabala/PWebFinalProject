@@ -21,10 +21,9 @@ class MapController
             $incidenceId = $_GET['incidence_id'] ?? '';
             if (!empty($incidenceId)) {
                 // Rutas
-                $basePath = __DIR__ . '/../../../public';
                 $relPath = 'incidents/incidence';
-                $viewPath = $basePath . '/views/' . $relPath . '.php';
-                $cssPath = $basePath . '/css/' . $relPath . '.css';
+                $viewPath = BASE_PATH . '/public/views/' . $relPath . '.php';
+                $cssPath = BASE_PATH . '/public/css/' . $relPath . '.css';
 
                 // Cargar el CSS
                 ob_start();

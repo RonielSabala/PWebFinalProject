@@ -1,7 +1,7 @@
 $(document).ready(() => {
   initMap();
   initFilters();
-  setDefaultDates();
+  setDefaultDate();
   renderIncidents();
 });
 
@@ -11,6 +11,66 @@ const defaultLat = 18.7357,
   defaultLng = -70.1627,
   defaultZoom = 8;
 const popup = L.popup();
+
+// Iconos para los marcadores
+const labelIcons = {
+  "Accidente de tráfico": L.icon({
+    iconUrl: "https://cdn-icons-png.flaticon.com/512/4939/4939159.png",
+    iconSize: [40, 40],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32],
+  }),
+  Robo: L.icon({
+    iconUrl: "https://cdn-icons-png.flaticon.com/512/5138/5138771.png",
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32],
+  }),
+  Incendio: L.icon({
+    iconUrl: "https://cdn-icons-png.flaticon.com/512/599/599502.png",
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32],
+  }),
+  Inundación: L.icon({
+    iconUrl: "https://cdn-icons-png.flaticon.com/512/3436/3436914.png",
+    iconSize: [40, 40],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32],
+  }),
+  Asesinato: L.icon({
+    iconUrl: "https://cdn-icons-png.flaticon.com/512/2323/2323041.png",
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32],
+  }),
+  Violencia: L.icon({
+    iconUrl: "https://cdn-icons-png.flaticon.com/512/10554/10554358.png",
+    iconSize: [40, 40],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32],
+  }),
+  "Desastre natural": L.icon({
+    iconUrl: "https://cdn-icons-png.flaticon.com/512/13063/13063838.png",
+    iconSize: [40, 40],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32],
+  }),
+};
+
+// Icono por defecto
+const defaultIcon = L.icon({
+  iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32],
+});
+
+function getIconByLabel(label) {
+  if (!label) return defaultIcon;
+  const key = label.trim();
+  return labelIcons[key] || defaultIcon;
+}
 
 function initMap() {
   mapInstance = L.map("incidents-map").setView(
@@ -108,7 +168,7 @@ function initFilters() {
   $("#searchButton").on("click", renderIncidents);
 }
 
-function setDefaultDates() {
+function setDefaultDate() {
   const now = new Date();
   const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
   $("#fromFilter").val(yesterday.toISOString().substring(0, 10));
@@ -124,30 +184,38 @@ function renderIncidents() {
   const filtered = incidents.filter((m) => {
     return (
       (!prov || m.province_id == prov) &&
-      (!title || m.title.toLowerCase().includes(title)) &&
+      (!title || (m.title && m.title.toLowerCase().includes(title))) &&
       (!from || m.occurrence_date >= from) &&
       (!to || m.occurrence_date <= to)
     );
   });
 
-  // Actualizar contador
   $("#resultsCount").text(`Se encontraron ${filtered.length} incidencias.`);
 
-  // Clusterizar
   const clusters = {};
   filtered.forEach((m) => {
-    const pid = m.province_id;
+    const pid = m.province_id || "noprov";
     if (!clusters[pid]) clusters[pid] = L.markerClusterGroup();
-    const marker = L.marker([m.latitude, m.longitude]);
+
+    // INTENTA obtener label: si m.labels es array usa [0], si es string usa directamente
+    let labelVal = null;
+    if (Array.isArray(m.labels)) labelVal = m.labels[0];
+    else if (typeof m.labels === "string") labelVal = m.labels;
+    // else si tienes otro campo: m.label o m.type, ajusta aquí
+
+    const icon = getIconByLabel(labelVal);
+    const marker = L.marker([m.latitude, m.longitude], { icon });
     marker.on("click", () => onMarkerClick(m));
     clusters[pid].addLayer(marker);
   });
+
   Object.values(clusters).forEach((c) => incidentLayer.addLayer(c));
 }
 
 function addMarkerToCluster(m, clusters) {
   const coords = [m.latitude, m.longitude];
-  const marker = L.marker(coords);
+  const icon = getIconByLabel(m.labels?.[0]);
+  const marker = L.marker(coords, { icon: icon });
   const pid = m.province_id;
 
   if (!clusters[pid]) {
