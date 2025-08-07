@@ -3,6 +3,7 @@
 namespace App\Utils\Entities;
 
 use PDO;
+use App\Utils\GeneralUtils;
 
 
 class IncidenceUtils
@@ -23,6 +24,9 @@ class IncidenceUtils
     GROUP BY
         i.id, i.title, i.incidence_description, i.occurrence_date
     ";
+
+    private static $getByIdSQL = "SELECT * FROM incidents where id = ?";
+
     private static $createSQL = "INSERT INTO incidents (
         title,
         incidence_description,
@@ -48,13 +52,28 @@ class IncidenceUtils
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function getByReporterId($reporterId)
+    public static function getAllByReporterId($reporterId)
     {
         global $pdo;
 
         $stmt = $pdo->prepare(self::$getAllByReporterIdSQL);
         $stmt->execute([$reporterId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getById($incidenceId)
+    {
+        global $pdo;
+
+        $stmt = $pdo->prepare(self::$getByIdSQL);
+        $stmt->execute([$incidenceId]);
+        $incidence = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$incidence) {
+            GeneralUtils::showAlert('No se encontró la incidencia.', 'danger');
+            return false;
+        }
+
+        return $incidence;
     }
 
     public static function create($fields, $photo_url, $labels)

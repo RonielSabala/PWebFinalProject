@@ -159,43 +159,18 @@ function addMarkerToCluster(m, clusters) {
 }
 
 function onMarkerClick(m) {
-  // Datos de la incidencia
-  let modalHtml = `
-    <p><strong>Título:</strong> ${m.title}</p>
-    <p><strong>Descripción:</strong> ${m.incidence_description}</p>
-    <p><strong>Fecha y Hora:</strong> ${m.occurrence_date}</p>
-    <p><strong>Muertos:</strong> ${m.n_deaths}</p>
-    <p><strong>Heridos:</strong> ${m.n_injured}</p>
-    <p><strong>Pérdidas:</strong> RD$${m.n_losses}</p>
-    <hr>
-    <p class="text-center"><strong>Comentarios</strong></p>
-    <div id="modalComments">Cargando comentarios...</div>
-  `;
-
-  $("#modalBody").html(modalHtml);
-  $("#incidenceModal").modal("show");
-
-  // Obtener comentarios de la incidencia
+  // Obtener datos de la incidencia
   $.getJSON("map.php", {
     action: "GET",
     incidence_id: m.id,
   })
-    .done(function (comments) {
-      let commentsHtml;
-      if (Array.isArray(comments) && comments.length > 0) {
-        commentsHtml = comments
-          .map(
-            (c) =>
-              `<p><strong>${c.creation_date}</strong> ${c.username}: ${c.comment_text}</p>`
-          )
-          .join("");
-      } else {
-        commentsHtml = "<p>No hay comentarios...</p>";
-      }
-
-      $("#modalComments").html(commentsHtml);
+    .done(function (modalHtml) {
+      $("#modalBody").html(modalHtml);
+      $("#btnGoToIncidencePage").attr("href", `incidence.php?id=${m.id}`);
+      $("#incidenceModal").modal("show");
     })
     .fail(function () {
-      $("#modalComments").html("<p>Error al cargar comentarios.</p>");
+      $("#modalBody").html("<p>Error al cargar incidencia.</p>");
+      $("#incidenceModal").modal("show");
     });
 }

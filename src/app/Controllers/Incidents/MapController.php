@@ -14,13 +14,35 @@ class MapController
     {
         // Manejar peticiones por GET
         if (($_GET['action'] ?? '') === 'GET') {
-            $data = null;
             Template::enableJsonMode();
+            $data = null;
 
-            // Obtener los comentarios de la incidencia seleccionada
-            if (isset($_GET['incidence_id'])) {
-                $incidenceId = $_GET['incidence_id'];
-                $data = CommentUtils::getAllByIncidenceId($incidenceId);
+            // Devolver el contenido del modal de la incidencia seleccionada
+            $incidenceId = $_GET['incidence_id'] ?? '';
+            if (!empty($incidenceId)) {
+                // Rutas
+                $basePath = __DIR__ . '/../../../public';
+                $relPath = 'incidents/incidence';
+                $viewPath = $basePath . '/views/' . $relPath . '.php';
+                $cssPath = $basePath . '/css/' . $relPath . '.css';
+
+                // Cargar el CSS
+                ob_start();
+                if (file_exists($cssPath)) {
+                    echo '<style>' . file_get_contents($cssPath) . '</style>';
+                }
+
+                // Cargar la vista
+                if (file_exists($viewPath)) {
+                    extract([
+                        'incidence' => IncidenceUtils::getById($incidenceId),
+                        'comments' => CommentUtils::getAllByIncidenceId($incidenceId),
+                    ], EXTR_SKIP);
+
+                    include $viewPath;
+                }
+
+                $data = ob_get_clean();
             }
 
             echo json_encode($data, JSON_UNESCAPED_UNICODE);

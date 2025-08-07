@@ -16,18 +16,18 @@ class EditIncidenceController
     {
         // Manejar peticiones por GET
         if (($_GET['action'] ?? '') === 'GET') {
-            $data = null;
             Template::enableJsonMode();
+            $data = null;
 
             // Obtener los municipios de la provincia seleccionada
-            if (isset($_GET['province_id'])) {
-                $provinceId = $_GET['province_id'];
+            $provinceId = $_GET['province_id'] ?? '';
+            if (!empty($provinceId)) {
                 $data = MunicipalityUtils::getAllByProvinceId($provinceId);
             }
 
+            $municipalityId = $_GET['municipality_id'] ?? '';
             // Obtener los barrios del municipio seleccionado
-            if (isset($_GET['municipality_id'])) {
-                $municipalityId = $_GET['municipality_id'];
+            if (!empty($municipalityId)) {
                 $data = NeighborhoodUtils::getAllByMunicipalityId($municipalityId);
             }
 

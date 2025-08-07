@@ -43,6 +43,7 @@
 
                 <!-- Footer -->
                 <div class="modal-footer">
+                    <a id="btnGoToIncidencePage" class="btn btn-primary me-auto" href="#" target="_blank" rel="noopener noreferrer">Abrir en otra página</a>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>

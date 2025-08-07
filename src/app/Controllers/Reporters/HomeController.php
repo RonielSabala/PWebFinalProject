@@ -10,8 +10,8 @@ class HomeController
 {
     public function handle(Template $template)
     {
-        $reporter_id = $_SESSION["user"]["id"];
-        $incidents = IncidenceUtils::getByReporterId($reporter_id);
+        $reporterId = $_SESSION["user"]["id"];
+        $incidents = IncidenceUtils::getAllByReporterId($reporterId);
         $template->apply(["incidents" => $incidents]);
     }
 }
