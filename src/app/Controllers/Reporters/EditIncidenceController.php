@@ -14,21 +14,24 @@ class EditIncidenceController
 {
     public function handle(Template $template)
     {
-        // Mandar los municipios de la provincia seleccionada
-        if (isset($_GET['province_id'])) {
+        // Manejar peticiones por GET
+        if (($_GET['action'] ?? '') === 'GET') {
+            $data = null;
             Template::enableJsonMode();
-            $provinceId = $_GET['province_id'];
-            $municipalities = MunicipalityUtils::getAllByProvinceId($provinceId);
-            echo json_encode($municipalities, JSON_UNESCAPED_UNICODE);
-            exit;
-        }
 
-        // Mandar los barrios del municipio seleccionado
-        if (isset($_GET['municipality_id'])) {
-            Template::enableJsonMode();
-            $municipalityId = $_GET['municipality_id'];
-            $municipalities = NeighborhoodUtils::getAllByMunicipalityId($municipalityId);
-            echo json_encode($municipalities, JSON_UNESCAPED_UNICODE);
+            // Obtener los municipios de la provincia seleccionada
+            if (isset($_GET['province_id'])) {
+                $provinceId = $_GET['province_id'];
+                $data = MunicipalityUtils::getAllByProvinceId($provinceId);
+            }
+
+            // Obtener los barrios del municipio seleccionado
+            if (isset($_GET['municipality_id'])) {
+                $municipalityId = $_GET['municipality_id'];
+                $data = NeighborhoodUtils::getAllByMunicipalityId($municipalityId);
+            }
+
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
             exit;
         }
 
