@@ -20,6 +20,7 @@
 _Requisitos_:
 
 - MySQL
+- PHP 7.4+
 - Composer
 
 ## 1. Conexión con la base de datos
