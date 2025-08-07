@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-use App\Utils\GenericUtils;
+use App\Utils\GeneralUtils;
 
 
 class Router
@@ -15,54 +15,38 @@ class Router
         }
 
         // Obtener URI y nombre de la vista
-        $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-        $uri_parts = explode('/', $uri);
-        if (count($uri_parts) > 1) {
-            $uri = implode('/', array_slice($uri_parts, 0, -1));
-            $view = end($uri_parts);
-        } else {
-            $view = $uri;
-            $uri = '';
-        }
+        $uri = GeneralUtils::getURI();
+        [$route, $view] = GeneralUtils::splitURI($uri);
 
         // Re-dirección al login si no hay un usuario en sesión
-        if (!(isset($_SESSION['user']) || $uri == 'auth')) {
+        if (!(isset($_SESSION['user']) || $route == 'auth')) {
             header('Location: /auth/login.php');
             exit;
         }
 
-        // Re-dirección al incidente si no hay una vista definida
-        if ($uri === '') {
-            header("Location: /incidents/" . ($view === '' ? 'incidence.php' : $view));
-            exit;
-        }
-
         // Obtener ruta
-        if (isset(ROUTES[$view])) {
-            $route = ROUTES[$view];
-            $controller = new $route['controller']();
-            if (isset($route['page'])) {
-                define('CURRENT_PAGE', $route['page']);
-            }
+        $uri_route = ROUTES[$uri] ?? null;
+        if ($uri_route) {
+            $controller = new $uri_route['controller']();
+            define('CURRENT_PAGE', $uri_route['page'] ?? '');
         } else {
-            GenericUtils::showAlert("Página no encontrada...", "danger");
+            GeneralUtils::showAlert("Página no encontrada...", "danger");
             header("HTTP/1.0 404 Not Found");
             exit;
         }
 
         // Determinar nombre de la vista
         if ($view === '' || $view === 'index.php') {
-            $viewPath = DEFAULT_PAGE;
+            $viewName = DEFAULT_PAGE;
         } else {
-            $viewPath = preg_replace('/\.php$/', '', $view);
+            $viewName = preg_replace('/\.php$/', '', $view);
         }
 
-        // Pre-configurar template
-        Template::$partialsPath = $uri;
-        Template::$viewPath = $uri . '/' . $viewPath;
+        // Configurar paths
+        Template::$partialsPath = $route;
+        Template::$viewPath = $route . '/' . $viewName;
 
-        // Iniciar vista
-        $template = new Template();
-        $controller->handle($template);
+        // Ejecutar controlador
+        $controller->handle(new Template());
     }
 }

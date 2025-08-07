@@ -8,7 +8,7 @@
 >  Matrícula: `20240212`
 >
 > **Jeremy Reyes González**  
->  Matrícula: `20240227`
+>  Matrícula: `20240224`
 >
 > **Abel Eduardo Martínez Robles**  
 >  Matrícula: `20240227`

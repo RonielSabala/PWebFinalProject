@@ -5,11 +5,9 @@
 
 <!-- Scripts necesarios para el mapa -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Contenido -->
 <div class="centered">
     <!-- Filtros para buscar incidencias -->
     <div class="container mb-3">
@@ -44,7 +42,7 @@
         </div>
     </div>
     <div id="incidents-map">
-        <!-- Aquí va el mapa -->
+        <!-- Mapa -->
     </div>
     <div class="modal fade" id="incidenceModal" tabindex="-1" aria-labelledby="incidenceModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -65,6 +63,4 @@
 </div>
 <script>
     const incidents = <?= json_encode($incidents) ?>;
-    const initialComments = <?= json_encode($comments) ?>;
-    const initialIncidence = Number(<?= json_encode($incidence_id) ?>);
 </script>

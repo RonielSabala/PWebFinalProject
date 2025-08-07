@@ -2,7 +2,6 @@ $(document).ready(() => {
   initMap();
   initFilters();
   renderIncidents();
-  initModalWithComments();
 });
 
 // Variables
@@ -10,25 +9,19 @@ let mapInstance;
 let incidentLayer;
 const popup = L.popup();
 
-// Datos preestablecidos de la posición inicial del mapa
+// Posición inicial del mapa
 const defaultLat = 18.7357;
 const defaultLng = -70.1627;
 const defaultZoom = 8;
-
-// Obtener los datos de la posición inicial del mapa
-const urlParams = new URLSearchParams(window.location.search);
-const savedLat = parseFloat(urlParams.get("lat"));
-const savedLng = parseFloat(urlParams.get("lng"));
-const savedZoom = parseInt(urlParams.get("zoom"), 10);
 
 // Funciones
 
 function initMap() {
   // Crear mapa y capa de marcadores
-  const viewLat = !isNaN(savedLat) ? savedLat : defaultLat;
-  const viewLng = !isNaN(savedLng) ? savedLng : defaultLng;
-  const viewZoom = !isNaN(savedZoom) ? savedZoom : defaultZoom;
-  mapInstance = L.map("incidents-map").setView([viewLat, viewLng], viewZoom);
+  mapInstance = L.map("incidents-map").setView(
+    [defaultLat, defaultLng],
+    defaultZoom
+  );
 
   // Crear capa de marcadores
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -43,10 +36,66 @@ function initMap() {
 }
 
 function onMapClick(e) {
-  popup
-    .setLatLng(e.latlng)
-    .setContent(`Coordenadas: ${e.latlng.toString()}`)
-    .openOn(mapInstance);
+  const { lat, lng } = e.latlng;
+  const coordsText = `(${lat.toFixed(6)}, ${lng.toFixed(6)})`;
+  const html = `
+    <div id="coords-popup" class="d-flex align-items-center gap-2">
+      <span id="coords-text" class="me-2">${coordsText}</span>
+      <button
+        id="copy-coords"
+        type="button"
+        class="btn btn-sm btn-outline-secondary"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Copy coordinates"
+      >
+        <i class="bi bi-clipboard"></i>
+      </button>
+    </div>
+  `;
+
+  popup.setLatLng(e.latlng).setContent(html).openOn(mapInstance);
+
+  let hideTimeout = setTimeout(() => mapInstance.closePopup(), 3000);
+
+  setTimeout(() => {
+    const container = document.getElementById("coords-popup");
+    const copyBtn = document.getElementById("copy-coords");
+
+    if (!container || !copyBtn) return;
+
+    // Inicializar tooltip de Bootstrap
+    const tooltip = new bootstrap.Tooltip(copyBtn);
+
+    // Cancelar cierre mientras el mouse esté encima
+    container.addEventListener("mouseenter", () => {
+      clearTimeout(hideTimeout);
+    });
+
+    container.addEventListener("mouseleave", () => {
+      hideTimeout = setTimeout(() => mapInstance.closePopup(), 3000);
+    });
+
+    // Copiar al portapapeles con feedback de icono/texto
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(coordsText).then(() => {
+        // Cambiar icono a check
+        copyBtn.innerHTML = `<i class="bi bi-check-lg"></i>`;
+
+        // Actualizar tooltip
+        tooltip.hide();
+        copyBtn.setAttribute("data-bs-original-title", "Copied!");
+        tooltip.show();
+
+        // Restaurar tras 1.5s
+        setTimeout(() => {
+          copyBtn.innerHTML = `<i class="bi bi-clipboard"></i>`;
+          tooltip.hide();
+          copyBtn.setAttribute("data-bs-original-title", "Copy coordinates");
+        }, 1500);
+      });
+    });
+  }, 50);
 }
 
 function initFilters() {
@@ -95,52 +144,44 @@ function addMarkerToCluster(m, clusters) {
   clusters[pid].addLayer(marker);
 }
 
-// Handlers
-
 function onMarkerClick(m) {
-  // Redirigir para obtener comentarios via PHP
-
-  const zoom = mapInstance.getZoom();
-  const center = mapInstance.getCenter();
-  window.location.href =
-    `map.php?action=showModal&incidence_id=${encodeURIComponent(m.id)}` +
-    `&lat=${center.lat}&lng=${center.lng}&zoom=${zoom}`;
-}
-
-function initModalWithComments() {
-  const m = incidents.find((x) => x.id === initialIncidence);
-  if (!m) return;
-
+  // Mostrar datos del incidente en el modal
   let html = `
-      <p><strong>Título:</strong> ${m.title}</p>
-      <p><strong>Descripción:</strong> ${m.incidence_description}</p>
-      <p><strong>Fecha y Hora:</strong> ${m.occurrence_date}</p>
-      <p><strong>Muertos:</strong> ${m.n_deaths}</p>
-      <p><strong>Heridos:</strong> ${m.n_injured}</p>
-      <p><strong>Pérdidas:</strong> RD$${m.n_losses}</p>
-      <hr>
-      <p class="text-center"><strong>Comentarios</strong></p>
+    <p><strong>Título:</strong> ${m.title}</p>
+    <p><strong>Descripción:</strong> ${m.incidence_description}</p>
+    <p><strong>Fecha y Hora:</strong> ${m.occurrence_date}</p>
+    <p><strong>Muertos:</strong> ${m.n_deaths}</p>
+    <p><strong>Heridos:</strong> ${m.n_injured}</p>
+    <p><strong>Pérdidas:</strong> RD$${m.n_losses}</p>
+    <hr>
+    <p class="text-center"><strong>Comentarios</strong></p>
+    <div id="comments-loading">Cargando comentarios...</div>
+    <div id="comments-list"></div>
   `;
-
-  if (!Array.isArray(initialComments) || initialComments.length === 0) {
-    html += "<p>No hay comentarios...</p>";
-  } else {
-    html += initialComments
-      .map(
-        (c) =>
-          `<p><strong>${c.creation_date}</strong> ${c.username}: ${c.comment_text}</p>`
-      )
-      .join("");
-  }
-
   $("#modalBody").html(html);
   $("#incidenceModal").modal("show");
-}
 
-// Limpia los parámetros GET al cerrar el modal
-document
-  .getElementById("incidenceModal")
-  .addEventListener("hidden.bs.modal", () => {
-    const cleanUrl = window.location.origin + window.location.pathname;
-    history.replaceState(null, "", cleanUrl);
-  });
+  // Obtener comentarios
+  $.getJSON("map.php", {
+    action: "GET",
+    incidence_id: m.id,
+  })
+    .done(function (comments) {
+      $("#comments-loading").remove();
+      if (Array.isArray(comments) && comments.length > 0) {
+        $("#comments-list").html(
+          comments
+            .map(
+              (c) =>
+                `<p><strong>${c.creation_date}</strong> ${c.username}: ${c.comment_text}</p>`
+            )
+            .join("")
+        );
+      } else {
+        $("#comments-list").html("<p>No hay comentarios...</p>");
+      }
+    })
+    .fail(function () {
+      $("#comments-loading").text("Error al cargar comentarios.");
+    });
+}

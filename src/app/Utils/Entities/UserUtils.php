@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils;
+namespace App\Utils\Entities;
 
 use PDO;
 
@@ -41,26 +41,26 @@ class UserUtils
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    static public function create($username, $email, $phone, $password)
+    public static function create($fields)
     {
         global $pdo;
 
-        // 1) Insertar usuario
+        // Insertar usuario
         $stmt = $pdo->prepare(self::$createUserSQL);
-        $stmt->execute([$username, $email, $phone, password_hash($password, PASSWORD_DEFAULT)]);
+        $stmt->execute($fields);
         $user_id = $pdo->lastInsertId();
 
-        // 2) Obtener role_id
+        // Obtener role_id
         $stmt = $pdo->prepare(self::$getRoleIdSQL);
         $stmt->execute(['default']);
         $role_id = $stmt->fetchColumn();
 
-        // 3) Insertar relación Usuario-Rol
+        // Insertar relación Usuario-Rol
         $stmt = $pdo->prepare(self::$createUserRoleSQL);
         $stmt->execute([$user_id, $role_id]);
     }
 
-    static public function updatePassword($email, $new_password)
+    public static function updatePassword($email, $new_password)
     {
         global $pdo;
 

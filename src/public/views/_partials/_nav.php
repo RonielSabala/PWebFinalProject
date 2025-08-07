@@ -1,21 +1,24 @@
 <?php
 
-use App\Utils\GenericUtils;
+use App\Utils\GeneralUtils;
+
+$uri = GeneralUtils::getURI();
+$route = GeneralUtils::splitURI($uri)[0];
 ?>
 
 <div class="divMenu">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="<?= GenericUtils::getActiveClass('incidence') ?>"
-                href="/incidence.php">Inicio</a>
+            <a class="<?= GeneralUtils::getActiveClass('home'); ?>"
+                href="/home.php">Inicio</a>
         </li>
-        <li class="nav-item ms-auto">
-            <a
-                href="logout.php"
-                class="btn btn-outline-danger btn-sm">
-                Cerrar sesión
-            </a>
-        </li>
+        <?php if ($route === 'incidents'): ?>
+            <li class="nav-item">
+                <a class="<?= GeneralUtils::getActiveClass('incidence'); ?>"
+                    href="">Incidencias</a>
+            </li>
+        <?php endif; ?>
+        <?= GeneralUtils::setLogoutButton(); ?>
     </ul>
 </div>
 <div class="view-content">

@@ -3,14 +3,14 @@
 namespace App\Controllers\Auth;
 
 use App\Core\Template;
-use App\Utils\UserUtils;
 use App\Utils\OAuthUtils;
-use App\Utils\GenericUtils;
+use App\Utils\GeneralUtils;
+use App\Utils\Entities\UserUtils;
 
 
 class LoginController
 {
-    static public function log_user()
+    public static function log_user()
     {
         // Tipos de acceso
         $by_post = $_SERVER['REQUEST_METHOD'] === 'POST';
@@ -47,14 +47,14 @@ class LoginController
         if ($user_exists) {
             // Evitar registro si el usuario ya existe
             if ($by_signin) {
-                GenericUtils::showAlert("El correo proporcionado ya se encuentra registrado.", "danger", showReturn: false);
+                GeneralUtils::showAlert("El correo proporcionado ya se encuentra registrado.", "danger", showReturn: false);
                 return false;
             }
         } elseif ($by_signin || $by_external_service) {
             // Registrar usuario
-            UserUtils::create($username, $email, $phone, $password);
+            UserUtils::create([$username, $email, $phone, password_hash($password, PASSWORD_DEFAULT)]);
         } else {
-            GenericUtils::showAlert("El correo proporcionado no está registrado.", "danger", showReturn: false);
+            GeneralUtils::showAlert("El correo proporcionado no está registrado.", "danger", showReturn: false);
             return false;
         }
 
@@ -65,7 +65,7 @@ class LoginController
         $user_password = $user['password_hash'];
         $is_valid_pass = $by_external_service || password_verify($password, $user_password);
         if ($user_exists && !$is_valid_pass) {
-            GenericUtils::showAlert("Credenciales incorrectas!", "danger", showReturn: false);
+            GeneralUtils::showAlert("Credenciales incorrectas!", "danger", showReturn: false);
             return false;
         }
 

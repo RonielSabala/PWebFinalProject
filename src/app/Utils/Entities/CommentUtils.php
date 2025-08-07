@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils;
+namespace App\Utils\Entities;
 
 use PDO;
 
@@ -16,12 +16,12 @@ class CommentUtils
     WHERE c.incidence_id = ?
     ";
 
-    public static function getAllByIncidenceId($id)
+    public static function getAllByIncidenceId($incidenceId)
     {
         global $pdo;
 
         $stmt = $pdo->prepare(self::$getByIncidenceIdSQL);
-        $stmt->execute([$id]);
+        $stmt->execute([$incidenceId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

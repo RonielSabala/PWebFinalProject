@@ -6,28 +6,34 @@ require_once BASE_PATH . '/config/google.php';
 require_once BASE_PATH . '/config/microsoft.php';
 
 
+ob_start();
+
 // Rutas y controladores asociados
-const DEFAULT_PAGE = 'incidence';
-const DEFAULT_ROUTE = ['page' => DEFAULT_PAGE, 'controller' => \App\Controllers\Incidents\IncidenceController::class];
+const DEFAULT_PAGE = 'home';
+const DEFAULT_ROUTE = ['page' => DEFAULT_PAGE, 'controller' => \App\Controllers\HomeController::class];
 const ROUTES = [
+    ''          => DEFAULT_ROUTE,
+    'home.php'  => DEFAULT_ROUTE,
+    'index.php' => DEFAULT_ROUTE,
     // Incidence views
-    ''                                => DEFAULT_ROUTE,
-    'index.php'                       => DEFAULT_ROUTE,
-    'incidence.php'                   => DEFAULT_ROUTE,
-    'map.php'                         => ['page' => DEFAULT_PAGE, 'controller' => \App\Controllers\Incidents\MapController::class],
-    'list.php'                        => ['page' => DEFAULT_PAGE, 'controller' => \App\Controllers\Incidents\ListController::class],
+    'incidents/incidence.php' => ['page' => 'incidence', 'controller' => \App\Controllers\Incidents\IncidenceController::class],
+    'incidents/map.php'       => ['page' => 'incidence', 'controller' => \App\Controllers\Incidents\MapController::class],
+    'incidents/list.php'      => ['page' => 'incidence', 'controller' => \App\Controllers\Incidents\ListController::class],
+    // Reporters views
+    'reporters/home.php'           => ['controller' => \App\Controllers\Reporters\HomeController::class],
+    'reporters/edit_incidence.php' => ['controller' => \App\Controllers\Reporters\EditIncidenceController::class],
     // Super routes
-    'admin.php'                       => ['page' => 'admin', 'controller' => \App\Controllers\Super\AdminController::class],
-    'validator.php'                   => ['page' => 'validator', 'controller' => \App\Controllers\Super\ValidatorController::class],
+    'super/admin.php'     => ['page' => 'admin',     'controller' => \App\Controllers\Super\AdminController::class],
+    'super/validator.php' => ['page' => 'validator', 'controller' => \App\Controllers\Super\ValidatorController::class],
     // Auth routes
-    'login.php'                       => ['controller' => \App\Controllers\Auth\LoginController::class],
-    'logout.php'                      => ['controller' => \App\Controllers\Auth\LogoutController::class],
-    'signin.php'                      => ['controller' => \App\Controllers\Auth\SigninController::class],
-    'forgot_password.php'             => ['controller' => \App\Controllers\Auth\ForgotPasswordController::class],
-    'reset_password.php'              => ['controller' => \App\Controllers\Auth\ResetPasswordController::class],
-    'GoogleController.php'            => ['controller' => \App\Controllers\Auth\GoogleController::class],
-    'MicrosoftController.php'         => ['controller' => \App\Controllers\Auth\MicrosoftController::class],
-    'MicrosoftCallbackController.php' => ['controller' => \App\Controllers\Auth\MicrosoftCallbackController::class],
+    'auth/login.php'                       => ['controller' => \App\Controllers\Auth\LoginController::class],
+    'auth/logout.php'                      => ['controller' => \App\Controllers\Auth\LogoutController::class],
+    'auth/signin.php'                      => ['controller' => \App\Controllers\Auth\SigninController::class],
+    'auth/forgot_password.php'             => ['controller' => \App\Controllers\Auth\ForgotPasswordController::class],
+    'auth/reset_password.php'              => ['controller' => \App\Controllers\Auth\ResetPasswordController::class],
+    'auth/GoogleController.php'            => ['controller' => \App\Controllers\Auth\GoogleController::class],
+    'auth/MicrosoftController.php'         => ['controller' => \App\Controllers\Auth\MicrosoftController::class],
+    'auth/MicrosoftCallbackController.php' => ['controller' => \App\Controllers\Auth\MicrosoftCallbackController::class],
 ];
 
 // Crear pdo
@@ -44,3 +50,4 @@ try {
 // Manejar rutas
 $router = new App\Core\Router();
 $router->dispatch();
+ob_end_flush();
