@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-2">
     <div class="card shadow">
         <div class="card-header bg-primary text-white">
             <h3>Datos de la incidencia</h3>
@@ -55,10 +55,10 @@
                 <div class="mb-3">
                     <label class="form-label" for="province">Provincia</label>
                     <select id="province" class="form-select" name="province_id" required>
-                        <option value="">Seleccione</option>
-                        <?php foreach ($provinces as $prov) {
-                            echo "<option value='{$prov['id']}'>{$prov['province_name']}</option>";
-                        } ?>
+                        <option selected value="">Seleccione</option>
+                        <?php foreach ($provinces as $prov): ?>
+                            <option value="<?= $prov['id'] ?>"><?= $prov['province_name'] ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 
@@ -66,7 +66,6 @@
                 <div class="mb-3">
                     <label class="form-label" for="municipality">Municipio</label>
                     <select id="municipality" class="form-select" name="municipality_id">
-                        <option value="">Seleccione provincia primero</option>
                     </select>
                 </div>
 
@@ -74,7 +73,6 @@
                 <div class="mb-3">
                     <label class="form-label" for="neighborhood">Barrio</label>
                     <select id="neighborhood" class="form-select" name="neighborhood_id">
-                        <option value="">Seleccione municipio primero</option>
                     </select>
                 </div>
 
@@ -91,7 +89,7 @@
                         $id = $label['id'];
                         $name = $label['label_name'];
                         echo "
-                        <div class='form-check form-check-inline'>
+                        <div class='form-check'>
                             <input id='Label{$id}' class='form-check-input' name='labels[]' type='checkbox' value='{$id}'>
                             <label class='form-check-label' for='Label{$id}'>{$name}</label>
                         </div>
@@ -101,7 +99,9 @@
 
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-success">Guardar incidencia</button>
-                    <a href="/incidents/map.php" class="btn btn-outline-primary">Ver Mapa</a>
+                    <a id="btn-return" class="btn btn-outline-secondary btn-lg" href="home.php">
+                        <i class="bi bi-arrow-left-circle me-2"></i> Regresar
+                    </a>
                 </div>
             </form>
         </div>

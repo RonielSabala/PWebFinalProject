@@ -8,6 +8,14 @@ class Template
     static private $basePath = __DIR__ . "/../../public/views";
     static public $partialsPath = '';
     static public $viewPath = '';
+    private static bool $jsonMode = false;
+
+    public static function enableJsonMode()
+    {
+        self::$jsonMode = true;
+        ob_end_clean();
+        header('Content-Type: application/json; charset=utf-8');
+    }
 
     private function include_partial(string $partialView)
     {
@@ -22,6 +30,10 @@ class Template
 
     public function __construct()
     {
+        if (self::$jsonMode) {
+            return;
+        }
+
         $path = self::$partialsPath;
 
         // Obtener la ruta a las vistas parciales
@@ -41,11 +53,19 @@ class Template
 
     public function __destruct()
     {
+        if (self::$jsonMode) {
+            return;
+        }
+
         self::include_partial('/_footer.php');
     }
 
     public function apply(array $data = [])
     {
+        if (self::$jsonMode) {
+            return;
+        }
+
         // Incluir el CSS de la vista
         echo '
         <link rel="stylesheet" href="/css/' . self::$viewPath . '.css">

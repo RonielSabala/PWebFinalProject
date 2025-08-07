@@ -6,6 +6,8 @@ require_once BASE_PATH . '/config/google.php';
 require_once BASE_PATH . '/config/microsoft.php';
 
 
+ob_start();
+
 // Rutas y controladores asociados
 const DEFAULT_PAGE = 'home';
 const DEFAULT_ROUTE = ['page' => DEFAULT_PAGE, 'controller' => \App\Controllers\HomeController::class];
@@ -48,3 +50,4 @@ try {
 // Manejar rutas
 $router = new App\Core\Router();
 $router->dispatch();
+ob_end_flush();
