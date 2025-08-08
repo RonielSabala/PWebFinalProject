@@ -33,16 +33,16 @@ class LabelUtils
 
     public static function create($labelName)
     {
-        GeneralUtils::executeSql(self::$createSQL, [$labelName]);
+        return GeneralUtils::executeSql(self::$createSQL, [$labelName]);
     }
 
     public static function update($labelName, $id)
     {
-        GeneralUtils::executeSql(self::$updateSQL, [$labelName, $id]);
+        return GeneralUtils::executeSql(self::$updateSQL, [$labelName, $id]);
     }
 
     public static function delete($id)
     {
-        GeneralUtils::executeSql(self::$deleteSQL, [$id]);
+        return GeneralUtils::executeSql(self::$deleteSQL, [$id]);
     }
 }

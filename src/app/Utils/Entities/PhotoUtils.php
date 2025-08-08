@@ -10,6 +10,6 @@ class PhotoUtils
 
     public static function create($fields)
     {
-        GeneralUtils::executeSql(self::$createSQL, $fields);
+        return GeneralUtils::executeSql(self::$createSQL, $fields);
     }
 }

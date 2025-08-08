@@ -74,12 +74,12 @@ class UserUtils
         $role_id = $stmt->fetchColumn();
 
         // Insertar relación Usuario-Rol
-        GeneralUtils::executeSql(self::$createUserRoleSQL, [$user_id, $role_id]);
+        return GeneralUtils::executeSql(self::$createUserRoleSQL, [$user_id, $role_id]);
     }
 
     public static function updatePassword($email, $new_password)
     {
-        GeneralUtils::executeSql(self::$updatePasswordSQL, [$new_password, $email]);
+        return GeneralUtils::executeSql(self::$updatePasswordSQL, [$new_password, $email]);
     }
 
     public static function getAllUsersWithRoles()
@@ -92,11 +92,11 @@ class UserUtils
 
     public static function clearRoles($userId)
     {
-        GeneralUtils::executeSql(self::$clearRolesSQL, [$userId]);
+        return GeneralUtils::executeSql(self::$clearRolesSQL, [$userId]);
     }
 
     public static function assignRole($userId, $roleId)
     {
-        GeneralUtils::executeSql(self::$assignRoleSQL, [$userId, $roleId]);
+        return GeneralUtils::executeSql(self::$assignRoleSQL, [$userId, $roleId]);
     }
 }

@@ -33,16 +33,16 @@ class ProvinceUtils
 
     public static function create($provinceName)
     {
-        GeneralUtils::executeSql(self::$createSQL, [$provinceName]);
+        return GeneralUtils::executeSql(self::$createSQL, [$provinceName]);
     }
 
     public static function update($id, $provinceName)
     {
-        GeneralUtils::executeSql(self::$updateSQL, [$provinceName, $id]);
+        return GeneralUtils::executeSql(self::$updateSQL, [$provinceName, $id]);
     }
 
     public static function delete($id)
     {
-        GeneralUtils::executeSql(self::$deleteSQL, [$id]);
+        return GeneralUtils::executeSql(self::$deleteSQL, [$id]);
     }
 }

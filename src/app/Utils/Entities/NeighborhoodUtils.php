@@ -44,16 +44,16 @@ class NeighborhoodUtils
 
     public static function create($neighborhoodName, $municipalityId)
     {
-        GeneralUtils::executeSql(self::$createSQL, [$neighborhoodName, $municipalityId]);
+        return GeneralUtils::executeSql(self::$createSQL, [$neighborhoodName, $municipalityId]);
     }
 
     public static function update($id, $neighborhoodName, $municipalityId)
     {
-        GeneralUtils::executeSql(self::$updateSQL, [$neighborhoodName, $municipalityId, $id]);
+        return GeneralUtils::executeSql(self::$updateSQL, [$neighborhoodName, $municipalityId, $id]);
     }
 
     public static function delete($id)
     {
-        GeneralUtils::executeSql(self::$deleteSQL, [$id]);
+        return GeneralUtils::executeSql(self::$deleteSQL, [$id]);
     }
 }

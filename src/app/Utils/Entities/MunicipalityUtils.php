@@ -43,16 +43,16 @@ class MunicipalityUtils
 
     public static function create($municipalityName, $provinceId)
     {
-        GeneralUtils::executeSql(self::$createSQL, [$municipalityName, $provinceId]);
+        return GeneralUtils::executeSql(self::$createSQL, [$municipalityName, $provinceId]);
     }
 
     public static function update($id, $municipalityName, $provinceId)
     {
-        GeneralUtils::executeSql(self::$updateSQL, [$municipalityName, $provinceId, $id]);
+        return GeneralUtils::executeSql(self::$updateSQL, [$municipalityName, $provinceId, $id]);
     }
 
     public static function delete($id)
     {
-        GeneralUtils::executeSql(self::$deleteSQL, [$id]);
+        return GeneralUtils::executeSql(self::$deleteSQL, [$id]);
     }
 }
