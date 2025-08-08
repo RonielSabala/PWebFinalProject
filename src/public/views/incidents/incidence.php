@@ -7,11 +7,15 @@
 <hr>
 <p class="text-center"><strong>Comentarios</strong></p>
 <div id="modalComments">
-    <?php if (empty($comments)): ?>
+    <?php
+    if (empty($comments)) {
+    ?>
         <p>No hay comentarios...</p>
-    <?php else: ?>
-        <?php foreach ($comments as $c): ?>
-            <p><strong><?= $c['creation_date'] ?></strong> <?= $c['username'] ?>: <?= $c['comment_text'] ?></p>
-        <?php endforeach; ?>
-    <?php endif; ?>
+    <?php
+    } else {
+        foreach ($comments as $c) {
+            echo "<p><strong>{$c['creation_date']}</strong> {$c['username']}: {$c['comment_text']}</p>";
+        }
+    }
+    ?>
 </div>
