@@ -22,8 +22,21 @@
         </div>
     </div>
 
-    <!-- Contador de resultados -->
-    <div id="resultsCount">Cargando...</div>
+    <div class="results-row d-flex justify-content-between align-items-center my-3">
+        <!-- Contador de resultados -->
+        <div id="resultsCount" class="mb-0">Cargando...</div>
+
+        <!-- Botón para alternar limite inferior para las fechas -->
+        <div class="d-flex align-items-center ms-3">
+            <div class="form-check form-switch custom-switch align-items-center">
+                <input class="form-check-input" type="checkbox" id="beautifulToggle" checked aria-checked="true" />
+                <label class="form-check-label ms-2" for="beautifulToggle" id="beautifulToggleLabel">
+                    Últimas 24h
+                    <span id="beautifulToggleState" aria-hidden="true" class="badge-state">ON</span>
+                </label>
+            </div>
+        </div>
+    </div>
 
     <!-- Mapa -->
     <div id="incidents-map"></div>

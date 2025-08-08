@@ -242,3 +242,52 @@ function onMarkerClick(m) {
       $("#incidenceModal").modal("show");
     });
 }
+
+(function () {
+  const toggle = document.getElementById("beautifulToggle");
+  const label = document.getElementById("beautifulToggleLabel");
+  const stateBadge = document.getElementById("beautifulToggleState");
+
+  if (!toggle) return;
+
+  function setFromToYesterday() {
+    const now = new Date();
+    now.setDate(now.getDate() - 1);
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+    const dd = String(now.getDate()).padStart(2, "0");
+    const iso = `${yyyy}-${mm}-${dd}`;
+    $("#fromFilter").val(iso);
+  }
+
+  function clearFrom() {
+    $("#fromFilter").val("");
+  }
+
+  function updateToggleUI(checked) {
+    if (checked) {
+      label.classList.remove("off");
+      stateBadge.textContent = "ON";
+      setFromToYesterday();
+    } else {
+      label.classList.add("off");
+      stateBadge.textContent = "OFF";
+      clearFrom();
+    }
+
+    window.dispatchEvent(
+      new CustomEvent("incidents:toggle", {
+        detail: {
+          visible: !!checked,
+        },
+      })
+    );
+
+    try {
+      renderIncidents();
+    } catch (err) {}
+  }
+  updateToggleUI(toggle.checked);
+
+  toggle.addEventListener("change", (e) => updateToggleUI(e.target.checked));
+})();
