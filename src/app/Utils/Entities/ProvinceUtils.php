@@ -5,7 +5,7 @@ namespace App\Utils\Entities;
 use PDO;
 
 
-class ProvinceUtils extends GenericUtils
+class ProvinceUtils extends GenericEntityUtils
 {
     private static $getByIdSql = "SELECT * FROM provinces WHERE id = ?";
 

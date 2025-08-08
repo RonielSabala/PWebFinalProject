@@ -5,7 +5,7 @@ namespace App\Utils\Entities;
 use PDO;
 
 
-class UserUtils extends GenericUtils
+class UserUtils extends GenericEntityUtils
 {
     private static $userExistSql = "SELECT 1 FROM users WHERE email = ?";
 

@@ -3,7 +3,7 @@
 namespace App\Utils\Entities;
 
 
-class RoleUtils extends GenericUtils
+class RoleUtils extends GenericEntityUtils
 {
     private static $getIdByNameSql = "SELECT id FROM roles WHERE role_name = ?";
 

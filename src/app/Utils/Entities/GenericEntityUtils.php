@@ -5,7 +5,7 @@ namespace App\Utils\Entities;
 use App\Utils\GeneralUtils;
 
 
-class GenericUtils
+class GenericEntityUtils
 {
     public static function executeSql($sql, $params): bool
     {

@@ -5,7 +5,7 @@ namespace App\Utils\Entities;
 use PDO;
 
 
-class LabelUtils extends GenericUtils
+class LabelUtils extends GenericEntityUtils
 {
     private static $getByIdSql = "SELECT * FROM labels WHERE id = ?";
 

@@ -6,7 +6,7 @@ use PDO;
 use App\Utils\GeneralUtils;
 
 
-class IncidenceUtils extends GenericUtils
+class IncidenceUtils extends GenericEntityUtils
 {
     private static $getByIdSql = "SELECT * FROM incidents where id = ?";
 

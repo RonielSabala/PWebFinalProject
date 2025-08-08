@@ -5,7 +5,7 @@ namespace App\Utils\Entities;
 use PDO;
 
 
-class MunicipalityUtils extends GenericUtils
+class MunicipalityUtils extends GenericEntityUtils
 {
     private static $getByIdSql = "SELECT * FROM municipalities WHERE id = ?";
 

@@ -5,7 +5,7 @@ namespace App\Utils\Entities;
 use PDO;
 
 
-class CommentUtils extends GenericUtils
+class CommentUtils extends GenericEntityUtils
 {
     private static $getAllByIncidenceIdSql = "SELECT
         u.username,
