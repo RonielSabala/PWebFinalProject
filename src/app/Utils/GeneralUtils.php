@@ -8,7 +8,7 @@ class GeneralUtils
     public static function showAlert(
         string $message,
         string $type = 'success',
-        string $returnRoute = 'index.php',
+        string $returnRoute = 'home.php',
         bool $showReturn = true
     ) {
         echo "

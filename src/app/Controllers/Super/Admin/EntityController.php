@@ -31,7 +31,7 @@ class EntityController
     public function storeProvince($template)
     {
         ProvinceUtils::create($_POST);
-        header('Location: admin_entities/provinces/index.php');
+        header('Location: admin_entities/provinces/home.php');
     }
 
     public function editProvinceForm($template)
@@ -44,14 +44,14 @@ class EntityController
     public function updateProvince($template)
     {
         ProvinceUtils::update($_POST['id'], $_POST);
-        header('Location: admin_entities/provinces/index.php');
+        header('Location: admin_entities/provinces/home.php');
     }
 
     public function deleteProvince($template)
     {
         $id = $_GET['id'] ?? null;
         ProvinceUtils::delete($id);
-        header('Location: admin_entities/provinces/index.php');
+        header('Location: admin_entities/provinces/home.php');
     }
 
     // Municipios
@@ -77,7 +77,7 @@ class EntityController
         $municipalityName = $_GET['municipalityName'] ?? null;
         $provinceId = $_GET['provinceId'] ?? null;
         MunicipalityUtils::create($municipalityName, $provinceId);
-        header('Location: admin_entities/municipalities/index.php');
+        header('Location: admin_entities/municipalities/home.php');
     }
 
     public function editMunicipalityForm($template)
@@ -97,14 +97,14 @@ class EntityController
         $municipalityName = $_GET['municipalityName'] ?? null;
         $provinceId = $_GET['provinceId'] ?? null;
         MunicipalityUtils::update($id, $municipalityName, $provinceId);
-        header('Location: admin_entities/municipalities/index.php');
+        header('Location: admin_entities/municipalities/home.php');
     }
 
     public function deleteMunicipality($template)
     {
         $id = $_GET['id'] ?? null;
         MunicipalityUtils::delete($id);
-        header('Location: admin_entities/municipalities/index.php');
+        header('Location: admin_entities/municipalities/home.php');
     }
 
     // Barrios (Neighborhoods)
@@ -131,7 +131,7 @@ class EntityController
         $neighborhoodName = $_GET['neighborhoodName'] ?? null;
         $municipalityId = $_GET['municipalityId'] ?? null;
         NeighborhoodUtils::create($neighborhoodName, $municipalityId);
-        header('Location: admin_entities/neighborhoods/index.php');
+        header('Location: admin_entities/neighborhoods/home.php');
     }
 
     public function editNeighborhoodForm($template)
@@ -151,14 +151,14 @@ class EntityController
         $neighborhoodName = $_POST['neighborhoodName'] ?? null;
         $municipalityId = $_POST['municipalityId'] ?? null;
         NeighborhoodUtils::update($id, $neighborhoodName, $municipalityId);
-        header('Location: admin_entities/neighborhoods/index.php');
+        header('Location: admin_entities/neighborhoods/home.php');
     }
 
     public function deleteNeighborhood($template)
     {
         $id = $_GET['id'] ?? null;
         NeighborhoodUtils::delete($id);
-        header('Location: admin_entities/neighborhoods/index.php');
+        header('Location: admin_entities/neighborhoods/home.php');
     }
 
     // Labels
@@ -176,7 +176,7 @@ class EntityController
     public function storeLabel($template)
     {
         LabelUtils::create($_POST);
-        header('Location: admin_entities/labels/index.php');
+        header('Location: admin_entities/labels/home.php');
     }
 
     public function editLabelForm($template)
@@ -191,13 +191,13 @@ class EntityController
         $id = $_GET['id'] ?? null;
         $labelName = $_GET['labelName'] ?? null;
         LabelUtils::update($labelName, $id);
-        header('Location: admin_entities/labels/index.php');
+        header('Location: admin_entities/labels/home.php');
     }
 
     public function deleteLabel($template)
     {
         $id = $_GET['id'] ?? null;
         LabelUtils::delete($id);
-        header('Location: admin_entities/labels/index.php');
+        header('Location: admin_entities/labels/home.php');
     }
 }

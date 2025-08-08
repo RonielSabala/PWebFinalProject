@@ -73,6 +73,6 @@ class ResetPasswordController
         ];
 
         // Redirigir al index
-        header("Location: /index.php");
+        header("Location: /home.php");
     }
 }

@@ -1,6 +1,6 @@
 <h2>Barrios</h2>
 
-<a href="index.php" class="btn btn-primary">Crear nuevo barrio</a>
+<a href="create.php" class="btn btn-primary">Crear nuevo barrio</a>
 
 <table class="table">
     <thead>
