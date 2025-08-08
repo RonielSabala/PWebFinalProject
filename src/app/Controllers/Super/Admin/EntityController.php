@@ -4,6 +4,7 @@ namespace App\Controllers\Super\Admin;
 
 use App\Core\Template;
 use App\Utils\Entities\UserUtils;
+use App\Utils\Entities\RoleUtils;
 use App\Utils\Entities\LabelUtils;
 use App\Utils\Entities\ProvinceUtils;
 use App\Utils\Entities\MunicipalityUtils;
@@ -14,8 +15,8 @@ class EntityController
 {
     public function handle(Template $template)
     {
-        $route = $template::$viewPath;
         $data = [];
+        $route = $template::$viewPath;
 
         if (str_contains($route, 'users')) {
             $data = self::handle_users();
@@ -37,11 +38,11 @@ class EntityController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userId = $_POST['user_id'];
             $roleId = $_POST['role_id'];
-            UserUtils::clearRoles($userId);
-            UserUtils::assignRole($userId, $roleId);
+            RoleUtils::clearUserRoles($userId);
+            RoleUtils::assignUserRole($userId, $roleId);
         }
 
-        $users = UserUtils::getAllUsersWithRoles();
+        $users = UserUtils::getAll();
         return ['users' => $users];
     }
 

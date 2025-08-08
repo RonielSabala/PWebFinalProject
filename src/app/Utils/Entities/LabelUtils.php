@@ -3,46 +3,49 @@
 namespace App\Utils\Entities;
 
 use PDO;
-use App\Utils\GeneralUtils;
 
 
-class LabelUtils
+class LabelUtils extends GenericUtils
 {
-    private static $getAllSQL = "SELECT * FROM labels";
-    private static $getByIdSQL = "SELECT * FROM labels WHERE id = ?";
-    private static $createSQL = "INSERT INTO labels (label_name) VALUES (?)";
-    private static $updateSQL = "UPDATE labels SET label_name = ? WHERE id = ?";
-    private static $deleteSQL = "DELETE FROM labels WHERE id = ?";
+    private static $getByIdSql = "SELECT * FROM labels WHERE id = ?";
 
-    public static function getAll()
-    {
-        global $pdo;
+    private static $getAllSql = "SELECT * FROM labels";
 
-        $stmt = $pdo->query(self::$getAllSQL);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+    private static $createSql = "INSERT INTO labels (label_name) VALUES (?)";
+
+    private static $updateSql = "UPDATE labels SET label_name = ? WHERE id = ?";
+
+    private static $deleteSql = "DELETE FROM labels WHERE id = ?";
 
     public static function getById($id)
     {
         global $pdo;
 
-        $stmt = $pdo->prepare(self::$getByIdSQL);
+        $stmt = $pdo->prepare(self::$getByIdSql);
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function create($labelName)
+    public static function getAll()
     {
-        return GeneralUtils::executeSql(self::$createSQL, [$labelName]);
+        global $pdo;
+
+        $stmt = $pdo->query(self::$getAllSql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function update($labelName, $id)
+    public static function create($labelName)
     {
-        return GeneralUtils::executeSql(self::$updateSQL, [$labelName, $id]);
+        return self::executeSql(self::$createSql, [$labelName]);
+    }
+
+    public static function update($labelId, $labelName)
+    {
+        return self::executeSql(self::$updateSql, [$labelName, $labelId]);
     }
 
     public static function delete($id)
     {
-        return GeneralUtils::executeSql(self::$deleteSQL, [$id]);
+        return self::executeSql(self::$deleteSql, [$id]);
     }
 }

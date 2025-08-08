@@ -5,22 +5,27 @@ namespace App\Utils\Entities;
 use PDO;
 
 
-class CommentUtils
+class CommentUtils extends GenericUtils
 {
-    private static $getByIncidenceIdSQL = "SELECT
+    private static $getAllByIncidenceIdSql = "SELECT
         u.username,
         c.comment_text,
         c.creation_date
-    FROM comments AS c
-    JOIN users    AS u ON u.id = c.user_id
-    WHERE c.incidence_id = ?
+    FROM
+        comments c
+    JOIN
+        users u
+    ON
+        u.id = c.user_id
+    WHERE
+        c.incidence_id = ?
     ";
 
     public static function getAllByIncidenceId($incidenceId)
     {
         global $pdo;
 
-        $stmt = $pdo->prepare(self::$getByIncidenceIdSQL);
+        $stmt = $pdo->prepare(self::$getAllByIncidenceIdSql);
         $stmt->execute([$incidenceId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

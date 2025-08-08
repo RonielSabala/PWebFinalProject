@@ -3,27 +3,34 @@
 namespace App\Utils\Entities;
 
 use PDO;
-use App\Utils\GeneralUtils;
 
 
-class UserUtils
+class UserUtils extends GenericUtils
 {
-    private static $getUserSQL = "SELECT u.id, u.username, u.email, u.phone, u.password_hash, r.role_name
-        FROM users u
-        JOIN user_roles ur ON u.id = ur.user_id
-        JOIN roles r ON ur.role_id = r.id
-        WHERE u.email = ?";
+    private static $userExistSql = "SELECT 1 FROM users WHERE email = ?";
 
-    private static $userExistSQL = "SELECT 1 FROM users WHERE email = ?";
+    private static $getByEmailSql = "SELECT
+        u.id,
+        u.username,
+        u.email,
+        u.phone,
+        u.password_hash,
+        r.role_name
+    FROM
+        users u
+    JOIN
+        user_roles ur
+    ON
+        u.id = ur.user_id
+    JOIN
+        roles r
+    ON
+        ur.role_id = r.id
+    WHERE
+        u.email = ?
+    ";
 
-    private static $createUserSQL = "INSERT INTO users (username, email, phone, password_hash) VALUES (?, ?, ?, ?)";
-
-    private static $getRoleIdSQL = "SELECT id FROM roles WHERE role_name = ?";
-
-    private static $createUserRoleSQL = "INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)";
-
-    private static $updatePasswordSQL = "UPDATE users SET password_hash = ? WHERE email = ?";
-    private static $getAllUsersWithRolesSQL = "SELECT
+    private static $getAllSql = "SELECT
         u.id,
         u.username,
         u.email,
@@ -38,25 +45,44 @@ class UserUtils
     GROUP BY
         u.id
     ";
-    private static $clearRolesSQL = "DELETE FROM user_roles WHERE user_id = ?";
-    private static $assignRoleSQL = "INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)";
 
-    public static function exists(string $email): bool
+    private static $createUserSql = "INSERT INTO
+    users (
+        username,
+        email,
+        phone,
+        password_hash
+    )
+    VALUES
+        (?, ?, ?, ?)
+    ";
+
+    private static $updatePasswordSql = "UPDATE users SET password_hash = ? WHERE email = ?";
+
+    public static function exists(string $userEmail): bool
     {
         global $pdo;
 
-        $stmt = $pdo->prepare(self::$userExistSQL);
-        $stmt->execute([$email]);
+        $stmt = $pdo->prepare(self::$userExistSql);
+        $stmt->execute([$userEmail]);
         return $stmt->fetchColumn() ? true : false;
     }
 
-    public static function get_by(string $email)
+    public static function getByEmail(string $userEmail)
     {
         global $pdo;
 
-        $stmt = $pdo->prepare(self::$getUserSQL);
-        $stmt->execute([$email]);
+        $stmt = $pdo->prepare(self::$getByEmailSql);
+        $stmt->execute([$userEmail]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function getAll()
+    {
+        global $pdo;
+
+        $stmt = $pdo->query(self::$getAllSql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function create($fields)
@@ -64,39 +90,16 @@ class UserUtils
         global $pdo;
 
         // Insertar usuario
-        $stmt = $pdo->prepare(self::$createUserSQL);
-        $stmt->execute($fields);
-        $user_id = $pdo->lastInsertId();
-
-        // Obtener role_id
-        $stmt = $pdo->prepare(self::$getRoleIdSQL);
-        $stmt->execute(['default']);
-        $role_id = $stmt->fetchColumn();
+        self::executeSql(self::$createUserSql, $fields);
 
         // Insertar relación Usuario-Rol
-        return GeneralUtils::executeSql(self::$createUserRoleSQL, [$user_id, $role_id]);
+        $userId = $pdo->lastInsertId();
+        $roleId = RoleUtils::getIdByName('default');
+        return RoleUtils::assignUserRole($userId, $roleId);
     }
 
-    public static function updatePassword($email, $new_password)
+    public static function updatePassword($userEmail, $newPassword)
     {
-        return GeneralUtils::executeSql(self::$updatePasswordSQL, [$new_password, $email]);
-    }
-
-    public static function getAllUsersWithRoles()
-    {
-        global $pdo;
-
-        $stmt = $pdo->query(self::$getAllUsersWithRolesSQL);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public static function clearRoles($userId)
-    {
-        return GeneralUtils::executeSql(self::$clearRolesSQL, [$userId]);
-    }
-
-    public static function assignRole($userId, $roleId)
-    {
-        return GeneralUtils::executeSql(self::$assignRoleSQL, [$userId, $roleId]);
+        return self::executeSql(self::$updatePasswordSql, [$newPassword, $userEmail]);
     }
 }

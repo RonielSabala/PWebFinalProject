@@ -11,7 +11,7 @@ class HomeController
     public function handle(Template $template)
     {
         $reporterId = $_SESSION["user"]["id"];
-        $incidents = IncidenceUtils::getAllByReporterId($reporterId);
+        $incidents = IncidenceUtils::getAllWithCommentsByReporterId($reporterId);
         $template->apply(["incidents" => $incidents]);
     }
 }
