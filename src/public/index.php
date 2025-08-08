@@ -37,28 +37,28 @@ const ROUTES = [
     // super/admin/...
 
     // Usuarios
-    'super/admin/users.php' => ['page' => 'users', 'controller' => \App\Controllers\Super\Admin\EntityController::class],
+    'super/admin/users.php' => ['page' => 'users', 'controller' => \App\Controllers\Super\Admin\UserController::class],
 
     // Provincias
-    'super/admin/provinces/home.php'   => ['page' => 'provinces', 'controller' => \App\Controllers\Super\Admin\EntityController::class],
-    'super/admin/provinces/create.php' => ['page' => 'provinces', 'controller' => \App\Controllers\Super\Admin\EntityController::class],
-    'super/admin/provinces/edit.php'   => ['page' => 'provinces', 'controller' => \App\Controllers\Super\Admin\EntityController::class],
-    'super/admin/provinces/delete.php' => ['page' => 'provinces', 'controller' => \App\Controllers\Super\Admin\EntityController::class],
+    'super/admin/provinces/home.php'   => ['page' => 'provinces', 'controller' => \App\Controllers\Super\Admin\ProvinceController::class],
+    'super/admin/provinces/create.php' => ['page' => 'provinces', 'controller' => \App\Controllers\Super\Admin\ProvinceController::class],
+    'super/admin/provinces/edit.php'   => ['page' => 'provinces', 'controller' => \App\Controllers\Super\Admin\ProvinceController::class],
+    'super/admin/provinces/delete.php' => ['page' => 'provinces', 'controller' => \App\Controllers\Super\Admin\ProvinceController::class],
 
     // Municipios
-    'super/admin/municipalities/home.php'   => ['page' => 'municipalities', 'controller' => \App\Controllers\Super\Admin\EntityController::class],
-    'super/admin/municipalities/create.php' => ['page' => 'municipalities', 'controller' => \App\Controllers\Super\Admin\EntityController::class],
-    'super/admin/municipalities/edit.php'   => ['page' => 'municipalities', 'controller' => \App\Controllers\Super\Admin\EntityController::class],
+    'super/admin/municipalities/home.php'   => ['page' => 'municipalities', 'controller' => \App\Controllers\Super\Admin\MunicipalityController::class],
+    'super/admin/municipalities/create.php' => ['page' => 'municipalities', 'controller' => \App\Controllers\Super\Admin\MunicipalityController::class],
+    'super/admin/municipalities/edit.php'   => ['page' => 'municipalities', 'controller' => \App\Controllers\Super\Admin\MunicipalityController::class],
 
     // Barrios
-    'super/admin/neighborhoods/home.php'   => ['page' => 'neighborhoods', 'controller' => \App\Controllers\Super\Admin\EntityController::class],
-    'super/admin/neighborhoods/create.php' => ['page' => 'neighborhoods', 'controller' => \App\Controllers\Super\Admin\EntityController::class],
-    'super/admin/neighborhoods/edit.php'   => ['page' => 'neighborhoods', 'controller' => \App\Controllers\Super\Admin\EntityController::class],
+    'super/admin/neighborhoods/home.php'   => ['page' => 'neighborhoods', 'controller' => \App\Controllers\Super\Admin\NeighborhoodController::class],
+    'super/admin/neighborhoods/create.php' => ['page' => 'neighborhoods', 'controller' => \App\Controllers\Super\Admin\NeighborhoodController::class],
+    'super/admin/neighborhoods/edit.php'   => ['page' => 'neighborhoods', 'controller' => \App\Controllers\Super\Admin\NeighborhoodController::class],
 
     // Etiquetas
-    'super/admin/labels/home.php'   => ['page' => 'labels', 'controller' => \App\Controllers\Super\Admin\EntityController::class],
-    'super/admin/labels/create.php' => ['page' => 'labels', 'controller' => \App\Controllers\Super\Admin\EntityController::class],
-    'super/admin/labels/edit.php'   => ['page' => 'labels', 'controller' => \App\Controllers\Super\Admin\EntityController::class],
+    'super/admin/labels/home.php'   => ['page' => 'labels', 'controller' => \App\Controllers\Super\Admin\LabelController::class],
+    'super/admin/labels/create.php' => ['page' => 'labels', 'controller' => \App\Controllers\Super\Admin\LabelController::class],
+    'super/admin/labels/edit.php'   => ['page' => 'labels', 'controller' => \App\Controllers\Super\Admin\LabelController::class],
 ];
 
 // Crear pdo
