@@ -39,6 +39,20 @@ class GeneralUtils
         ';
     }
 
+    public static function showNoData($entities, string $entities_name)
+    {
+        if ($entities) {
+            return;
+        }
+
+        echo '
+        <div id="noData" class="no-data">
+            <i class="bi bi-inbox-fill fs-1 mb-2"></i>
+            <div>No se encontraron ' . $entities_name . '.</div>
+        </div>
+        ';
+    }
+
     public static function getURI(): string
     {
         return trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');

@@ -7,6 +7,8 @@ class RoleUtils extends GenericEntityUtils
 {
     private static $getIdByNameSql = "SELECT id FROM roles WHERE role_name = ?";
 
+    private static $getAllSql = "SELECT * FROM roles";
+
     private static $assignUserRoleSql = "INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)";
 
     private static $clearUserRolesSql = "DELETE FROM user_roles WHERE user_id = ?";
@@ -15,6 +17,11 @@ class RoleUtils extends GenericEntityUtils
     {
         $role = self::fetchSql(self::$getIdByNameSql, [$roleName]);
         return $role['id'] ?? null;
+    }
+
+    public static function getAll()
+    {
+        return self::fetchAllSql(self::$getAllSql);
     }
 
     public static function assignUserRole($userId, $roleId): bool

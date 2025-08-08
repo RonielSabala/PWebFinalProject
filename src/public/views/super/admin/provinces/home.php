@@ -1,8 +1,15 @@
-<h2>Provincias</h2>
+<?php
 
-<a href="create.php" class="btn btn-primary">Agregar Nueva Provincia</a>
+use App\Utils\GeneralUtils;
+?>
 
-<table class="table mt-3">
+<h2>Listado de provincias</h2>
+<div class="d-flex justify-content-end mb-3">
+    <a id="btn-create" href="create.php" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Crear
+    </a>
+</div>
+<table class="table">
     <thead>
         <tr>
             <th>ID</th>
@@ -16,10 +23,18 @@
                 <td><?= htmlspecialchars($province['id']) ?></td>
                 <td><?= htmlspecialchars($province['province_name']) ?></td>
                 <td>
-                    <a href="edit.php?id=<?= $province['id'] ?>" class="btn btn-sm btn-warning">Editar</a>
-                    <a href="delete.php?id=<?= $province['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta provincia?')">Eliminar</a>
+                    <div class="d-flex gap-1">
+                        <a href="edit.php?id=<?= $province['id'] ?>" class="btn btn-outline-action btn-warning" title="Editar">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="delete.php?id=<?= $province['id'] ?>" class="btn btn-outline-action btn-danger" title="Eliminar">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </div>
                 </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<?= GeneralUtils::showNoData($provinces, "provincias"); ?>
