@@ -32,6 +32,28 @@ const ROUTES = [
     'auth/GoogleController.php'            => ['controller' => \App\Controllers\Auth\GoogleController::class],
     'auth/MicrosoftController.php'         => ['controller' => \App\Controllers\Auth\MicrosoftController::class],
     'auth/MicrosoftCallbackController.php' => ['controller' => \App\Controllers\Auth\MicrosoftCallbackController::class],
+
+    // Admin CRUDs
+
+    // Provincias
+    'super/admin_entities/provinces/index.php'  => ['controller' => \App\Controllers\Super\AdminEntityController::class],
+    'super/admin_entities/provinces/create.php' => ['controller' => \App\Controllers\Super\AdminEntityController::class],
+    'super/admin_entities/provinces/edit.php'   => ['controller' => \App\Controllers\Super\AdminEntityController::class],
+
+    // Municipios
+    'super/admin_entities/municipalities/index.php'  => ['controller' => \App\Controllers\Super\AdminEntityController::class],
+    'super/admin_entities/municipalities/create.php' => ['controller' => \App\Controllers\Super\AdminEntityController::class],
+    'super/admin_entities/municipalities/edit.php'   => ['controller' => \App\Controllers\Super\AdminEntityController::class],
+
+    // Barrios
+    'super/admin_entities/neighborhoods/index.php'  => ['controller' => \App\Controllers\Super\AdminEntityController::class],
+    'super/admin_entities/neighborhoods/create.php' => ['controller' => \App\Controllers\Super\AdminEntityController::class],
+    'super/admin_entities/neighborhoods/edit.php'   => ['controller' => \App\Controllers\Super\AdminEntityController::class],
+
+    // Etiquetas
+    'super/admin_entities/labels/index.php'  => ['controller' => \App\Controllers\Super\AdminEntityController::class],
+    'super/admin_entities/labels/create.php' => ['controller' => \App\Controllers\Super\AdminEntityController::class],
+    'super/admin_entities/labels/edit.php'   => ['controller' => \App\Controllers\Super\AdminEntityController::class],
 ];
 
 // Crear pdo
