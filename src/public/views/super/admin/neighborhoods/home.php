@@ -15,12 +15,12 @@
         <?php foreach ($neighborhoods as $neighborhood): ?>
             <tr>
                 <td><?= htmlspecialchars($neighborhood['id']) ?></td>
-                <td><?= htmlspecialchars($neighborhood['name']) ?></td>
+                <td><?= htmlspecialchars($neighborhood['neighborhood_name']) ?></td>
                 <td>
                     <?php
                     foreach ($municipalities as $municipality) {
                         if ($municipality['id'] == $neighborhood['municipality_id']) {
-                            echo htmlspecialchars($municipality['name']);
+                            echo htmlspecialchars($municipality['municipality_name']);
                             break;
                         }
                     }

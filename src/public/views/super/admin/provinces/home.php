@@ -1,4 +1,4 @@
-<h1>Provincias</h1>
+<h2>Provincias</h2>
 
 <a href="create.php" class="btn btn-primary">Agregar Nueva Provincia</a>
 
@@ -14,7 +14,7 @@
         <?php foreach ($provinces as $province): ?>
             <tr>
                 <td><?= htmlspecialchars($province['id']) ?></td>
-                <td><?= htmlspecialchars($province['nombre']) ?></td>
+                <td><?= htmlspecialchars($province['province_name']) ?></td>
                 <td>
                     <a href="edit.php?id=<?= $province['id'] ?>" class="btn btn-sm btn-warning">Editar</a>
                     <a href="delete.php?id=<?= $province['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta provincia?')">Eliminar</a>

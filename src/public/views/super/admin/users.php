@@ -1,4 +1,4 @@
-<h2>Gestión de Usuarios y Roles</h2>
+<h2>Gestión de usuarios y roles</h2>
 
 <form method="POST">
     <label for="user_id">Selecciona un usuario:</label>

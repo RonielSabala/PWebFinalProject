@@ -3,6 +3,7 @@
 namespace App\Controllers\Super\Admin;
 
 use App\Core\Template;
+use App\Utils\Entities\UserUtils;
 use App\Utils\Entities\LabelUtils;
 use App\Utils\Entities\ProvinceUtils;
 use App\Utils\Entities\MunicipalityUtils;
@@ -13,7 +14,67 @@ class EntityController
 {
     public function handle(Template $template)
     {
-        $template->apply();
+        $route = $template::$viewPath;
+        $data = [];
+
+        if (str_contains($route, 'users')) {
+            $data = self::handle_users();
+        } elseif (str_contains($route, 'provinces')) {
+            $data = self::handle_provinces();
+        } elseif (str_contains($route, 'municipalities')) {
+            $data = self::handle_municipalities();
+        } elseif (str_contains($route, 'neighborhoods')) {
+            $data = self::handle_neighborhoods();
+        } elseif (str_contains($route, 'labels')) {
+            $data = self::handle_labels();
+        }
+
+        $template->apply($data);
+    }
+
+    public function handle_users()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userId = $_POST['user_id'];
+            $roleId = $_POST['role_id'];
+            UserUtils::clearRoles($userId);
+            UserUtils::assignRole($userId, $roleId);
+        }
+
+        $users = UserUtils::getAllUsersWithRoles();
+        return ['users' => $users];
+    }
+
+    public function handle_provinces()
+    {
+        $provinces = ProvinceUtils::getAll();
+        return ['provinces' => $provinces];
+    }
+
+    public function handle_municipalities()
+    {
+        $provinces = ProvinceUtils::getAll();
+        $municipalities = MunicipalityUtils::getAll();
+        return [
+            'provinces' => $provinces,
+            'municipalities' => $municipalities,
+        ];
+    }
+
+    public function handle_neighborhoods()
+    {
+        $municipalities = MunicipalityUtils::getAll();
+        $neighborhoods = NeighborhoodUtils::getAll();
+        return [
+            'municipalities' => $municipalities,
+            'neighborhoods' => $neighborhoods,
+        ];
+    }
+
+    public function handle_labels()
+    {
+        $labels = LabelUtils::getAll();
+        return ['labels' => $labels];
     }
 
     // Provincias
