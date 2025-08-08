@@ -1,3 +1,43 @@
+.card-hero {
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0.07),
+    rgba(59, 130, 246, 0.03)
+  );
+  border: none;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.12);
+}
+
+.badge-role {
+  font-size: 0.85rem;
+  padding: 0.45em 0.6em;
+  border-radius: 0.5rem;
+}
+
+.form-label.required::after {
+  content: " *";
+  color: #d63384;
+  margin-left: 0.15rem;
+}
+
+.small-muted {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
 .no-data {
   text-align: center;
   padding: 1rem;
