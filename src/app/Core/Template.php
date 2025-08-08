@@ -18,7 +18,31 @@ class Template
         header('Content-Type: application/json; charset=utf-8');
     }
 
-    private function include_partial_if_exists(string $partialView)
+    private static function findPartialsPath()
+    {
+        $relative = trim(self::$partialsPath ?? '', '/');
+        $parts = $relative === '' ? [] : explode('/', $relative);
+
+        // Recorremos desde el path completo hacia arriba hasta 0 niveles
+        $found = false;
+        for ($i = count($parts); $i >= 0; $i--) {
+            $sub = $i > 0 ? implode('/', array_slice($parts, 0, $i)) : '';
+            $try = self::$viewsPath . ($sub !== '' ? '/' . $sub : '') . '/_partials';
+
+            if (is_dir($try)) {
+                self::$partialsPath = $try;
+                $found = true;
+                break;
+            }
+        }
+
+        // Partials por defecto
+        if (!$found) {
+            self::$partialsPath = self::$viewsPath . '/_partials';
+        }
+    }
+
+    private function includePartialView(string $partialView)
     {
         $file_path = self::$partialsPath . $partialView;
         if (!file_exists($file_path)) {
@@ -34,16 +58,12 @@ class Template
             return;
         }
 
-        // Obtener la ruta a las vistas parciales
         $path = self::$partialsPath;
-        self::$partialsPath = self::$viewsPath . '/' . $path . '/_partials';
-        if (!is_dir(self::$partialsPath)) {
-            self::$partialsPath = self::$viewsPath . '/_partials';
-        }
 
         // Incluir los partials
-        self::include_partial_if_exists('/_header.php');
-        self::include_partial_if_exists('/_nav.php');
+        self::findPartialsPath();
+        self::includePartialView('/_header.php');
+        self::includePartialView('/_nav.php');
 
         // Incluir el CSS de las partials solo si existe
         $css_path = self::$basePath . '/css/' . $path . '/main.css';
@@ -60,7 +80,7 @@ class Template
             return;
         }
 
-        self::include_partial_if_exists('/_footer.php');
+        self::includePartialView('/_footer.php');
     }
 
     public function apply(array $data = [])
@@ -69,8 +89,9 @@ class Template
             return;
         }
 
-        // Incluir el CSS de la vista solo si existe
         $path = self::$viewPath;
+
+        // Incluir el CSS de la vista solo si existe
         $css_path = self::$basePath . '/css/' . $path . '.css';
         if (file_exists($css_path)) {
             echo '
