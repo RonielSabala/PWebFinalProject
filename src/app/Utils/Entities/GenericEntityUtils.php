@@ -38,6 +38,16 @@ class GenericEntityUtils
         }
     }
 
+    public static function saveFetchSql(string $sql, array $params, string $error_msg)
+    {
+        $obj = self::fetchSql($sql, $params);
+        if (!$obj) {
+            GeneralUtils::showAlert($error_msg, 'danger');
+        }
+
+        return $obj;
+    }
+
     public static function fetchAllSql(string $sql, array $params = []): array
     {
         global $pdo;

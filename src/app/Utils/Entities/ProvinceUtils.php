@@ -5,7 +5,9 @@ namespace App\Utils\Entities;
 
 class ProvinceUtils extends GenericEntityUtils
 {
-    private static $getByIdSql = "SELECT * FROM provinces WHERE id = ?";
+    private static $getSql = "SELECT * FROM provinces WHERE id = ?";
+
+    private static $getByNameSql = "SELECT * FROM provinces WHERE province_name = ?";
 
     private static $getAllSql = "SELECT * FROM provinces ORDER BY province_name";
 
@@ -15,9 +17,14 @@ class ProvinceUtils extends GenericEntityUtils
 
     private static $deleteSql = "DELETE FROM provinces WHERE id = ?";
 
-    public static function getById($id)
+    public static function get($id)
     {
-        return self::fetchSql(self::$getByIdSql, [$id]);
+        return self::saveFetchSql(self::$getSql, [$id], 'No se encontró la provincia.');
+    }
+
+    public static function getByName($province_name)
+    {
+        return self::saveFetchSql(self::$getByNameSql, [$province_name], 'No se encontró la provincia.');
     }
 
     public static function getAll(): array
