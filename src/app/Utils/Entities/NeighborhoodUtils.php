@@ -5,7 +5,7 @@ namespace App\Utils\Entities;
 
 class NeighborhoodUtils extends GenericEntityUtils
 {
-    private static $getByIdSql = "SELECT * FROM neighborhoods WHERE id = ?";
+    private static $getSql = "SELECT * FROM neighborhoods WHERE id = ?";
 
     private static $getAllSql = "SELECT * FROM neighborhoods ORDER BY neighborhood_name";
 
@@ -17,9 +17,9 @@ class NeighborhoodUtils extends GenericEntityUtils
 
     private static $deleteSql = "DELETE FROM neighborhoods WHERE id = ?";
 
-    public static function getById($id)
+    public static function get($id)
     {
-        return self::fetchSql(self::$getByIdSql, [$id]);
+        return self::saveFetchSql(self::$getSql, [$id], 'No se encontró el barrio.');
     }
 
     public static function getAll(): array

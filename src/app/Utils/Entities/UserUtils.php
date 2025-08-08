@@ -64,7 +64,7 @@ class UserUtils extends GenericEntityUtils
 
     public static function getByEmail(string $userEmail)
     {
-        return self::fetchSql(self::$getByEmailSql, [$userEmail]);
+        return self::saveFetchSql(self::$getByEmailSql, [$userEmail], 'No se encontró el usuario.');
     }
 
     public static function getAll(): array

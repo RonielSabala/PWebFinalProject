@@ -7,7 +7,7 @@ use App\Utils\GeneralUtils;
 
 class IncidenceUtils extends GenericEntityUtils
 {
-    private static $getByIdSql = "SELECT * FROM incidents where id = ?";
+    private static $getSql = "SELECT * FROM incidents where id = ?";
 
     private static $getAllSql = "SELECT
         i.*,
@@ -69,14 +69,9 @@ class IncidenceUtils extends GenericEntityUtils
 
     private static $createLabelRelationSql = "INSERT INTO incidence_labels (incidence_id, label_id) VALUES (?, ?)";
 
-    public static function getById($id)
+    public static function get($id)
     {
-        $incidence = self::fetchSql(self::$getByIdSql, [$id]);
-        if (!$incidence) {
-            GeneralUtils::showAlert('No se encontró la incidencia.', 'danger');
-        }
-
-        return $incidence;
+        return self::saveFetchSql(self::$getSql, [$id], 'No se encontró la incidencia.');
     }
 
     public static function getAll(): array

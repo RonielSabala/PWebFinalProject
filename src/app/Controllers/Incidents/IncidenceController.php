@@ -19,7 +19,7 @@ class IncidenceController
 
         // Obtener incidencia
         $id = $_GET['id'];
-        $incidence = IncidenceUtils::getById($id);
+        $incidence = IncidenceUtils::get($id);
         if (!$incidence) {
             exit;
         }

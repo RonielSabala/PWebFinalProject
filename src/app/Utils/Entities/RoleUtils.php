@@ -15,7 +15,7 @@ class RoleUtils extends GenericEntityUtils
 
     public static function getIdByName($roleName)
     {
-        $role = self::fetchSql(self::$getIdByNameSql, [$roleName]);
+        $role = self::saveFetchSql(self::$getIdByNameSql, [$roleName], 'No se encontró el rol.');
         return $role['id'] ?? null;
     }
 

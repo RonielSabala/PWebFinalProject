@@ -5,7 +5,7 @@ namespace App\Utils\Entities;
 
 class MunicipalityUtils extends GenericEntityUtils
 {
-    private static $getByIdSql = "SELECT * FROM municipalities WHERE id = ?";
+    private static $getSql = "SELECT * FROM municipalities WHERE id = ?";
 
     private static $getAllSql = "SELECT * FROM municipalities ORDER BY municipality_name";
 
@@ -17,9 +17,9 @@ class MunicipalityUtils extends GenericEntityUtils
 
     private static $deleteSql = "DELETE FROM municipalities WHERE id = ?";
 
-    public static function getById($id)
+    public static function get($id)
     {
-        return self::fetchSql(self::$getByIdSql, [$id]);
+        return self::saveFetchSql(self::$getSql, [$id], 'No se encontró el municipio.');
     }
 
     public static function getAll(): array
