@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Super;
+namespace App\Controllers\Super\Admin;
 
 use App\Core\Template;
 use App\Utils\Entities\LabelUtils;
@@ -9,7 +9,7 @@ use App\Utils\Entities\MunicipalityUtils;
 use App\Utils\Entities\NeighborhoodUtils;
 
 
-class AdminEntityController
+class EntityController
 {
     public function handle(Template $template)
     {

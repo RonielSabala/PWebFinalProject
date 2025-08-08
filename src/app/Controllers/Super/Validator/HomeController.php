@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controllers\Super;
+namespace App\Controllers\Super\Validator;
 
 use App\Core\Template;
 
 
-class ValidatorController
+class HomeController
 {
     public function handle(Template $template)
     {

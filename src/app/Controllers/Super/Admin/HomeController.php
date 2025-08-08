@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Controllers\Super;
+namespace App\Controllers\Super\Admin;
 
 use App\Core\Template;
 use \App\Utils\Entities\UserUtils;
 
 
-class AdminController
+class HomeController
 {
     public function handle(Template $template)
     {

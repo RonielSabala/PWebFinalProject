@@ -1,4 +1,4 @@
-<h1>Listado de Provincias</h1>
+<h1>Provincias</h1>
 
 <a href="create.php" class="btn btn-primary">Agregar Nueva Provincia</a>
 
