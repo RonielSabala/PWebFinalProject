@@ -42,22 +42,37 @@
     <div id="incidents-map"></div>
 
     <!-- Modal -->
-    <div class="modal fade" id="incidenceModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    <div class="modal fade" id="incidenceModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-fullscreen-md-down">
+            <div class="modal-content border-0 shadow-lg">
                 <!-- Header -->
-                <div class="modal-header">
-                    <h5 class="modal-title">Detalles de incidencia</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                <div class="modal-header p-3 align-items-start bg-incident">
+                    <div class="d-flex align-items-center gap-3 w-100">
+                        <div class="modal-hero-avatar" aria-hidden="true">
+                            <!-- icono opcional -->
+                            <i class="bi bi-exclamation-circle-fill"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="modal-title mb-0" id="incidenceModalLabel">Detalles de incidencia</h5>
+                        </div>
+
+                        <!-- Close -->
+                        <button type="button" class="btn-close ms-3" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
                 </div>
 
-                <!-- Contenido -->
-                <div class="modal-body" id="modalBody"></div>
+                <!-- Body -->
+                <div class="modal-body p-0">
+                    <div id="modalBody" class="p-4" style="max-height:65vh; overflow:auto;">
+                    </div>
+                </div>
 
                 <!-- Footer -->
-                <div class="modal-footer">
-                    <a id="btnGoToIncidencePage" class="btn btn-primary me-auto" href="#" target="_blank" rel="noopener noreferrer">Abrir en otra pestaña</a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <div class="modal-footer d-flex align-items-center">
+                    <a id="btnGoToIncidencePage" class="btn btn-primary me-auto" href="#" target="_blank" rel="noopener noreferrer">
+                        Abrir en otra pestaña
+                    </a>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>

@@ -1,0 +1,183 @@
+.container-incident {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.card-min {
+  border: none;
+  border-radius: 0.9rem;
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.06);
+  background: #fff;
+  overflow: hidden;
+}
+
+/* Cabecera colorida */
+.incident-header {
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0.12),
+    rgba(14, 165, 233, 0.06)
+  );
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.incident-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.incident-meta {
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+/* Info section vertical y colorida */
+.card-section {
+  padding: 1.25rem;
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: #0f172a;
+}
+
+.description-text {
+  color: #0b1220;
+  line-height: 1.5;
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.info-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  background: rgba(15, 23, 42, 0.04);
+  color: #0f172a;
+}
+
+.info-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Píldoras con colores suaves según tipo */
+.pill-deaths {
+  background: linear-gradient(
+    180deg,
+    rgba(239, 68, 68, 0.1),
+    rgba(239, 68, 68, 0.04)
+  );
+  color: #b91c1c;
+}
+
+.pill-injured {
+  background: linear-gradient(
+    180deg,
+    rgba(245, 158, 11, 0.08),
+    rgba(245, 158, 11, 0.03)
+  );
+  color: #92400e;
+}
+
+.pill-losses {
+  background: linear-gradient(
+    180deg,
+    rgba(75, 85, 99, 0.06),
+    rgba(75, 85, 99, 0.02)
+  );
+  color: #334155;
+}
+
+.pill-location {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 95, 70, 0.07),
+    rgba(6, 95, 70, 0.02)
+  );
+  color: #065f46;
+}
+
+/* Comentarios: avatares sólidos y sobrios */
+.comment-row {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.comment-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(2, 6, 23, 0.06);
+}
+
+.comment-body {
+  flex: 1;
+}
+
+.comment-author {
+  font-weight: 700;
+  margin-right: 8px;
+  color: #0f172a;
+}
+
+.comment-meta {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.comment-text {
+  margin-top: 6px;
+  white-space: pre-wrap;
+  color: #0b1220;
+}
+
+.form-comment textarea {
+  resize: vertical;
+  min-height: 84px;
+}
+
+.small-muted {
+  color: #6b7280;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 640px) {
+  .incident-title {
+    font-size: 1.25rem;
+  }
+
+  .comment-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+  }
+}
