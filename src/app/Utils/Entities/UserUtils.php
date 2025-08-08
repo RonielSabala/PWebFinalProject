@@ -23,6 +23,23 @@ class UserUtils
     private static $createUserRoleSQL = "INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)";
 
     private static $updatePasswordSQL = "UPDATE users SET password_hash = ? WHERE email = ?";
+    private static $getAllUsersWithRolesSQL = "SELECT
+        u.id,
+        u.username,
+        u.email,
+        u.phone,
+        GROUP_CONCAT(r.role_name) as roles
+    FROM
+        users u
+    LEFT JOIN
+        user_roles ur ON u.id = ur.user_id
+    LEFT JOIN
+        roles r ON ur.role_id = r.id
+    GROUP BY
+        u.id
+    ";
+    private static $clearRolesSQL = "DELETE FROM user_roles WHERE user_id = ?";
+    private static $assignRoleSQL = "INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)";
 
     public static function exists(string $email): bool
     {
@@ -63,5 +80,23 @@ class UserUtils
     public static function updatePassword($email, $new_password)
     {
         GeneralUtils::executeSql(self::$updatePasswordSQL, [$new_password, $email]);
+    }
+
+    public static function getAllUsersWithRoles()
+    {
+        global $pdo;
+
+        $stmt = $pdo->query(self::$getAllUsersWithRolesSQL);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function clearRoles($userId)
+    {
+        GeneralUtils::executeSql(self::$clearRolesSQL, [$userId]);
+    }
+
+    public static function assignRole($userId, $roleId)
+    {
+        GeneralUtils::executeSql(self::$assignRoleSQL, [$userId, $roleId]);
     }
 }
