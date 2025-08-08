@@ -2,8 +2,6 @@
 
 namespace App\Utils\Entities;
 
-use PDO;
-
 
 class MunicipalityUtils extends GenericEntityUtils
 {
@@ -21,41 +19,31 @@ class MunicipalityUtils extends GenericEntityUtils
 
     public static function getById($id)
     {
-        global $pdo;
-
-        $stmt = $pdo->prepare(self::$getByIdSql);
-        $stmt->execute([$id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return self::fetchSql(self::$getByIdSql, [$id]);
     }
 
-    public static function getAll()
+    public static function getAll(): array
     {
-        global $pdo;
-
-        $stmt = $pdo->query(self::$getAllSql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return self::fetchAllSql(self::$getAllSql);
     }
 
-    public static function getAllByProvinceId($provinceId)
+    public static function getAllByProvinceId($provinceId): array
     {
-        global $pdo;
 
-        $stmt = $pdo->prepare(self::$getAllByProvinceIdSql);
-        $stmt->execute([$provinceId]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return self::fetchAllSql(self::$getAllByProvinceIdSql, [$provinceId]);
     }
 
-    public static function create($municipalityName, $provinceId)
+    public static function create($municipalityName, $provinceId): bool
     {
         return self::executeSql(self::$createSql, [$municipalityName, $provinceId]);
     }
 
-    public static function update($MunicipalityId, $municipalityName, $provinceId)
+    public static function update($MunicipalityId, $municipalityName, $provinceId): bool
     {
         return self::executeSql(self::$updateSql, [$municipalityName, $provinceId, $MunicipalityId]);
     }
 
-    public static function delete($id)
+    public static function delete($id): bool
     {
         return self::executeSql(self::$deleteSql, [$id]);
     }

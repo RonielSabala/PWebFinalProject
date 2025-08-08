@@ -2,8 +2,6 @@
 
 namespace App\Utils\Entities;
 
-use PDO;
-
 
 class LabelUtils extends GenericEntityUtils
 {
@@ -19,32 +17,25 @@ class LabelUtils extends GenericEntityUtils
 
     public static function getById($id)
     {
-        global $pdo;
-
-        $stmt = $pdo->prepare(self::$getByIdSql);
-        $stmt->execute([$id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return self::fetchSql(self::$getByIdSql, [$id]);
     }
 
-    public static function getAll()
+    public static function getAll(): array
     {
-        global $pdo;
-
-        $stmt = $pdo->query(self::$getAllSql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return self::fetchAllSql(self::$getAllSql);
     }
 
-    public static function create($labelName)
+    public static function create($labelName): bool
     {
         return self::executeSql(self::$createSql, [$labelName]);
     }
 
-    public static function update($labelId, $labelName)
+    public static function update($labelId, $labelName): bool
     {
         return self::executeSql(self::$updateSql, [$labelName, $labelId]);
     }
 
-    public static function delete($id)
+    public static function delete($id): bool
     {
         return self::executeSql(self::$deleteSql, [$id]);
     }

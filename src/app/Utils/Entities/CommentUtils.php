@@ -2,8 +2,6 @@
 
 namespace App\Utils\Entities;
 
-use PDO;
-
 
 class CommentUtils extends GenericEntityUtils
 {
@@ -21,12 +19,8 @@ class CommentUtils extends GenericEntityUtils
         c.incidence_id = ?
     ";
 
-    public static function getAllByIncidenceId($incidenceId)
+    public static function getAllByIncidenceId($incidenceId): array
     {
-        global $pdo;
-
-        $stmt = $pdo->prepare(self::$getAllByIncidenceIdSql);
-        $stmt->execute([$incidenceId]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return self::fetchAllSql(self::$getAllByIncidenceIdSql, [$incidenceId]);
     }
 }

@@ -13,19 +13,16 @@ class RoleUtils extends GenericEntityUtils
 
     public static function getIdByName($roleName)
     {
-        global $pdo;
-
-        $stmt = $pdo->prepare(self::$getIdByNameSql);
-        $stmt->execute([$roleName]);
-        return $stmt->fetchColumn();
+        $role = self::fetchSql(self::$getIdByNameSql, [$roleName]);
+        return $role['id'] ?? null;
     }
 
-    public static function assignUserRole($userId, $roleId)
+    public static function assignUserRole($userId, $roleId): bool
     {
         return self::executeSql(self::$assignUserRoleSql, [$userId, $roleId]);
     }
 
-    public static function clearUserRoles($userId)
+    public static function clearUserRoles($userId): bool
     {
         return self::executeSql(self::$clearUserRolesSql, [$userId]);
     }

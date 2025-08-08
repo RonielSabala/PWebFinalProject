@@ -2,8 +2,6 @@
 
 namespace App\Utils\Entities;
 
-use PDO;
-
 
 class ProvinceUtils extends GenericEntityUtils
 {
@@ -19,32 +17,25 @@ class ProvinceUtils extends GenericEntityUtils
 
     public static function getById($id)
     {
-        global $pdo;
-
-        $stmt = $pdo->prepare(self::$getByIdSql);
-        $stmt->execute([$id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return self::fetchSql(self::$getByIdSql, [$id]);
     }
 
-    public static function getAll()
+    public static function getAll(): array
     {
-        global $pdo;
-
-        $stmt = $pdo->query(self::$getAllSql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return self::fetchAllSql(self::$getAllSql);
     }
 
-    public static function create($provinceName)
+    public static function create($provinceName): bool
     {
         return self::executeSql(self::$createSql, [$provinceName]);
     }
 
-    public static function update($provinceId, $provinceName)
+    public static function update($provinceId, $provinceName): bool
     {
         return self::executeSql(self::$updateSql, [$provinceName, $provinceId]);
     }
 
-    public static function delete($id)
+    public static function delete($id): bool
     {
         return self::executeSql(self::$deleteSql, [$id]);
     }

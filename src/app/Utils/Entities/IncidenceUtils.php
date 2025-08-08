@@ -2,7 +2,6 @@
 
 namespace App\Utils\Entities;
 
-use PDO;
 use App\Utils\GeneralUtils;
 
 
@@ -72,25 +71,17 @@ class IncidenceUtils extends GenericEntityUtils
 
     public static function getById($id)
     {
-        global $pdo;
-
-        $stmt = $pdo->prepare(self::$getByIdSql);
-        $stmt->execute([$id]);
-        $incidence = $stmt->fetch(PDO::FETCH_ASSOC);
+        $incidence = self::fetchSql(self::$getByIdSql, [$id]);
         if (!$incidence) {
             GeneralUtils::showAlert('No se encontró la incidencia.', 'danger');
-            return false;
         }
 
         return $incidence;
     }
 
-    public static function getAll()
+    public static function getAll(): array
     {
-        global $pdo;
-
-        $stmt = $pdo->query(self::$getAllSql);
-        $incidents = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $incidents = self::fetchAllSql(self::$getAllSql);
         return array_map(function ($incident) {
             $incident['labels'] = !empty($incident['labels'])
                 ? explode(',', $incident['labels'])
@@ -102,13 +93,9 @@ class IncidenceUtils extends GenericEntityUtils
         }, $incidents);
     }
 
-    public static function getAllWithCommentsByReporterId($reporterId)
+    public static function getAllWithCommentsByReporterId($reporterId): array
     {
-        global $pdo;
-
-        $stmt = $pdo->prepare(self::$getAllWithCommentsByReporterIdSql);
-        $stmt->execute([$reporterId]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return self::fetchAllSql(self::$getAllWithCommentsByReporterIdSql, [$reporterId]);
     }
 
     public static function create($fields, $photoUrl, $labels)

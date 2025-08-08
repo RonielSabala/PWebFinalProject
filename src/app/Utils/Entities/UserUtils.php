@@ -2,8 +2,6 @@
 
 namespace App\Utils\Entities;
 
-use PDO;
-
 
 class UserUtils extends GenericEntityUtils
 {
@@ -61,28 +59,17 @@ class UserUtils extends GenericEntityUtils
 
     public static function exists(string $userEmail): bool
     {
-        global $pdo;
-
-        $stmt = $pdo->prepare(self::$userExistSql);
-        $stmt->execute([$userEmail]);
-        return $stmt->fetchColumn() ? true : false;
+        return self::fetchSql(self::$userExistSql, [$userEmail]) ? true : false;
     }
 
     public static function getByEmail(string $userEmail)
     {
-        global $pdo;
-
-        $stmt = $pdo->prepare(self::$getByEmailSql);
-        $stmt->execute([$userEmail]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return self::fetchSql(self::$getByEmailSql, [$userEmail]);
     }
 
-    public static function getAll()
+    public static function getAll(): array
     {
-        global $pdo;
-
-        $stmt = $pdo->query(self::$getAllSql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return self::fetchAllSql(self::$getAllSql);
     }
 
     public static function create($fields)
@@ -95,10 +82,10 @@ class UserUtils extends GenericEntityUtils
         // Insertar relación Usuario-Rol
         $userId = $pdo->lastInsertId();
         $roleId = RoleUtils::getIdByName('default');
-        return RoleUtils::assignUserRole($userId, $roleId);
+        RoleUtils::assignUserRole($userId, $roleId);
     }
 
-    public static function updatePassword($userEmail, $newPassword)
+    public static function updatePassword($userEmail, $newPassword): bool
     {
         return self::executeSql(self::$updatePasswordSql, [$newPassword, $userEmail]);
     }
