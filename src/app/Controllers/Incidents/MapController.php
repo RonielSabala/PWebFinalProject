@@ -23,12 +23,14 @@ class MapController
                 // Rutas
                 $relPath = 'incidents/incidence';
                 $viewPath = BASE_PATH . '/public/views/' . $relPath . '.php';
-                $cssPath = BASE_PATH . '/public/css/' . $relPath . '.css';
+                $cssPath = '/css/' . $relPath . '.css';
+                $jsPath = '/js/' . $relPath . '.js';
 
                 // Cargar el CSS
                 ob_start();
-                if (file_exists($cssPath)) {
-                    echo '<style>' . file_get_contents($cssPath) . '</style>';
+                if (file_exists(BASE_PATH . '/public' . $cssPath)) {
+                    echo '<link rel="stylesheet" href="' . $cssPath . '"></link>';
+                    // echo '<style>' . file_get_contents($cssPath) . '</l>';
                 }
 
                 // Cargar la vista
@@ -39,6 +41,11 @@ class MapController
                     ], EXTR_SKIP);
 
                     include $viewPath;
+                }
+
+                // Cargar el JS
+                if (file_exists(BASE_PATH . '/public' . $jsPath)) {
+                    echo '<script src="' . $jsPath . '"></s>';
                 }
 
                 $data = ob_get_clean();

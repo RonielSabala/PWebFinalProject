@@ -7,6 +7,8 @@ class CommentUtils extends GenericEntityUtils
 {
     private static $getAllByIncidenceIdSql = "SELECT
         u.username,
+        c.id,
+        c.user_id,
         c.comment_text,
         c.creation_date
     FROM
@@ -32,6 +34,12 @@ class CommentUtils extends GenericEntityUtils
         (?, ?, ?)
     ";
 
+    private static $deleteSql = "DELETE FROM
+        comments c
+    WHERE
+        c.id = ?
+    ";
+
     public static function getAllByIncidenceId($incidenceId): array
     {
         return self::fetchAllSql(self::$getAllByIncidenceIdSql, [$incidenceId]);
@@ -40,5 +48,10 @@ class CommentUtils extends GenericEntityUtils
     public static function create($commentText, $userId, $incidenceId): bool
     {
         return self::executeSql(self::$createSql, [$incidenceId, $userId, $commentText]);
+    }
+
+    public static function delete($id): bool
+    {
+        return self::executeSql(self::$deleteSql, [$id]);
     }
 }

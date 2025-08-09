@@ -1,6 +1,10 @@
 <?php
+
+use App\Utils\Entities\UserUtils;
+use Google\Service\Fitness\Resource\UsersDataSources;
+
 // Datos
-$id = $incidence['id'];
+$incidenceId = $incidence['id'];
 $title = $incidence['title'];
 $description = $incidence['incidence_description'];
 $occurrence = (new DateTime($incidence['occurrence_date']))->format('d/m/Y H:i');
@@ -30,7 +34,10 @@ function avatar_color($seed, $colors)
 }
 
 // Avatar del usuario actual
-$username = $_SESSION['user']['username'] ?? 'U';
+$user = $_SESSION['user'];
+$user_id = $user['id'];
+$username = $user['username'];
+$is_super = UserUtils::isUserSuper($user_id);
 $current_user_initial = strtoupper(substr($username, 0, 1));
 $current_user_color = avatar_color($username, $avatar_colors);
 ?>
@@ -73,7 +80,7 @@ $current_user_color = avatar_color($username, $avatar_colors);
 
         <!-- Añadir comentario -->
         <div class="card card-section mb-3">
-            <form method="post" action="incidence.php?id=<?= $id ?>" class="form-comment" autocomplete="off">
+            <form method="post" action="incidence.php?id=<?= $incidenceId ?>&action=POST" class="form-comment" autocomplete="off">
                 <div style="display:flex; gap:12px; align-items:flex-start;">
                     <div class="comment-avatar" aria-hidden="true" style="background: <?= $current_user_color ?>;">
                         <?= $current_user_initial ?>
@@ -96,17 +103,44 @@ $current_user_color = avatar_color($username, $avatar_colors);
                 <?php foreach ($comments as $c):
                     $author = htmlspecialchars($c['username'] ?? 'Usuario');
                     $cdate = isset($c['creation_date']) ? (new DateTime($c['creation_date']))->format('d/m/Y H:i') : '';
-                    $ctext = nl2br(htmlspecialchars($c['comment_text'] ?? ''));
+                    $ctext = $c['comment_text'];
                     $initial = strtoupper(substr($author, 0, 1));
                     $acolor = avatar_color($author, $avatar_colors);
+                    $is_comment_super = UserUtils::isUserSuper($c['user_id']);
                 ?>
-                    <div class="comment-row" role="article">
-                        <div class="comment-avatar" style="background: <?= $acolor ?>;" aria-hidden="true"><?= $initial ?></div>
-                        <div class="comment-body">
-                            <div style="display:flex; align-items:center; gap:.6rem;">
-                                <div class="comment-author"><?= $author ?></div>
-                                <div class="comment-meta"><?= $cdate ?></div>
+                    <div class="comment-row d-flex align-items-start<?= $is_comment_super ? ' comment-row-super' : '' ?>" role="article" style="gap:.8rem;">
+                        <!-- Avatar: añadimos una clase extra si es super para poder estilizar -->
+                        <div class="comment-avatar<?= $is_comment_super ? ' comment-avatar-super' : '' ?>" style="background: <?= $acolor ?>;" aria-hidden="true"><?= $initial ?></div>
+
+                        <div class="comment-body" style="flex:1;">
+                            <div class="d-flex align-items-center" style="gap:.6rem;">
+                                <div>
+                                    <div class="comment-author">
+                                        <?= $author ?>
+                                        <?php if ($is_comment_super): ?>
+                                            <!-- Badge para roles super -->
+                                            <span style="background:#ffd700;color:#000;padding:2px 6px;border-radius:999px;font-size:.7rem;margin-left:.5rem;font-weight:700;">ADMIN</span>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="comment-meta"><?= $cdate ?></div>
+                                </div>
+
+                                <div class="ms-auto d-flex align-items-center">
+                                    <?php if (($is_super && !$is_comment_super) || $c['user_id'] == $user_id): ?>
+                                        <!-- Botón de eliminar pequeño y elegante (Bootstrap) -->
+                                        <form method="post" action="incidence.php?id=<?= $incidenceId ?>&action=DELETE" onsubmit="return confirmDelete()">
+                                            <input type="hidden" name="comment_id" value="<?= (int)$c['id'] ?>">
+                                            <button
+                                                type="submit"
+                                                class="btn btn-sm btn-outline-danger"
+                                                title="Eliminar comentario">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        <?php endif; ?>
+                                        </form>
+                                </div>
                             </div>
+
                             <div class="comment-text"><?= $ctext ?></div>
                         </div>
                     </div>

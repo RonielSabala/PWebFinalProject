@@ -13,24 +13,31 @@ class IncidenceController
     public function handle(Template $template)
     {
         if (!isset($_GET['id'])) {
-            GeneralUtils::showAlert('No se especificó la incidencia.', 'danger');
+            GeneralUtils::showAlert('No se especificó la incidencia.', 'danger', '/home.php');
             exit;
         }
 
         // Obtener incidencia
-        $id = $_GET['id'];
-        $incidence = IncidenceUtils::get($id);
+        $incidence_id = $_GET['id'];
+        $incidence = IncidenceUtils::get($incidence_id);
         if (!$incidence) {
             exit;
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $comment_text = trim($_POST['comment_text']);
-            $user_id = $_SESSION['user']['id'];
-            CommentUtils::create($comment_text, $user_id, $id);
+            $action = $_GET['action'];
+
+            if ($action === 'POST') {
+                $user_id = $_SESSION['user']['id'];
+                $comment_text = trim($_POST['comment_text']);
+                CommentUtils::create($comment_text, $user_id, $incidence_id);
+            } elseif ($action === 'DELETE') {
+                $comment_id =  $_POST['comment_id'];
+                CommentUtils::delete($comment_id);
+            }
         }
 
-        $comments = CommentUtils::getAllByIncidenceId($id);
+        $comments = CommentUtils::getAllByIncidenceId($incidence_id);
         $template->apply([
             'incidence' => $incidence,
             'comments' => $comments,

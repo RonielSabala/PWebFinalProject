@@ -61,9 +61,16 @@ class GeneralUtils
         $count_history = count($_SESSION['uri_history']);
         if ($count_history === 0) {
             $_SESSION['uri_history'][] = $uri;
-        } elseif ($uri !== $_SESSION['uri_history'][$count_history - 1]) {
-            $_SESSION['uri_history'][] = $uri;
-            $_SESSION['uri_history'] = array_slice($_SESSION['uri_history'], -5);
+        } else {
+            [$current_uri, $current_view] = self::splitURI($uri);
+            [$last_uri, $last_view] = self::splitURI(self::getNthURI(-1));
+
+            $current = $current_uri . '/' . explode('?', $current_view)[0];
+            $last = $last_uri . '/' . explode('?', $last_view)[0];
+            if ($current !== $last) {
+                $_SESSION['uri_history'][] = $uri;
+                $_SESSION['uri_history'] = array_slice($_SESSION['uri_history'], -5);
+            }
         }
 
         return trim(parse_url($uri, PHP_URL_PATH), '/');
