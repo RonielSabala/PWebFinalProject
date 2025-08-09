@@ -6,7 +6,7 @@
         </div>
         <div>
             <h3 class="mb-0">Vista del administrador</h3>
-            <div class="muted-sm">Bienvenido, <span class="welcome-name"><?= htmlspecialchars($_SESSION['username'] ?? 'Administrador') ?></span>! — Panel para gestionar la aplicación rápidamente.</div>
+            <div class="muted-sm">Bienvenido, <span class="welcome-name"><?= htmlspecialchars($_SESSION['user']['username'] ?? 'Administrador') ?></span>! — Panel para gestionar la aplicación rápidamente.</div>
         </div>
         <div class="ms-auto text-end">
             <span class="badge badge-accent px-3 py-2">Rol: Administrador</span>

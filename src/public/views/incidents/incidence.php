@@ -29,8 +29,9 @@ function avatar_color($seed, $colors)
 }
 
 // Avatar del usuario actual
-$current_user_initial = strtoupper(substr($_SESSION['username'] ?? 'U', 0, 1));
-$current_user_color = avatar_color($_SESSION['username'] ?? 'U', $avatar_colors);
+$username = $_SESSION['user']['username'] ?? 'U';
+$current_user_initial = strtoupper(substr($username, 0, 1));
+$current_user_color = avatar_color($username, $avatar_colors);
 ?>
 
 <div class="container-incident">

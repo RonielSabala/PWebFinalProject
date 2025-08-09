@@ -12,7 +12,7 @@ class OAuthUtils
         global $google_client;
 
         if (isset($_SESSION['google_access_token'])) {
-            return "";
+            return '';
         }
 
         return $google_client->createAuthUrl();
