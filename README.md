@@ -40,7 +40,7 @@ php src/db/install.php
 En la raíz del proyecto (`src/`), ejecuta los siguientes comandos:
 
 ```bash
-composer require google/apiclient:"^2.0"
+composer require google/apiclient
 composer require league/oauth2-client
 composer require vlucas/phpdotenv
 ```
