@@ -1,5 +1,6 @@
 <?php
 // Datos
+$id = $incidence['id'];
 $title = $incidence['title'];
 $description = $incidence['incidence_description'];
 $occurrence = (new DateTime($incidence['occurrence_date']))->format('d/m/Y H:i');
@@ -72,13 +73,13 @@ $current_user_color = avatar_color($username, $avatar_colors);
 
         <!-- Añadir comentario -->
         <div class="card card-section mb-3">
-            <form method="POST" action="/incidents/<?= (int)$incidence['id'] ?>/comments" class="form-comment" autocomplete="off">
+            <form method="post" action="incidence.php?id=<?= $id ?>" class="form-comment" autocomplete="off">
                 <div style="display:flex; gap:12px; align-items:flex-start;">
                     <div class="comment-avatar" aria-hidden="true" style="background: <?= $current_user_color ?>;">
                         <?= $current_user_initial ?>
                     </div>
                     <div style="flex:1;">
-                        <textarea name="comment_text" class="form-control" placeholder="Añade un comentario público..." required></textarea>
+                        <textarea name="comment_text" class="form-control" placeholder="Añade un comentario..." required></textarea>
                         <div style="display:flex; justify-content:flex-end; margin-top:.5rem;">
                             <button type="submit" class="btn btn-primary btn-sm">Comentar</button>
                         </div>

@@ -13,6 +13,11 @@ class Router
         // Iniciar la sesión si no está activa
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
+
+            // Iniciar el historial
+            if (!isset($_SESSION['uri_history'])) {
+                $_SESSION['uri_history'] = [];
+            }
         }
 
         // Obtener URI y nombre de la vista

@@ -24,6 +24,12 @@ class IncidenceController
             exit;
         }
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $comment_text = trim($_POST['comment_text']);
+            $user_id = $_SESSION['user']['id'];
+            CommentUtils::create($comment_text, $user_id, $id);
+        }
+
         $comments = CommentUtils::getAllByIncidenceId($id);
         $template->apply([
             'incidence' => $incidence,

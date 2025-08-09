@@ -69,7 +69,7 @@
 
                 <!-- Footer -->
                 <div class="modal-footer d-flex align-items-center">
-                    <a id="btnGoToIncidencePage" class="btn btn-primary me-auto" href="#" target="_blank" rel="noopener noreferrer">
+                    <a id="btnGoToIncidencePage" class="btn btn-primary me-auto" href="#" rel="noopener noreferrer">
                         Abrir en otra pestaña
                     </a>
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>

@@ -55,7 +55,33 @@ class GeneralUtils
 
     public static function getURI(): string
     {
-        return trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        $uri = $_SERVER['REQUEST_URI'];
+
+        // Guardar la URI en el historial
+        $count_history = count($_SESSION['uri_history']);
+        if ($count_history === 0) {
+            $_SESSION['uri_history'][] = $uri;
+        } elseif ($uri !== $_SESSION['uri_history'][$count_history - 1]) {
+            $_SESSION['uri_history'][] = $uri;
+            $_SESSION['uri_history'] = array_slice($_SESSION['uri_history'], -5);
+        }
+
+        return trim(parse_url($uri, PHP_URL_PATH), '/');
+    }
+
+    public static function getNthURI(int $n)
+    {
+        $length = count($_SESSION['uri_history']);
+        if ($n < 0) {
+            $n += $length;
+        }
+
+        $last_uri = '';
+        if ($length > abs($n)) {
+            $last_uri = $_SESSION['uri_history'][$n];
+        }
+
+        return $last_uri;
     }
 
     public static function splitURI($uri)
