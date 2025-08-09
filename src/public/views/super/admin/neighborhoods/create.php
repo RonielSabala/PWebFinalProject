@@ -1,21 +1,36 @@
-<h2>Crear Barrio</h2>
-
-<form method="POST">
-    <div class="form-group">
-        <label for="name">Nombre del Barrio</label>
-        <input type="text" name="name" id="name" class="form-control" required>
+<div class="container center-screen pt-2 mb-3">
+    <div class="card shadow-sm entity-card w-100" style="max-width: 1000px;">
+        <div class="card-header bg-success text-white">
+            <h3 class="mb-0">Crear nuevo barrio</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="text-secondary mb-3">Completa los datos</h5>
+            <hr>
+            <form method="post">
+                <div class="edit-grid">
+                    <div class="edit-item">
+                        <label for="municipality_id" class="form-label">Nombre del municipio</label>
+                        <select id="municipality_id" class="form-select" name="municipality_id" required>
+                            <option selected value="">Seleccione</option>
+                            <?php foreach ($municipalities as $municipality): ?>
+                                <option value="<?= $municipality['id'] ?>"><?= $municipality['municipality_name'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="edit-item">
+                        <label for="neighborhood_name" class="form-label">Nombre del barrio</label>
+                        <input type="text" id="neighborhood_name" name="neighborhood_name" class="form-control" placeholder="Escribe el nombre del barrio" required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-4 action-buttons">
+                    <button type="submit" id="btn-create" class="btn btn-success btn-lg">
+                        <i class="bi bi-plus-circle me-2"></i> Crear
+                    </button>
+                    <a id="btn-return" class="btn btn-outline-secondary btn-lg" href="home.php">
+                        <i class="bi bi-arrow-left-circle me-2"></i> Volver
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="municipality_id">Municipio</label>
-        <select name="municipality_id" id="municipality_id" class="form-control" required>
-            <option value="">Seleccione un municipio</option>
-            <?php foreach ($municipalities as $municipality): ?>
-                <option value="<?= $municipality['id'] ?>"><?= htmlspecialchars($municipality['name']) ?></option>
-            <?php endforeach; ?>
-        </select>
-    </div>
-
-    <button type="submit" class="btn btn-success">Guardar</button>
-    <a href="home.php" class="btn btn-secondary">Cancelar</a>
-</form>
+</div>

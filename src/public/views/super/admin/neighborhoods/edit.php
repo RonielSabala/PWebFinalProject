@@ -1,24 +1,39 @@
-<h2>Editar Barrio</h2>
-
-<form method="POST">
-    <input type="hidden" name="id" value="<?= $neighborhood['id'] ?>">
-
-    <div class="form-group">
-        <label for="name">Nombre del Barrio</label>
-        <input type="text" name="name" id="name" class="form-control" value="<?= htmlspecialchars($neighborhood['name']) ?>" required>
+<div class="container center-screen pt-2 mb-3">
+    <div class="card shadow-sm entity-card w-100" style="max-width: 1000px;">
+        <div class="card-header bg-warning text-dark">
+            <h3 class="mb-0">Editar barrio</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="text-secondary mb-3">Actualiza los campos necesarios</h5>
+            <hr>
+            <form method="post">
+                <div class="edit-grid">
+                    <div class="edit-item">
+                        <label for="municipality_id" class="form-label">Nombre del municipio</label>
+                        <select id="municipality_id" class="form-select" name="municipality_id" required>
+                            <?php foreach ($municipalities as $municipality): ?>
+                                <option
+                                    value="<?= $municipality['id'] ?>"
+                                    <?= ($municipality['id'] == $default_municipality) ? 'selected' : '' ?>>
+                                    <?= $municipality['municipality_name'] ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="edit-item">
+                        <label for="neighborhood_name" class="form-label">Nombre del barrio</label>
+                        <input type="text" id="neighborhood_name" name="neighborhood_name" class="form-control" placeholder="Escribe el nombre del barrio" value="<?= $neighborhood['neighborhood_name']; ?>" required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-4 action-buttons">
+                    <button type="submit" id="btn-edit" class="btn btn-warning btn-lg text-black">
+                        <i class="bi bi-pencil-square me-2"></i> Actualizar
+                    </button>
+                    <a id="btn-return" class="btn btn-outline-secondary btn-lg" href="home.php">
+                        <i class="bi bi-arrow-left-circle me-2"></i> Volver
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="municipality_id">Municipio</label>
-        <select name="municipality_id" id="municipality_id" class="form-control" required>
-            <?php foreach ($municipalities as $municipality): ?>
-                <option value="<?= $municipality['id'] ?>" <?= $municipality['id'] == $neighborhood['municipality_id'] ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($municipality['name']) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Actualizar</button>
-    <a href="home.php" class="btn btn-secondary">Cancelar</a>
-</form>
+</div>

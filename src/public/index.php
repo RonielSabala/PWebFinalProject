@@ -55,6 +55,7 @@ const ROUTES = [
     'super/admin/neighborhoods/home.php'   => ['page' => 'neighborhoods', 'controller' => \App\Controllers\Super\Admin\NeighborhoodController::class],
     'super/admin/neighborhoods/create.php' => ['page' => 'neighborhoods', 'controller' => \App\Controllers\Super\Admin\NeighborhoodController::class],
     'super/admin/neighborhoods/edit.php'   => ['page' => 'neighborhoods', 'controller' => \App\Controllers\Super\Admin\NeighborhoodController::class],
+    'super/admin/neighborhoods/delete.php'   => ['page' => 'neighborhoods', 'controller' => \App\Controllers\Super\Admin\NeighborhoodController::class],
 
     // Etiquetas
     'super/admin/labels/home.php'   => ['page' => 'labels', 'controller' => \App\Controllers\Super\Admin\LabelController::class],

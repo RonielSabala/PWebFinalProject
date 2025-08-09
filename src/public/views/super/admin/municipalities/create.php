@@ -9,7 +9,7 @@
             <form method="post">
                 <div class="edit-grid">
                     <div class="edit-item">
-                        <label for="province_name" class="form-label">Nombre de la provincia</label>
+                        <label for="province_id" class="form-label">Nombre de la provincia</label>
                         <select id="province_id" class="form-select" name="province_id" required>
                             <option selected value="">Seleccione</option>
                             <?php foreach ($provinces as $prov): ?>

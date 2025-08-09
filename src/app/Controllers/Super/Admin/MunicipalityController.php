@@ -127,7 +127,6 @@ class MunicipalityController
 
         return [
             'municipality' => $municipality,
-            'provinces' => ProvinceUtils::getAll(),
             'province' => ProvinceUtils::get($municipality['province_id']),
         ];
     }

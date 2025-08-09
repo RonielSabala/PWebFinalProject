@@ -7,7 +7,18 @@ class NeighborhoodUtils extends GenericEntityUtils
 {
     private static $getSql = "SELECT * FROM neighborhoods WHERE id = ?";
 
-    private static $getAllSql = "SELECT * FROM neighborhoods ORDER BY neighborhood_name";
+    private static $getAllSql = "SELECT
+        n.*,
+        m.municipality_name
+    FROM
+        neighborhoods n
+    JOIN
+        municipalities m
+    ON
+        m.id = n.municipality_id
+    ORDER BY
+        neighborhood_name
+    ";
 
     private static $getAllByMunicipalityIdSql = "SELECT id, neighborhood_name FROM neighborhoods WHERE municipality_id = ?";
 
