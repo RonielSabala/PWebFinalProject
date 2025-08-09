@@ -157,3 +157,36 @@ CREATE TABLE
         FOREIGN KEY (incidence_id) REFERENCES incidents (id) ON DELETE CASCADE,
         FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
     );
+
+-- Indices
+CREATE UNIQUE INDEX idx_users_username ON users (username);
+
+CREATE INDEX idx_user_roles_role_id ON user_roles (role_id);
+
+CREATE INDEX idx_incidents_province ON incidents (province_id);
+
+CREATE INDEX idx_incidents_municipality ON incidents (municipality_id);
+
+CREATE INDEX idx_incidents_neighborhood ON incidents (neighborhood_id);
+
+CREATE INDEX idx_incidents_user ON incidents (user_id);
+
+CREATE INDEX idx_incidents_prov_mun_neigh ON incidents (province_id, municipality_id, neighborhood_id);
+
+CREATE INDEX idx_incidents_isapproved_occurrence ON incidents (is_approved, occurrence_date);
+
+CREATE INDEX idx_incidents_location ON incidents (latitude, longitude);
+
+CREATE FULLTEXT INDEX idx_incidents_fulltext_title_description ON incidents (title, incidence_description);
+
+CREATE INDEX idx_photos_incidence ON photos (incidence_id);
+
+CREATE INDEX idx_incidence_labels_label ON incidence_labels (label_id);
+
+CREATE INDEX idx_comments_incidence_date ON comments (incidence_id, creation_date);
+
+CREATE INDEX idx_comments_user ON comments (user_id);
+
+CREATE INDEX idx_corrections_incidence_approved ON corrections (incidence_id, is_approved);
+
+CREATE INDEX idx_corrections_user ON corrections (user_id);
