@@ -1,11 +1,31 @@
-<h2>Crear Etiqueta</h2>
-
-<form method="POST">
-    <div class="form-group">
-        <label for="name">Nombre de la Etiqueta</label>
-        <input type="text" name="name" id="name" class="form-control" required>
+<div class="container center-screen pt-2 mb-3">
+    <div class="card shadow-sm entity-card w-100" style="max-width: 1000px;">
+        <div class="card-header bg-success text-white">
+            <h3 class="mb-0">Crear nueva etiqueta</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="text-secondary mb-3">Completa los datos</h5>
+            <hr>
+            <form method="post">
+                <div class="edit-grid">
+                    <div class="edit-item">
+                        <label for="label_name" class="form-label">Nombre de la etiqueta</label>
+                        <input type="text" id="label_name" name="label_name" class="form-control" placeholder="Escribe el nombre de la etiqueta" required>
+                    </div>
+                    <div class="edit-item">
+                        <label for="icon_url" class="form-label">Url del icono</label>
+                        <input type="text" id="icon_url" name="icon_url" class="form-control" placeholder="Escribe la url del ícono de la etiqueta" required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-4 action-buttons">
+                    <button type="submit" id="btn-create" class="btn btn-success btn-lg">
+                        <i class="bi bi-plus-circle me-2"></i> Crear
+                    </button>
+                    <a id="btn-return" class="btn btn-outline-secondary btn-lg" href="home.php">
+                        <i class="bi bi-arrow-left-circle me-2"></i> Volver
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <button type="submit" class="btn btn-success">Guardar</button>
-    <a href="home.php" class="btn btn-secondary">Cancelar</a>
-</form>
+</div>

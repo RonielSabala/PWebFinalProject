@@ -705,14 +705,32 @@ VALUES
 
 -- Etiquetas
 INSERT INTO
-    labels (label_name)
+    labels (label_name, icon_url)
 VALUES
-    ('Accidente de tráfico'),
-    ('Robo'),
-    ('Incendio'),
-    ('Asesinato'),
-    ('Violencia'),
-    ('Desastre natural');
+    (
+        'Accidente de tráfico',
+        'https://cdn-icons-png.flaticon.com/512/4939/4939159.png'
+    ),
+    (
+        'Robo',
+        'https://cdn-icons-png.flaticon.com/512/5138/5138771.png'
+    ),
+    (
+        'Incendio',
+        'https://cdn-icons-png.flaticon.com/512/599/599502.png'
+    ),
+    (
+        'Asesinato',
+        'https://cdn-icons-png.flaticon.com/512/2323/2323041.png'
+    ),
+    (
+        'Violencia',
+        'https://cdn-icons-png.flaticon.com/512/10554/10554358.png'
+    ),
+    (
+        'Desastre natural',
+        'https://cdn-icons-png.flaticon.com/512/13063/13063838.png'
+    );
 
 -- Etiquetas de incidencias
 INSERT INTO
