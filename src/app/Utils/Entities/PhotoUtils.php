@@ -2,14 +2,13 @@
 
 namespace App\Utils\Entities;
 
-use App\Utils\GeneralUtils;
 
-class PhotoUtils
+class PhotoUtils extends GenericEntityUtils
 {
-    private static $createSQL = "INSERT INTO photos (incidence_id, photo_url) VALUES (?, ?)";
+    private static $createSql = "INSERT INTO photos (incidence_id, photo_url) VALUES (?, ?)";
 
-    public static function create($fields)
+    public static function create($fields): bool
     {
-        GeneralUtils::executeSql(self::$createSQL, $fields);
+        return self::executeSql(self::$createSql, $fields);
     }
 }

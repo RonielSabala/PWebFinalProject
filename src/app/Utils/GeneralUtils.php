@@ -8,7 +8,7 @@ class GeneralUtils
     public static function showAlert(
         string $message,
         string $type = 'success',
-        string $returnRoute = 'index.php',
+        string $returnRoute = 'home.php',
         bool $showReturn = true
     ) {
         echo "
@@ -39,6 +39,20 @@ class GeneralUtils
         ';
     }
 
+    public static function showNoData($entities, string $entities_name)
+    {
+        if ($entities) {
+            return;
+        }
+
+        echo '
+        <div id="noData" class="no-data">
+            <i class="bi bi-inbox-fill fs-1 mb-2"></i>
+            <div>No se encontraron ' . $entities_name . '.</div>
+        </div>
+        ';
+    }
+
     public static function getURI(): string
     {
         return trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
@@ -54,20 +68,5 @@ class GeneralUtils
         $uri = implode('/', array_slice($uri_parts, 0, -1));
         $view = end($uri_parts);
         return [$uri, $view];
-    }
-
-    public static function executeSql($sql, $params): bool
-    {
-        global $pdo;
-
-        try {
-            // Ejecutar consulta
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute($params);
-            return true;
-        } catch (\PDOException $e) {
-            self::showAlert($e->getMessage(), 'danger');
-            return false;
-        }
     }
 }

@@ -2,18 +2,48 @@
 
 namespace App\Utils\Entities;
 
-use PDO;
 
-
-class LabelUtils
+class LabelUtils extends GenericEntityUtils
 {
-    private static $getAllSQL = "SELECT * FROM labels";
+    private static $getSql = "SELECT * FROM labels WHERE id = ?";
 
-    public static function getAll()
+    private static $getByNameSql = "SELECT * FROM labels WHERE label_name = ?";
+
+    private static $getAllSql = "SELECT * FROM labels";
+
+    private static $createSql = "INSERT INTO labels (label_name, icon_url) VALUES (?, ?)";
+
+    private static $updateSql = "UPDATE labels SET label_name = ?, icon_url = ? WHERE id = ?";
+
+    private static $deleteSql = "DELETE FROM labels WHERE id = ?";
+
+    public static function get($id)
     {
-        global $pdo;
+        return self::saveFetchSql(self::$getSql, [$id], 'No se encontró la etiqueta.');
+    }
 
-        $stmt = $pdo->query(self::$getAllSQL);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    public static function getByName($labelName)
+    {
+        return self::saveFetchSql(self::$getByNameSql, [$labelName], 'No se encontró la etiqueta.');
+    }
+
+    public static function getAll(): array
+    {
+        return self::fetchAllSql(self::$getAllSql);
+    }
+
+    public static function create($labelName, $iconUrl): bool
+    {
+        return self::executeSql(self::$createSql, [$labelName, $iconUrl]);
+    }
+
+    public static function update($labelId, $labelName, $iconUrl): bool
+    {
+        return self::executeSql(self::$updateSql, [$labelName, $iconUrl, $labelId]);
+    }
+
+    public static function delete($id): bool
+    {
+        return self::executeSql(self::$deleteSql, [$id]);
     }
 }

@@ -2,19 +2,59 @@
 
 namespace App\Utils\Entities;
 
-use PDO;
 
-
-class NeighborhoodUtils
+class NeighborhoodUtils extends GenericEntityUtils
 {
-    private static $getByMunicipalityIdSQL = "SELECT id, neighborhood_name FROM neighborhoods WHERE municipality_id = ?";
+    private static $getSql = "SELECT * FROM neighborhoods WHERE id = ?";
 
-    public static function getAllByMunicipalityId($municipalityId)
+    private static $getAllSql = "SELECT
+        n.*,
+        m.municipality_name
+    FROM
+        neighborhoods n
+    JOIN
+        municipalities m
+    ON
+        m.id = n.municipality_id
+    ORDER BY
+        neighborhood_name
+    ";
+
+    private static $getAllByMunicipalityIdSql = "SELECT id, neighborhood_name FROM neighborhoods WHERE municipality_id = ?";
+
+    private static $createSql = "INSERT INTO neighborhoods (neighborhood_name, municipality_id) VALUES (?, ?)";
+
+    private static $updateSql = "UPDATE neighborhoods SET neighborhood_name = ?, municipality_id = ? WHERE id = ?";
+
+    private static $deleteSql = "DELETE FROM neighborhoods WHERE id = ?";
+
+    public static function get($id)
     {
-        global $pdo;
+        return self::saveFetchSql(self::$getSql, [$id], 'No se encontró el barrio.');
+    }
 
-        $stmt = $pdo->prepare(self::$getByMunicipalityIdSQL);
-        $stmt->execute([$municipalityId]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    public static function getAll(): array
+    {
+        return self::fetchAllSql(self::$getAllSql);
+    }
+
+    public static function getAllByMunicipalityId($municipalityId): array
+    {
+        return self::fetchAllSql(self::$getAllByMunicipalityIdSql, [$municipalityId]);
+    }
+
+    public static function create($neighborhoodName, $municipalityId): bool
+    {
+        return self::executeSql(self::$createSql, [$neighborhoodName, $municipalityId]);
+    }
+
+    public static function update($id, $neighborhoodName, $municipalityId): bool
+    {
+        return self::executeSql(self::$updateSql, [$neighborhoodName, $municipalityId, $id]);
+    }
+
+    public static function delete($id): bool
+    {
+        return self::executeSql(self::$deleteSql, [$id]);
     }
 }

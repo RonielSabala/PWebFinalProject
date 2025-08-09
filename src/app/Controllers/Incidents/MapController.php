@@ -34,7 +34,7 @@ class MapController
                 // Cargar la vista
                 if (file_exists($viewPath)) {
                     extract([
-                        'incidence' => IncidenceUtils::getById($incidenceId),
+                        'incidence' => IncidenceUtils::get($incidenceId),
                         'comments' => CommentUtils::getAllByIncidenceId($incidenceId),
                     ], EXTR_SKIP);
 

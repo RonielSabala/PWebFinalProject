@@ -1,0 +1,46 @@
+:root {
+  --accent-1: #4f46e5;
+  --accent-2: #0ea5e9;
+}
+
+.hero {
+  background: linear-gradient(
+    90deg,
+    rgba(79, 70, 229, 0.08),
+    rgba(14, 165, 233, 0.03)
+  );
+  border-radius: 12px;
+  padding: 1.35rem;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+}
+
+.stat-card {
+  border: none;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+}
+
+.shortcut {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.shortcut:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.muted-sm {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.welcome-name {
+  color: var(--accent-1);
+  font-weight: 700;
+}
+
+.badge-accent {
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  color: white;
+}

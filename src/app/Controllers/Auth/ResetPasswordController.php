@@ -64,7 +64,7 @@ class ResetPasswordController
         session_unset();
 
         // Registrar sesión
-        $user = UserUtils::get_by($email);
+        $user = UserUtils::getByEmail($email);
         $_SESSION['user'] = [
             'id' => $user['id'],
             'username' => $user['username'],
@@ -73,6 +73,6 @@ class ResetPasswordController
         ];
 
         // Redirigir al index
-        header("Location: /index.php");
+        header("Location: /home.php");
     }
 }

@@ -2,44 +2,74 @@
 
 namespace App\Utils\Entities;
 
-use PDO;
-use App\Utils\GeneralUtils;
 
-
-class UserUtils
+class UserUtils extends GenericEntityUtils
 {
-    private static $getUserSQL = "SELECT u.id, u.username, u.email, u.phone, u.password_hash, r.role_name
-        FROM users u
-        JOIN user_roles ur ON u.id = ur.user_id
-        JOIN roles r ON ur.role_id = r.id
-        WHERE u.email = ?";
+    private static $userExistSql = "SELECT 1 FROM users WHERE email = ?";
 
-    private static $userExistSQL = "SELECT 1 FROM users WHERE email = ?";
+    private static $getByEmailSql = "SELECT
+        u.id,
+        u.username,
+        u.email,
+        u.phone,
+        u.password_hash,
+        r.role_name
+    FROM
+        users u
+    JOIN
+        user_roles ur
+    ON
+        u.id = ur.user_id
+    JOIN
+        roles r
+    ON
+        ur.role_id = r.id
+    WHERE
+        u.email = ?
+    ";
 
-    private static $createUserSQL = "INSERT INTO users (username, email, phone, password_hash) VALUES (?, ?, ?, ?)";
+    private static $getAllSql = "SELECT
+        u.id,
+        u.username,
+        u.email,
+        u.phone,
+        GROUP_CONCAT(r.role_name) as roles
+    FROM
+        users u
+    LEFT JOIN
+        user_roles ur ON u.id = ur.user_id
+    LEFT JOIN
+        roles r ON ur.role_id = r.id
+    GROUP BY
+        u.id
+    ";
 
-    private static $getRoleIdSQL = "SELECT id FROM roles WHERE role_name = ?";
+    private static $createUserSql = "INSERT INTO
+    users (
+        username,
+        email,
+        phone,
+        password_hash
+    )
+    VALUES
+        (?, ?, ?, ?)
+    ";
 
-    private static $createUserRoleSQL = "INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)";
+    private static $updatePasswordSql = "UPDATE users SET password_hash = ? WHERE email = ?";
 
-    private static $updatePasswordSQL = "UPDATE users SET password_hash = ? WHERE email = ?";
-
-    public static function exists(string $email): bool
+    public static function exists(string $userEmail): bool
     {
-        global $pdo;
-
-        $stmt = $pdo->prepare(self::$userExistSQL);
-        $stmt->execute([$email]);
-        return $stmt->fetchColumn() ? true : false;
+        return self::fetchSql(self::$userExistSql, [$userEmail]) ? true : false;
     }
 
-    public static function get_by(string $email)
+    public static function getByEmail(string $userEmail)
     {
-        global $pdo;
+        return self::saveFetchSql(self::$getByEmailSql, [$userEmail], 'No se encontró el usuario.');
+    }
 
-        $stmt = $pdo->prepare(self::$getUserSQL);
-        $stmt->execute([$email]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+    public static function getAll(): array
+    {
+        return self::fetchAllSql(self::$getAllSql);
     }
 
     public static function create($fields)
@@ -47,21 +77,16 @@ class UserUtils
         global $pdo;
 
         // Insertar usuario
-        $stmt = $pdo->prepare(self::$createUserSQL);
-        $stmt->execute($fields);
-        $user_id = $pdo->lastInsertId();
-
-        // Obtener role_id
-        $stmt = $pdo->prepare(self::$getRoleIdSQL);
-        $stmt->execute(['default']);
-        $role_id = $stmt->fetchColumn();
+        self::executeSql(self::$createUserSql, $fields);
 
         // Insertar relación Usuario-Rol
-        GeneralUtils::executeSql(self::$createUserRoleSQL, [$user_id, $role_id]);
+        $userId = $pdo->lastInsertId();
+        $roleId = RoleUtils::getIdByName('default');
+        RoleUtils::assignUserRole($userId, $roleId);
     }
 
-    public static function updatePassword($email, $new_password)
+    public static function updatePassword($userEmail, $newPassword): bool
     {
-        GeneralUtils::executeSql(self::$updatePasswordSQL, [$new_password, $email]);
+        return self::executeSql(self::$updatePasswordSql, [$newPassword, $userEmail]);
     }
 }

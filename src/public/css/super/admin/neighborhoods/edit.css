@@ -1,0 +1,57 @@
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: auto;
+}
+
+.entity-card {
+  border-radius: 1rem;
+}
+
+.entity-card .card-header {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.entity-card .card-body {
+  padding: 2rem;
+}
+
+.action-buttons .btn {
+  min-width: 120px;
+}
+
+.edit-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.edit-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  border-radius: 2rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(100, 149, 237, 0.25);
+  border-color: #6495ed;
+}
+
+.field-error {
+  color: #d9534f;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

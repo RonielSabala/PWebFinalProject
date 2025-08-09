@@ -59,7 +59,7 @@ class LoginController
         }
 
         // Recuperar usuario
-        $user = UserUtils::get_by($email);
+        $user = UserUtils::getByEmail($email);
 
         // Verificar contraseña
         $user_password = $user['password_hash'];
@@ -78,7 +78,7 @@ class LoginController
         ];
 
         // Redirigir al index
-        header("Location: /index.php");
+        header("Location: /home.php");
         return true;
     }
 

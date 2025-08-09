@@ -1,3 +1,8 @@
+<?php
+
+use App\Utils\GeneralUtils;
+?>
+
 <h2>Incidencias reportadas</h2>
 <div class="d-flex justify-content-end mb-3">
     <a id="btn-create" href="edit_incidence.php" class="btn btn-primary">
@@ -32,9 +37,4 @@
     </tbody>
 </table>
 
-<?php if (!$incidents): ?>
-    <div id="noData" class="no-data">
-        <i class="bi bi-inbox-fill fs-1 mb-2"></i>
-        <div>No se encontraron incidencias.</div>
-    </div>
-<?php endif; ?>
+<?= GeneralUtils::showNoData($incidents, "incidencias"); ?>

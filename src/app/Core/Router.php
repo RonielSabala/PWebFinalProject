@@ -36,7 +36,7 @@ class Router
         }
 
         // Determinar nombre de la vista
-        if ($view === '' || $view === 'index.php') {
+        if ($view === '' || ($route === '' && $view === 'index.php')) {
             $viewName = DEFAULT_PAGE;
         } else {
             $viewName = preg_replace('/\.php$/', '', $view);

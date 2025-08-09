@@ -77,21 +77,14 @@ INSERT INTO
     user_roles (user_id, role_id)
 VALUES
     (1, 1),
-    (1, 2),
-    (2, 1),
     (2, 3),
     (3, 1),
-    (4, 1),
     (4, 2),
     (5, 1),
-    (5, 4),
-    (6, 1),
     (6, 2),
     (7, 1),
     (8, 1),
-    (8, 3),
     (9, 1),
-    (10, 1),
     (10, 2);
 
 -- Provincias
@@ -538,7 +531,6 @@ INSERT INTO
         province_id,
         municipality_id,
         neighborhood_id,
-        group_hash,
         user_id,
         creation_date
     )
@@ -556,7 +548,6 @@ VALUES
         1,
         1,
         1,
-        NULL,
         1,
         '2023-11-01 09:15:00'
     ),
@@ -573,7 +564,6 @@ VALUES
         1,
         1,
         1,
-        NULL,
         4,
         '2023-11-03 07:20:00'
     ),
@@ -590,7 +580,6 @@ VALUES
         1,
         1,
         1,
-        NULL,
         6,
         '2023-11-05 03:45:00'
     ),
@@ -607,7 +596,6 @@ VALUES
         1,
         1,
         1,
-        NULL,
         10,
         '2023-11-07 15:30:00'
     ),
@@ -624,7 +612,6 @@ VALUES
         1,
         1,
         1,
-        NULL,
         1,
         '2023-11-10 10:20:00'
     ),
@@ -641,7 +628,6 @@ VALUES
         1,
         1,
         1,
-        NULL,
         4,
         '2023-11-12 19:05:00'
     ),
@@ -658,7 +644,6 @@ VALUES
         1,
         1,
         1,
-        NULL,
         6,
         '2023-11-15 12:15:00'
     ),
@@ -675,7 +660,6 @@ VALUES
         1,
         1,
         1,
-        NULL,
         10,
         '2023-11-18 09:40:00'
     ),
@@ -692,7 +676,6 @@ VALUES
         1,
         1,
         1,
-        NULL,
         1,
         '2023-11-20 22:30:00'
     ),
@@ -709,21 +692,38 @@ VALUES
         1,
         1,
         1,
-        NULL,
         4,
         '2023-11-25 17:20:00'
     );
 
 -- Etiquetas
 INSERT INTO
-    labels (label_name)
+    labels (label_name, icon_url)
 VALUES
-    ('Accidente de tráfico'),
-    ('Robo'),
-    ('Incendio'),
-    ('Asesinato'),
-    ('Violencia'),
-    ('Desastre natural');
+    (
+        'Accidente de tráfico',
+        'https://cdn-icons-png.flaticon.com/512/4939/4939159.png'
+    ),
+    (
+        'Robo',
+        'https://cdn-icons-png.flaticon.com/512/5138/5138771.png'
+    ),
+    (
+        'Incendio',
+        'https://cdn-icons-png.flaticon.com/512/599/599502.png'
+    ),
+    (
+        'Asesinato',
+        'https://cdn-icons-png.flaticon.com/512/2323/2323041.png'
+    ),
+    (
+        'Violencia',
+        'https://cdn-icons-png.flaticon.com/512/10554/10554358.png'
+    ),
+    (
+        'Desastre natural',
+        'https://cdn-icons-png.flaticon.com/512/13063/13063838.png'
+    );
 
 -- Etiquetas de incidencias
 INSERT INTO

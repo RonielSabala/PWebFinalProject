@@ -113,7 +113,8 @@ DROP TABLE IF EXISTS labels;
 CREATE TABLE
     labels (
         id INT PRIMARY KEY AUTO_INCREMENT,
-        label_name VARCHAR(45) NOT NULL UNIQUE
+        label_name VARCHAR(45) NOT NULL UNIQUE,
+        icon_url VARCHAR(255) NOT NULL
     );
 
 -- Relación m:n Incidencias-Etiquetas
