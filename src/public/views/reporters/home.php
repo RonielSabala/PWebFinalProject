@@ -28,7 +28,7 @@ use App\Utils\GeneralUtils;
                 <td><?= $i++ ?></td>
                 <td><?= htmlspecialchars($incident['title']) ?></td>
                 <td><?= htmlspecialchars($incident['incidence_description']) ?></td>
-                <td><?= htmlspecialchars($incident['occurrence_date']) ?></td>
+                <td><?= htmlspecialchars($incident['creation_date']) ?></td>
                 <td><?= htmlspecialchars($incident['comments']) ?></td>
             </tr>
         <?php

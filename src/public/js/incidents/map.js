@@ -185,8 +185,8 @@ function renderIncidents() {
     return (
       (!prov || m.province_id == prov) &&
       (!title || (m.title && m.title.toLowerCase().includes(title))) &&
-      (!from || m.occurrence_date >= from) &&
-      (!to || m.occurrence_date <= to)
+      (!from || m.creation_date >= from) &&
+      (!to || m.creation_date <= to)
     );
   });
 

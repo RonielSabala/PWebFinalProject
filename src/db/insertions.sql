@@ -531,8 +531,7 @@ INSERT INTO
         province_id,
         municipality_id,
         neighborhood_id,
-        user_id,
-        creation_date
+        user_id
     )
 VALUES
     (
@@ -548,8 +547,7 @@ VALUES
         1,
         1,
         1,
-        1,
-        '2023-11-01 09:15:00'
+        1
     ),
     (
         'Robo en colmado de Villa Mella',
@@ -564,8 +562,7 @@ VALUES
         1,
         1,
         1,
-        4,
-        '2023-11-03 07:20:00'
+        4
     ),
     (
         'Incendio en edificio de Santiago',
@@ -580,8 +577,7 @@ VALUES
         1,
         1,
         1,
-        6,
-        '2023-11-05 03:45:00'
+        6
     ),
     (
         'Inundación en calle de San Cristóbal',
@@ -596,8 +592,7 @@ VALUES
         1,
         1,
         1,
-        10,
-        '2023-11-07 15:30:00'
+        10
     ),
     (
         'Protesta en la Duarte',
@@ -612,8 +607,7 @@ VALUES
         1,
         1,
         1,
-        1,
-        '2023-11-10 10:20:00'
+        1
     ),
     (
         'Atropello en Malecón de SD',
@@ -628,8 +622,7 @@ VALUES
         1,
         1,
         1,
-        4,
-        '2023-11-12 19:05:00'
+        4
     ),
     (
         'Derrumbe en construcción de Punta Cana',
@@ -644,8 +637,7 @@ VALUES
         1,
         1,
         1,
-        6,
-        '2023-11-15 12:15:00'
+        6
     ),
     (
         'Contaminación en río Ozama',
@@ -660,8 +652,7 @@ VALUES
         1,
         1,
         1,
-        10,
-        '2023-11-18 09:40:00'
+        10
     ),
     (
         'Asalto en guagua de Puerto Plata',
@@ -676,8 +667,7 @@ VALUES
         1,
         1,
         1,
-        1,
-        '2023-11-20 22:30:00'
+        1
     ),
     (
         'Fuga de gas en Los Alcarrizos',
@@ -692,8 +682,7 @@ VALUES
         1,
         1,
         1,
-        4,
-        '2023-11-25 17:20:00'
+        4
     );
 
 -- Etiquetas

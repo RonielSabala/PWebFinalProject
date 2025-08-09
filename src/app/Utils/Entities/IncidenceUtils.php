@@ -31,7 +31,7 @@ class IncidenceUtils extends GenericEntityUtils
         i.id,
         i.title,
         i.incidence_description,
-        i.occurrence_date,
+        i.creation_date,
         COUNT(c.id) AS comments
     FROM
         incidents i
@@ -45,7 +45,7 @@ class IncidenceUtils extends GenericEntityUtils
         i.id,
         i.title,
         i.incidence_description,
-        i.occurrence_date
+        i.creation_date
     ";
 
     private static $createSql = "INSERT INTO
