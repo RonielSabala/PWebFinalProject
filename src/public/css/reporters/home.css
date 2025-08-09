@@ -80,6 +80,32 @@ h2 {
   transition: background var(--btn-transition);
 }
 
+.status-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.status-badge.approved {
+  background: linear-gradient(90deg, #16a34a, #065f46);
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(6, 95, 70, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.status-badge.not-approved {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  box-shadow: none;
+}
+
 .no-data {
   text-align: center;
   padding: 1rem;

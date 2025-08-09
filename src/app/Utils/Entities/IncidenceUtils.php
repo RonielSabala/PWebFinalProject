@@ -32,6 +32,7 @@ class IncidenceUtils extends GenericEntityUtils
         i.title,
         i.incidence_description,
         i.creation_date,
+        i.is_approved,
         COUNT(c.id) AS comments
     FROM
         incidents i

@@ -16,6 +16,7 @@ use App\Utils\GeneralUtils;
             <th>Título</th>
             <th>Descripción</th>
             <th>Fecha registrada</th>
+            <th>Estatus</th>
             <th>Comentarios</th>
         </tr>
     </thead>
@@ -29,6 +30,11 @@ use App\Utils\GeneralUtils;
                 <td><?= htmlspecialchars($incident['title']) ?></td>
                 <td><?= htmlspecialchars($incident['incidence_description']) ?></td>
                 <td><?= htmlspecialchars($incident['creation_date']) ?></td>
+                <td>
+                    <span class="status-badge <?= ((int)$incident['is_approved'] === 1) ? 'approved' : 'not-approved' ?>">
+                        <?= ((int)$incident['is_approved'] === 1) ? 'Aprobada' : 'No aprobada' ?>
+                    </span>
+                </td>
                 <td><?= htmlspecialchars($incident['comments']) ?></td>
             </tr>
         <?php
