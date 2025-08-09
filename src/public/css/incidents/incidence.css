@@ -11,7 +11,6 @@
   overflow: hidden;
 }
 
-/* Cabecera colorida */
 .incident-header {
   background: linear-gradient(
     90deg,
@@ -37,7 +36,6 @@
   font-size: 0.95rem;
 }
 
-/* Info section vertical y colorida */
 .card-section {
   padding: 1.25rem;
 }
@@ -80,7 +78,6 @@
   flex-wrap: wrap;
 }
 
-/* Píldoras con colores suaves según tipo */
 .pill-deaths {
   background: linear-gradient(
     180deg,
@@ -117,12 +114,18 @@
   color: #065f46;
 }
 
-/* Comentarios: avatares sólidos y sobrios */
 .comment-row {
   display: flex;
   gap: 12px;
   padding: 12px 0;
   border-bottom: 1px solid #f3f4f6;
+  align-items: flex-start;
+}
+
+.comment-row-super {
+  background: rgba(255, 215, 0, 0.03);
+  border-radius: 8px;
+  padding: 8px;
 }
 
 .comment-avatar {
@@ -139,8 +142,50 @@
   box-shadow: 0 3px 10px rgba(2, 6, 23, 0.06);
 }
 
+.comment-avatar-super {
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.15);
+  transform: scale(1.03);
+}
+
+.avatar-color-0 {
+  background: #0f172a;
+}
+.avatar-color-1 {
+  background: #1f2937;
+}
+.avatar-color-2 {
+  background: #374151;
+}
+.avatar-color-3 {
+  background: #4b5563;
+}
+.avatar-color-4 {
+  background: #64748b;
+}
+.avatar-color-5 {
+  background: #0b7285;
+}
+.avatar-color-6 {
+  background: #1e40af;
+}
+.avatar-color-7 {
+  background: #065f46;
+}
+.avatar-color-8 {
+  background: #92400e;
+}
+.avatar-color-9 {
+  background: #6d28d9;
+}
+
 .comment-body {
   flex: 1;
+}
+
+.comment-author-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .comment-author {
@@ -160,14 +205,85 @@
   color: #0b1220;
 }
 
+.badge-admin {
+  background: #ffd700;
+  color: #000;
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  margin-left: 0.5rem;
+  font-weight: 700;
+}
+
 .form-comment textarea {
   resize: vertical;
   min-height: 84px;
 }
 
+.comment-form-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.comment-form-body {
+  flex: 1;
+}
+
+.comment-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+.info-pill-value {
+  margin-left: 0.6rem;
+  font-weight: 800;
+  color: inherit;
+}
+
+.comments-heading {
+  margin-bottom: 0.35rem;
+}
+
 .small-muted {
   color: #6b7280;
   font-size: 0.92rem;
+}
+
+.mt-1rem {
+  margin-top: 1rem;
+}
+.section-title-small {
+  margin-bottom: 0.4rem;
+}
+
+.modal-body-content {
+  max-height: 65vh;
+  overflow: auto;
+}
+
+#incidents-map {
+  width: 100%;
+  height: 60vh;
+}
+
+.badge-state {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #e9ecef;
+  color: #212529;
+  margin-left: 6px;
+}
+
+.mt-1rem {
+  margin-top: 1rem;
+}
+.section-title-small {
+  margin-bottom: 0.4rem;
 }
 
 @media (max-width: 640px) {

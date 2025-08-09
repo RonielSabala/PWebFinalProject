@@ -1,7 +1,6 @@
 <?php
 
 use App\Utils\Entities\UserUtils;
-use Google\Service\Fitness\Resource\UsersDataSources;
 
 // Datos
 $incidenceId = $incidence['id'];
@@ -27,9 +26,14 @@ $avatar_colors = [
     '#6d28d9'
 ];
 
+function avatar_color_index($seed, $colors)
+{
+    return crc32($seed) % count($colors);
+}
+
 function avatar_color($seed, $colors)
 {
-    $idx = crc32($seed) % count($colors);
+    $idx = avatar_color_index($seed, $colors);
     return $colors[$idx];
 }
 
@@ -39,8 +43,11 @@ $user_id = $user['id'];
 $username = $user['username'];
 $is_super = UserUtils::isUserSuper($user_id);
 $current_user_initial = strtoupper(substr($username, 0, 1));
-$current_user_color = avatar_color($username, $avatar_colors);
+$current_user_color_idx = avatar_color_index($username, $avatar_colors);
 ?>
+
+<!-- Incluye tu CSS externo que contiene los estilos extraídos -->
+<link rel="stylesheet" href="/assets/css/incidents-comments.css" />
 
 <div class="container-incident">
     <div class="card-min mb-4">
@@ -61,13 +68,13 @@ $current_user_color = avatar_color($username, $avatar_colors);
             </div>
 
             <!-- Detalles -->
-            <div style="margin-top:1rem;">
-                <div class="section-title" style="margin-bottom:.4rem;">Detalles</div>
+            <div class="mt-1rem">
+                <div class="section-title section-title-small">Detalles</div>
                 <div class="info-grid">
                     <div class="info-row">
-                        <div class="info-pill pill-deaths">Muertos: <span style="margin-left:.6rem; font-weight:800; color:inherit;"><?= $deaths ?></span></div>
-                        <div class="info-pill pill-injured">Heridos: <span style="margin-left:.6rem; font-weight:800; color:inherit;"><?= $injured ?></span></div>
-                        <div class="info-pill pill-losses">Pérdidas: <span style="margin-left:.6rem; font-weight:800; color:inherit;">RD$ <?= $losses ?></span></div>
+                        <div class="info-pill pill-deaths">Muertos: <span class="info-pill-value"><?= $deaths ?></span></div>
+                        <div class="info-pill pill-injured">Heridos: <span class="info-pill-value"><?= $injured ?></span></div>
+                        <div class="info-pill pill-losses">Pérdidas: <span class="info-pill-value">RD$ <?= $losses ?></span></div>
                     </div>
                 </div>
             </div>
@@ -76,18 +83,18 @@ $current_user_color = avatar_color($username, $avatar_colors);
 
     <!-- Comentarios -->
     <div class="mb-3">
-        <h5 style="margin-bottom:.35rem;">Comentarios <span class="small-muted">· <?= count($comments) ?></span></h5>
+        <h5 class="comments-heading">Comentarios <span class="small-muted">· <?= count($comments) ?></span></h5>
 
         <!-- Añadir comentario -->
         <div class="card card-section mb-3">
             <form method="post" action="incidence.php?id=<?= $incidenceId ?>&action=POST" class="form-comment" autocomplete="off">
-                <div style="display:flex; gap:12px; align-items:flex-start;">
-                    <div class="comment-avatar" aria-hidden="true" style="background: <?= $current_user_color ?>;">
+                <div class="comment-form-row">
+                    <div class="comment-avatar avatar-color-<?= $current_user_color_idx ?>" aria-hidden="true">
                         <?= $current_user_initial ?>
                     </div>
-                    <div style="flex:1;">
+                    <div class="comment-form-body">
                         <textarea name="comment_text" class="form-control" placeholder="Añade un comentario..." required></textarea>
-                        <div style="display:flex; justify-content:flex-end; margin-top:.5rem;">
+                        <div class="comment-form-actions">
                             <button type="submit" class="btn btn-primary btn-sm">Comentar</button>
                         </div>
                     </div>
@@ -105,21 +112,21 @@ $current_user_color = avatar_color($username, $avatar_colors);
                     $cdate = isset($c['creation_date']) ? (new DateTime($c['creation_date']))->format('d/m/Y H:i') : '';
                     $ctext = $c['comment_text'];
                     $initial = strtoupper(substr($author, 0, 1));
-                    $acolor = avatar_color($author, $avatar_colors);
+                    $acolor_idx = avatar_color_index($author, $avatar_colors);
                     $is_comment_super = UserUtils::isUserSuper($c['user_id']);
                 ?>
-                    <div class="comment-row d-flex align-items-start<?= $is_comment_super ? ' comment-row-super' : '' ?>" role="article" style="gap:.8rem;">
-                        <!-- Avatar: añadimos una clase extra si es super para poder estilizar -->
-                        <div class="comment-avatar<?= $is_comment_super ? ' comment-avatar-super' : '' ?>" style="background: <?= $acolor ?>;" aria-hidden="true"><?= $initial ?></div>
+                    <div class="comment-row d-flex align-items-start<?= $is_comment_super ? ' comment-row-super' : '' ?>" role="article">
+                        <!-- Avatar: clase de color en vez de style -->
+                        <div class="comment-avatar<?= $is_comment_super ? ' comment-avatar-super' : '' ?> avatar-color-<?= $acolor_idx ?>" aria-hidden="true"><?= $initial ?></div>
 
-                        <div class="comment-body" style="flex:1;">
-                            <div class="d-flex align-items-center" style="gap:.6rem;">
+                        <div class="comment-body">
+                            <div class="d-flex align-items-center comment-author-row">
                                 <div>
                                     <div class="comment-author">
                                         <?= $author ?>
                                         <?php if ($is_comment_super): ?>
                                             <!-- Badge para roles super -->
-                                            <span style="background:#ffd700;color:#000;padding:2px 6px;border-radius:999px;font-size:.7rem;margin-left:.5rem;font-weight:700;">ADMIN</span>
+                                            <span class="badge-admin">ADMIN</span>
                                         <?php endif; ?>
                                     </div>
                                     <div class="comment-meta"><?= $cdate ?></div>

@@ -67,7 +67,7 @@
 
 #incidents-map {
   width: 100%;
-  height: 600px;
+  height: 60dvh;
 }
 
 #resultsCount {
@@ -337,6 +337,11 @@
 }
 #modalBody::-webkit-scrollbar-track {
   background: transparent;
+}
+
+.modal-body-content {
+  max-height: 65vh;
+  overflow: auto;
 }
 
 @media (max-width: 576px) {

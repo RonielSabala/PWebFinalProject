@@ -63,7 +63,7 @@
 
                 <!-- Body -->
                 <div class="modal-body p-0">
-                    <div id="modalBody" class="p-4" style="max-height:65vh; overflow:auto;">
+                    <div id="modalBody" class="p-4 modal-body-content">
                     </div>
                 </div>
 
