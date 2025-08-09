@@ -15,7 +15,7 @@ class GeneralUtils
         <div class='text-center'>
             <div class='alert alert-$type'>$message</div>";
         if ($showReturn) {
-            echo "<a href='$returnRoute' class='btn btn-primary'>Volver</a>";
+            echo "<a href='$returnRoute' class='btn btn-primary mb-4'>Volver</a>";
         }
         echo "</div>";
     }
