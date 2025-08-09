@@ -46,9 +46,6 @@ $current_user_initial = strtoupper(substr($username, 0, 1));
 $current_user_color_idx = avatar_color_index($username, $avatar_colors);
 ?>
 
-<!-- Incluye tu CSS externo que contiene los estilos extraídos -->
-<link rel="stylesheet" href="/assets/css/incidents-comments.css" />
-
 <div class="container-incident">
     <div class="card-min mb-4">
         <!-- Cabecera -->
