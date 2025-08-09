@@ -1,7 +1,14 @@
-<h2>Municipios</h2>
+<?php
 
-<a href="create.php" class="btn btn-primary">Crear nuevo municipio</a>
+use App\Utils\GeneralUtils;
+?>
 
+<h2>Listado de municipios</h2>
+<div class="d-flex justify-content-end mb-3">
+    <a id="btn-create" href="create.php" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Crear
+    </a>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -16,21 +23,20 @@
             <tr>
                 <td><?= htmlspecialchars($municipality['id']) ?></td>
                 <td><?= htmlspecialchars($municipality['municipality_name']) ?></td>
+                <td><?= htmlspecialchars($municipality['province_name']) ?></td>
                 <td>
-                    <?php
-                    foreach ($provinces as $province) {
-                        if ($province['id'] == $municipality['province_id']) {
-                            echo htmlspecialchars($province['province_name']);
-                            break;
-                        }
-                    }
-                    ?>
-                </td>
-                <td>
-                    <a href="edit.php?id=<?= $municipality['id'] ?>" class="btn btn-sm btn-warning">Editar</a>
-                    <a href="delete.php?id=<?= $municipality['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este municipio?')">Eliminar</a>
+                    <div class="d-flex gap-1">
+                        <a href="edit.php?id=<?= $municipality['id'] ?>" class="btn btn-outline-action btn-warning" title="Editar">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="delete.php?id=<?= $municipality['id'] ?>" class="btn btn-outline-action btn-danger" title="Eliminar">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </div>
                 </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<?= GeneralUtils::showNoData($municipalities, "municipios"); ?>

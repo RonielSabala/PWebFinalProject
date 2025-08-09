@@ -49,6 +49,7 @@ const ROUTES = [
     'super/admin/municipalities/home.php'   => ['page' => 'municipalities', 'controller' => \App\Controllers\Super\Admin\MunicipalityController::class],
     'super/admin/municipalities/create.php' => ['page' => 'municipalities', 'controller' => \App\Controllers\Super\Admin\MunicipalityController::class],
     'super/admin/municipalities/edit.php'   => ['page' => 'municipalities', 'controller' => \App\Controllers\Super\Admin\MunicipalityController::class],
+    'super/admin/municipalities/delete.php'   => ['page' => 'municipalities', 'controller' => \App\Controllers\Super\Admin\MunicipalityController::class],
 
     // Barrios
     'super/admin/neighborhoods/home.php'   => ['page' => 'neighborhoods', 'controller' => \App\Controllers\Super\Admin\NeighborhoodController::class],

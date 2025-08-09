@@ -58,7 +58,7 @@ class GenericEntityUtils
             $stmt->execute($params);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
-            GeneralUtils::showAlert($e->getMessage(), 'danger');
+            GeneralUtils::showAlert($e->getMessage(), 'danger', showReturn: false);
             return [];
         }
     }

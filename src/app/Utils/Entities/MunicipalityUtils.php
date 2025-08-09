@@ -7,7 +7,20 @@ class MunicipalityUtils extends GenericEntityUtils
 {
     private static $getSql = "SELECT * FROM municipalities WHERE id = ?";
 
-    private static $getAllSql = "SELECT * FROM municipalities ORDER BY municipality_name";
+    private static $getByNameSql = "SELECT * FROM municipalities WHERE municipality_name = ?";
+
+    private static $getAllSql = "SELECT
+        m.*,
+        p.province_name
+    FROM
+        municipalities m
+    JOIN
+        provinces p
+    ON
+        p.id = m.province_id
+    ORDER BY
+        m.municipality_name
+    ";
 
     private static $getAllByProvinceIdSql = "SELECT id, municipality_name FROM municipalities WHERE province_id = ?";
 
@@ -20,6 +33,11 @@ class MunicipalityUtils extends GenericEntityUtils
     public static function get($id)
     {
         return self::saveFetchSql(self::$getSql, [$id], 'No se encontró el municipio.');
+    }
+
+    public static function getByName($municipality_name)
+    {
+        return self::saveFetchSql(self::$getByNameSql, [$municipality_name], 'No se encontró la provincia.');
     }
 
     public static function getAll(): array
