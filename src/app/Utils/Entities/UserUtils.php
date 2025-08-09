@@ -89,4 +89,9 @@ class UserUtils extends GenericEntityUtils
     {
         return self::executeSql(self::$updatePasswordSql, [$newPassword, $userEmail]);
     }
+
+    public static function isUserInSession($route): bool
+    {
+        return $route == 'auth' || (isset($_SESSION['user']) && UserUtils::exists($_SESSION['user']['email']));
+    }
 }

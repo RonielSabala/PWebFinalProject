@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Utils\GeneralUtils;
+use App\Utils\Entities\UserUtils;
 
 
 class Router
@@ -18,8 +19,9 @@ class Router
         $uri = GeneralUtils::getURI();
         [$route, $view] = GeneralUtils::splitURI($uri);
 
-        // Re-dirección al login si no hay un usuario en sesión
-        if (!(isset($_SESSION['user']) || $route == 'auth')) {
+        // Limpiar sesión y redirigir al login si no hay usuario
+        if (!UserUtils::isUserInSession($route)) {
+            session_unset();
             header('Location: /auth/login.php');
             exit;
         }
