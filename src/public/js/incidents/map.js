@@ -12,64 +12,34 @@ const defaultLat = 18.7357,
   defaultZoom = 8;
 const popup = L.popup();
 
-// Iconos para los marcadores
-const labelIcons = {
-  "Accidente de tráfico": L.icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/4939/4939159.png",
-    iconSize: [40, 40],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
-  }),
-  Robo: L.icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/5138/5138771.png",
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
-  }),
-  Incendio: L.icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/599/599502.png",
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
-  }),
-  Inundación: L.icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/3436/3436914.png",
-    iconSize: [40, 40],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
-  }),
-  Asesinato: L.icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/2323/2323041.png",
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
-  }),
-  Violencia: L.icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/10554/10554358.png",
-    iconSize: [40, 40],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
-  }),
-  "Desastre natural": L.icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/13063/13063838.png",
-    iconSize: [40, 40],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
-  }),
-};
-
 // Icono por defecto
-const defaultIcon = L.icon({
-  iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
-  popupAnchor: [0, -32],
-});
+const defaultIconUrl = "https://cdn-icons-png.flaticon.com/512/684/684908.png";
 
-function getIconByLabel(label) {
-  if (!label) return defaultIcon;
-  const key = label.trim();
-  return labelIcons[key] || defaultIcon;
+function getMarker(m) {
+  // Obtener icono
+  let icon_url = m.label_icons;
+  if (!icon_url || !icon_url.trim()) {
+    icon_url = defaultIconUrl;
+  } else {
+    const parts = icon_url
+      .split(",")
+      .map((p) => p.trim())
+      .filter(Boolean);
+
+    icon_url = parts[0];
+  }
+
+  let icon = L.icon({
+    iconUrl: icon_url,
+    iconSize: [40, 40],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32],
+  });
+
+  // Devolver marcador
+  return L.marker([m.latitude, m.longitude], {
+    icon: icon,
+  });
 }
 
 function initMap() {
@@ -194,36 +164,25 @@ function renderIncidents() {
 
   const clusters = {};
   filtered.forEach((m) => {
-    const pid = m.province_id || "noprov";
-    if (!clusters[pid]) clusters[pid] = L.markerClusterGroup();
+    if (!clusters[m.province_id])
+      clusters[m.province_id] = L.markerClusterGroup();
 
-    // INTENTA obtener label: si m.labels es array usa [0], si es string usa directamente
-    let labelVal = null;
-    if (Array.isArray(m.labels)) labelVal = m.labels[0];
-    else if (typeof m.labels === "string") labelVal = m.labels;
-    // else si tienes otro campo: m.label o m.type, ajusta aquí
-
-    const icon = getIconByLabel(labelVal);
-    const marker = L.marker([m.latitude, m.longitude], { icon });
+    const marker = getMarker(m);
     marker.on("click", () => onMarkerClick(m));
-    clusters[pid].addLayer(marker);
+    clusters[m.province_id].addLayer(marker);
   });
 
   Object.values(clusters).forEach((c) => incidentLayer.addLayer(c));
 }
 
 function addMarkerToCluster(m, clusters) {
-  const coords = [m.latitude, m.longitude];
-  const icon = getIconByLabel(m.labels?.[0]);
-  const marker = L.marker(coords, { icon: icon });
-  const pid = m.province_id;
-
-  if (!clusters[pid]) {
-    clusters[pid] = L.markerClusterGroup();
+  if (!clusters[m.province_id]) {
+    clusters[m.province_id] = L.markerClusterGroup();
   }
 
+  const marker = getMarker(m);
   marker.on("click", () => onMarkerClick(m));
-  clusters[pid].addLayer(marker);
+  clusters[m.province_id].addLayer(marker);
 }
 
 function onMarkerClick(m) {
