@@ -95,7 +95,7 @@
                         <div class="col-md-4">
                             <label for="province" class="form-label">Provincia</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="bi bi-map"></i></span>
+                                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
                                 <select id="province" class="form-select" name="province_id" required>
                                     <option selected value="">Seleccione</option>
                                     <?php foreach ($provinces as $prov): ?>
@@ -120,7 +120,7 @@
                         <div class="col-md-4">
                             <label for="neighborhood" class="form-label">Barrio</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                                <span class="input-group-text"><i class="bi bi-house"></i></span>
                                 <select id="neighborhood" class="form-select" name="neighborhood_id" disabled>
 
                                 </select>
