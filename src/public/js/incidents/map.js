@@ -104,7 +104,7 @@ function onMapClick(e) {
 
         // Actualizar tooltip
         tooltip.hide();
-        copyBtn.setAttribute("data-bs-original-title", "Copied!");
+        copyBtn.setAttribute("data-bs-original-title", "¡Copiado!");
         tooltip.show();
 
         // Restaurar tras 1.5s
@@ -151,12 +151,12 @@ function renderIncidents() {
   const from = $("#fromFilter").val();
   const to = $("#toFilter").val();
 
-  const filtered = incidents.filter((m) => {
+  const filtered = incidents.filter((incidence) => {
     return (
-      (!prov || m.province_id == prov) &&
-      (!title || (m.title && m.title.toLowerCase().includes(title))) &&
-      (!from || m.creation_date >= from) &&
-      (!to || m.creation_date <= to)
+      (!title || incidence.title.toLowerCase().includes(title)) &&
+      (!prov || incidence.province_id == prov) &&
+      (!from || incidence.creation_date >= from) &&
+      (!to || incidence.creation_date <= to)
     );
   });
 

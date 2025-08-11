@@ -1,122 +1,10 @@
 $(document).ready(() => {
-  initMap();
   initFilters();
   setDefaultDate();
+  initTooltips();
   renderIncidents();
+  bindActions();
 });
-
-// Variables mapa
-let mapInstance, incidentLayer;
-const defaultLat = 18.7357,
-  defaultLng = -70.1627,
-  defaultZoom = 8;
-const popup = L.popup();
-
-// Icono por defecto
-const defaultIconUrl = "https://cdn-icons-png.flaticon.com/512/684/684908.png";
-
-function getMarker(m) {
-  // Obtener icono
-  let icon_url = m.label_icons;
-  if (!icon_url || !icon_url.trim()) {
-    icon_url = defaultIconUrl;
-  } else {
-    const parts = icon_url
-      .split(",")
-      .map((p) => p.trim())
-      .filter(Boolean);
-
-    icon_url = parts[0];
-  }
-
-  let icon = L.icon({
-    iconUrl: icon_url,
-    iconSize: [40, 40],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
-  });
-
-  // Devolver marcador
-  return L.marker([m.latitude, m.longitude], {
-    icon: icon,
-  });
-}
-
-function initMap() {
-  mapInstance = L.map("incidents-map").setView(
-    [defaultLat, defaultLng],
-    defaultZoom
-  );
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-    attribution: "&copy; OpenStreetMap",
-  }).addTo(mapInstance);
-  incidentLayer = L.layerGroup().addTo(mapInstance);
-  mapInstance.on("click", onMapClick);
-}
-
-function onMapClick(e) {
-  const { lat, lng } = e.latlng;
-  const coordsText = `(${lat.toFixed(6)}, ${lng.toFixed(6)})`;
-  const html = `
-    <div id="coords-popup" class="d-flex align-items-center gap-2">
-      <span id="coords-text" class="me-2">${coordsText}</span>
-      <button
-        id="copy-coords"
-        type="button"
-        class="btn btn-sm btn-outline-secondary"
-        data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        title="Copy coordinates"
-      >
-        <i class="bi bi-clipboard"></i>
-      </button>
-    </div>
-  `;
-
-  popup.setLatLng(e.latlng).setContent(html).openOn(mapInstance);
-
-  let hideTimeout = setTimeout(() => mapInstance.closePopup(), 3000);
-
-  setTimeout(() => {
-    const container = document.getElementById("coords-popup");
-    const copyBtn = document.getElementById("copy-coords");
-
-    if (!container || !copyBtn) return;
-
-    // Inicializar tooltip de Bootstrap
-    const tooltip = new bootstrap.Tooltip(copyBtn);
-
-    // Cancelar cierre mientras el mouse esté encima
-    container.addEventListener("mouseenter", () => {
-      clearTimeout(hideTimeout);
-    });
-
-    container.addEventListener("mouseleave", () => {
-      hideTimeout = setTimeout(() => mapInstance.closePopup(), 3000);
-    });
-
-    // Copiar al portapapeles con feedback de icono/texto
-    copyBtn.addEventListener("click", () => {
-      navigator.clipboard.writeText(coordsText).then(() => {
-        // Cambiar icono a check
-        copyBtn.innerHTML = `<i class="bi bi-check-lg"></i>`;
-
-        // Actualizar tooltip
-        tooltip.hide();
-        copyBtn.setAttribute("data-bs-original-title", "Copied!");
-        tooltip.show();
-
-        // Restaurar tras 1.5s
-        setTimeout(() => {
-          copyBtn.innerHTML = `<i class="bi bi-clipboard"></i>`;
-          tooltip.hide();
-          copyBtn.setAttribute("data-bs-original-title", "Copy coordinates");
-        }, 1500);
-      });
-    });
-  }, 50);
-}
 
 function initFilters() {
   // Búsqueda al cambiar cualquiera de los inputs
@@ -145,55 +33,44 @@ function setDefaultDate() {
 }
 
 function renderIncidents() {
-  incidentLayer.clearLayers();
   const prov = $("#provinceFilter").val();
   const title = $("#titleFilter").val().toLowerCase();
   const from = $("#fromFilter").val();
   const to = $("#toFilter").val();
 
-  const filtered = incidents.filter((m) => {
-    return (
-      (!prov || m.province_id == prov) &&
-      (!title || (m.title && m.title.toLowerCase().includes(title))) &&
-      (!from || m.creation_date >= from) &&
-      (!to || m.creation_date <= to)
-    );
+  let visibleCount = 0;
+  $(".incident-row").each(function () {
+    const $incidence = $(this);
+    const Prov = $incidence.data("province");
+    const Title = $incidence.data("title").toLowerCase();
+    const Date = $incidence.data("date");
+
+    let visible = true;
+    if (title && !Title.includes(title)) visible = false;
+    if (prov && Prov != prov) visible = false;
+    if (from && Date < from) visible = false;
+    if (to && Date > to) visible = false;
+
+    if (visible) {
+      $incidence.show();
+      visibleCount++;
+    } else {
+      $incidence.hide();
+    }
   });
 
-  $("#resultsCount").text(`Se encontraron ${filtered.length} incidencias.`);
-
-  const clusters = {};
-  filtered.forEach((m) => {
-    if (!clusters[m.province_id])
-      clusters[m.province_id] = L.markerClusterGroup();
-
-    const marker = getMarker(m);
-    marker.on("click", () => onMarkerClick(m));
-    clusters[m.province_id].addLayer(marker);
-  });
-
-  Object.values(clusters).forEach((c) => incidentLayer.addLayer(c));
+  $("#resultsCount").text(`Se encontraron ${visibleCount} incidencias.`);
 }
 
-function addMarkerToCluster(m, clusters) {
-  if (!clusters[m.province_id]) {
-    clusters[m.province_id] = L.markerClusterGroup();
-  }
-
-  const marker = getMarker(m);
-  marker.on("click", () => onMarkerClick(m));
-  clusters[m.province_id].addLayer(marker);
-}
-
-function onMarkerClick(m) {
+function showModal(id) {
   // Obtener datos de la incidencia
-  $.getJSON("map.php", {
+  $.getJSON("list.php", {
     action: "GET",
-    incidence_id: m.id,
+    incidence_id: id,
   })
     .done(function (modalHtml) {
       $("#modalBody").html(modalHtml);
-      $("#btnGoToIncidencePage").attr("href", `incidence.php?id=${m.id}`);
+      $("#btnGoToIncidencePage").attr("href", `incidence.php?id=${id}`);
       $("#incidenceModal").modal("show");
     })
     .fail(function () {
@@ -250,3 +127,67 @@ function onMarkerClick(m) {
 
   toggle.addEventListener("change", (e) => updateToggleUI(e.target.checked));
 })();
+
+function initTooltips() {
+  // inicializa tooltips estáticos
+  const tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
+
+  tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+    new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+}
+
+function bindActions() {
+  // Copiar coordenadas
+  $(document).on("click", ".btn-copy-coords", function (e) {
+    const $btn = $(this);
+    const lat = $btn.data("lat");
+    const lng = $btn.data("lng");
+    const coordsText = `(${Number(lat).toFixed(6)}, ${Number(lng).toFixed(6)})`;
+
+    navigator.clipboard
+      .writeText(coordsText)
+      .then(() => {
+        const $icon = $btn.find("i");
+        const originalHtml = $icon.prop("outerHTML");
+
+        // Cambia icono a check
+        $icon.replaceWith('<i class="bi bi-check-lg"></i>');
+
+        // Actualiza tooltip
+        const tipInstance = bootstrap.Tooltip.getInstance($btn[0]);
+        if (tipInstance) {
+          tipInstance.hide();
+          $btn.attr("data-bs-original-title", "¡Copiado!");
+          tipInstance.show();
+        } else {
+          // si no hay instancia, crear y mostrar
+          const t = new bootstrap.Tooltip($btn[0]);
+          $btn.attr("data-bs-original-title", "¡Copiado!");
+          t.show();
+          setTimeout(() => t.dispose(), 800);
+        }
+
+        // Restaurar tras 1.5s
+        setTimeout(() => {
+          $btn.find("i").replaceWith(originalHtml);
+          if (tipInstance) {
+            tipInstance.hide();
+            $btn.attr("data-bs-original-title", "Copiar coordenadas");
+          }
+        }, 1500);
+      })
+      .catch(() => {
+        alert("No fue posible copiar las coordenadas.");
+      });
+  });
+
+  // Abrir modal
+  $(document).on("click", ".btn-show-modal", function (e) {
+    const id = $(this).data("id");
+    if (!id) return;
+    showModal(id);
+  });
+}
