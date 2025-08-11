@@ -3,6 +3,7 @@
 use App\Utils\GeneralUtils;
 ?>
 
+<link rel="stylesheet" href="/css/incidents/incidents.css">
 <div class="centered container">
     <!-- Buscador principal -->
     <div class="search-bar-container">
