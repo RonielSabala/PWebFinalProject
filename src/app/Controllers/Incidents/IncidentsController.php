@@ -12,6 +12,8 @@ class IncidentsController
 {
     public function handle(Template $template)
     {
+        $basePath = BASE_PATH . '/public';
+
         // Manejar peticiones por GET
         if (($_GET['action'] ?? '') === 'GET') {
             Template::enableJsonMode();
@@ -22,13 +24,13 @@ class IncidentsController
             if (!empty($incidenceId)) {
                 // Rutas
                 $relPath = 'incidents/incidence';
-                $viewPath = BASE_PATH . '/public/views/' . $relPath . '.php';
+                $viewPath = $basePath . '/views/' . $relPath . '.php';
                 $cssPath = '/css/' . $relPath . '.css';
                 $jsPath = '/js/' . $relPath . '.js';
 
                 // Cargar el CSS
                 ob_start();
-                if (file_exists(BASE_PATH . '/public' . $cssPath)) {
+                if (file_exists($basePath . $cssPath)) {
                     echo '<link rel="stylesheet" href="' . $cssPath . '"></link>';
                 }
 
@@ -43,7 +45,7 @@ class IncidentsController
                 }
 
                 // Cargar el JS
-                if (file_exists(BASE_PATH . '/public' . $jsPath)) {
+                if (file_exists($basePath . $jsPath)) {
                     echo '<script src="' . $jsPath . '"></s>';
                 }
 
