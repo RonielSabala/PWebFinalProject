@@ -46,7 +46,7 @@ class IncidentsController
 
                 // Cargar el JS
                 if (file_exists($basePath . $jsPath)) {
-                    echo '<script src="' . $jsPath . '"></s>';
+                    echo '<script src="' . $jsPath . '"></script>';
                 }
 
                 $data = ob_get_clean();

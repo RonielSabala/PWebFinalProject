@@ -232,6 +232,18 @@
   gap: 14px;
   padding: 14px 0;
   border-bottom: 1px solid #f3f4f6;
+  align-items: flex-start;
+}
+
+.comment-row-super {
+  background: linear-gradient(
+    90deg,
+    rgba(11, 61, 145, 0.03),
+    rgba(21, 50, 122, 0.02)
+  );
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 6px 20px rgba(11, 61, 145, 0.03);
 }
 
 .comment-avatar {
@@ -241,51 +253,87 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  font-weight: 800;
+  color: white;
+  font-weight: 700;
   font-size: 18px;
   flex-shrink: 0;
-  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+  box-shadow: 0 3px 10px rgba(2, 6, 23, 0.06);
 }
 
-.avatar-0 {
+.comment-avatar-super {
+  box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.12);
+  transform: scale(1.03);
+}
+
+.avatar-color-0 {
   background: #0f172a;
 }
-.avatar-1 {
+.avatar-color-1 {
   background: #1f2937;
 }
-.avatar-2 {
+.avatar-color-2 {
   background: #374151;
 }
-.avatar-3 {
+.avatar-color-3 {
   background: #4b5563;
 }
-.avatar-4 {
+.avatar-color-4 {
   background: #64748b;
 }
-.avatar-5 {
+.avatar-color-5 {
   background: #0b7285;
 }
-.avatar-6 {
+.avatar-color-6 {
   background: #1e40af;
 }
-.avatar-7 {
+.avatar-color-7 {
   background: #065f46;
 }
-.avatar-8 {
+.avatar-color-8 {
   background: #92400e;
 }
-.avatar-9 {
+.avatar-color-9 {
   background: #6d28d9;
+}
+
+.comment-body {
+  flex: 1;
+}
+
+.comment-author-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .comment-author {
   font-weight: 700;
+  margin-right: 8px;
   color: #0f172a;
 }
 .comment-meta {
   color: #94a3b8;
   font-size: 0.85rem;
+}
+
+.comment-text {
+  margin-top: 6px;
+  white-space: pre-wrap;
+  color: #0b1220;
+}
+
+.badge-admin {
+  background: linear-gradient(90deg, #0b3d91, #15327a);
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  margin-left: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(11, 61, 145, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 @media (max-width: 768px) {
