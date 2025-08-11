@@ -4,15 +4,18 @@ use App\Utils\GeneralUtils;
 
 $uri = GeneralUtils::getURI();
 [$route, $view] = GeneralUtils::splitURI($uri);
-[$last_route, $last_view] = GeneralUtils::splitURI(GeneralUtils::getNthURI(-2));
 $show_incidence = $view === 'incidence.php';
+
+$last_uri = GeneralUtils::getNthURI(-2);
+[$last_route, $last_view] = GeneralUtils::splitURI($last_uri);
+$show_return = $last_view === 'home.php' && $view !== 'home.php';
 ?>
 
 <div class="divMenu">
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="<?= GeneralUtils::getActiveClass('home'); ?>"
-                href="/home.php">Inicio</a>
+                href="<?= $show_return ? $last_uri : '/home.php' ?>"><?= $show_return ? 'Volver atrás' : 'Inicio' ?></a>
         </li>
         <?php if (($show_incidence ? substr($last_route, 1) : $route) === 'incidents'): ?>
             <li class="nav-item">

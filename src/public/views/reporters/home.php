@@ -18,6 +18,7 @@ use App\Utils\GeneralUtils;
             <th>Fecha registrada</th>
             <th>Estatus</th>
             <th>Comentarios</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -36,6 +37,12 @@ use App\Utils\GeneralUtils;
                     </span>
                 </td>
                 <td><?= htmlspecialchars($incidence['comments']) ?></td>
+                <td>
+                    <a href="/incidents/incidence.php?id=<?= $incidence['id'] ?>" class="btn btn-sm btn-outline-action btn-go">
+                        Ver
+                        <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                </td>
             </tr>
         <?php
         }

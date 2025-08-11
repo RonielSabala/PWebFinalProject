@@ -6,6 +6,9 @@
 
   --primary: #007bff;
   --primary-hover: #0056b3;
+
+  --go: #ffc107;
+  --go-hover: #e0a800;
 }
 
 h2 {
@@ -43,11 +46,34 @@ h2 {
   border-color: var(--primary-hover);
 }
 
+.btn-go {
+  border: 1px solid;
+  padding: 6px 12px;
+  margin-right: 2px;
+}
+
+.btn-go {
+  background: var(--go);
+  border-color: var(--go);
+  color: #212529;
+}
+
+.btn-go:hover {
+  background: var(--go-hover);
+  border-color: var(--go-hover);
+  color: #fff;
+}
+
 .btn-outline-action {
   background: transparent;
   border: 1px solid #0000001c;
   color: inherit;
   width: 100%;
+}
+
+.btn-outline-action.btn-go:hover {
+  border-color: var(--go);
+  color: white;
 }
 
 .table {

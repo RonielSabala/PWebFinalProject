@@ -163,14 +163,14 @@
 
                     <!-- Botones de Acción -->
                     <div class="d-flex justify-content-between mt-4">
-                        <!-- Botón Cancelar -->
-                        <button type="button" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-medium" onclick="history.back()">
-                            <i class="bi bi-arrow-left-circle-fill me-2"></i> Cancelar
-                        </button>
-
                         <!-- Botón Guardar -->
                         <button type="submit" class="btn btn-success rounded-pill px-4 py-2 fw-medium">
                             <i class="bi bi-save-fill me-2"></i> Guardar Incidencia
+                        </button>
+
+                        <!-- Botón Cancelar -->
+                        <button type="button" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-medium" onclick="history.back()">
+                            <i class="bi bi-arrow-left-circle-fill me-2"></i> Cancelar
                         </button>
                     </div>
             </form>

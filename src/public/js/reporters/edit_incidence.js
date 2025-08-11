@@ -21,7 +21,6 @@ $(document).ready(function () {
 
   // Oculta los selects y labels al inicio excepto provincia
 
-
   $("#province").change(function () {
     var provinceId = $(this).val();
     // deshabilita municipio y barrio siempre al cambiar provincia
