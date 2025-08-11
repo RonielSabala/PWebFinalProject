@@ -1,3 +1,62 @@
 .form-check-label {
   user-select: none;
 }
+
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.card-header {
+  background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+}
+
+.tag-container {
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #f8f9fa;
+}
+
+.form-control,
+.form-select {
+  border-radius: 8px;
+  padding: 10px 15px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  border-color: #86b7fe;
+}
+
+.input-group-text {
+  background-color: #e9ecef;
+  border-radius: 8px 0 0 8px;
+}
+
+.btn {
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline-primary {
+  border-width: 2px;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  border: none;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #27ae60, #219653);
+}

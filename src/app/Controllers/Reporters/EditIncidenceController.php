@@ -36,6 +36,11 @@ class EditIncidenceController
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Procesar coordenadas
+            $coordinates = trim($_POST['coordinates'] ?? '');
+            $coordinates = str_replace(['(', ')'], '', $coordinates);
+            list($latitude, $longitude) = explode(',', $coordinates);
+
             // Datos de la incidencia
             $photo_url = $_POST['photo_url'] ?? '';
             $labels = $_POST['labels'] ?? [];
@@ -43,8 +48,8 @@ class EditIncidenceController
                 $_POST['title'],
                 $_POST['incidence_description'],
                 $_POST['occurrence_date'],
-                $_POST['latitude'],
-                $_POST['longitude'],
+                $latitude,
+                $longitude,
                 $_POST['n_deaths'] ?: 0,
                 $_POST['n_injured'] ?: 0,
                 $_POST['n_losses'] ?: 0,
