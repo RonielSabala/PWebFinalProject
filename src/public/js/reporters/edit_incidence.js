@@ -1,15 +1,34 @@
 $(document).ready(function () {
+  var regex = /^\(?-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\)?$/;
+
+  $("#coordinates").on("input", function () {
+    var value = $(this).val().trim();
+    if (!regex.test(value)) {
+      $(this).addClass("is-invalid");
+    } else {
+      $(this).removeClass("is-invalid");
+    }
+  });
+
+  $("#incidenceform").on("submit", function (e) {
+    var value = $("#coordinates").val().trim();
+
+    if (!regex.test(value)) {
+      e.preventDefault();
+      $("#coordinates").focus();
+    }
+  });
+
   // Oculta los selects y labels al inicio excepto provincia
-  $("#municipality, label[for='municipality']").hide();
-  $("#neighborhood, label[for='neighborhood']").hide();
+
 
   $("#province").change(function () {
     var provinceId = $(this).val();
-    // Oculta municipio y barrio siempre al cambiar provincia
-    $("#municipality, label[for='municipality']").hide();
-    $("#neighborhood, label[for='neighborhood']").hide();
-    $("#municipality").html('<option value="">Seleccione</option>');
-    $("#neighborhood").html('<option value="">Seleccione</option>');
+    // deshabilita municipio y barrio siempre al cambiar provincia
+    $("#municipality, label[for='municipality']").prop("disabled", true);
+    $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
+    $("#municipality").html('<option value=""></option>');
+    $("#neighborhood").html('<option value=""></option>');
 
     if (!provinceId) return;
 
@@ -26,23 +45,23 @@ $(document).ready(function () {
               "</option>";
           });
           $("#municipality").html(html);
-          $("#municipality, label[for='municipality']").show();
+          $("#municipality, label[for='municipality']").prop("disabled", false);
         } else {
           // Si no hay municipios, oculta municipio y barrio
-          $("#municipality, label[for='municipality']").hide();
-          $("#neighborhood, label[for='neighborhood']").hide();
+          $("#municipality, label[for='municipality']").prop("disabled", true);
+          $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
         }
       })
       .fail(function () {
-        $("#municipality, label[for='municipality']").hide();
-        $("#neighborhood, label[for='neighborhood']").hide();
+        $("#municipality, label[for='municipality']").prop("disabled", true);
+        $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
       });
   });
 
   $("#municipality").change(function () {
     var municipalityId = $(this).val();
-    $("#neighborhood, label[for='neighborhood']").hide();
-    $("#neighborhood").html('<option value="">Seleccione</option>');
+    $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
+    $("#neighborhood").html('<option value=""></option>');
 
     if (!municipalityId) return;
 
@@ -62,13 +81,14 @@ $(document).ready(function () {
               "</option>";
           });
           $("#neighborhood").html(html);
-          $("#neighborhood, label[for='neighborhood']").show();
+          $("#neighborhood, label[for='neighborhood']").prop("disabled", false);
         } else {
-          $("#neighborhood, label[for='neighborhood']").hide();
+          $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
+          $("#neighborhood").html('<option value="">No hay Barrios</option>');
         }
       })
       .fail(function () {
-        $("#neighborhood, label[for='neighborhood']").hide();
+        $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
       });
   });
 });

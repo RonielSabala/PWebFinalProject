@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "5d3309d33b475867b2abf205f08d9323",
+  "content-hash": "aa2bbb490c8dd83e2d420491593a2ea9",
   "packages": [
     {
       "name": "firebase/php-jwt",
@@ -42,7 +42,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["BSD-3-Clause"],
+      "license": [
+        "BSD-3-Clause"
+      ],
       "authors": [
         {
           "name": "Neuman Vong",
@@ -57,7 +59,10 @@
       ],
       "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
       "homepage": "https://github.com/firebase/php-jwt",
-      "keywords": ["jwt", "php"],
+      "keywords": [
+        "jwt",
+        "php"
+      ],
       "support": {
         "issues": "https://github.com/firebase/php-jwt/issues",
         "source": "https://github.com/firebase/php-jwt/tree/v6.11.1"
@@ -108,17 +113,25 @@
         }
       },
       "autoload": {
-        "files": ["src/aliases.php"],
+        "files": [
+          "src/aliases.php"
+        ],
         "psr-4": {
           "Google\\": "src/"
         },
-        "classmap": ["src/aliases.php"]
+        "classmap": [
+          "src/aliases.php"
+        ]
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["Apache-2.0"],
+      "license": [
+        "Apache-2.0"
+      ],
       "description": "Client library for Google APIs",
       "homepage": "http://developers.google.com/api-client-library/php",
-      "keywords": ["google"],
+      "keywords": [
+        "google"
+      ],
       "support": {
         "issues": "https://github.com/googleapis/google-api-php-client/issues",
         "source": "https://github.com/googleapis/google-api-php-client/tree/v2.18.3"
@@ -147,16 +160,22 @@
       },
       "type": "library",
       "autoload": {
-        "files": ["autoload.php"],
+        "files": [
+          "autoload.php"
+        ],
         "psr-4": {
           "Google\\Service\\": "src"
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["Apache-2.0"],
+      "license": [
+        "Apache-2.0"
+      ],
       "description": "Client library for Google APIs",
       "homepage": "http://developers.google.com/api-client-library/php",
-      "keywords": ["google"],
+      "keywords": [
+        "google"
+      ],
       "support": {
         "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
         "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.406.0"
@@ -207,10 +226,16 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["Apache-2.0"],
+      "license": [
+        "Apache-2.0"
+      ],
       "description": "Google Auth Library for PHP",
       "homepage": "https://github.com/google/google-auth-library-php",
-      "keywords": ["Authentication", "google", "oauth2"],
+      "keywords": [
+        "Authentication",
+        "google",
+        "oauth2"
+      ],
       "support": {
         "docs": "https://cloud.google.com/php/docs/reference/auth/latest",
         "issues": "https://github.com/googleapis/google-auth-library-php/issues",
@@ -246,7 +271,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "Graham Campbell",
@@ -324,13 +351,17 @@
         }
       },
       "autoload": {
-        "files": ["src/functions_include.php"],
+        "files": [
+          "src/functions_include.php"
+        ],
         "psr-4": {
           "GuzzleHttp\\": "src/"
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "Graham Campbell",
@@ -434,7 +465,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "Graham Campbell",
@@ -458,7 +491,9 @@
         }
       ],
       "description": "Guzzle promises library",
-      "keywords": ["promise"],
+      "keywords": [
+        "promise"
+      ],
       "support": {
         "issues": "https://github.com/guzzle/promises/issues",
         "source": "https://github.com/guzzle/promises/tree/2.2.0"
@@ -524,7 +559,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "Graham Campbell",
@@ -625,7 +662,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "Alex Bilbie",
@@ -726,7 +765,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "Jordi Boggiano",
@@ -736,7 +777,11 @@
       ],
       "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
       "homepage": "https://github.com/Seldaek/monolog",
-      "keywords": ["log", "logging", "psr-3"],
+      "keywords": [
+        "log",
+        "logging",
+        "psr-3"
+      ],
       "support": {
         "issues": "https://github.com/Seldaek/monolog/issues",
         "source": "https://github.com/Seldaek/monolog/tree/3.9.0"
@@ -781,7 +826,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "Paragon Initiative Enterprises",
@@ -844,7 +891,9 @@
       },
       "type": "library",
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "Paragon Initiative Enterprises",
@@ -853,7 +902,12 @@
         }
       ],
       "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
-      "keywords": ["csprng", "polyfill", "pseudorandom", "random"],
+      "keywords": [
+        "csprng",
+        "polyfill",
+        "pseudorandom",
+        "random"
+      ],
       "support": {
         "email": "info@paragonie.com",
         "issues": "https://github.com/paragonie/random_compat/issues",
@@ -909,7 +963,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["LGPL-2.1-only"],
+      "license": [
+        "LGPL-2.1-only"
+      ],
       "authors": [
         {
           "name": "Marcus Bointon",
@@ -977,7 +1033,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["Apache-2.0"],
+      "license": [
+        "Apache-2.0"
+      ],
       "authors": [
         {
           "name": "Johannes M. Schmitt",
@@ -991,7 +1049,12 @@
         }
       ],
       "description": "Option Type for PHP",
-      "keywords": ["language", "option", "php", "type"],
+      "keywords": [
+        "language",
+        "option",
+        "php",
+        "type"
+      ],
       "support": {
         "issues": "https://github.com/schmittjoh/php-option/issues",
         "source": "https://github.com/schmittjoh/php-option/tree/1.9.3"
@@ -1039,13 +1102,17 @@
       },
       "type": "library",
       "autoload": {
-        "files": ["phpseclib/bootstrap.php"],
+        "files": [
+          "phpseclib/bootstrap.php"
+        ],
         "psr-4": {
           "phpseclib3\\": "phpseclib/"
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "Jim Wigginton",
@@ -1143,7 +1210,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "PHP-FIG",
@@ -1151,7 +1220,11 @@
         }
       ],
       "description": "Common interface for caching libraries",
-      "keywords": ["cache", "psr", "psr-6"],
+      "keywords": [
+        "cache",
+        "psr",
+        "psr-6"
+      ],
       "support": {
         "source": "https://github.com/php-fig/cache/tree/3.0.0"
       },
@@ -1187,7 +1260,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "PHP-FIG",
@@ -1196,7 +1271,12 @@
       ],
       "description": "Common interface for HTTP clients",
       "homepage": "https://github.com/php-fig/http-client",
-      "keywords": ["http", "http-client", "psr", "psr-18"],
+      "keywords": [
+        "http",
+        "http-client",
+        "psr",
+        "psr-18"
+      ],
       "support": {
         "source": "https://github.com/php-fig/http-client"
       },
@@ -1232,7 +1312,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "PHP-FIG",
@@ -1284,7 +1366,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "PHP-FIG",
@@ -1335,7 +1419,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "PHP-FIG",
@@ -1344,7 +1430,11 @@
       ],
       "description": "Common interface for logging libraries",
       "homepage": "https://github.com/php-fig/log",
-      "keywords": ["log", "psr", "psr-3"],
+      "keywords": [
+        "log",
+        "psr",
+        "psr-3"
+      ],
       "support": {
         "source": "https://github.com/php-fig/log/tree/3.0.2"
       },
@@ -1373,10 +1463,14 @@
       },
       "type": "library",
       "autoload": {
-        "files": ["src/getallheaders.php"]
+        "files": [
+          "src/getallheaders.php"
+        ]
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "Ralph Khattar",
@@ -1418,10 +1512,14 @@
         }
       },
       "autoload": {
-        "files": ["function.php"]
+        "files": [
+          "function.php"
+        ]
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "Nicolas Grekas",
@@ -1484,13 +1582,17 @@
         }
       },
       "autoload": {
-        "files": ["bootstrap.php"],
+        "files": [
+          "bootstrap.php"
+        ],
         "psr-4": {
           "Symfony\\Polyfill\\Ctype\\": ""
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "Gert de Pagter",
@@ -1503,7 +1605,12 @@
       ],
       "description": "Symfony polyfill for ctype functions",
       "homepage": "https://symfony.com",
-      "keywords": ["compatibility", "ctype", "polyfill", "portable"],
+      "keywords": [
+        "compatibility",
+        "ctype",
+        "polyfill",
+        "portable"
+      ],
       "support": {
         "source": "https://github.com/symfony/polyfill-ctype/tree/v1.32.0"
       },
@@ -1555,13 +1662,17 @@
         }
       },
       "autoload": {
-        "files": ["bootstrap.php"],
+        "files": [
+          "bootstrap.php"
+        ],
         "psr-4": {
           "Symfony\\Polyfill\\Mbstring\\": ""
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "Nicolas Grekas",
@@ -1574,7 +1685,13 @@
       ],
       "description": "Symfony polyfill for the Mbstring extension",
       "homepage": "https://symfony.com",
-      "keywords": ["compatibility", "mbstring", "polyfill", "portable", "shim"],
+      "keywords": [
+        "compatibility",
+        "mbstring",
+        "polyfill",
+        "portable",
+        "shim"
+      ],
       "support": {
         "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.32.0"
       },
@@ -1619,14 +1736,20 @@
         }
       },
       "autoload": {
-        "files": ["bootstrap.php"],
+        "files": [
+          "bootstrap.php"
+        ],
         "psr-4": {
           "Symfony\\Polyfill\\Php80\\": ""
         },
-        "classmap": ["Resources/stubs"]
+        "classmap": [
+          "Resources/stubs"
+        ]
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["MIT"],
+      "license": [
+        "MIT"
+      ],
       "authors": [
         {
           "name": "Ion Bazan",
@@ -1643,7 +1766,12 @@
       ],
       "description": "Symfony polyfill backporting some PHP 8.0+ features to lower PHP versions",
       "homepage": "https://symfony.com",
-      "keywords": ["compatibility", "polyfill", "portable", "shim"],
+      "keywords": [
+        "compatibility",
+        "polyfill",
+        "portable",
+        "shim"
+      ],
       "support": {
         "source": "https://github.com/symfony/polyfill-php80/tree/v1.32.0"
       },
@@ -1710,7 +1838,9 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-      "license": ["BSD-3-Clause"],
+      "license": [
+        "BSD-3-Clause"
+      ],
       "authors": [
         {
           "name": "Graham Campbell",
@@ -1724,7 +1854,11 @@
         }
       ],
       "description": "Loads environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.",
-      "keywords": ["dotenv", "env", "environment"],
+      "keywords": [
+        "dotenv",
+        "env",
+        "environment"
+      ],
       "support": {
         "issues": "https://github.com/vlucas/phpdotenv/issues",
         "source": "https://github.com/vlucas/phpdotenv/tree/v5.6.2"

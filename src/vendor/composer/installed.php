@@ -3,7 +3,7 @@
         'name' => 'proyecto_final/grupo-01',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '9dc548566f9a1022ab78753bdf068891c3c5fbde',
+        'reference' => '5e618754cc87f9f36407a4970f6edfeb3d8debf8',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -148,7 +148,7 @@
         'proyecto_final/grupo-01' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '9dc548566f9a1022ab78753bdf068891c3c5fbde',
+            'reference' => '5e618754cc87f9f36407a4970f6edfeb3d8debf8',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
