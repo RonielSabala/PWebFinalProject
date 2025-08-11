@@ -5,7 +5,7 @@ $(document).ready(() => {
   renderIncidents();
 });
 
-// Variables mapa
+// Variables del mapa
 let mapInstance, incidentLayer;
 const defaultLat = 18.7357,
   defaultLng = -70.1627,
@@ -67,7 +67,7 @@ function onMapClick(e) {
         class="btn btn-sm btn-outline-secondary"
         data-bs-toggle="tooltip"
         data-bs-placement="top"
-        title="Copy coordinates"
+        title="Copiar coordenadas"
       >
         <i class="bi bi-clipboard"></i>
       </button>

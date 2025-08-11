@@ -23,8 +23,8 @@ const ROUTES = [
     'auth/MicrosoftController.php'         => ['controller' => \App\Controllers\Auth\MicrosoftController::class],
     'auth/MicrosoftCallbackController.php' => ['controller' => \App\Controllers\Auth\MicrosoftCallbackController::class],
     // Incidence views
-    'incidents/map.php'       => ['page' => 'incidents', 'controller' => \App\Controllers\Incidents\MapController::class],
-    'incidents/list.php'      => ['page' => 'incidents', 'controller' => \App\Controllers\Incidents\ListController::class],
+    'incidents/map.php'       => ['page' => 'incidents', 'controller' => \App\Controllers\Incidents\IncidentsController::class],
+    'incidents/list.php'      => ['page' => 'incidents', 'controller' => \App\Controllers\Incidents\IncidentsController::class],
     'incidents/incidence.php' => ['page' => 'incidence', 'controller' => \App\Controllers\Incidents\IncidenceController::class],
     // Reporters views
     'reporters/home.php'           => ['controller' => \App\Controllers\Reporters\HomeController::class],

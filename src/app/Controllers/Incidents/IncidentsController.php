@@ -8,7 +8,7 @@ use App\Utils\Entities\IncidenceUtils;
 use App\Utils\Entities\CommentUtils;
 
 
-class MapController
+class IncidentsController
 {
     public function handle(Template $template)
     {
@@ -30,7 +30,6 @@ class MapController
                 ob_start();
                 if (file_exists(BASE_PATH . '/public' . $cssPath)) {
                     echo '<link rel="stylesheet" href="' . $cssPath . '"></link>';
-                    // echo '<style>' . file_get_contents($cssPath) . '</l>';
                 }
 
                 // Cargar la vista
@@ -55,7 +54,7 @@ class MapController
             exit;
         }
 
-        $incidents = IncidenceUtils::getAll();
+        $incidents = IncidenceUtils::getAllApproved();
         $provinces = ProvinceUtils::getAll();
         $template->apply([
             'incidents' => $incidents,
