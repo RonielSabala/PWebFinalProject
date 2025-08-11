@@ -16,32 +16,12 @@ function initFilters() {
 
   // Botón de lupa
   $("#searchButton").on("click", renderIncidents);
+
+  // Botón de las ultimas 24 horas
+  init_toggle_button();
 }
 
-function setDefaultDate() {
-  const now = new Date();
-  const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
-  $("#fromFilter").val(yesterday.toISOString().substring(0, 10));
-}
-
-function showModal(currentRoute, id) {
-  // Obtener datos de la incidencia
-  $.getJSON(currentRoute, {
-    action: "GET",
-    incidence_id: id,
-  })
-    .done(function (modalHtml) {
-      $("#modalBody").html(modalHtml);
-      $("#btnGoToIncidencePage").attr("href", `incidence.php?id=${id}`);
-      $("#incidenceModal").modal("show");
-    })
-    .fail(function () {
-      $("#modalBody").html("<p>Error al cargar incidencia.</p>");
-      $("#incidenceModal").modal("show");
-    });
-}
-
-(function () {
+function init_toggle_button() {
   const toggle = document.getElementById("beautifulToggle");
   const label = document.getElementById("beautifulToggleLabel");
   const stateBadge = document.getElementById("beautifulToggleState");
@@ -88,4 +68,27 @@ function showModal(currentRoute, id) {
 
   updateToggleUI(toggle.checked);
   toggle.addEventListener("change", (e) => updateToggleUI(e.target.checked));
-})();
+}
+
+function setDefaultDate() {
+  const now = new Date();
+  const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+  $("#fromFilter").val(yesterday.toISOString().substring(0, 10));
+}
+
+function showModal(currentRoute, id) {
+  // Obtener datos de la incidencia
+  $.getJSON(currentRoute, {
+    action: "GET",
+    incidence_id: id,
+  })
+    .done(function (modalHtml) {
+      $("#modalBody").html(modalHtml);
+      $("#btnGoToIncidencePage").attr("href", `incidence.php?id=${id}`);
+      $("#incidenceModal").modal("show");
+    })
+    .fail(function () {
+      $("#modalBody").html("<p>Error al cargar incidencia.</p>");
+      $("#incidenceModal").modal("show");
+    });
+}
