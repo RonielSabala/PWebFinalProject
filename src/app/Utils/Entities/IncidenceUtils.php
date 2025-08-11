@@ -2,31 +2,32 @@
 
 namespace App\Utils\Entities;
 
-use App\Utils\GeneralUtils;
-
 
 class IncidenceUtils extends GenericEntityUtils
 {
     private static $getSql = "SELECT * FROM incidents where id = ?";
 
-    private static $getAllSql = "SELECT
+    private static $getAllApprovedSql = "SELECT
         i.*,
+        GROUP_CONCAT(l.label_name) AS labels,
         GROUP_CONCAT(l.icon_url) AS label_icons
     FROM
         incidents i
-    LEFT JOIN
+    JOIN
         incidence_labels il
     ON
         i.id = il.incidence_id
-    LEFT JOIN
+    JOIN
         labels l
     ON
         il.label_id = l.id
+    WHERE
+        i.is_approved = 1
     GROUP BY
         i.id
     ";
 
-    private static $getAllWithCommentsByReporterIdSql = "SELECT
+    private static $getAllByReporterIdSql = "SELECT
         i.id,
         i.title,
         i.incidence_description,
@@ -74,9 +75,9 @@ class IncidenceUtils extends GenericEntityUtils
         return self::saveFetchSql(self::$getSql, [$id], 'No se encontró la incidencia.');
     }
 
-    public static function getAll(): array
+    public static function getAllApproved(): array
     {
-        $incidents = self::fetchAllSql(self::$getAllSql);
+        $incidents = self::fetchAllSql(self::$getAllApprovedSql);
         return array_map(function ($incident) {
             $incident['labels'] = !empty($incident['labels'])
                 ? explode(',', $incident['labels'])
@@ -88,9 +89,9 @@ class IncidenceUtils extends GenericEntityUtils
         }, $incidents);
     }
 
-    public static function getAllWithCommentsByReporterId($reporterId): array
+    public static function getAllByReporterId($reporterId): array
     {
-        return self::fetchAllSql(self::$getAllWithCommentsByReporterIdSql, [$reporterId]);
+        return self::fetchAllSql(self::$getAllByReporterIdSql, [$reporterId]);
     }
 
     public static function create($fields, $photoUrl, $labels)

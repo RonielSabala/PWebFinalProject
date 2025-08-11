@@ -1,0 +1,178 @@
+:root {
+  --btn-radius: 4px;
+  --btn-font-weight: 500;
+  --btn-transition: 0.2s;
+  --btn-shadow: none;
+
+  --show-modal: #17a2b8;
+  --show-modal-hover: #117a8b;
+
+  --go: #ffc107;
+  --go-hover: #e0a800;
+
+  --copy-coords: #6c757d;
+  --copy-coords-hover: #495057;
+}
+
+.btn {
+  display: inline-block;
+  border-radius: var(--btn-radius);
+  font-weight: var(--btn-font-weight);
+  box-shadow: var(--btn-shadow);
+  transition: background var(--btn-transition),
+    border-color var(--btn-transition), color var(--btn-transition);
+}
+
+.btn i {
+  margin-right: 4px;
+}
+
+.btn-show-modal,
+.btn-go,
+.btn-copy-coords {
+  border: 1px solid;
+  padding: 6px 12px;
+  margin-right: 2px;
+}
+
+.btn-show-modal {
+  background: var(--show-modal);
+  border-color: var(--show-modal);
+  color: #fff;
+}
+
+.btn-show-modal:hover {
+  background: var(--show-modal-hover);
+  border-color: var(--show-modal-hover);
+  color: #fff;
+}
+
+.btn-go {
+  background: var(--go);
+  border-color: var(--go);
+  color: #212529;
+}
+
+.btn-go:hover {
+  background: var(--go-hover);
+  border-color: var(--go-hover);
+  color: #fff;
+}
+
+.btn-copy-coords {
+  background: var(--copy-coords);
+  border-color: var(--copy-coords);
+}
+
+.btn-copy-coords:hover {
+  background: var(--copy-coords-hover);
+  border-color: var(--copy-coords-hover);
+}
+
+.btn-outline-action {
+  background: transparent;
+  border: 1px solid #0000001c;
+  color: inherit;
+  width: 100%;
+}
+
+.btn-outline-action.btn-show-modal:hover {
+  border-color: var(--show-modal);
+  color: white;
+}
+
+.btn-outline-action.btn-go:hover {
+  border-color: var(--go);
+  color: white;
+}
+
+.btn-outline-action.btn-copy-coords:hover {
+  border-color: var(--copy-coords);
+  color: white;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 32px;
+  border-collapse: collapse;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px #0001;
+  background: #fff;
+  color: #222;
+}
+
+.table th,
+.table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: left;
+}
+
+.table th {
+  background: #f3f5f7;
+  font-size: 1.2em;
+  color: #333;
+  border-bottom: 2px solid #e0e0e0;
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background: #f7fafd;
+  transition: background var(--btn-transition);
+}
+
+.no-data {
+  text-align: center;
+  padding: 1rem;
+  color: #888;
+}
+
+#incidents-list {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+#incidents-list thead th {
+  border-bottom: 2px solid #eef2ff;
+  font-weight: 700;
+  color: #0f172a;
+  vertical-align: middle;
+}
+
+#incidents-list tbody tr {
+  transition: background-color 0.12s ease, transform 0.08s ease;
+  background: white;
+}
+
+#incidents-list tbody tr:hover {
+  background: rgba(6, 95, 70, 0.03);
+  transform: translateY(-2px);
+}
+
+.incidence-title {
+  font-size: larger;
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.incidence-desc {
+  color: var(--text-muted);
+  max-width: 520px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .incidence-desc {
+    max-width: 200px;
+  }
+  .modal-hero-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+  }
+}

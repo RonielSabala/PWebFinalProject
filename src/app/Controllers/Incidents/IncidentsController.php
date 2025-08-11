@@ -8,10 +8,12 @@ use App\Utils\Entities\IncidenceUtils;
 use App\Utils\Entities\CommentUtils;
 
 
-class MapController
+class IncidentsController
 {
     public function handle(Template $template)
     {
+        $basePath = BASE_PATH . '/public';
+
         // Manejar peticiones por GET
         if (($_GET['action'] ?? '') === 'GET') {
             Template::enableJsonMode();
@@ -22,15 +24,14 @@ class MapController
             if (!empty($incidenceId)) {
                 // Rutas
                 $relPath = 'incidents/incidence';
-                $viewPath = BASE_PATH . '/public/views/' . $relPath . '.php';
+                $viewPath = $basePath . '/views/' . $relPath . '.php';
                 $cssPath = '/css/' . $relPath . '.css';
                 $jsPath = '/js/' . $relPath . '.js';
 
                 // Cargar el CSS
                 ob_start();
-                if (file_exists(BASE_PATH . '/public' . $cssPath)) {
+                if (file_exists($basePath . $cssPath)) {
                     echo '<link rel="stylesheet" href="' . $cssPath . '"></link>';
-                    // echo '<style>' . file_get_contents($cssPath) . '</l>';
                 }
 
                 // Cargar la vista
@@ -44,8 +45,8 @@ class MapController
                 }
 
                 // Cargar el JS
-                if (file_exists(BASE_PATH . '/public' . $jsPath)) {
-                    echo '<script src="' . $jsPath . '"></s>';
+                if (file_exists($basePath . $jsPath)) {
+                    echo '<script src="' . $jsPath . '"></script>';
                 }
 
                 $data = ob_get_clean();
@@ -55,7 +56,7 @@ class MapController
             exit;
         }
 
-        $incidents = IncidenceUtils::getAll();
+        $incidents = IncidenceUtils::getAllApproved();
         $provinces = ProvinceUtils::getAll();
         $template->apply([
             'incidents' => $incidents,

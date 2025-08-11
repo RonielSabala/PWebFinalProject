@@ -65,12 +65,19 @@ class Template
         self::includePartialView('/_header.php');
         self::includePartialView('/_nav.php');
 
-        // Incluir el CSS de las partials solo si existe
-        $css_path = self::$basePath . '/css/' . $path . '/main.css';
-        if (file_exists($css_path)) {
+        // Incluir el CSS y JS de las partials solo si existen
+
+        $cssPath = self::$basePath . '/css/' . $path . '/main.css';
+        $jsPath = self::$basePath . '/js/' . $path . '/main.js';
+
+        if (file_exists($cssPath)) {
             echo '
             <link rel="stylesheet" href="/css/' . $path . '/main.css">
             ';
+        }
+
+        if (file_exists($jsPath)) {
+            echo '<script src="/js/' . $path . '/main.js"></script>';
         }
     }
 

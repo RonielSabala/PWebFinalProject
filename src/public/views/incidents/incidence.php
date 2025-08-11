@@ -92,7 +92,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                     <div class="comment-form-body">
                         <textarea name="comment_text" class="form-control" placeholder="Añade un comentario..." required></textarea>
                         <div class="comment-form-actions">
-                            <button type="submit" class="btn btn-primary btn-sm">Comentar</button>
+                            <button type="submit" class="btn btn-primary">Comentar</button>
                         </div>
                     </div>
                 </div>
