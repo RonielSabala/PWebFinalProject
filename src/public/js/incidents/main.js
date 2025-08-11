@@ -23,7 +23,7 @@ function initFilters() {
 
 function init_toggle_button() {
   const toggle = document.getElementById("beautifulToggle");
-  const label = document.getElementById("beautifulToggleLabel");
+  const label = document.getElementById("toggleLabel");
   const stateBadge = document.getElementById("beautifulToggleState");
 
   if (!toggle) return;

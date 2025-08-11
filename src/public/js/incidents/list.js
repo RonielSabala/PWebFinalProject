@@ -13,7 +13,7 @@ function renderIncidents() {
   const to = $("#toFilter").val();
 
   let visibleCount = 0;
-  $(".incident-row").each(function () {
+  $(".incidence-row").each(function () {
     const $incidence = $(this);
     const Prov = $incidence.data("province");
     const Title = $incidence.data("title").toLowerCase();

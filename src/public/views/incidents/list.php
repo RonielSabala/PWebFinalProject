@@ -21,7 +21,7 @@
     </thead>
     <tbody id="incidents-tbody">
         <?php foreach ($incidents as $incidence): ?>
-            <tr class="incident-row"
+            <tr class="incidence-row"
                 data-id="<?= $incidence['id'] ?>"
                 data-title="<?= strtolower($incidence['title']) ?>"
                 data-province="<?= $incidence['province_id'] ?>"

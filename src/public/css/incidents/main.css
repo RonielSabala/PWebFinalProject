@@ -106,13 +106,13 @@
   transform: translateX(26px);
 }
 
-#beautifulToggleLabel {
+#toggleLabel {
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   user-select: none;
-  color: #1f2937;
+  color: #164d7a;
   margin-bottom: 0;
 }
 
@@ -126,7 +126,7 @@
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
 }
 
-#beautifulToggleLabel.off .badge-state {
+#toggleLabel.off .badge-state {
   background: #fff0f0;
   color: #bf1e2e;
   box-shadow: none;
@@ -137,7 +137,7 @@
   overflow: hidden;
 }
 
-.bg-incident {
+.bg-incidence {
   background: linear-gradient(
     90deg,
     rgba(79, 70, 229, 0.12),

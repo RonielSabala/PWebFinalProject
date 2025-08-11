@@ -3,7 +3,7 @@
         <div class="modal-dialog modal-xl modal-dialog-centered modal-fullscreen-md-down">
             <div class="modal-content border-0 shadow-lg">
                 <!-- Header -->
-                <div class="modal-header p-3 align-items-start bg-incident">
+                <div class="modal-header p-3 align-items-start bg-incidence">
                     <div class="d-flex align-items-center gap-3 w-100">
                         <div class="modal-hero-avatar" aria-hidden="true">
                             <!-- icono opcional -->

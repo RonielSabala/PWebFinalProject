@@ -54,7 +54,7 @@ $(document).ready(() => {
 })();
 
 // Variables del mapa
-let mapInstance, incidentLayer;
+let mapInstance, incidenceLayer;
 const defaultLat = 18.7357,
   defaultLng = -70.1627,
   defaultZoom = 8;
@@ -99,7 +99,7 @@ function initMap() {
     maxZoom: 19,
     attribution: "&copy; OpenStreetMap",
   }).addTo(mapInstance);
-  incidentLayer = L.layerGroup().addTo(mapInstance);
+  incidenceLayer = L.layerGroup().addTo(mapInstance);
   mapInstance.on("click", onMapClick);
 }
 
@@ -167,7 +167,7 @@ function onMapClick(e) {
 }
 
 function renderIncidents() {
-  incidentLayer.clearLayers();
+  incidenceLayer.clearLayers();
   const prov = $("#provinceFilter").val();
   const title = $("#titleFilter").val().toLowerCase();
   const from = $("#fromFilter").val();
@@ -194,7 +194,7 @@ function renderIncidents() {
     clusters[m.province_id].addLayer(marker);
   });
 
-  Object.values(clusters).forEach((c) => incidentLayer.addLayer(c));
+  Object.values(clusters).forEach((c) => incidenceLayer.addLayer(c));
 }
 
 function addMarkerToCluster(m, clusters) {

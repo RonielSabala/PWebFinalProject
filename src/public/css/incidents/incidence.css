@@ -1,4 +1,4 @@
-.container-incident {
+.container-incidence {
   max-width: 900px;
   margin: 0 auto;
 }
@@ -11,7 +11,7 @@
   overflow: hidden;
 }
 
-.incident-header {
+.incidence-header {
   background: linear-gradient(
     90deg,
     rgba(99, 102, 241, 0.12),
@@ -23,15 +23,16 @@
   gap: 0.4rem;
 }
 
-.incident-title {
+#incidence-title {
   margin: 0;
   color: #0f172a;
-  font-size: 1.5rem;
+  font-size: 2.4rem;
   font-weight: 700;
   line-height: 1.05;
 }
 
-.incident-meta {
+.incidence-meta {
+  margin-top: 0.5rem;
   color: #475569;
   font-size: 0.95rem;
 }
@@ -138,7 +139,7 @@
 }
 
 @media (max-width: 640px) {
-  .incident-title {
+  #incidence-title {
     font-size: 1.25rem;
   }
 

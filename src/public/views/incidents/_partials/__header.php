@@ -25,7 +25,7 @@
         <div class="d-flex align-items-center ms-3">
             <div class="form-check form-switch custom-switch align-items-center">
                 <input class="form-check-input" type="checkbox" id="beautifulToggle" checked aria-checked="true" />
-                <label class="form-check-label ms-2" for="beautifulToggle" id="beautifulToggleLabel">
+                <label class="form-check-label ms-2" for="beautifulToggle" id="toggleLabel">
                     Últimas 24h
                     <span id="beautifulToggleState" aria-hidden="true" class="badge-state">ON</span>
                 </label>

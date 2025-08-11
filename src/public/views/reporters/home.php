@@ -23,19 +23,19 @@ use App\Utils\GeneralUtils;
     <tbody>
         <?php
         $i = 1;
-        foreach ($incidents as $incident) {
+        foreach ($incidents as $incidence) {
         ?>
             <tr>
                 <td><?= $i++ ?></td>
-                <td><?= htmlspecialchars($incident['title']) ?></td>
-                <td><?= htmlspecialchars($incident['incidence_description']) ?></td>
-                <td><?= htmlspecialchars($incident['creation_date']) ?></td>
+                <td><?= htmlspecialchars($incidence['title']) ?></td>
+                <td><?= htmlspecialchars($incidence['incidence_description']) ?></td>
+                <td><?= htmlspecialchars($incidence['creation_date']) ?></td>
                 <td>
-                    <span class="status-badge <?= ((int)$incident['is_approved'] === 1) ? 'approved' : 'not-approved' ?>">
-                        <?= ((int)$incident['is_approved'] === 1) ? 'Aprobada' : 'No aprobada' ?>
+                    <span class="status-badge <?= ((int)$incidence['is_approved'] === 1) ? 'approved' : 'not-approved' ?>">
+                        <?= ((int)$incidence['is_approved'] === 1) ? 'Aprobada' : 'No aprobada' ?>
                     </span>
                 </td>
-                <td><?= htmlspecialchars($incident['comments']) ?></td>
+                <td><?= htmlspecialchars($incidence['comments']) ?></td>
             </tr>
         <?php
         }

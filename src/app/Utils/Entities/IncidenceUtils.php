@@ -78,14 +78,14 @@ class IncidenceUtils extends GenericEntityUtils
     public static function getAllApproved(): array
     {
         $incidents = self::fetchAllSql(self::$getAllApprovedSql);
-        return array_map(function ($incident) {
-            $incident['labels'] = !empty($incident['labels'])
-                ? explode(',', $incident['labels'])
+        return array_map(function ($incidence) {
+            $incidence['labels'] = !empty($incidence['labels'])
+                ? explode(',', $incidence['labels'])
                 : [];
-            $incident['label_ids'] = !empty($incident['label_ids'])
-                ? explode(',', $incident['label_ids'])
+            $incidence['label_ids'] = !empty($incidence['label_ids'])
+                ? explode(',', $incidence['label_ids'])
                 : [];
-            return $incident;
+            return $incidence;
         }, $incidents);
     }
 
