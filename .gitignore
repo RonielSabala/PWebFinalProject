@@ -1,2 +1,5 @@
 src/vendor
 .env
+src/config/db.php
+composer.lock
+composer.json
