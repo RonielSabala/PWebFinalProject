@@ -5,6 +5,7 @@
         <tr>
             <th>Título</th>
             <th>Descripción</th>
+            <th>Tipo</th>
             <th>Fecha de Publicación</th>
             <th class="text-center">Acciones</th>
         </tr>
@@ -20,6 +21,7 @@
                 data-lng="<?= $incidence['longitude'] ?>">
                 <td class="incidence-title"><?= $incidence['title'] ?></td>
                 <td class="incidence-desc"><?= $incidence['incidence_description'] ?></td>
+                <td class="incidence-type"><?= implode(', ', $incidence['labels']) ?></td>
                 <td class="incidence-date"><?= (new DateTime($incidence['creation_date']))->format('d/m/Y H:i') ?></td>
                 <td>
                     <div class="d-flex justify-content-end gap-2 align-items-center">
