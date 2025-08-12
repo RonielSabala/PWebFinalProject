@@ -62,6 +62,12 @@ const ROUTES = [
     'super/admin/labels/create.php' => ['page' => 'labels', 'controller' => \App\Controllers\Super\Admin\LabelController::class],
     'super/admin/labels/edit.php'   => ['page' => 'labels', 'controller' => \App\Controllers\Super\Admin\LabelController::class],
     'super/admin/labels/delete.php' => ['page' => 'labels', 'controller' => \App\Controllers\Super\Admin\LabelController::class],
+
+    // Validar
+    'super/validator/validateIncidence.php' => ['page' => 'validateIncidence', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
+    'super/validator/approve.php'     => ['page' => 'approve', 'controller' => \App\Controllers\Super\Validator\UserValidatorController::class],
+    'super/validator/reject.php'      => ['page' => 'reject', 'controller' => \App\Controllers\Super\Validator\UserValidatorController::class],
+
 ];
 
 // Crear pdo
