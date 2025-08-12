@@ -11,7 +11,7 @@
             <form id="correctionForm" method="post">
                 <input type="hidden" name="incidence_id" value="<?= $incidence['id'] ?>">
 
-                <!-- Informacion Basica -->
+                <!-- Información Básica -->
                 <div class="mb-4">
                     <h5 class="text-primary mb-3">
                         <i class="bi bi-info-circle-fill me-2"></i>Información Básica
@@ -24,7 +24,7 @@
                             value="<?= htmlspecialchars($incidence['title']) ?>">
                     </div>
 
-                    <!-- Descripcion -->
+                    <!-- Descripción -->
                     <div class="mb-3">
                         <label for="incidence_description" class="form-label">Descripción</label>
                         <textarea id="incidence_description" class="form-control" name="incidence_description"
@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <!-- Fecha y Ubicacion -->
+                <!-- Fecha y ubicación -->
                 <div class="mb-4">
                     <h5 class="text-primary mb-3">
                         <i class="bi bi-geo-alt-fill me-2"></i>Ubicación y Fecha
@@ -83,7 +83,7 @@
                     </div>
                 </div>
 
-                <!-- Ubicacion Administrativa -->
+                <!-- Ubicación Administrativa -->
                 <div class="mb-4">
                     <h5 class="text-primary mb-3">
                         <i class="bi bi-building me-2"></i>Ubicación Administrativa
@@ -127,7 +127,7 @@
                         </div>
                     </div>
 
-                    <!-- Clasificacion -->
+                    <!-- Clasificación -->
                     <div class="mb-4 mt-3">
                         <h5 class="text-primary mb-3">
                             <i class="bi bi-tags-fill me-2"></i>Clasificación
@@ -168,12 +168,14 @@
 
                     <!-- Botones de Acción -->
                     <div class="d-flex justify-content-between mt-4">
-                        <button type="button" class="btn btn-primary rounded-pill px-4 py-2 fw-medium" onclick="history.back()">
-                            <i class="bi bi-arrow-left-circle-fill me-2"></i> Cancelar
-                        </button>
-
+                        <!-- Botón guardar -->
                         <button type="submit" class="btn btn-success rounded-pill px-4 py-2 fw-medium">
                             <i class="bi bi-send-fill me-2"></i> Enviar Sugerencia
+                        </button>
+
+                        <!-- Botón cancelar -->
+                        <button type="button" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-medium" onclick="history.back()">
+                            <i class="bi bi-arrow-left-circle-fill me-2"></i> Cancelar
                         </button>
                     </div>
             </form>

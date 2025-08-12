@@ -10,7 +10,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#incidenceform").on("submit", function (e) {
+  $("#incidenceForm").on("submit", function (e) {
     var value = $("#coordinates").val().trim();
 
     if (!regex.test(value)) {

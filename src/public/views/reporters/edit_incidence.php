@@ -4,7 +4,7 @@
             <h3 class="mb-0"><i class="bi bi-exclamation-triangle-fill me-2"></i> Reportar Nueva Incidencia</h3>
         </div>
         <div class="card-body px-4 py-4">
-            <form id="incidenceform" method="post">
+            <form id="incidenceForm" method="post">
                 <!-- Información Básica -->
                 <div class="mb-4">
                     <h5 class="text-primary mb-3"><i class="bi bi-info-circle-fill me-2"></i>Información Básica</h5>

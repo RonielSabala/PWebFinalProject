@@ -3,15 +3,16 @@
 namespace App\Controllers\Incidents;
 
 use App\Core\Template;
-use App\Utils\Entities\CorrectionUtils;
+use App\Utils\GeneralUtils;
 use App\Utils\Entities\LabelUtils;
 use App\Utils\Entities\ProvinceUtils;
 use App\Utils\Entities\IncidenceUtils;
-use App\Utils\GeneralUtils;
+use App\Utils\Entities\CorrectionUtils;
 use App\Utils\Entities\MunicipalityUtils;
 use App\Utils\Entities\NeighborhoodUtils;
 
-class CorrectionsController
+
+class CorrectionController
 {
     public function handle(Template $template)
     {
@@ -26,8 +27,8 @@ class CorrectionsController
                 $data = MunicipalityUtils::getAllByProvinceId($provinceId);
             }
 
-            $municipalityId = $_GET['municipality_id'] ?? '';
             // Obtener los barrios del municipio seleccionado
+            $municipalityId = $_GET['municipality_id'] ?? '';
             if (!empty($municipalityId)) {
                 $data = NeighborhoodUtils::getAllByMunicipalityId($municipalityId);
             }
@@ -36,33 +37,21 @@ class CorrectionsController
             exit;
         }
 
-        if (!isset($_GET['id'])) {
-            GeneralUtils::showAlert('No se especificó la incidencia', 'danger', '/incidents/list.php');
+        $last_uri = GeneralUtils::getNthURI(-2);
+        if (!isset($_GET['incidence_id'])) {
+            GeneralUtils::showAlert('No se especificó la incidencia', 'danger', $last_uri);
             exit;
         }
 
-        $incidenceId = $_GET['id'];
+        $incidenceId = $_GET['incidence_id'];
         $incidence = IncidenceUtils::get($incidenceId);
-        
         if (!$incidence) {
-            GeneralUtils::showAlert('Incidencia no encontrada', 'danger', '/incidents/list.php');
+            GeneralUtils::showAlert('Incidencia no encontrada', 'danger', $last_uri);
             exit;
         }
 
-        // Llenar el formulario 
-        $occurrenceDate = new \DateTime($incidence['occurrence_date']);
         $coordinates = $incidence['latitude'] . ', ' . $incidence['longitude'];
 
-        $template->apply([
-            'incidence' => $incidence,
-            'provinces' => ProvinceUtils::getAll(),
-            'municipalities' => MunicipalityUtils::getAll(),
-            'neighborhoods' => NeighborhoodUtils::getAll(),
-            'labels' => LabelUtils::getAll(),
-            'formattedDate' => $occurrenceDate->format('Y-m-d\TH:i'),
-            'coordinates' => $coordinates,
-        ]);
-        
         // Manejar peticiones por Post
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $incidenceId = $_POST['incidence_id'];
@@ -73,7 +62,7 @@ class CorrectionsController
             $latitude = trim($latitude);
             $longitude = trim($longitude);
 
-            // Preparar Datos de Corrección
+            // Preparar datos de corrección
             $correctionData = [
                 'title' => $_POST['title'],
                 'description' => $_POST['incidence_description'],
@@ -89,14 +78,25 @@ class CorrectionsController
                 'labels' => isset($_POST['labels']) ? json_encode($_POST['labels']) : null,
             ];
 
-            // Crear Corrección
+            // Crear corrección
             if (CorrectionUtils::create($incidenceId, $userId, $correctionData)) {
-                GeneralUtils::showAlert('Corrección creada con éxito', 'success', '/incidents/list.php');
-            } else {
-                GeneralUtils::showAlert('Error al crear la corrección', 'danger', '/incidents/list.php');
+                GeneralUtils::showAlert('Corrección creada con éxito!', 'success', $last_uri);
+                exit;
             }
+
+            GeneralUtils::showAlert('Error al crear la corrección', 'danger', showReturn: false);
         }
+
+        // Llenar el formulario 
+        $occurrenceDate = new \DateTime($incidence['occurrence_date']);
+        $template->apply([
+            'incidence' => $incidence,
+            'provinces' => ProvinceUtils::getAll(),
+            'municipalities' => MunicipalityUtils::getAll(),
+            'neighborhoods' => NeighborhoodUtils::getAll(),
+            'labels' => LabelUtils::getAll(),
+            'formattedDate' => $occurrenceDate->format('Y-m-d\TH:i'),
+            'coordinates' => $coordinates,
+        ]);
     }
 }
-
-    

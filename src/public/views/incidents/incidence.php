@@ -56,8 +56,6 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
             </div>
         </div>
 
-
-
         <!-- Contenido -->
         <div class="card-section">
             <!-- Descripción -->
@@ -77,19 +75,18 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                     </div>
                 </div>
             </div>
+
             <!-- Botón para sugerir corrección -->
             <div class="text-end">
                 <a id="btnGoToCorrectionPage"
                     class="btn btn-primary btn-sm"
-                    href="correction.php?id=<?= $incidenceId ?>">
+                    href="correction.php?incidence_id=<?= $incidenceId ?>">
                     Sugerir Corrección
                     <i class="bi bi-pencil"></i>
                 </a>
             </div>
         </div>
     </div>
-
-
 
     <!-- Comentarios -->
     <div class="mb-3">
@@ -157,7 +154,6 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                                         </form>
                                 </div>
                             </div>
-
                             <div class="comment-text"><?= $ctext ?></div>
                         </div>
                     </div>
