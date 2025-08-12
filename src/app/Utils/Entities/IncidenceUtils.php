@@ -112,4 +112,32 @@ class IncidenceUtils extends GenericEntityUtils
             self::executeSql(self::$createLabelRelationSql, [$incidenceId, $labelId]);
         }
     }
+
+    // Para vista de validador
+    public static function getAllPending(): array
+    {
+        $sql = "SELECT 
+                    i.id,
+                    i.title,
+                    i.incidence_description,
+                    i.creation_date,
+                    i.occurrence_date,
+                    p.name AS province,
+                    m.name AS municipality,
+                    n.name AS neighborhood
+                FROM incidents i
+                LEFT JOIN provinces p ON i.province_id = p.id
+                LEFT JOIN municipalities m ON i.municipality_id = m.id
+                LEFT JOIN neighborhoods n ON i.neighborhood_id = n.id
+                WHERE i.is_approved = 0
+                ORDER BY i.creation_date DESC";
+        return self::fetchAllSql($sql);
+    }
+
+    public static function setApproval($id, $approved): bool
+    {
+        $sql = "UPDATE incidents SET is_approved = ? WHERE id = ?";
+        return self::executeSql($sql, [$approved ? 1 : 0, $id]);
+    }
+
 }
