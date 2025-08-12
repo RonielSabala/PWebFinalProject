@@ -3,12 +3,18 @@
 namespace App\Controllers\Super\Validator;
 
 use App\Core\Template;
-
+use App\Utils\Entities\IncidenceUtils;
 
 class HomeController
 {
     public function handle(Template $template)
     {
-        $template->apply();
+        $pendingIncidents = IncidenceUtils::getAllPending();
+        $template->apply([
+            'incidents' => $pendingIncidents,
+            'pending_incidents_count' => count($pendingIncidents),
+            'css' => '/css/super/validator/home-validator.css'
+            
+        ]);
     }
 }

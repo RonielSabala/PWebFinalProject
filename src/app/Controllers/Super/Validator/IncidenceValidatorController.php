@@ -9,22 +9,28 @@ use App\Utils\Entities\IncidenceUtils;
 class IncidenceValidatorController
 {
     public function handle(Template $template)
-    {
-        $route = $template::$viewPath;
+{
+    $route = $template::$viewPath;
 
-        if (str_contains($route, 'approve')) {
-            $data = self::handle_approve();
-        } elseif (str_contains($route, 'reject')) {
-            $data = self::handle_reject();
-        } else {
-            $data = ['incidents' => IncidenceUtils::getAllPending()];
-        }
+    if (str_contains($route, 'approve')) {
+        $this->handle_approve();
+        return;
+    }
 
-        if ($data === null) {
-            exit;
-        }
+    if (str_contains($route, 'reject')) {
+        $this->handle_reject();
+        return;
+    }
 
+    // Siempre cargar incidencias pendientes
+    $pendingIncidents = IncidenceUtils::getAllPending();
+    $data = [
+        'incidents' => $pendingIncidents,
+        'pending_incidents_count' => count($pendingIncidents)
+    ];
         $template->apply($data);
+        
+        
     }
 
     private function go_home_if(bool $success)

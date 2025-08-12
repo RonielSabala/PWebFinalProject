@@ -122,14 +122,14 @@ class IncidenceUtils extends GenericEntityUtils
                     i.incidence_description,
                     i.creation_date,
                     i.occurrence_date,
-                    p.name AS province,
-                    m.name AS municipality,
-                    n.name AS neighborhood
+                    p.province_name AS province,
+                    m.municipality_name AS municipality,
+                    n.neighborhood_name AS neighborhood
                 FROM incidents i
                 LEFT JOIN provinces p ON i.province_id = p.id
                 LEFT JOIN municipalities m ON i.municipality_id = m.id
                 LEFT JOIN neighborhoods n ON i.neighborhood_id = n.id
-                WHERE i.is_approved = 0
+                WHERE i.is_approved = 0 OR i.is_approved IS NULL
                 ORDER BY i.creation_date DESC";
         return self::fetchAllSql($sql);
     }

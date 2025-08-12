@@ -65,8 +65,8 @@ const ROUTES = [
 
     // Validar
     'super/validator/validateIncidence.php' => ['page' => 'validateIncidence', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
-    'super/validator/approve.php'     => ['page' => 'approve', 'controller' => \App\Controllers\Super\Validator\UserValidatorController::class],
-    'super/validator/reject.php'      => ['page' => 'reject', 'controller' => \App\Controllers\Super\Validator\UserValidatorController::class],
+    'super/validator/approve.php'     => ['page' => 'approve', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
+    'super/validator/reject.php'      => ['page' => 'reject', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
 
 ];
 
