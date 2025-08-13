@@ -1,3 +1,33 @@
+:root {
+  --accent-1: #16a34a;
+  --accent-2: #0ea5e9;
+}
+
+.icon-box {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.04);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+  flex-shrink: 0;
+}
+
+.hero h2 {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.muted-sm {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
 .table thead {
   background-color: rgba(22, 163, 74, 0.1);
 }
