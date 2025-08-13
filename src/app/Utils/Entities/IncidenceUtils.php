@@ -42,6 +42,37 @@ class IncidenceUtils extends GenericEntityUtils
         i.id
     ";
 
+    private static $getAllPendingSql = "SELECT 
+        i.id,
+        i.title,
+        i.incidence_description,
+        i.creation_date,
+        i.occurrence_date,
+        p.province_name,
+        m.municipality_name,
+        n.neighborhood_name
+    FROM
+        incidents i
+    LEFT JOIN
+        provinces p
+    ON
+        i.province_id = p.id
+    LEFT JOIN
+        municipalities m
+    ON
+        i.municipality_id = m.id
+    LEFT JOIN
+        neighborhoods n
+    ON
+        i.neighborhood_id = n.id
+    WHERE
+        i.is_approved = 0
+        OR i.is_approved IS NULL
+    ORDER BY
+        i.creation_date
+    DESC
+    ";
+
     private static $getAllByReporterIdSql = "SELECT
         i.id,
         i.title,
@@ -83,7 +114,10 @@ class IncidenceUtils extends GenericEntityUtils
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ";
 
+    private static $deleteSql = "DELETE FROM incidents WHERE id = ?";
+
     private static $createLabelRelationSql = "INSERT INTO incidence_labels (incidence_id, label_id) VALUES (?, ?)";
+    private static $setApprovalSql = "UPDATE incidents SET is_approved = 1 WHERE id = ?";
 
     public static function get($id)
     {
@@ -102,6 +136,11 @@ class IncidenceUtils extends GenericEntityUtils
                 : [];
             return $incidence;
         }, $incidents);
+    }
+
+    public static function getAllPending(): array
+    {
+        return self::fetchAllSql(self::$getAllPendingSql);
     }
 
     public static function getAllByReporterId($reporterId): array
@@ -126,5 +165,15 @@ class IncidenceUtils extends GenericEntityUtils
         foreach ($labels as $labelId) {
             self::executeSql(self::$createLabelRelationSql, [$incidenceId, $labelId]);
         }
+    }
+
+    public static function delete($id): bool
+    {
+        return self::executeSql(self::$deleteSql, [$id]);
+    }
+
+    public static function setApproval($id): bool
+    {
+        return self::executeSql(self::$setApprovalSql, [$id]);
     }
 }
