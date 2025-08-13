@@ -10,7 +10,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#incidenceForm").on("submit", function (e) {
+  $("#correctionForm").on("submit", function (e) {
     var value = $("#coordinates").val().trim();
 
     if (!regex.test(value)) {
@@ -20,6 +20,7 @@ $(document).ready(function () {
   });
 
   // Oculta los selects y labels al inicio excepto provincia
+
 
   $("#province").change(function () {
     var provinceId = $(this).val();
@@ -31,7 +32,7 @@ $(document).ready(function () {
 
     if (!provinceId) return;
 
-    $.getJSON("edit_incidence.php", { action: "GET", province_id: provinceId })
+    $.getJSON("correction.php", { action: "GET", province_id: provinceId })
       .done(function (municipalities) {
         if (municipalities.length > 0) {
           var html = '<option value="">Seleccione</option>';
@@ -64,7 +65,7 @@ $(document).ready(function () {
 
     if (!municipalityId) return;
 
-    $.getJSON("edit_incidence.php", {
+    $.getJSON("correction.php", {
       action: "GET",
       municipality_id: municipalityId,
     })

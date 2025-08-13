@@ -25,9 +25,10 @@ const ROUTES = [
     'auth/MicrosoftCallbackController.php' => ['controller' => \App\Controllers\Auth\MicrosoftCallbackController::class],
 
     // Incidence views
-    'incidents/map.php'       => ['page' => 'incidents', 'controller' => \App\Controllers\Incidents\IncidentsController::class],
-    'incidents/list.php'      => ['page' => 'incidents', 'controller' => \App\Controllers\Incidents\IncidentsController::class],
-    'incidents/incidence.php' => ['page' => 'incidence', 'controller' => \App\Controllers\Incidents\IncidenceController::class],
+    'incidents/map.php'        => ['page' => 'incidents', 'controller' => \App\Controllers\Incidents\IncidentsController::class],
+    'incidents/list.php'       => ['page' => 'incidents', 'controller' => \App\Controllers\Incidents\IncidentsController::class],
+    'incidents/incidence.php'  => ['page' => 'incidence', 'controller' => \App\Controllers\Incidents\IncidenceController::class],
+    'incidents/correction.php' => ['page' => 'incidents', 'controller' => \App\Controllers\Incidents\CorrectionController::class],
 
     // Reporters views
     'reporters/home.php'           => ['page' => 'reports', 'controller' => \App\Controllers\Reporters\HomeController::class],
