@@ -27,6 +27,37 @@ class IncidenceUtils extends GenericEntityUtils
         i.id
     ";
 
+    private static $getAllPendingSql = "SELECT 
+        i.id,
+        i.title,
+        i.incidence_description,
+        i.creation_date,
+        i.occurrence_date,
+        p.province_name,
+        m.municipality_name,
+        n.neighborhood_name
+    FROM
+        incidents i
+    LEFT JOIN
+        provinces p
+    ON
+        i.province_id = p.id
+    LEFT JOIN
+        municipalities m
+    ON
+        i.municipality_id = m.id
+    LEFT JOIN
+        neighborhoods n
+    ON
+        i.neighborhood_id = n.id
+    WHERE
+        i.is_approved = 0
+        OR i.is_approved IS NULL
+    ORDER BY
+        i.creation_date
+    DESC
+    ";
+
     private static $getAllByReporterIdSql = "SELECT
         i.id,
         i.title,
@@ -69,6 +100,7 @@ class IncidenceUtils extends GenericEntityUtils
     ";
 
     private static $createLabelRelationSql = "INSERT INTO incidence_labels (incidence_id, label_id) VALUES (?, ?)";
+    private static $setApprovalSql = "UPDATE incidents SET is_approved = ? WHERE id = ?";
 
     public static function get($id)
     {
@@ -113,31 +145,14 @@ class IncidenceUtils extends GenericEntityUtils
         }
     }
 
-    // Para vista de validador
+    // Para vista del validador
     public static function getAllPending(): array
     {
-        $sql = "SELECT 
-                    i.id,
-                    i.title,
-                    i.incidence_description,
-                    i.creation_date,
-                    i.occurrence_date,
-                    p.province_name AS province,
-                    m.municipality_name AS municipality,
-                    n.neighborhood_name AS neighborhood
-                FROM incidents i
-                LEFT JOIN provinces p ON i.province_id = p.id
-                LEFT JOIN municipalities m ON i.municipality_id = m.id
-                LEFT JOIN neighborhoods n ON i.neighborhood_id = n.id
-                WHERE i.is_approved = 0 OR i.is_approved IS NULL
-                ORDER BY i.creation_date DESC";
-        return self::fetchAllSql($sql);
+        return self::fetchAllSql(self::$getAllPendingSql);
     }
 
     public static function setApproval($id, $approved): bool
     {
-        $sql = "UPDATE incidents SET is_approved = ? WHERE id = ?";
-        return self::executeSql($sql, [$approved ? 1 : 0, $id]);
+        return self::executeSql(self::$setApprovalSql, [$approved ? 1 : 0, $id]);
     }
-
 }

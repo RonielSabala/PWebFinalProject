@@ -11,16 +11,18 @@
                 <!-- Login manual -->
                 <form method="post">
                     <div class="mb-3">
-                        <label class="form-label">Correo electrónico</label>
-                        <input type="email" name="email" class="form-control" placeholder="tucorreo@ejemplo.com" required>
+                        <label class="form-label" for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="tucorreo@ejemplo.com" required>
                     </div>
 
-                    <div class="mb-3 position-relative">
-                        <label class="form-label">Contraseña</label>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="********" required>
-                        <button type="button" id="togglePassword" class="btn btn-sm btn-light position-absolute top-50 end-0 translate-middle-y me-2 border-0">
-                            👁️
-                        </button>
+                    <div class="mb-3">
+                        <label class="form-label" for="password">Contraseña</label>
+                        <div class="passwordField">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="********" required>
+                            <button type="button" id="togglePassword" class="btn btn-sm btn-light">
+                                👁️
+                            </button>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100 py-2">Ingresar</button>

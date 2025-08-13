@@ -37,7 +37,8 @@ use App\Utils\GeneralUtils;
     </thead>
     <tbody>
         <?php if (!empty($incidents)): ?>
-            <?php $i = 1; foreach ($incidents as $incidence): ?>
+            <?php $i = 1;
+            foreach ($incidents as $incidence): ?>
                 <tr>
                     <td><?= $i++ ?></td>
                     <td><?= htmlspecialchars($incidence['title']) ?></td>
@@ -51,7 +52,7 @@ use App\Utils\GeneralUtils;
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
-                
+
                 <td colspan="5" class="text-center">No hay incidencias pendientes</td>
             </tr>
         <?php endif; ?>

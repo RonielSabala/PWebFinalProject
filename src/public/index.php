@@ -13,6 +13,7 @@ const ROUTES = [
     ''          => DEFAULT_ROUTE,
     'home.php'  => DEFAULT_ROUTE,
     'index.php' => DEFAULT_ROUTE,
+
     // Auth routes
     'auth/login.php'                       => ['controller' => \App\Controllers\Auth\LoginController::class],
     'auth/logout.php'                      => ['controller' => \App\Controllers\Auth\LogoutController::class],
@@ -22,13 +23,15 @@ const ROUTES = [
     'auth/GoogleController.php'            => ['controller' => \App\Controllers\Auth\GoogleController::class],
     'auth/MicrosoftController.php'         => ['controller' => \App\Controllers\Auth\MicrosoftController::class],
     'auth/MicrosoftCallbackController.php' => ['controller' => \App\Controllers\Auth\MicrosoftCallbackController::class],
+
     // Incidence views
     'incidents/map.php'       => ['page' => 'incidents', 'controller' => \App\Controllers\Incidents\IncidentsController::class],
     'incidents/list.php'      => ['page' => 'incidents', 'controller' => \App\Controllers\Incidents\IncidentsController::class],
     'incidents/incidence.php' => ['page' => 'incidence', 'controller' => \App\Controllers\Incidents\IncidenceController::class],
+
     // Reporters views
-    'reporters/home.php'           => ['controller' => \App\Controllers\Reporters\HomeController::class],
-    'reporters/edit_incidence.php' => ['controller' => \App\Controllers\Reporters\EditIncidenceController::class],
+    'reporters/home.php'           => ['page' => 'reports', 'controller' => \App\Controllers\Reporters\HomeController::class],
+    'reporters/edit_incidence.php' => ['page' => 'reports', 'controller' => \App\Controllers\Reporters\EditIncidenceController::class],
 
     // Super routes
     'super/admin/home.php'     => ['page' => 'admin',     'controller' => \App\Controllers\Super\Admin\HomeController::class],
@@ -63,11 +66,11 @@ const ROUTES = [
     'super/admin/labels/edit.php'   => ['page' => 'labels', 'controller' => \App\Controllers\Super\Admin\LabelController::class],
     'super/admin/labels/delete.php' => ['page' => 'labels', 'controller' => \App\Controllers\Super\Admin\LabelController::class],
 
-    // Validar
-    'super/validator/validateIncidence.php' => ['page' => 'validateIncidence', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
-    'super/validator/approve.php'     => ['page' => 'approve', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
-    'super/validator/reject.php'      => ['page' => 'reject', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
+    // super/validator/...
 
+    'super/validator/validateIncidence.php' => ['page' => 'validator', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
+    'super/validator/approve.php'           => ['page' => 'validator', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
+    'super/validator/reject.php'            => ['page' => 'validator', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
 ];
 
 // Crear pdo
