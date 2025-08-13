@@ -1,6 +1,6 @@
 :root {
-  --accent-1: #16a34a; /* Verde principal para el validador */
-  --accent-2: #0ea5e9; /* Azul complementario */
+  --accent-1: #16a34a;
+  --accent-2: #0ea5e9;
 }
 
 .hero {
@@ -12,14 +12,6 @@
   border-radius: 12px;
   padding: 1.35rem;
   box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
-}
-
-.table thead {
-  background-color: rgba(22, 163, 74, 0.1);
-}
-
-.table tbody tr:hover {
-  background-color: rgba(22, 163, 74, 0.05);
 }
 
 .btn-success {

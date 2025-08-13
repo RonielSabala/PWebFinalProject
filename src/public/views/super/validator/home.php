@@ -24,42 +24,6 @@ use App\Utils\GeneralUtils;
 
 <hr class="my-4">
 
-<h4>Incidencias pendientes</h4>
-<table class="table">
-    <thead>
-        <tr>
-            <th>No.</th>
-            <th>Título</th>
-            <th>Descripción</th>
-            <th>Fecha registrada</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php if (!empty($incidents)): ?>
-            <?php $i = 1;
-            foreach ($incidents as $incidence): ?>
-                <tr>
-                    <td><?= $i++ ?></td>
-                    <td><?= htmlspecialchars($incidence['title']) ?></td>
-                    <td><?= htmlspecialchars($incidence['incidence_description']) ?></td>
-                    <td><?= htmlspecialchars($incidence['creation_date']) ?></td>
-                    <td>
-                        <a href="/super/validator/approve.php?id=<?= $incidence['id'] ?>" class="btn btn-success btn-sm">Aprobar</a>
-                        <a href="/super/validator/reject.php?id=<?= $incidence['id'] ?>" class="btn btn-danger btn-sm">Rechazar</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <tr>
-
-                <td colspan="5" class="text-center">No hay incidencias pendientes</td>
-            </tr>
-        <?php endif; ?>
-    </tbody>
-</table>
-
-
 <!-- Shortcuts -->
 <div class="card p-3">
     <div class="d-flex align-items-center mb-3">
@@ -69,11 +33,11 @@ use App\Utils\GeneralUtils;
 
     <div class="row g-3">
         <div class="col-6">
-            <a href="/super/validator/validateIncidence.php" class="d-block p-3 bg-white rounded shortcut text-decoration-none">
+            <a href="/super/validator/validate_incidence.php" class="d-block p-3 bg-white rounded shortcut text-decoration-none">
                 <div class="d-flex align-items-center">
                     <i class="bi bi-list-check me-3 fs-3" style="color:var(--accent-1)"></i>
                     <div>
-                        <div class="fw-semibold">Validar incidencias</div>
+                        <div class="fw-semibold">Validar incidencias (<?= $pending_incidents_count ?> pendientes)</div>
                         <div class="muted-sm">Aprobar o rechazar reportes</div>
                     </div>
                 </div>

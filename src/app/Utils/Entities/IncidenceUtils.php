@@ -99,8 +99,10 @@ class IncidenceUtils extends GenericEntityUtils
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ";
 
+    private static $deleteSql = "DELETE FROM incidents WHERE id = ?";
+
     private static $createLabelRelationSql = "INSERT INTO incidence_labels (incidence_id, label_id) VALUES (?, ?)";
-    private static $setApprovalSql = "UPDATE incidents SET is_approved = ? WHERE id = ?";
+    private static $setApprovalSql = "UPDATE incidents SET is_approved = 1 WHERE id = ?";
 
     public static function get($id)
     {
@@ -119,6 +121,11 @@ class IncidenceUtils extends GenericEntityUtils
                 : [];
             return $incidence;
         }, $incidents);
+    }
+
+    public static function getAllPending(): array
+    {
+        return self::fetchAllSql(self::$getAllPendingSql);
     }
 
     public static function getAllByReporterId($reporterId): array
@@ -145,14 +152,13 @@ class IncidenceUtils extends GenericEntityUtils
         }
     }
 
-    // Para vista del validador
-    public static function getAllPending(): array
+    public static function delete($id): bool
     {
-        return self::fetchAllSql(self::$getAllPendingSql);
+        return self::executeSql(self::$deleteSql, [$id]);
     }
 
-    public static function setApproval($id, $approved): bool
+    public static function setApproval($id): bool
     {
-        return self::executeSql(self::$setApprovalSql, [$approved ? 1 : 0, $id]);
+        return self::executeSql(self::$setApprovalSql, [$id]);
     }
 }

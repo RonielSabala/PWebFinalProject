@@ -68,9 +68,9 @@ const ROUTES = [
 
     // super/validator/...
 
-    'super/validator/validateIncidence.php' => ['page' => 'validator', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
-    'super/validator/approve.php'           => ['page' => 'validator', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
-    'super/validator/reject.php'            => ['page' => 'validator', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
+    'super/validator/validate_incidence.php' => ['page' => 'validate_incidence', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
+    'super/validator/approve.php'           => ['page' => 'validate_incidence', 'controller' => \App\Controllers\Super\Validator\ApproveController::class],
+    'super/validator/reject.php'            => ['page' => 'validate_incidence', 'controller' => \App\Controllers\Super\Validator\RejectController::class],
 ];
 
 // Crear pdo

@@ -10,10 +10,8 @@ class HomeController
 {
     public function handle(Template $template)
     {
-        $pendingIncidents = IncidenceUtils::getAllPending();
         $template->apply([
-            'incidents' => $pendingIncidents,
-            'pending_incidents_count' => count($pendingIncidents)
+            'pending_incidents_count' => count(IncidenceUtils::getAllPending())
         ]);
     }
 }

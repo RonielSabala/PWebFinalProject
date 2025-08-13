@@ -1,0 +1,79 @@
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.entity-card {
+  border-radius: 1rem;
+  max-width: 950px;
+}
+
+.entity-card .card-header {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.entity-card .card-body {
+  padding: 2.5rem;
+}
+
+.delete-warning {
+  background-color: #ffe5e5;
+  border: 1px solid #ffcccc;
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.delete-warning h5 {
+  color: #b30000;
+  margin: 0;
+  font-weight: 600;
+}
+
+.action-buttons .btn {
+  min-width: 140px;
+}
+
+.fields-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .fields-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.field-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.field-value {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #000;
+  min-height: 1.5em;
+  position: relative;
+}
+
+.field-value:empty::after {
+  content: "Loading…";
+  color: #aaa;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
