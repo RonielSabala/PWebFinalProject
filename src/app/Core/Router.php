@@ -37,8 +37,8 @@ class Router
             $controller = new $uri_route['controller']();
             define('CURRENT_PAGE', $uri_route['page'] ?? '');
         } else {
-            GeneralUtils::showAlert("Página no encontrada...", "danger");
-            header("HTTP/1.0 404 Not Found");
+            GeneralUtils::showAlert('Página no encontrada...');
+            header('HTTP/1.0 404 Not Found');
             exit;
         }
 

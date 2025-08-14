@@ -37,16 +37,15 @@ class CorrectionController
             exit;
         }
 
-        $last_uri = GeneralUtils::getNthURI(-2);
         if (!isset($_GET['incidence_id'])) {
-            GeneralUtils::showAlert('No se especificó la incidencia', 'danger', $last_uri);
+            GeneralUtils::showAlert('No se especificó la incidencia');
             exit;
         }
 
         $incidenceId = $_GET['incidence_id'];
         $incidence = IncidenceUtils::get($incidenceId);
         if (!$incidence) {
-            GeneralUtils::showAlert('Incidencia no encontrada', 'danger', $last_uri);
+            GeneralUtils::showAlert('Incidencia no encontrada');
             exit;
         }
 
@@ -80,11 +79,11 @@ class CorrectionController
 
             // Crear corrección
             if (CorrectionUtils::create($incidenceId, $userId, $correctionData)) {
-                GeneralUtils::showAlert('Corrección creada con éxito!', 'success', $last_uri);
+                GeneralUtils::showAlert('Corrección creada con éxito!', 'success', 'incidence.php?id=' . $incidenceId);
                 exit;
             }
 
-            GeneralUtils::showAlert('Error al crear la corrección', 'danger', showReturn: false);
+            GeneralUtils::showAlert('Error al crear la corrección', showReturn: false);
         }
 
         // Llenar el formulario 

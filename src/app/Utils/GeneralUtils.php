@@ -7,10 +7,14 @@ class GeneralUtils
 {
     public static function showAlert(
         string $message,
-        string $type = 'success',
-        string $returnRoute = 'home.php',
+        string $type = 'danger',
+        string $returnRoute = '',
         bool $showReturn = true
     ) {
+        if ($showReturn && !$returnRoute) {
+            $returnRoute = GeneralUtils::getNthURI(-2);
+        }
+
         echo "
         <div class='text-center'>
             <div class='alert alert-$type'>$message</div>";

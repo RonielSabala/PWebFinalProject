@@ -57,7 +57,7 @@ class NeighborhoodController
     public function handle_edit()
     {
         if (!isset($_GET['id'])) {
-            GeneralUtils::showAlert('No se especificó el barrio.', 'danger');
+            GeneralUtils::showAlert('No se especificó el barrio.');
             exit;
         }
 
@@ -91,7 +91,7 @@ class NeighborhoodController
     public function handle_delete()
     {
         if (!isset($_GET['id'])) {
-            GeneralUtils::showAlert('No se especificó el barrio.', 'danger');
+            GeneralUtils::showAlert('No se especificó el barrio.');
             exit;
         }
 

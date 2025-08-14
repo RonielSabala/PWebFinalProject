@@ -14,7 +14,7 @@ class IncidenceController
     public function handle(Template $template)
     {
         if (!isset($_GET['id'])) {
-            GeneralUtils::showAlert('No se especificó la incidencia.', 'danger', '/home.php');
+            GeneralUtils::showAlert('No se especificó la incidencia.');
             exit;
         }
 

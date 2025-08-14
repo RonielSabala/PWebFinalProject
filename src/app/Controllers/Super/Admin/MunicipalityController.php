@@ -47,7 +47,7 @@ class MunicipalityController
             // Validar nombre
             if (MunicipalityUtils::getByName($municipality_name)) {
                 $template->apply();
-                GeneralUtils::showAlert('Ya existe un municipio con ese nombre!', 'danger', showReturn: false);
+                GeneralUtils::showAlert('Ya existe un municipio con ese nombre!', showReturn: false);
                 exit;
             }
 
@@ -62,7 +62,7 @@ class MunicipalityController
     public function handle_edit($template)
     {
         if (!isset($_GET['id'])) {
-            GeneralUtils::showAlert('No se especificó el municipio.', 'danger');
+            GeneralUtils::showAlert('No se especificó el municipio.');
             exit;
         }
 
@@ -90,7 +90,7 @@ class MunicipalityController
                     'default_province' => $province['id']
                 ]);
 
-                GeneralUtils::showAlert('Ya existe un municipio con ese nombre!', 'danger', showReturn: false);
+                GeneralUtils::showAlert('Ya existe un municipio con ese nombre!', showReturn: false);
                 exit;
             }
 
@@ -109,7 +109,7 @@ class MunicipalityController
     public function handle_delete()
     {
         if (!isset($_GET['id'])) {
-            GeneralUtils::showAlert('No se especificó el municipio.', 'danger');
+            GeneralUtils::showAlert('No se especificó el municipio.');
             exit;
         }
 

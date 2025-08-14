@@ -47,7 +47,7 @@ class ProvinceController
             // Validar nombre
             if (ProvinceUtils::getByName($province_name)) {
                 $template->apply();
-                GeneralUtils::showAlert('Ya existe una provincia con ese nombre!', 'danger', showReturn: false);
+                GeneralUtils::showAlert('Ya existe una provincia con ese nombre!', showReturn: false);
                 exit;
             }
 
@@ -61,7 +61,7 @@ class ProvinceController
     public function handle_edit($template)
     {
         if (!isset($_GET['id'])) {
-            GeneralUtils::showAlert('No se especificó la provincia.', 'danger');
+            GeneralUtils::showAlert('No se especificó la provincia.');
             exit;
         }
 
@@ -80,7 +80,7 @@ class ProvinceController
             $other_province = ProvinceUtils::getByName($province['province_name']);
             if ($other_province && $other_province['id'] != $id) {
                 $template->apply(['province' => $province]);
-                GeneralUtils::showAlert('Ya existe una provincia con ese nombre!', 'danger', showReturn: false);
+                GeneralUtils::showAlert('Ya existe una provincia con ese nombre!', showReturn: false);
                 exit;
             }
 
@@ -95,7 +95,7 @@ class ProvinceController
     public function handle_delete()
     {
         if (!isset($_GET['id'])) {
-            GeneralUtils::showAlert('No se especificó la provincia.', 'danger');
+            GeneralUtils::showAlert('No se especificó la provincia.');
             exit;
         }
 
