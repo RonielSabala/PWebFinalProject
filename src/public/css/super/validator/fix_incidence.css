@@ -1,43 +1,6 @@
 :root {
-  --btn-radius: 4px;
-  --btn-font-weight: 500;
-  --btn-transition: 0.2s;
-  --btn-shadow: none;
-
-  --go: #ffc107;
-  --go-hover: #e0a800;
-
   --accent-1: #16a34a;
   --accent-2: #0ea5e9;
-}
-
-.btn {
-  display: inline-block;
-  border-radius: var(--btn-radius);
-  font-weight: var(--btn-font-weight);
-  box-shadow: var(--btn-shadow);
-  transition: background var(--btn-transition),
-    border-color var(--btn-transition), color var(--btn-transition);
-}
-
-.btn-go {
-  border: 1px solid;
-  padding: 6px 12px;
-  margin-right: 2px;
-  background: var(--go);
-  border-color: var(--go);
-  color: #212529;
-}
-
-.btn-go:hover {
-  background: var(--go-hover);
-  border-color: var(--go-hover);
-  color: #fff;
-}
-
-.btn-outline-action.btn-go:hover {
-  border-color: var(--go);
-  color: white;
 }
 
 .icon-box {

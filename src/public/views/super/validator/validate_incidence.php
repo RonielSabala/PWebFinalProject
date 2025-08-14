@@ -39,8 +39,24 @@ use App\Utils\GeneralUtils;
                     <td><?= htmlspecialchars($incidence['incidence_description']) ?></td>
                     <td><?= htmlspecialchars($incidence['creation_date']) ?></td>
                     <td>
-                        <a href="approve.php?id=<?= $incidence['id'] ?>" class="btn btn-success btn-sm">Aprobar</a>
-                        <a href="reject.php?id=<?= $incidence['id'] ?>" class="btn btn-danger btn-sm">Rechazar</a>
+                        <a
+                            href="approve.php?id=<?= $incidence['id'] ?>"
+                            class="btn-modern btn-approve btn-sm"
+                            title="Aprobar">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                                <path d="M20 6L9 17l-5-5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Aprobar</span>
+                        </a>
+                        <a
+                            href="reject.php?id=<?= $incidence['id'] ?>"
+                            class="btn-modern btn-reject btn-sm"
+                            title="Rechazar">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                                <path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Rechazar</span>
+                        </a>
                     </td>
                 </tr>
             <?php endforeach; ?>

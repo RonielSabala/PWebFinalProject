@@ -82,14 +82,24 @@ function render_json_td(string $json_string): string
                     <td><?= $correction['username'] ?></td>
                     <td><?= render_json_td($correction['correction_values']) ?></td>
                     <td>
-                        <div class="d-flex justify-content-center">
-                            <a href="/incidents/incidence.php?id=<?= $correction['id'] ?>" class="btn btn-sm btn-outline-action btn-go" title="Abrir en pantalla completa">
-                                Ver original
-                                <i class="bi bi-box-arrow-up-right"></i>
-                            </a>
-                            <a href="approve_correction.php?id=<?= $correction['id'] ?>" class="btn btn-success btn-sm">Aprobar</a>
-                            <a href="reject_correction.php?id=<?= $correction['id'] ?>" class="btn btn-danger btn-sm">Rechazar</a>
-                        </div>
+                        <a
+                            href="#"
+                            class="btn-modern btn-approve btn-sm"
+                            title="Aprobar">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                                <path d="M20 6L9 17l-5-5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Aprobar</span>
+                        </a>
+                        <a
+                            href="#"
+                            class="btn-modern btn-reject btn-sm"
+                            title="Rechazar">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                                <path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Rechazar</span>
+                        </a>
                     </td>
                 </tr>
             <?php endforeach; ?>
