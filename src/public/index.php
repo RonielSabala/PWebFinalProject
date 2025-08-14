@@ -32,7 +32,7 @@ const ROUTES = [
 
     // Reporters views
     'reporters/home.php'           => ['page' => 'reports', 'controller' => \App\Controllers\Reporters\HomeController::class],
-    'reporters/edit_incidence.php' => ['page' => 'reports', 'controller' => \App\Controllers\Reporters\EditIncidenceController::class],
+    'reporters/report.php' => ['page' => 'reports', 'controller' => \App\Controllers\Reporters\ReportController::class],
 
     // Super routes
     'super/admin/home.php'     => ['page' => 'admin',     'controller' => \App\Controllers\Super\Admin\HomeController::class],

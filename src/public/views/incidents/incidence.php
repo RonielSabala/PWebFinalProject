@@ -76,7 +76,8 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                 </div>
             </div>
 
-            <?php if (isset($labels)): ?>
+            <!-- Etiquetas -->
+            <?php if ($labels): ?>
                 <div class="mt-1rem">
                     <div class="section-title section-title-small">Etiquetas</div>
                     <div class="info-grid">
