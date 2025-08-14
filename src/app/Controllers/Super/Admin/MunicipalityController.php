@@ -7,6 +7,7 @@ use App\Utils\GeneralUtils;
 use App\Utils\Entities\MunicipalityUtils;
 use App\Utils\Entities\ProvinceUtils;
 
+
 class MunicipalityController
 {
     public function handle(Template $template)

@@ -8,6 +8,7 @@ use App\Utils\Entities\ProvinceUtils;
 use App\Utils\Entities\MunicipalityUtils;
 use App\Utils\Entities\NeighborhoodUtils;
 
+
 class NeighborhoodController
 {
     public function handle(Template $template)

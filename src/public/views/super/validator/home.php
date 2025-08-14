@@ -1,8 +1,3 @@
-<?php
-
-use App\Utils\GeneralUtils;
-?>
-
 <!-- Header -->
 <div class="row align-items-center mb-4">
     <div class="hero d-flex gap-3 align-items-center">
@@ -10,10 +5,10 @@ use App\Utils\GeneralUtils;
             <i class="bi bi-check-circle-fill fs-3" style="color:var(--accent-1)"></i>
         </div>
         <div>
-            <h3 class="mb-0">Vista del validador</h3>
+            <h3 class="mb-0">Panel del validador</h3>
             <div class="muted-sm">
                 Bienvenido, <span class="welcome-name"><?= htmlspecialchars($_SESSION['user']['username'] ?? 'Validador') ?></span>! —
-                Panel para gestionar las incidencias pendientes.
+                Panel para gestionar las incidencias pendientes y sus correcciones.
             </div>
         </div>
         <div class="ms-auto text-end">
@@ -37,7 +32,7 @@ use App\Utils\GeneralUtils;
                 <div class="d-flex align-items-center">
                     <i class="bi bi-list-check me-3 fs-3" style="color:var(--accent-1)"></i>
                     <div>
-                        <div class="fw-semibold">Validar incidencias (<?= $pending_incidents_count ?> pendientes)</div>
+                        <div class="fw-semibold">Aprobar incidencias (<?= $pending_incidents_count ?> pendientes)</div>
                         <div class="muted-sm">Aprobar o rechazar reportes</div>
                     </div>
                 </div>
