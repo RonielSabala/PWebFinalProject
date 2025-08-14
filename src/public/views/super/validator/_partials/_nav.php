@@ -13,6 +13,10 @@ use App\Utils\GeneralUtils;
             <a class="<?= GeneralUtils::getActiveClass('validate_incidence') ?>"
                 href="/super/validator/validate_incidence.php">Aprobar incidencias</a>
         </li>
+        <li class="nav-item">
+            <a class="<?= GeneralUtils::getActiveClass('fix_incidence') ?>"
+                href="/super/validator/fix_incidence.php">Corregir incidencias</a>
+        </li>
         <?= GeneralUtils::setLogoutButton(); ?>
     </ul>
 </div>

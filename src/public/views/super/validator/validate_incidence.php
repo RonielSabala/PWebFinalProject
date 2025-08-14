@@ -39,8 +39,8 @@ use App\Utils\GeneralUtils;
                     <td><?= htmlspecialchars($incidence['incidence_description']) ?></td>
                     <td><?= htmlspecialchars($incidence['creation_date']) ?></td>
                     <td>
-                        <a href="/super/validator/approve.php?id=<?= $incidence['id'] ?>" class="btn btn-success btn-sm">Aprobar</a>
-                        <a href="/super/validator/reject.php?id=<?= $incidence['id'] ?>" class="btn btn-danger btn-sm">Rechazar</a>
+                        <a href="approve.php?id=<?= $incidence['id'] ?>" class="btn btn-success btn-sm">Aprobar</a>
+                        <a href="reject.php?id=<?= $incidence['id'] ?>" class="btn btn-danger btn-sm">Rechazar</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

@@ -28,12 +28,21 @@
 
     <div class="row g-3">
         <div class="col-6">
-            <a href="/super/validator/validate_incidence.php" class="d-block p-3 bg-white rounded shortcut text-decoration-none">
+            <a href="validate_incidence.php" class="d-block p-3 bg-white rounded shortcut text-decoration-none">
                 <div class="d-flex align-items-center">
                     <i class="bi bi-list-check me-3 fs-3" style="color:var(--accent-1)"></i>
                     <div>
                         <div class="fw-semibold">Aprobar incidencias (<?= $pending_incidents_count ?> pendientes)</div>
                         <div class="muted-sm">Aprobar o rechazar reportes</div>
+                    </div>
+                </div>
+            </a>
+            <a href="fix_incidence.php" class="d-block p-3 bg-white rounded shortcut text-decoration-none">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-list-check me-3 fs-3" style="color:var(--accent-1)"></i>
+                    <div>
+                        <div class="fw-semibold">Aprobar correcciones (<?= $pending_corrections_count ?> pendientes)</div>
+                        <div class="muted-sm">Aprobar o rechazar correcciones</div>
                     </div>
                 </div>
             </a>
