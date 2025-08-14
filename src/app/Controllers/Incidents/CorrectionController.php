@@ -78,6 +78,15 @@ class CorrectionController
                 'labels' => isset($_POST['labels']) ? json_encode($_POST['labels']) : null,
             ];
 
+            if (!$this->hasChanges($incidence, $correctionData)) {
+                GeneralUtils::showAlert(
+                    'No se detectaron cambios respecto a la incidencia original',
+                    'warning',
+                    $last_uri
+                );
+                exit;
+            }
+
             // Crear corrección
             if (CorrectionUtils::create($incidenceId, $userId, $correctionData)) {
                 GeneralUtils::showAlert('Corrección creada con éxito!', 'success', $last_uri);
@@ -86,6 +95,8 @@ class CorrectionController
 
             GeneralUtils::showAlert('Error al crear la corrección', 'danger', showReturn: false);
         }
+
+
 
         // Llenar el formulario 
         $occurrenceDate = new \DateTime($incidence['occurrence_date']);
@@ -98,5 +109,39 @@ class CorrectionController
             'formattedDate' => $occurrenceDate->format('Y-m-d\TH:i'),
             'coordinates' => $coordinates,
         ]);
+    }
+    // Método para comparar cambios
+    private function hasChanges(array $original, array $correction): bool
+    {
+        // Mapeamos $original a las mismas claves que $correction
+        $originalMapped = [
+            'title'          => trim((string)($original['title'] ?? '')),
+            'description'    => trim((string)($original['incidence_description'] ?? '')),
+            'n_deaths'       => (string)($original['n_deaths'] ?? ''),
+            'n_injured'      => (string)($original['n_injured'] ?? ''),
+            'n_losses'       => (string)($original['n_losses'] ?? ''),
+            'latitude'       => trim((string)($original['latitude'] ?? '')),
+            'longitude'      => trim((string)($original['longitude'] ?? '')),
+            'photo_url'      => trim((string)($original['photo_url'] ?? '')),
+            'province_id'    => (string)($original['province_id'] ?? ''),
+            'municipality_id' => (string)($original['municipality_id'] ?? ''),
+            'neighborhood_id' => (string)($original['neighborhood_id'] ?? ''),
+            'labels'         => isset($original['label_ids'])
+                ? json_encode(array_map('strval', explode(',', $original['label_ids'])))
+                : null,
+        ];
+
+        // Normalizar etiquetas de corrección
+        $correction['labels'] = isset($correction['labels'])
+            ? json_encode(array_map('strval', json_decode($correction['labels'], true) ?? []))
+            : null;
+
+        // Comparar campos
+        foreach ($originalMapped as $key => $value) {
+            if ((string)$value !== (string)($correction[$key] ?? '')) {
+                return true;
+            }
+        }
+        return false;
     }
 }
