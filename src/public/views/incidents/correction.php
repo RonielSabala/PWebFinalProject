@@ -150,11 +150,13 @@
                                     <div class="input-group mb-2">
                                         <input type="url" name="photo_url[]" class="form-control"
                                             value="<?= htmlspecialchars($url) ?>">
-                                        <button type="button" class="btn btn-outline-danger remove-photo-btn">Eliminar</button>
+                                        <button type="button" class="btn btn-danger remove-photo-btn bi bi-trash"></button>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
-                            <button type="button" class="btn btn-outline-primary" id="addPhotoBtn">Agregar Foto</button>
+                             <button type="button" id="addPhotoBtn" class="btn btn-outline-primary">
+                            <i class="bi bi-plus"></i> Añadir otra imagen
+                        </button>
                         </div>
 
                         <div class="mb-3">
