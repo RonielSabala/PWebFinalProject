@@ -90,4 +90,27 @@ $(document).ready(function () {
         $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
       });
   });
+  const $container = $('#photoUrlsContainer');
+    const $addBtn = $('#addPhotoBtn');
+    
+    // Agregar nuevo campo para la imagen
+    $addBtn.on('click', function() {
+        const $newField = $(`
+            <div class="input-group mb-2">
+                <span class="input-group-text"><i class="bi bi-image"></i></span>
+                <input name="photo_url[]" type="url" class="form-control" placeholder="https://ejemplo.com/imagen.jpg">
+                <button type="button" class="btn btn-danger remove-photo-btn">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+        `);
+        $container.append($newField);
+    });
+    
+    // Quitar un campo
+    $container.on('click', '.remove-photo-btn', function() {
+        if ($container.children().length > 1) {
+            $(this).closest('.input-group').remove();
+        }
+    });
 });

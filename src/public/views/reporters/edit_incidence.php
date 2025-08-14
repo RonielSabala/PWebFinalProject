@@ -135,13 +135,20 @@
 
                     <!-- Foto -->
                     <div class="mb-4">
-                        <label for="photo" class="form-label">Imagen de referencia (URL)</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-image"></i></span>
-                            <input id="photo" class="form-control" name="photo_url" type="url" placeholder="https://ejemplo.com/imagen.jpg">
-                            <div class="invalid-feedback">Por favor ingrese una URL válida.</div>
+                        <label class="form-label">Imágenes de referencia (URLs)</label>
+                        <div id="photoUrlsContainer">
+                            <div class="input-group mb-2">
+                                <span class="input-group-text"><i class="bi bi-image"></i></span>
+                                <input name="photo_url[]" type="url" class="form-control" placeholder="https://ejemplo.com/imagen.jpg">
+                                <button type="button" class="btn btn-danger remove-photo-btn d-flex align-items-center justify-content-center" style="width: 42px;">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
                         </div>
-                        <small class="text-muted">Puede subir la imagen a un servicio como Imgur y pegar el enlace aquí</small>
+                        <button type="button" id="addPhotoBtn" class="btn btn-outline-primary">
+                            <i class="bi bi-plus"></i> Añadir otra imagen
+                        </button>
+                        <small class="text-muted">Puede subir las imágenes a un servicio como Imgur y pegar los enlaces aquí</small>
                     </div>
 
                     <!-- Etiquetas -->
