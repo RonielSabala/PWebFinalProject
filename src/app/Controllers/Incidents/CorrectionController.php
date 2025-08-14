@@ -71,7 +71,7 @@ class CorrectionController
                 'n_losses' => $_POST['n_losses'],
                 'latitude' => $latitude,
                 'longitude' => $longitude,
-                'photo_url' => $_POST['photo_url'],
+                'photo_url' => $_POST['photo_url'] ?? [],
                 'province_id' => $_POST['province_id'],
                 'municipality_id' => $_POST['municipality_id'],
                 'neighborhood_id' => $_POST['neighborhood_id'],
@@ -122,7 +122,7 @@ class CorrectionController
             'n_losses'       => (string)($original['n_losses'] ?? ''),
             'latitude'       => trim((string)($original['latitude'] ?? '')),
             'longitude'      => trim((string)($original['longitude'] ?? '')),
-            'photo_url'      => trim((string)($original['photo_url'] ?? '')),
+            'photo_url'      => $this->normalizePhotoUrls($original['photo_urls'] ?? ''),
             'province_id'    => (string)($original['province_id'] ?? ''),
             'municipality_id' => (string)($original['municipality_id'] ?? ''),
             'neighborhood_id' => (string)($original['neighborhood_id'] ?? ''),
@@ -131,17 +131,52 @@ class CorrectionController
                 : null,
         ];
 
-        // Normalizar etiquetas de corrección
-        $correction['labels'] = isset($correction['labels'])
-            ? json_encode(array_map('strval', json_decode($correction['labels'], true) ?? []))
-            : null;
-
         // Comparar campos
         foreach ($originalMapped as $key => $value) {
-            if ((string)$value !== (string)($correction[$key] ?? '')) {
-                return true;
+            if ($key === 'photo_url') {
+                // Special handling for photo URLs array
+                $originalUrls = is_array($value) ? $value : explode(',', $value);
+                $correctionUrls = is_array($correction[$key]) ? $correction[$key] : explode(',', $correction[$key] ?? '');
+
+                // Limpiar y filtrar URLs vacías
+                $originalUrls = array_filter(array_map('trim', $originalUrls));
+                $correctionUrls = array_filter(array_map('trim', $correctionUrls));
+
+                // Comparar conteo y valores
+                if (count($originalUrls) !== count($correctionUrls)) {
+                    return true;
+                }
+
+                sort($originalUrls);
+                sort($correctionUrls);
+
+                if ($originalUrls != $correctionUrls) {
+                    return true;
+                }
+            } else {
+                if ((string)$value !== (string)($correction[$key] ?? '')) {
+                    return true;
+                }
             }
         }
         return false;
+    }
+    // Metodo para normalizar las URLs de las fotos
+    private function normalizePhotoUrls($photoUrls)
+    {
+        if (empty($photoUrls)) {
+            return [];
+        }
+
+        if (is_array($photoUrls)) {
+            return array_filter(array_map('trim', $photoUrls));
+        }
+
+        if (is_string($photoUrls)) {
+            $urls = explode(',', $photoUrls);
+            return array_filter(array_map('trim', $urls));
+        }
+
+        return [];
     }
 }

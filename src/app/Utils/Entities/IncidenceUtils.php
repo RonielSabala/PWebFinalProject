@@ -7,15 +7,18 @@ class IncidenceUtils extends GenericEntityUtils
 {
     private static $getSql = "SELECT 
         i.*,
-        GROUP_CONCAT(l.label_name) AS labels,
-        GROUP_CONCAT(l.icon_url) AS label_icons,
-        GROUP_CONCAT(l.id) AS label_ids
+        GROUP_CONCAT(DISTINCT l.label_name) AS labels,
+        GROUP_CONCAT(DISTINCT l.icon_url) AS label_icons,
+        GROUP_CONCAT(DISTINCT l.id) AS label_ids,
+        GROUP_CONCAT(DISTINCT p.photo_url) AS photo_urls
     FROM
         incidents i
     LEFT JOIN
         incidence_labels il ON i.id = il.incidence_id
     LEFT JOIN
         labels l ON il.label_id = l.id
+    LEFT JOIN
+        photos p ON i.id = p.incidence_id
     WHERE
         i.id = ?
     GROUP BY

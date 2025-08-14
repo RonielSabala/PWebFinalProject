@@ -134,9 +134,27 @@
                         </h5>
 
                         <div class="mb-3">
-                            <label for="photo_url" class="form-label">URL de Foto</label>
-                            <input id="photo_url" class="form-control" name="photo_url"
-                                type="url" value="<?= htmlspecialchars($incidence['photo_url'] ?? '') ?>">
+                            <label class="form-label">URL de Fotos</label>
+                            <div id="photoUrlsContainer">
+                                <?php
+                                $photoUrls = [];
+                                if (!empty($incidence['photo_urls'])) {
+                                    $photoUrls = is_array($incidence['photo_urls'])
+                                        ? $incidence['photo_urls']
+                                        : explode(',', $incidence['photo_urls']);
+                                }
+                                if (empty($photoUrls)) {
+                                    $photoUrls = [''];
+                                }
+                                foreach ($photoUrls as $index => $url): ?>
+                                    <div class="input-group mb-2">
+                                        <input type="url" name="photo_url[]" class="form-control"
+                                            value="<?= htmlspecialchars($url) ?>">
+                                        <button type="button" class="btn btn-outline-danger remove-photo-btn">Eliminar</button>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <button type="button" class="btn btn-outline-primary" id="addPhotoBtn">Agregar Foto</button>
                         </div>
 
                         <div class="mb-3">
