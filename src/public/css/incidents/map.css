@@ -8,15 +8,6 @@
   --go-hover: #e0a800;
 }
 
-.btn {
-  display: inline-block;
-  border-radius: var(--btn-radius);
-  font-weight: var(--btn-font-weight);
-  box-shadow: var(--btn-shadow);
-  transition: background var(--btn-transition),
-    border-color var(--btn-transition), color var(--btn-transition);
-}
-
 .btn-go {
   border: 1px solid;
   padding: 6px 12px;
@@ -24,6 +15,12 @@
   background: var(--go);
   border-color: var(--go);
   color: #212529;
+  display: inline-block;
+  border-radius: var(--btn-radius);
+  font-weight: var(--btn-font-weight);
+  box-shadow: var(--btn-shadow);
+  transition: background var(--btn-transition),
+    border-color var(--btn-transition), color var(--btn-transition);
 }
 
 .btn-go:hover {
@@ -39,7 +36,16 @@
 
 #incidents-map {
   width: 100%;
-  height: 60dvh;
+  height: 72dvh;
+  position: relative;
+}
+
+#search-bar-container {
+  max-width: 800px;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @media (max-width: 420px) {
