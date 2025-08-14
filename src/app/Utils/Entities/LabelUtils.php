@@ -11,6 +11,20 @@ class LabelUtils extends GenericEntityUtils
 
     private static $getAllSql = "SELECT * FROM labels";
 
+    private static $getAllByIncidenceIdSql = "SELECT
+        l.label_name
+    FROM
+        labels l
+    JOIN
+        incidence_labels il
+    ON
+        il.label_id = l.id
+    WHERE
+        il.incidence_id = ?
+    ORDER BY
+        l.label_name
+    ";
+
     private static $createSql = "INSERT INTO labels (label_name, icon_url) VALUES (?, ?)";
 
     private static $updateSql = "UPDATE labels SET label_name = ?, icon_url = ? WHERE id = ?";
@@ -30,6 +44,11 @@ class LabelUtils extends GenericEntityUtils
     public static function getAll(): array
     {
         return self::fetchAllSql(self::$getAllSql);
+    }
+
+    public static function getAllByIncidenceId($incidenceId): array
+    {
+        return self::fetchAllSql(self::$getAllByIncidenceIdSql, [$incidenceId]);
     }
 
     public static function create($labelName, $iconUrl): bool

@@ -6,6 +6,7 @@ use App\Core\Template;
 use App\Utils\GeneralUtils;
 use App\Utils\Entities\IncidenceUtils;
 use App\Utils\Entities\CommentUtils;
+use App\Utils\Entities\LabelUtils;
 
 
 class IncidenceController
@@ -37,9 +38,11 @@ class IncidenceController
             }
         }
 
+        $labels = LabelUtils::getAllByIncidenceId($incidence_id);
         $comments = CommentUtils::getAllByIncidenceId($incidence_id);
         $template->apply([
             'incidence' => $incidence,
+            'labels' => $labels,
             'comments' => $comments,
         ]);
     }

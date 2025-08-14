@@ -6,6 +6,7 @@ use App\Core\Template;
 use App\Utils\Entities\ProvinceUtils;
 use App\Utils\Entities\IncidenceUtils;
 use App\Utils\Entities\CommentUtils;
+use App\Utils\Entities\LabelUtils;
 
 
 class IncidentsController
@@ -36,10 +37,14 @@ class IncidentsController
 
                 // Cargar la vista
                 if (file_exists($viewPath)) {
+                    $incidence = IncidenceUtils::get($incidenceId);
+                    $labels = LabelUtils::getAllByIncidenceId($incidenceId);
+                    $comments = CommentUtils::getAllByIncidenceId($incidenceId);
                     extract([
-                        'incidence' => IncidenceUtils::get($incidenceId),
-                        'comments' => CommentUtils::getAllByIncidenceId($incidenceId),
-                    ], EXTR_SKIP);
+                        'incidence' => $incidence,
+                        'labels' => $labels,
+                        'comments' => $comments,
+                    ]);
 
                     include $viewPath;
                 }
