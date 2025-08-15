@@ -90,7 +90,7 @@ $(document).ready(function () {
         $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
       });
   });
-
+  
   const $container = $("#photoUrlsContainer");
   const $addBtn = $("#addPhotoBtn");
 

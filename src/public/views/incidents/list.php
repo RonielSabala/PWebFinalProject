@@ -1,13 +1,5 @@
 <?php include_once('_partials/__header.php'); ?>
 
-<!-- Botón para ir al mapa -->
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <a href="map.php" class="btn btn-primary btn rounded-pill d-flex align-items-center gap-2 shadow-sm">
-        <i class="bi bi-geo-alt-fill fs-5"></i>
-        <span class="fw-semibold">Ver en mapa</span>
-    </a>
-</div>
-
 <!-- Lista de incidencias -->
 <table id="incidents-list" class="table">
     <thead>

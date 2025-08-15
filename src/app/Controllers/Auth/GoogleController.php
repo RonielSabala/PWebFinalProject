@@ -15,14 +15,14 @@ class GoogleController
 
         // Validar código
         if (!isset($_GET['code'])) {
-            GeneralUtils::showAlert('Código de autorización no encontrado', "danger");
+            GeneralUtils::showAlert('Código de autorización no encontrado');
             exit;
         }
 
         // Validar token
         $token = $google_client->fetchAccessTokenWithAuthCode($_GET['code']);
         if (isset($token['error'])) {
-            GeneralUtils::showAlert("Error al autenticar con Google.", "danger", showReturn: false);
+            GeneralUtils::showAlert('Error al autenticar con Google.', showReturn: false);
             exit;
         }
 

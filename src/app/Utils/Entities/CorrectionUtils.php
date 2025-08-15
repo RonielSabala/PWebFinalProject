@@ -2,14 +2,41 @@
 
 namespace App\Utils\Entities;
 
+
 class CorrectionUtils extends GenericEntityUtils
 {
-    private static $createSql = "INSERT INTO corrections (
-    incidence_id,
-    user_id,
-    correction_values,
-    creation_date
-) VALUES (?, ?, ?, NOW())";
+    private static $getAllPendingSql = "SELECT 
+        c.id,
+        c.incidence_id,
+        u.username,
+        c.correction_values
+    FROM
+        corrections c
+    JOIN
+        users u
+    ON
+        u.id = c.user_id
+    WHERE
+        c.is_approved = 0
+    ORDER BY
+        c.creation_date
+    DESC
+    ";
+
+    private static $createSql = "INSERT INTO
+    corrections (
+        incidence_id,
+        user_id,
+        correction_values
+    )
+    VALUES
+        (?, ?, ?)
+    ";
+
+    public static function getAllPending(): array
+    {
+        return self::fetchAllSql(self::$getAllPendingSql);
+    }
 
     public static function create($incidenceId, $userId, $correctionData)
     {
@@ -33,9 +60,8 @@ class CorrectionUtils extends GenericEntityUtils
                 $correctionData[$field] = (float)$correctionData[$field];
             }
         }
-        
-        $jsonData = json_encode($correctionData, JSON_UNESCAPED_UNICODE);
 
+        $jsonData = json_encode($correctionData, JSON_UNESCAPED_UNICODE);
         return self::executeSql(
             self::$createSql,
             [

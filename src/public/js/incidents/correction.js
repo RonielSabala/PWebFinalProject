@@ -91,4 +91,17 @@ $(document).ready(function () {
         $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
       });
   });
+  $('#addPhotoBtn').click(function () {
+    $('#photoUrlsContainer').append(`
+            <div class="input-group mb-2">
+                <input type="url" name="photo_url[]" class="form-control">
+                <button type="button" class="btn btn-outline-danger remove-photo-btn">Eliminar</button>
+            </div>
+        `);
+  });
+
+  // Remove a photo input
+  $('#photoUrlsContainer').on('click', '.remove-photo-btn', function () {
+    $(this).closest('.input-group').remove();
+  });
 });

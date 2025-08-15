@@ -26,7 +26,7 @@
                                 <textarea id="incidence_description" class="form-control" name="incidence_description" rows="4" required placeholder="Describa la incidencia con el mayor detalle"></textarea>
                             </div>
                         </div>
-
+                      
                         <!-- Foto -->
                         <div class="mb-4">
                             <label class="form-label">Imágenes de referencia (URLs)</label>

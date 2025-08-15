@@ -5,12 +5,18 @@ namespace App\Utils;
 
 class GeneralUtils
 {
+    private static $wellKnownUri = '/.well-known/appspecific/com.chrome.devtools.json';
+
     public static function showAlert(
         string $message,
-        string $type = 'success',
-        string $returnRoute = 'home.php',
+        string $type = 'danger',
+        string $returnRoute = '',
         bool $showReturn = true
     ) {
+        if ($showReturn && empty($returnRoute)) {
+            $returnRoute = GeneralUtils::getNthURI(-2);
+        }
+
         echo "
         <div class='text-center'>
             <div class='alert alert-$type'>$message</div>";
@@ -58,10 +64,10 @@ class GeneralUtils
         $uri = $_SERVER['REQUEST_URI'];
 
         // Guardar la URI en el historial
-        $count_history = count($_SESSION['uri_history']);
-        if ($count_history === 0) {
+        $length = count($_SESSION['uri_history']);
+        if ($length === 0) {
             $_SESSION['uri_history'][] = $uri;
-        } else {
+        } elseif ($uri !== self::$wellKnownUri) {
             [$current_uri, $current_view] = self::splitURI($uri);
             [$last_uri, $last_view] = self::splitURI(self::getNthURI(-1));
 

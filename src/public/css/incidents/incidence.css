@@ -115,11 +115,6 @@
   overflow: auto;
 }
 
-#incidents-map {
-  width: 100%;
-  height: 60vh;
-}
-
 .badge-state {
   display: inline-block;
   font-weight: 700;

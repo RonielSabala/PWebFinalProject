@@ -47,14 +47,14 @@ class LoginController
         if ($user_exists) {
             // Evitar registro si el usuario ya existe
             if ($by_signin) {
-                GeneralUtils::showAlert("El correo proporcionado ya se encuentra registrado.", "danger", showReturn: false);
+                GeneralUtils::showAlert('El correo proporcionado ya se encuentra registrado.', showReturn: false);
                 return false;
             }
         } elseif ($by_signin || $by_external_service) {
             // Registrar usuario
             UserUtils::create([$username, $email, $phone, password_hash($password, PASSWORD_DEFAULT)]);
         } else {
-            GeneralUtils::showAlert("El correo proporcionado no está registrado.", "danger", showReturn: false);
+            GeneralUtils::showAlert('El correo proporcionado no está registrado.', showReturn: false);
             return false;
         }
 
@@ -65,7 +65,7 @@ class LoginController
         $user_password = $user['password_hash'];
         $is_valid_pass = $by_external_service || password_verify($password, $user_password);
         if ($user_exists && !$is_valid_pass) {
-            GeneralUtils::showAlert("Credenciales incorrectas!", "danger", showReturn: false);
+            GeneralUtils::showAlert('Credenciales incorrectas!', showReturn: false);
             return false;
         }
 
@@ -78,7 +78,7 @@ class LoginController
         ];
 
         // Redirigir al index
-        header("Location: /home.php");
+        header('Location: /home.php');
         return true;
     }
 

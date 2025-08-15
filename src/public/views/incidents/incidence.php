@@ -76,10 +76,26 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                 </div>
             </div>
 
+            <!-- Etiquetas -->
+            <?php if ($labels): ?>
+                <div class="mt-1rem">
+                    <div class="section-title section-title-small">Etiquetas</div>
+                    <div class="info-grid">
+                        <div class="info-row labels-row" role="list" aria-label="Etiquetas">
+                            <?php foreach ($labels as $label): ?>
+                                <div class="info-pill">
+                                    <?= $label['label_name'] ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+
             <!-- Botón para sugerir corrección -->
             <div class="text-end">
                 <a id="btnGoToCorrectionPage"
-                    class="btn btn-primary btn-sm"
+                    class="btn btn-success btn-sm"
                     href="correction.php?incidence_id=<?= $incidenceId ?>">
                     Sugerir Corrección
                     <i class="bi bi-pencil"></i>
