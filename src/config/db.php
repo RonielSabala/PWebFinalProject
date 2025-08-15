@@ -1,6 +1,6 @@
 <?php
 // Datos de conexión con la base de datos
-$host = "localhost";
-$user = "root";
-$pass = "1234";
+$host = "127.0.0.1";
+$user = "dummy";
+$pass = "";
 $db = "incidents_db";
