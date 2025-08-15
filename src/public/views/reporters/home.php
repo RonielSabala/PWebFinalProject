@@ -1,6 +1,7 @@
 <?php
 
 use App\Utils\GeneralUtils;
+use App\Utils\Entities\IncidenceUtils;
 ?>
 
 <h2>Incidencias reportadas</h2>
@@ -28,15 +29,15 @@ use App\Utils\GeneralUtils;
         ?>
             <tr>
                 <td><?= $i++ ?></td>
-                <td><?= htmlspecialchars($incidence['title']) ?></td>
-                <td><?= htmlspecialchars($incidence['incidence_description']) ?></td>
-                <td><?= htmlspecialchars($incidence['creation_date']) ?></td>
+                <td><?= $incidence['title'] ?></td>
+                <td><?= IncidenceUtils::getPrettyDescription($incidence['incidence_description']) ?></td>
+                <td><?= $incidence['creation_date'] ?></td>
                 <td>
                     <span class="status-badge <?= ((int)$incidence['is_approved'] === 1) ? 'approved' : 'not-approved' ?>">
                         <?= ((int)$incidence['is_approved'] === 1) ? 'Aprobada' : 'No aprobada' ?>
                     </span>
                 </td>
-                <td><?= htmlspecialchars($incidence['comments']) ?></td>
+                <td><?= $incidence['comments'] ?></td>
                 <td>
                     <a href="/incidents/incidence.php?id=<?= $incidence['id'] ?>" class="btn btn-sm btn-outline-action btn-go">
                         Ver

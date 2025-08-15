@@ -1,4 +1,9 @@
-<?php include_once('_partials/__header.php'); ?>
+<?php
+
+use App\Utils\Entities\IncidenceUtils;
+
+include_once('_partials/__header.php');
+?>
 
 <!-- Lista de incidencias -->
 <table id="incidents-list" class="table">
@@ -21,7 +26,7 @@
                 data-lat="<?= $incidence['latitude'] ?>"
                 data-lng="<?= $incidence['longitude'] ?>">
                 <td class="incidence-title"><?= $incidence['title'] ?></td>
-                <td class="incidence-desc"><?= $incidence['incidence_description'] ?></td>
+                <td class="incidence-desc"><?= IncidenceUtils::getPrettyDescription($incidence['incidence_description']) ?></td>
                 <td class="incidence-type"><?= implode(', ', $incidence['labels']) ?></td>
                 <td class="incidence-date"><?= (new DateTime($incidence['creation_date']))->format('d/m/Y H:i') ?></td>
                 <td>

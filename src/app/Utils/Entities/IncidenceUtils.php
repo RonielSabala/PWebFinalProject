@@ -249,7 +249,7 @@ class IncidenceUtils extends GenericEntityUtils
             $esc_label = $label;
             $esc_href = $href;
             $target = (stripos($href, 'mailto:') === 0) ? '' : ' target="_blank" rel="noopener noreferrer"';
-            $out .= '<a class="found-link" href="' . $esc_href . '"' . $target . '>' . $esc_label . '</a>';
+            $out .= '<a class="description-link" href="' . $esc_href . '"' . $target . '>' . $esc_label . '</a>';
             $lastPos = $matchPos + strlen($matchText);
         }
 
