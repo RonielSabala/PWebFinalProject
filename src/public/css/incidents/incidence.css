@@ -12,9 +12,11 @@
 }
 
 .incidence-header {
-  background: linear-gradient(90deg,
-      rgba(99, 102, 241, 0.12),
-      rgba(14, 165, 233, 0.06));
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0.12),
+    rgba(14, 165, 233, 0.06)
+  );
   padding: 1.15rem 1.25rem;
   display: flex;
   flex-direction: column;
