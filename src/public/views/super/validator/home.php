@@ -28,7 +28,7 @@
 
     <div class="row g-3">
         <div class="col-6">
-            <a href="validate_incidence.php" class="d-block p-3 bg-white rounded shortcut text-decoration-none">
+            <a href="incidence_validation.php" class="d-block p-3 bg-white rounded shortcut text-decoration-none">
                 <div class="d-flex align-items-center">
                     <i class="bi bi-list-check me-3 fs-3" style="color:var(--accent-1)"></i>
                     <div>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </a>
-            <a href="fix_incidence.php" class="d-block p-3 bg-white rounded shortcut text-decoration-none">
+            <a href="correction_validation.php" class="d-block p-3 bg-white rounded shortcut text-decoration-none">
                 <div class="d-flex align-items-center">
                     <i class="bi bi-list-check me-3 fs-3" style="color:var(--accent-1)"></i>
                     <div>

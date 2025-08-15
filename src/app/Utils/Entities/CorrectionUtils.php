@@ -5,11 +5,14 @@ namespace App\Utils\Entities;
 
 class CorrectionUtils extends GenericEntityUtils
 {
+    private static $getSql = "SELECT * FROM corrections WHERE id = ?";
+
     private static $getAllPendingSql = "SELECT 
         c.id,
         c.incidence_id,
         u.username,
-        c.correction_values
+        c.correction_values,
+        c.creation_date
     FROM
         corrections c
     JOIN
@@ -32,6 +35,30 @@ class CorrectionUtils extends GenericEntityUtils
     VALUES
         (?, ?, ?)
     ";
+
+    private static $deleteSql = "DELETE FROM corrections WHERE id = ?";
+
+    private static $setApprovalSql = "UPDATE corrections SET is_approved = 1 WHERE id = ?";
+
+    private static $applySql = "UPDATE
+        incidents
+    SET
+        latitude = ?,
+        longitude = ?,
+        n_deaths = ?,
+        n_injured = ?,
+        n_losses = ?,
+        province_id = ?,
+        municipality_id = ?,
+        neighborhood_id = ?
+    WHERE
+        id = ?
+    ";
+
+    public static function get($id)
+    {
+        return self::saveFetchSql(self::$getSql, [$id], 'No se encontró la corrección.');
+    }
 
     public static function getAllPending(): array
     {
@@ -68,6 +95,35 @@ class CorrectionUtils extends GenericEntityUtils
                 $incidenceId,
                 $userId,
                 $jsonData
+            ]
+        );
+    }
+
+    public static function delete($id): bool
+    {
+        return self::executeSql(self::$deleteSql, [$id]);
+    }
+
+    public static function setApproval($id): bool
+    {
+        return self::executeSql(self::$setApprovalSql, [$id]);
+    }
+
+    public static function apply($correction): bool
+    {
+        $data = json_decode($correction['correction_values'], true);
+        return self::executeSql(
+            self::$applySql,
+            [
+                $data['latitude'],
+                $data['longitude'],
+                $data['n_deaths'],
+                $data['n_injured'],
+                $data['n_losses'],
+                $data['province_id'],
+                $data['municipality_id'],
+                $data['neighborhood_id'],
+                $correction['incidence_id'],
             ]
         );
     }

@@ -1,9 +1,9 @@
 <?php
 const BASE_PATH = __DIR__ . '/../';
-require_once BASE_PATH . '/vendor/autoload.php';
-require_once BASE_PATH . '/config/db.php';
-require_once BASE_PATH . '/config/google.php';
-require_once BASE_PATH . '/config/microsoft.php';
+require_once BASE_PATH . 'vendor/autoload.php';
+require_once BASE_PATH . 'config/db.php';
+require_once BASE_PATH . 'config/google.php';
+require_once BASE_PATH . 'config/microsoft.php';
 
 
 // Rutas y controladores asociados
@@ -69,10 +69,15 @@ const ROUTES = [
 
     // super/validator/...
 
-    'super/validator/validate_incidence.php' => ['page' => 'validate_incidence', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
-    'super/validator/fix_incidence.php'      => ['page' => 'fix_incidence', 'controller' => \App\Controllers\Super\Validator\FixIncidenceController::class],
-    'super/validator/approve.php'            => ['page' => 'validate_incidence', 'controller' => \App\Controllers\Super\Validator\ApproveController::class],
-    'super/validator/reject.php'             => ['page' => 'validate_incidence', 'controller' => \App\Controllers\Super\Validator\RejectController::class],
+    // Validate incidents
+    'super/validator/incidence_validation.php' => ['page' => 'incidence_validation', 'controller' => \App\Controllers\Super\Validator\IncidenceValidationController::class],
+    'super/validator/approve_incidence.php'    => ['page' => 'incidence_validation', 'controller' => \App\Controllers\Super\Validator\ApproveIncidenceController::class],
+    'super/validator/reject_incidence.php'     => ['page' => 'incidence_validation', 'controller' => \App\Controllers\Super\Validator\RejectIncidenceController::class],
+
+    // Validate corrections
+    'super/validator/correction_validation.php' => ['page' => 'correction_validation', 'controller' => \App\Controllers\Super\Validator\CorrectionValidationController::class],
+    'super/validator/approve_correction.php'    => ['page' => 'correction_validation', 'controller' => \App\Controllers\Super\Validator\ApproveCorrectionController::class],
+    'super/validator/reject_correction.php'     => ['page' => 'correction_validation', 'controller' => \App\Controllers\Super\Validator\RejectCorrectionController::class],
 ];
 
 // Crear pdo

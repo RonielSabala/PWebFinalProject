@@ -1,5 +1,7 @@
 <?php
-require_once __DIR__ . '/../config/db.php';
+const BASE_PATH = __DIR__ . '/../';
+require_once BASE_PATH . 'vendor/autoload.php';
+require_once BASE_PATH . 'config/db.php';
 
 // Leer los scripts SQL
 $creationFile = __DIR__ . '/creation.sql';

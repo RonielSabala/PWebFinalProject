@@ -7,6 +7,7 @@ class IncidenceUtils extends GenericEntityUtils
 {
     private static $getSql = "SELECT 
         i.*,
+        u.username as reporter_name,
         GROUP_CONCAT(DISTINCT l.label_name) AS labels,
         GROUP_CONCAT(DISTINCT l.icon_url) AS label_icons,
         GROUP_CONCAT(DISTINCT l.id) AS label_ids,
@@ -14,11 +15,21 @@ class IncidenceUtils extends GenericEntityUtils
     FROM
         incidents i
     LEFT JOIN
-        incidence_labels il ON i.id = il.incidence_id
+        incidence_labels il
+    ON
+        il.incidence_id = i.id
     LEFT JOIN
-        labels l ON il.label_id = l.id
+        labels l
+    ON
+        il.label_id = l.id
     LEFT JOIN
-        photos p ON i.id = p.incidence_id
+        photos p
+    ON
+        p.incidence_id = i.id
+    LEFT JOIN
+        users u
+    ON
+        u.id = i.user_id
     WHERE
         i.id = ?
     GROUP BY
@@ -119,6 +130,7 @@ class IncidenceUtils extends GenericEntityUtils
     private static $deleteSql = "DELETE FROM incidents WHERE id = ?";
 
     private static $createLabelRelationSql = "INSERT INTO incidence_labels (incidence_id, label_id) VALUES (?, ?)";
+
     private static $setApprovalSql = "UPDATE incidents SET is_approved = 1 WHERE id = ?";
 
     public static function get($id)

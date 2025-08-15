@@ -1,3 +1,18 @@
+:root {
+  --max-width: 980px;
+  --radius: 12px;
+  --gap: 14px;
+  --accent: #0b76ff;
+  --muted: #6b7280;
+  --bg: #ffffff;
+  --card-border: rgba(11, 118, 255, 0.08);
+  --text: #0b1220;
+  --shadow: 0 6px 18px rgba(11, 18, 32, 0.06);
+  --font-stack: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --avatar-size: 56px;
+}
+
 .container-incidence {
   max-width: 900px;
   margin: 0 auto;
@@ -9,18 +24,6 @@
   box-shadow: 0 8px 30px rgba(2, 6, 23, 0.06);
   background: #fff;
   overflow: hidden;
-}
-
-.incidence-header {
-  background: linear-gradient(
-    90deg,
-    rgba(99, 102, 241, 0.12),
-    rgba(14, 165, 233, 0.06)
-  );
-  padding: 1.15rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
 }
 
 #incidence-title {
@@ -241,6 +244,100 @@
   opacity: 1;
 }
 
+.incidence-header {
+  max-width: var(--max-width);
+  margin: 0 auto 20px;
+  padding: 0 16px;
+  font-family: var(--font-stack);
+  color: var(--text);
+}
+
+.incidence-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 18px;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  overflow: visible;
+}
+
+.incidence-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.incidence-top {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.kicker {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: transparent;
+  border: 3.5px dashed rgba(0, 0, 0, 0.08);
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+.icon {
+  fill: var(--accent);
+  opacity: 0.95;
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.08;
+  font-weight: 700;
+  color: var(--text);
+  word-break: break-word;
+}
+
+.incidence-meta {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.dot {
+  color: var(--muted);
+  margin: 0 6px;
+}
+
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 3px solid rgba(11, 118, 255, 0.14);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.sr-only {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
 @media (max-width: 640px) {
   #incidence-title {
     font-size: 1.25rem;
@@ -250,5 +347,16 @@
     width: 44px;
     height: 44px;
     font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.06);
+    --text: #e6eef8;
+    --muted: #a8b3c7;
+    --shadow: 0 8px 24px rgba(2, 6, 23, 0.55);
+    --accent: #58a6ff;
   }
 }
