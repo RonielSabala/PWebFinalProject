@@ -11,48 +11,18 @@
             <form id="correctionForm" method="post">
                 <input type="hidden" name="incidence_id" value="<?= $incidence['id'] ?>">
 
-                <!-- Información Básica -->
-                <div class="mb-4">
+                <!-- Ubicación -->
+                <div class="mb-4 mt-3">
                     <h5 class="text-primary mb-3">
-                        <i class="bi bi-info-circle-fill me-2"></i>Información Básica
+                        <i class="bi bi-geo-alt-fill me-2"></i>Ubicación
                     </h5>
+                    <!-- Coordenadas -->
+                    <div class="">
+                        <label for="coordinates" class="form-label">Coordenadas</label>
+                        <input id="coordinates" class="form-control" name="coordinates"
+                            type="text" required value="<?= htmlspecialchars($coordinates) ?>">
+                            <div class="invalid-feedback">Formato inválido. Usa: latitud, longitud (ej: 18.7357, -70.1627)</div>
 
-                    <!-- Titulo -->
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Título</label>
-                        <input id="title" class="form-control" name="title" type="text" required
-                            value="<?= htmlspecialchars($incidence['title']) ?>">
-                    </div>
-
-                    <!-- Descripción -->
-                    <div class="mb-3">
-                        <label for="incidence_description" class="form-label">Descripción</label>
-                        <textarea id="incidence_description" class="form-control" name="incidence_description"
-                            rows="4" required><?= htmlspecialchars($incidence['incidence_description']) ?></textarea>
-                    </div>
-                </div>
-
-                <!-- Fecha y ubicación -->
-                <div class="mb-4">
-                    <h5 class="text-primary mb-3">
-                        <i class="bi bi-geo-alt-fill me-2"></i>Ubicación y Fecha
-                    </h5>
-
-                    <div class="row g-3">
-                        <!-- Fecha -->
-                        <div class="col-md-6">
-                            <label for="occurrence_date" class="form-label">Fecha de ocurrencia</label>
-                            <input id="occurrence_date" class="form-control" name="occurrence_date"
-                                type="datetime-local" required value="<?= $formattedDate ?>">
-                        </div>
-
-                        <!-- Coordenadas -->
-                        <div class="col-md-6">
-                            <label for="coordinates" class="form-label">Coordenadas</label>
-                            <input id="coordinates" class="form-control" name="coordinates"
-                                type="text" required value="<?= htmlspecialchars($coordinates) ?>">
-
-                        </div>
                     </div>
                 </div>
 
@@ -124,65 +94,6 @@
                                     </option>
                                 <?php endforeach; ?>
                             </select>
-                        </div>
-                    </div>
-
-                    <!-- Clasificación -->
-                    <div class="mb-4 mt-3">
-                        <h5 class="text-primary mb-3">
-                            <i class="bi bi-tags-fill me-2"></i>Clasificación
-                        </h5>
-
-                        <div class="mb-3">
-                            <label class="form-label">URL de Fotos</label>
-                            <div id="photoUrlsContainer">
-                                <?php
-                                $photoUrls = [];
-                                if (!empty($incidence['photo_urls'])) {
-                                    $photoUrls = is_array($incidence['photo_urls'])
-                                        ? $incidence['photo_urls']
-                                        : explode(',', $incidence['photo_urls']);
-                                }
-                                if (empty($photoUrls)) {
-                                    $photoUrls = [''];
-                                }
-                                foreach ($photoUrls as $index => $url): ?>
-                                    <div class="input-group mb-2">
-                                        <input type="url" name="photo_url[]" class="form-control"
-                                            value="<?= htmlspecialchars($url) ?>">
-                                        <button type="button" class="btn btn-danger remove-photo-btn bi bi-trash"></button>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                             <button type="button" id="addPhotoBtn" class="btn btn-outline-primary">
-                            <i class="bi bi-plus"></i> Añadir otra imagen
-                        </button>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Etiquetas</label>
-                            <div class="row">
-                                <?php foreach ($labels as $label): ?>
-                                    <div class="col-md-4 mb-2">
-                                        <div class="form-check">
-                                            <?php
-                                            // Convertir label en array
-                                            $label_ids = $incidence['label_ids'] ?? [];
-                                            if (is_string($label_ids)) {
-                                                $label_ids = $label_ids !== '' ? explode(',', $label_ids) : [];
-                                            }
-                                            ?>
-                                            <input class="form-check-input" type="checkbox"
-                                                name="labels[]" value="<?= $label['id'] ?>"
-                                                id="label_<?= $label['id'] ?>"
-                                                <?= in_array($label['id'], $label_ids) ? 'checked' : '' ?>>
-                                            <label class="form-check-label" for="label_<?= $label['id'] ?>">
-                                                <?= htmlspecialchars($label['label_name']) ?>
-                                            </label>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
                         </div>
                     </div>
 
