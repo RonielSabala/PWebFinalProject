@@ -1,7 +1,6 @@
 <?php
 
 use App\Utils\Entities\UserUtils;
-use phpseclib3\File\ASN1\Maps\EcdsaSigValue;
 
 // Datos
 $photos = $incidence['photo_urls'];
@@ -82,9 +81,9 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                 </div>
             </div>
 
-            <!-- Carrusel de imagenes -->
-            <div class="mt-1rem section-title section-title-small text-center">Imágenes</div>
+            <!-- Carrusel de imágenes -->
             <?php if (!empty($photos)): ?>
+                <div class="mt-1rem section-title section-title-small text-center">Imágenes</div>
                 <section class="container-carousel">
                     <div class="slider-wrapper">
                         <div class="slider">
@@ -101,10 +100,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                         </div>
                     </div>
                 </section>
-            <?php else: ?>
-                <div class="text-center small-muted mt-2">No hay imágenes disponibles.</div>
             <?php endif; ?>
-
 
             <!-- Etiquetas -->
             <?php if ($labels): ?>

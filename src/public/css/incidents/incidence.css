@@ -155,7 +155,7 @@
 }
 
 .slider::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .slider img {
@@ -164,7 +164,7 @@
   object-fit: cover;
 }
 
-.slider-nav{
+.slider-nav {
   display: flex;
   column-gap: 1rem;
   position: absolute;
