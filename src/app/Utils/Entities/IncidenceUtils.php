@@ -133,6 +133,13 @@ class IncidenceUtils extends GenericEntityUtils
 
     private static $setApprovalSql = "UPDATE incidents SET is_approved = 1 WHERE id = ?";
 
+    private static $getPrettyDescriptionRegex = '#
+        \[(?<md_text>[^\]]+)\]\((?<md_url>https?://[^\s)]+)\)
+        |(?<url>https?://[^\s<]+|www\.[^\s<]+)
+        |(?<email>[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,})
+    #ixu
+    ';
+
     public static function get($id)
     {
         return self::saveFetchSql(self::$getSql, [$id], 'No se encontró la incidencia.');
@@ -195,5 +202,64 @@ class IncidenceUtils extends GenericEntityUtils
     public static function setApproval($id): bool
     {
         return self::executeSql(self::$setApprovalSql, [$id]);
+    }
+
+    public static function getPrettyDescription(string $text): string
+    {
+        if ($text === '') return '';
+
+        $lastPos = 0;
+        $out = '';
+        $subject = $text;
+        $matches = [];
+        $res = preg_match_all(self::$getPrettyDescriptionRegex, $subject, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
+        if ($res === false) {
+            return nl2br($text);
+        }
+
+        foreach ($matches as $m) {
+            $matchText = $m[0][0];
+            $matchPos  = $m[0][1];
+            if ($matchPos > $lastPos) {
+                $chunk = substr($subject, $lastPos, $matchPos - $lastPos);
+                $chunk = trim($chunk);
+                if ($chunk !== '') {
+                    $out .= '<p class="desc-text-run">' . nl2br(htmlspecialchars($chunk, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')) . '</p>';
+                }
+            }
+
+            if (!empty($m['md_url'][0])) {
+                $url = $m['md_url'][0];
+                $label = $m['md_text'][0];
+                $href = $url;
+            } elseif (!empty($m['url'][0])) {
+                $raw = $m['url'][0];
+                if (stripos($raw, 'www.') === 0) {
+                    $href = 'https://' . $raw;
+                } else {
+                    $href = $raw;
+                }
+                $label = $raw;
+            } else {
+                $email = $m['email'][0];
+                $href = 'mailto:' . $email;
+                $label = $email;
+            }
+
+            $esc_label = $label;
+            $esc_href = $href;
+            $target = (stripos($href, 'mailto:') === 0) ? '' : ' target="_blank" rel="noopener noreferrer"';
+            $out .= '<a class="found-link" href="' . $esc_href . '"' . $target . '>' . $esc_label . '</a>';
+            $lastPos = $matchPos + strlen($matchText);
+        }
+
+        if ($lastPos < strlen($subject)) {
+            $tail = substr($subject, $lastPos);
+            if (trim($tail) !== '') {
+                $out .= '<p class="desc-text-run">' . nl2br(htmlspecialchars($tail, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')) . '</p>';
+            }
+        }
+
+        return $out;
     }
 }
