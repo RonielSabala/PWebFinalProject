@@ -1,7 +1,4 @@
 <?php
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->safeLoad();
-
 // Credenciales de microsoft
 $clientId = $_ENV['MICROSOFT_CLIENT_ID'];
 $clientSecret = $_ENV['MICROSOFT_CLIENT_SECRET'];

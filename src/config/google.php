@@ -1,7 +1,4 @@
 <?php
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->safeLoad();
-
 // Configuración de google
 $google_client = new Google_Client();
 $google_client->setClientId($_ENV['GOOGLE_CLIENT_ID']);
