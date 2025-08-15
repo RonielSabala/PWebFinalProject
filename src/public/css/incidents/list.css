@@ -154,8 +154,6 @@
   font-size: larger;
   font-weight: 700;
   color: #0f172a;
-  white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
@@ -164,6 +162,17 @@
   max-width: 520px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.description-link {
+  margin: 8px 0;
+  padding: 6px 10px;
+  border-radius: 8px;
+  display: block;
+  background: rgba(11, 118, 255, 0.04);
+  border: 1px solid rgba(11, 118, 255, 0.06);
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 @media (max-width: 768px) {

@@ -1,6 +1,7 @@
 <?php
 
 use App\Utils\GeneralUtils;
+use App\Utils\Entities\IncidenceUtils;
 ?>
 
 <div class="row mb-4">
@@ -35,9 +36,9 @@ use App\Utils\GeneralUtils;
             foreach ($incidents as $incidence): ?>
                 <tr>
                     <td><?= $i++ ?></td>
-                    <td><?= htmlspecialchars($incidence['title']) ?></td>
-                    <td><?= htmlspecialchars($incidence['incidence_description']) ?></td>
-                    <td><?= htmlspecialchars($incidence['creation_date']) ?></td>
+                    <td><?= $incidence['title'] ?></td>
+                    <td><?= IncidenceUtils::getPrettyDescription($incidence['incidence_description']) ?></td>
+                    <td><?= $incidence['creation_date'] ?></td>
                     <td>
                         <a
                             href="approve_incidence.php?id=<?= $incidence['id'] ?>"

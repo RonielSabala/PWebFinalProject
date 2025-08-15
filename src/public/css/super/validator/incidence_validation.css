@@ -66,6 +66,17 @@
   transition: background var(--btn-transition);
 }
 
+.description-link {
+  margin: 8px 0;
+  padding: 6px 10px;
+  border-radius: 8px;
+  display: block;
+  background: rgba(11, 118, 255, 0.04);
+  border: 1px solid rgba(11, 118, 255, 0.06);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
 .no-data {
   text-align: center;
   padding: 1rem;

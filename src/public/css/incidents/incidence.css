@@ -11,6 +11,10 @@
   --font-stack: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   --avatar-size: 56px;
+  --link: #0b76ff;
+  --link-visited: #6f63c8;
+  --font: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
 }
 
 .container-incidence {
@@ -42,6 +46,7 @@
 
 .card-section {
   padding: 1.25rem;
+  padding-top: 0.5rem;
 }
 
 .section-title {
@@ -51,9 +56,23 @@
   color: #0f172a;
 }
 
-.description-text {
-  color: #0b1220;
-  line-height: 1.5;
+.section-description {
+  margin-bottom: 1.5rem;
+}
+
+#desc-title {
+  font-size: 1.2rem;
+}
+
+.description-link {
+  margin: 8px 0;
+  padding: 6px 10px;
+  border-radius: 8px;
+  display: block;
+  background: rgba(11, 118, 255, 0.04);
+  border: 1px solid rgba(11, 118, 255, 0.06);
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .info-grid {

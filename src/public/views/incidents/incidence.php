@@ -1,6 +1,7 @@
 <?php
 
 use App\Utils\Entities\UserUtils;
+use App\Utils\Entities\IncidenceUtils;
 
 // Datos
 $photos = $incidence['photo_urls'];
@@ -79,9 +80,12 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
         <!-- Contenido -->
         <div class="card-section">
             <!-- Descripción -->
-            <div>
-                <div class="section-title">Descripción</div>
-                <div class="description-text"><?= $description ?></div>
+            <div class="section-description">
+                <div id="desc-title" class="section-title">Descripción</div>
+                <div class="description-text">
+                    <?= IncidenceUtils::getPrettyDescription($description) ?>
+                </div>
+                <div class="sr-only" aria-hidden="false">Enlaces en azul; cada enlace aparece en una línea separada.</div>
             </div>
 
             <!-- Detalles -->
