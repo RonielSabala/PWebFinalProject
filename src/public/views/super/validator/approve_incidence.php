@@ -33,7 +33,7 @@
                     <button type="submit" id="btn-approve" class="btn btn-lg btn-success">
                         <i class="bi bi-check-lg me-2"></i> Aprobar
                     </button>
-                    <a id="btn-return" class="btn btn-outline-secondary btn-lg" href="validate_incidence.php">
+                    <a id="btn-return" class="btn btn-outline-secondary btn-lg" href="incidence_validation.php">
                         <i class="bi bi-arrow-left-circle me-2"></i> Volver
                     </a>
                 </div>
