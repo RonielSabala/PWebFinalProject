@@ -31,7 +31,7 @@ $(document).ready(function () {
 
     if (!provinceId) return;
 
-    $.getJSON("edit_incidence.php", { action: "GET", province_id: provinceId })
+    $.getJSON("report.php", { action: "GET", province_id: provinceId })
       .done(function (municipalities) {
         if (municipalities.length > 0) {
           var html = '<option value="">Seleccione</option>';
@@ -64,7 +64,7 @@ $(document).ready(function () {
 
     if (!municipalityId) return;
 
-    $.getJSON("edit_incidence.php", {
+    $.getJSON("report.php", {
       action: "GET",
       municipality_id: municipalityId,
     })

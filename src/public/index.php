@@ -31,8 +31,8 @@ const ROUTES = [
     'incidents/correction.php' => ['page' => 'incidents', 'controller' => \App\Controllers\Incidents\CorrectionController::class],
 
     // Reporters views
-    'reporters/home.php'           => ['page' => 'reports', 'controller' => \App\Controllers\Reporters\HomeController::class],
-    'reporters/edit_incidence.php' => ['page' => 'reports', 'controller' => \App\Controllers\Reporters\EditIncidenceController::class],
+    'reporters/home.php'   => ['page' => 'reports', 'controller' => \App\Controllers\Reporters\HomeController::class],
+    'reporters/report.php' => ['page' => 'reports', 'controller' => \App\Controllers\Reporters\ReportController::class],
 
     // Super routes
     'super/admin/home.php'     => ['page' => 'admin',     'controller' => \App\Controllers\Super\Admin\HomeController::class],
@@ -70,8 +70,8 @@ const ROUTES = [
     // super/validator/...
 
     'super/validator/validate_incidence.php' => ['page' => 'validate_incidence', 'controller' => \App\Controllers\Super\Validator\IncidenceValidatorController::class],
-    'super/validator/approve.php'           => ['page' => 'validate_incidence', 'controller' => \App\Controllers\Super\Validator\ApproveController::class],
-    'super/validator/reject.php'            => ['page' => 'validate_incidence', 'controller' => \App\Controllers\Super\Validator\RejectController::class],
+    'super/validator/approve.php'            => ['page' => 'validate_incidence', 'controller' => \App\Controllers\Super\Validator\ApproveController::class],
+    'super/validator/reject.php'             => ['page' => 'validate_incidence', 'controller' => \App\Controllers\Super\Validator\RejectController::class],
 ];
 
 // Crear pdo
