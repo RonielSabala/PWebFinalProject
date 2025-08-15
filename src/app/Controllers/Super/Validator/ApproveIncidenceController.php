@@ -7,7 +7,7 @@ use App\Utils\GeneralUtils;
 use App\Utils\Entities\IncidenceUtils;
 
 
-class RejectController
+class ApproveIncidenceController
 {
     public function handle(Template $template)
     {
@@ -18,11 +18,11 @@ class RejectController
 
         $id = $_GET['id'];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Eliminar incidencia
-            $success = IncidenceUtils::delete($id);
+            // Aprobar incidencia
+            $success = IncidenceUtils::setApproval($id);
             if ($success) {
                 // Redirigir
-                header('Location: validate_incidence.php');
+                header('Location: incidence_validation.php');
             }
 
             exit;

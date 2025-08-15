@@ -3,15 +3,15 @@
 namespace App\Controllers\Super\Validator;
 
 use App\Core\Template;
-use App\Utils\Entities\CorrectionUtils;
+use App\Utils\Entities\IncidenceUtils;
 
 
-class FixIncidenceController
+class IncidenceValidationController
 {
     public function handle(Template $template)
     {
         $template->apply([
-            'corrections' => CorrectionUtils::getAllPending(),
+            'incidents' => IncidenceUtils::getAllPending(),
         ]);
     }
 }

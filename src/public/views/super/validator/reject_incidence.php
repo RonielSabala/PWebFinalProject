@@ -33,7 +33,7 @@
                     <button type="submit" id="btn-delete" class="btn btn-lg btn-danger">
                         <i class="bi bi-trash3-fill me-2"></i> Rechazar
                     </button>
-                    <a id="btn-return" class="btn btn-outline-secondary btn-lg" href="validate_incidence.php">
+                    <a id="btn-return" class="btn btn-outline-secondary btn-lg" href="incidence_validation.php">
                         <i class="bi bi-arrow-left-circle me-2"></i> Volver
                     </a>
                 </div>

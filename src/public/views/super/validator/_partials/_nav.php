@@ -10,12 +10,12 @@ use App\Utils\GeneralUtils;
                 href="/super/validator/home.php">Inicio</a>
         </li>
         <li class="nav-item">
-            <a class="<?= GeneralUtils::getActiveClass('validate_incidence') ?>"
-                href="/super/validator/validate_incidence.php">Aprobar incidencias</a>
+            <a class="<?= GeneralUtils::getActiveClass('incidence_validation') ?>"
+                href="/super/validator/incidence_validation.php">Validar incidencias</a>
         </li>
         <li class="nav-item">
-            <a class="<?= GeneralUtils::getActiveClass('fix_incidence') ?>"
-                href="/super/validator/fix_incidence.php">Corregir incidencias</a>
+            <a class="<?= GeneralUtils::getActiveClass('correction_validation') ?>"
+                href="/super/validator/correction_validation.php">Validar correcciones</a>
         </li>
         <?= GeneralUtils::setLogoutButton(); ?>
     </ul>
