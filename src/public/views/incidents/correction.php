@@ -21,7 +21,7 @@
                         <label for="coordinates" class="form-label">Coordenadas</label>
                         <input id="coordinates" class="form-control" name="coordinates"
                             type="text" required value="<?= htmlspecialchars($coordinates) ?>">
-                            <div class="invalid-feedback">Formato inválido. Usa: latitud, longitud (ej: 18.7357, -70.1627)</div>
+                        <div class="invalid-feedback">Formato inválido. Usa: latitud, longitud (ej: 18.7357, -70.1627)</div>
 
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                     <div class="d-flex justify-content-between mt-4">
                         <!-- Botón guardar -->
                         <button type="submit" class="btn btn-success rounded-pill px-4 py-2 fw-medium">
-                            <i class="bi bi-send-fill me-2"></i> Enviar Sugerencia
+                            <i class="bi bi-send-fill me-2"></i> Enviar corrección
                         </button>
 
                         <!-- Botón cancelar -->

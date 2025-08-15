@@ -76,7 +76,16 @@ class CorrectionController
                 GeneralUtils::showAlert(
                     'No se detectaron cambios respecto a la incidencia original!',
                     'warning',
+                    showReturn: false,
                 );
+
+                $template->apply([
+                    'incidence' => $incidence,
+                    'provinces' => ProvinceUtils::getAll(),
+                    'municipalities' => MunicipalityUtils::getAll(),
+                    'neighborhoods' => NeighborhoodUtils::getAll(),
+                    'coordinates' => $coordinates,
+                ]);
 
                 exit;
             }
