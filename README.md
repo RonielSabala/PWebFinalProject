@@ -25,7 +25,13 @@ _Requisitos_:
 
 ## 1. Conexión con la base de datos
 
-Configura los datos de conexión en el archivo `src/config/db.php`.
+Crea un archivo `.env` en la ruta `src/config` y crea las variables de conexión.
+
+```
+HOST='TU_HOST'
+USER='TU_USUARIO'
+PASS='TU_CONTRASEÑA'
+```
 
 ## 2. Creación de la base de datos
 
