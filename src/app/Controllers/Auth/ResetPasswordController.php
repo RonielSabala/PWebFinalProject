@@ -21,14 +21,14 @@ class ResetPasswordController
 
             // ¿Existe código en sesión y no expiró?
             if (!isset($_SESSION['reset_password_code']) || time() > $_SESSION['reset_password_code_expiration_time']) {
-                GeneralUtils::showAlert('Código expirado. Vuelve a solicitarlo.',  'forgot_password.php');
                 $template->apply();
+                GeneralUtils::showAlert('Código expirado. Vuelve a solicitarlo.',  returnRoute: 'forgot_password.php');
             } elseif ($code == $_SESSION['reset_password_code']) {
                 $_SESSION['is_code_valid'] = true;
                 header('Location: reset_password.php');
             } else {
-                GeneralUtils::showAlert('Código incorrecto.', showReturn: false);
                 $template->apply();
+                GeneralUtils::showAlert('Código incorrecto.', showReturn: false);
             }
 
             exit;
@@ -36,8 +36,8 @@ class ResetPasswordController
 
         // Validar código
         if (empty($_SESSION['is_code_valid'])) {
-            GeneralUtils::showAlert('Acceso no autorizado.', 'forgot_password.php');
             $template->apply();
+            GeneralUtils::showAlert('Acceso no autorizado.',  returnRoute: 'forgot_password.php');
             exit;
         }
 
@@ -45,8 +45,8 @@ class ResetPasswordController
         $password = $_POST['password'] ?? '';
         $confirm_password  = $_POST['confirm_password'] ?? '';
         if ($password !== $confirm_password) {
-            GeneralUtils::showAlert('Las contraseñas no coinciden.', showReturn: false);
             $template->apply();
+            GeneralUtils::showAlert('Las contraseñas no coinciden.', showReturn: false);
             exit;
         }
 
@@ -55,8 +55,8 @@ class ResetPasswordController
         $new_password = password_hash($password, PASSWORD_DEFAULT);
         $success = UserUtils::updatePassword($email, $new_password);
         if (!$success) {
-            GeneralUtils::showAlert('Error al actualizar la contraseña. Intenta de nuevo.', showReturn: false);
             $template->apply();
+            GeneralUtils::showAlert('Error al actualizar la contraseña. Intenta de nuevo.', showReturn: false);
             exit;
         }
 
