@@ -76,6 +76,8 @@ const ROUTES = [
 
     // Validate corrections
     'super/validator/correction_validation.php' => ['page' => 'correction_validation', 'controller' => \App\Controllers\Super\Validator\CorrectionValidationController::class],
+    'super/validator/approve_correction.php'    => ['page' => 'correction_validation', 'controller' => \App\Controllers\Super\Validator\ApproveCorrectionController::class],
+    'super/validator/reject_correction.php'     => ['page' => 'correction_validation', 'controller' => \App\Controllers\Super\Validator\RejectCorrectionController::class],
 ];
 
 // Crear pdo

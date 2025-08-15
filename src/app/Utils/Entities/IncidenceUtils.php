@@ -119,6 +119,7 @@ class IncidenceUtils extends GenericEntityUtils
     private static $deleteSql = "DELETE FROM incidents WHERE id = ?";
 
     private static $createLabelRelationSql = "INSERT INTO incidence_labels (incidence_id, label_id) VALUES (?, ?)";
+
     private static $setApprovalSql = "UPDATE incidents SET is_approved = 1 WHERE id = ?";
 
     public static function get($id)

@@ -1,0 +1,196 @@
+:root {
+  --go: #ffc107;
+  --go-hover: #e0a800;
+}
+
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.entity-card {
+  border-radius: 1rem;
+  max-width: 950px;
+}
+
+.entity-card .card-header {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.entity-card .card-body {
+  padding: 2.5rem;
+}
+
+.delete-warning {
+  background-color: #ffe5e5;
+  border: 1px solid #ffcccc;
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.delete-warning h5 {
+  color: #b30000;
+  margin: 0;
+  font-weight: 600;
+}
+
+.action-buttons .btn {
+  min-width: 140px;
+}
+
+.fields-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+}
+
+.field-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.field-value {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #000;
+  min-height: 1.5em;
+  position: relative;
+}
+
+.field-value:empty::after {
+  content: "Loading…";
+  color: #aaa;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.btn-go {
+  max-width: 100px;
+  border: 1px solid;
+  padding: 6px 12px;
+  margin-right: 2px;
+  background: var(--go);
+  border-color: var(--go);
+  color: #212529;
+}
+
+.btn-go:hover {
+  background: var(--go-hover);
+  border-color: var(--go-hover);
+  color: #fff;
+}
+
+.btn-outline-action {
+  background: transparent;
+  border: 1px solid #0000001c;
+  color: inherit;
+  width: 100%;
+}
+
+.btn-outline-action.btn-go:hover {
+  border-color: var(--go);
+  color: white;
+}
+
+.json-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.json-field {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.03);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.json-field:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+}
+
+.json-field > label,
+.json-field .fw-bold {
+  display: block;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #495057;
+  margin-bottom: 6px;
+  letter-spacing: 0.1px;
+}
+
+.json-field .ms-2 > span,
+.json-field .field-value > span {
+  display: block;
+  font-size: 0.95rem;
+  color: #212529;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.json-pre {
+  background: #f6f7f9;
+  border: 1px dashed #e6e9ef;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono",
+    "Segoe UI Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 220px;
+  overflow: auto;
+  margin: 0;
+}
+
+.json-type {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #e9f7ef;
+  color: #0f5132;
+  margin-left: 8px;
+  vertical-align: middle;
+  border: 1px solid rgba(15, 81, 50, 0.06);
+}
+
+.field-value .json-fields,
+#corrections .json-fields {
+  margin: 0;
+}
+
+.field-value a.btn-go {
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .fields-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .json-fields {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .json-pre {
+    max-height: 180px;
+    font-size: 0.88rem;
+  }
+}

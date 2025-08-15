@@ -3,7 +3,7 @@
 use App\Utils\GeneralUtils;
 
 
-function render_json_td(string $json_string): string
+function render_json(string $json_string): string
 {
     $data = json_decode($json_string, true);
     $prettify_key = function ($k) {
@@ -69,7 +69,9 @@ function render_json_td(string $json_string): string
         <thead>
             <tr>
                 <th>No.</th>
-                <th>Hecha por</th>
+                <th>Incidencia</th>
+                <th>Corrector</th>
+                <th>Fecha</th>
                 <th>Correcciones</th>
                 <th>Acciones</th>
             </tr>
@@ -79,11 +81,22 @@ function render_json_td(string $json_string): string
             foreach ($corrections as $correction): ?>
                 <tr>
                     <td><?= $i++ ?></td>
-                    <td><?= $correction['username'] ?></td>
-                    <td><?= render_json_td($correction['correction_values']) ?></td>
+                    <td>
+                        <a href="/incidents/incidence.php?id=<?= $correction['incidence_id'] ?>" class="btn btn-sm btn-outline-action btn-go">
+                            Ver
+                            <i class="bi bi-box-arrow-up-right"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <?= $correction['username'] ?>
+                    </td>
+                    <td>
+                        <?= (new DateTime($correction['creation_date']))->format('d/m/Y H:i') ?>
+                    </td>
+                    <td><?= render_json($correction['correction_values']) ?></td>
                     <td>
                         <a
-                            href="#"
+                            href="approve_correction.php?id=<?= $correction['id'] ?>"
                             class="btn-modern btn-approve btn-sm"
                             title="Aprobar">
                             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
@@ -92,7 +105,7 @@ function render_json_td(string $json_string): string
                             <span>Aprobar</span>
                         </a>
                         <a
-                            href="#"
+                            href="reject_correction.php?id=<?= $correction['id'] ?>"
                             class="btn-modern btn-reject btn-sm"
                             title="Rechazar">
                             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
