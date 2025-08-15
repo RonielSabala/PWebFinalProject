@@ -84,23 +84,34 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
             <!-- Carrusel de imágenes -->
             <?php if (!empty($photos)): ?>
                 <div class="mt-1rem section-title section-title-small text-center">Imágenes</div>
+
                 <section class="container-carousel">
                     <div class="slider-wrapper">
-                        <div class="slider">
+
+                        <button class="carousel-arrow arrow-left">&lt;</button>
+
+                        <div class="slider" id="slider">
                             <?php foreach ($photos as $index => $photo): ?>
-                                <img id="slide-<?= $index + 1 ?>" src="<?= htmlspecialchars($photo) ?>" alt="Foto de la incidencia">
+                                <img
+                                    class="slide"
+                                    data-index="<?= $index ?>"
+                                    id="slide-<?= $index + 1 ?>"
+                                    src="<?= htmlspecialchars($photo) ?>"
+                                    alt="Foto de la incidencia <?= $index + 1 ?>" />
                             <?php endforeach; ?>
                         </div>
-                        <div class="slider-nav">
+
+                        <button class="carousel-arrow arrow-right">&gt;</button>
+
+                        <div class="slider-nav" id="sliderNav" role="tablist" aria-label="Carousel navigation">
                             <?php foreach ($photos as $index => $photo): ?>
-                                <a href="#slide-<?= $index + 1 ?>" onclick="event.preventDefault(); 
-                                document.getElementById('slide-<?= $index + 1 ?>').scrollIntoView({behavior:'smooth', inline:'start', block:'nearest'});">
-                                </a>
+                                <button class="dot" type="button" data-index="<?= $index ?>"></button>
                             <?php endforeach; ?>
                         </div>
                     </div>
                 </section>
             <?php endif; ?>
+
 
             <!-- Etiquetas -->
             <?php if ($labels): ?>

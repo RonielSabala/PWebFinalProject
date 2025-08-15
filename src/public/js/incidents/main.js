@@ -63,7 +63,7 @@ function init_toggle_button() {
 
     try {
       renderIncidents();
-    } catch (err) {}
+    } catch (err) { }
   }
 
   updateToggleUI(toggle.checked);
@@ -86,9 +86,56 @@ function showModal(currentRoute, id) {
       $("#modalBody").html(modalHtml);
       $("#btnGoToIncidencePage").attr("href", `incidence.php?id=${id}`);
       $("#incidenceModal").modal("show");
+      initCarousel($("#incidenceModal"));
     })
     .fail(function () {
       $("#modalBody").html("<p>Error al cargar incidencia.</p>");
       $("#incidenceModal").modal("show");
     });
 }
+
+function initCarousel($document) {
+  $document.find('.container-carousel').each(function () {
+    let $container = $(this);
+    let $slides = $container.find('.slide');
+    let $dots = $container.find('.dot');
+    let $btnLeft = $container.find('.arrow-left');
+    let $btnRight = $container.find('.arrow-right');
+    let currentIndex = 0;
+
+    function goToSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= $slides.length) index = $slides.length - 1;
+      currentIndex = index;
+
+      let offset = $slides.eq(index).position().left + $container.find('.slider').scrollLeft();
+      $container.find('.slider').animate({ scrollLeft: offset }, 300);
+
+      $dots.removeClass('active').eq(index).addClass('active');
+    }
+
+    $dots.on('click', function () {
+      goToSlide($(this).data('index'));
+    });
+
+    $btnLeft.on('click', function () {
+      goToSlide(currentIndex - 1);
+    });
+
+    $btnRight.on('click', function () {
+      goToSlide(currentIndex + 1);
+    });
+
+    goToSlide(0);
+  });
+}
+
+// Iniciar carruseles fuera del modal
+$(function () {
+  initCarousel($(document));
+});
+
+
+
+
+

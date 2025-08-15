@@ -12,11 +12,9 @@
 }
 
 .incidence-header {
-  background: linear-gradient(
-    90deg,
-    rgba(99, 102, 241, 0.12),
-    rgba(14, 165, 233, 0.06)
-  );
+  background: linear-gradient(90deg,
+      rgba(99, 102, 241, 0.12),
+      rgba(14, 165, 233, 0.06));
   padding: 1.15rem 1.25rem;
   display: flex;
   flex-direction: column;
@@ -106,6 +104,7 @@
 .mt-1rem {
   margin-top: 1rem;
 }
+
 .section-title-small {
   margin-bottom: 0.4rem;
 }
@@ -129,6 +128,7 @@
 .mt-1rem {
   margin-top: 1rem;
 }
+
 .section-title-small {
   margin-bottom: 0.4rem;
 }
@@ -141,6 +141,54 @@
   position: relative;
   max-width: 48rem;
   margin: 0 auto;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.arrow-left {
+  left: 8px;
+}
+
+.arrow-right {
+  right: 8px;
+}
+
+.slider-nav {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #cfcfcf;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #333333;
+  outline: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.slider::-webkit-scrollbar {
+  height: 10px;
+  display: none;
 }
 
 .slider {
@@ -174,12 +222,16 @@
   z-index: 1;
 }
 
+.slider-nav a.active {
+  background: #000000;
+  opacity: 1;
+}
+
 .slider-nav a {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  background: #fff;
-  opacity: 0.75;
+  background: #989898;
   transition: opacity ease 250ms;
 }
 
