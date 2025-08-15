@@ -39,20 +39,22 @@ class ForgotPasswordController
         $mail = new PHPMailer(true);
         try {
             // Configuración de la conexión con la API
+            $mail_user = $_ENV['MAIL_USER'];
+            $mail_pass = $_ENV['MAIL_PASS'];
             $mail->isSMTP();
-            $mail->Port       = 587;
-            $mail->Host       = 'smtp.gmail.com';
-            $mail->Username   = 'abelrobles0409@gmail.com';
-            $mail->Password   = 'zyns tmxz tbdj xhra';
+            $mail->Port = 587;
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Username = $mail_user;
+            $mail->Password = $mail_pass;
             $mail->SMTPSecure = 'tls';
-            $mail->SMTPAuth   = true;
+            $mail->SMTPAuth = true;
 
             // Datos del correo
-            $mail->setFrom('abelrobles0409@gmail.com', 'IncidenciasRD');
+            $mail->setFrom($mail_user, 'Incidencias RD');
             $mail->addAddress($email);
             $mail->isHTML(true);
             $mail->Subject = 'Code to reset your password';
-            $mail->Body    = 'Your code is: <b>{$reset_password_code}</b>. Valid for ' . intval(self::$code_expiration_time / 60) . ' minutes.';
+            $mail->Body = "Your code is: <b>{$reset_password_code}</b>. Valid for " . intval(self::$code_expiration_time / 60) . ' minutes.';
 
             // Enviar código de recuperación y redirigir            
             $mail->send();
