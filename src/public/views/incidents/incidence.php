@@ -50,9 +50,24 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
     <div class="card-min mb-4">
         <!-- Cabecera -->
         <div class="incidence-header">
-            <div>
-                <h2 id="incidence-title"><?= $title ?></h2>
-                <div class="incidence-meta">Publicado: <strong><?= $created ?></strong> · Ocurrencia: <strong><?= $occurrence ?></strong></div>
+            <div class="incidence-card">
+                <div class="incidence-main">
+                    <div class="incidence-top">
+                        <span class="kicker">NOTICIA</span>
+                        <svg class="icon" viewBox="0 0 24 24" width="16" height="16" focusable="false">
+                            <path d="M12 2l2.1 4.6L19 8l-3.6 2.8L16 16l-4-2.5L8 16l.6-5.2L5 8l4.9-1.4L12 2z" />
+                        </svg>
+                    </div>
+
+                    <h2 id="incidence-title" class="title"><?= htmlspecialchars($title) ?></h2>
+                    <p class="incidence-meta" aria-label="Metadatos de la noticia">
+                        <time datetime="<?= date('c', strtotime($created)) ?>">Publicado: <strong><?= $created ?></strong></time>
+                        <span class="dot">·</span>
+                        <span>Ocurrencia: <strong><?= $occurrence ?></strong></span>
+                        <span class="dot">·</span>
+                        <span>Reportaje por: <strong><?= htmlspecialchars($incidence['reporter_name']) ?></strong></span>
+                    </p>
+                </div>
             </div>
         </div>
 
