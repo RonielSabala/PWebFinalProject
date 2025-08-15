@@ -160,7 +160,13 @@ class IncidenceUtils extends GenericEntityUtils
 
         // Insertar imagen
         if (!empty($photoUrl)) {
-            PhotoUtils::create([$incidenceId, $photoUrl]);
+            if (is_array($photoUrl)) {
+                foreach ($photoUrl as $url) {
+                    PhotoUtils::create([$incidenceId, $url]);
+                }
+            } else {
+                PhotoUtils::create([$incidenceId, $photoUrl]);
+            }
         }
 
         // Insertar relación Incidencia-Etiqueta

@@ -31,7 +31,7 @@ const ROUTES = [
     'incidents/correction.php' => ['page' => 'incidents', 'controller' => \App\Controllers\Incidents\CorrectionController::class],
 
     // Reporters views
-    'reporters/home.php'           => ['page' => 'reports', 'controller' => \App\Controllers\Reporters\HomeController::class],
+    'reporters/home.php'   => ['page' => 'reports', 'controller' => \App\Controllers\Reporters\HomeController::class],
     'reporters/report.php' => ['page' => 'reports', 'controller' => \App\Controllers\Reporters\ReportController::class],
 
     // Super routes
