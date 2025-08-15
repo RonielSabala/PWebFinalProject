@@ -3,6 +3,7 @@
 use App\Utils\Entities\UserUtils;
 
 // Datos
+$photos = $incidence['photo_urls'];
 $incidenceId = $incidence['id'];
 $title = $incidence['title'];
 $description = $incidence['incidence_description'];
@@ -11,6 +12,10 @@ $created = (new DateTime($incidence['creation_date']))->format('d/m/Y H:i');
 $deaths = $incidence['n_deaths'];
 $injured = $incidence['n_injured'];
 $losses = number_format((float)($incidence['n_losses']), 2, ',', '.');
+
+if (!empty($photos)) {
+    $photos = array_map('trim', explode(',', $incidence['photo_urls']));
+}
 
 // Paleta de colores
 $avatar_colors = [
@@ -90,6 +95,38 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                     </div>
                 </div>
             </div>
+
+            <!-- Carrusel de imágenes -->
+            <?php if (!empty($photos)): ?>
+                <div class="mt-1rem section-title section-title-small text-center">Imágenes</div>
+
+                <section class="container-carousel">
+                    <div class="slider-wrapper">
+
+                        <button class="carousel-arrow arrow-left">&lt;</button>
+
+                        <div class="slider" id="slider">
+                            <?php foreach ($photos as $index => $photo): ?>
+                                <img
+                                    class="slide"
+                                    data-index="<?= $index ?>"
+                                    id="slide-<?= $index + 1 ?>"
+                                    src="<?= htmlspecialchars($photo) ?>"
+                                    alt="Foto de la incidencia <?= $index + 1 ?>" />
+                            <?php endforeach; ?>
+                        </div>
+
+                        <button class="carousel-arrow arrow-right">&gt;</button>
+
+                        <div class="slider-nav" id="sliderNav" role="tablist" aria-label="Carousel navigation">
+                            <?php foreach ($photos as $index => $photo): ?>
+                                <button class="dot" type="button" data-index="<?= $index ?>"></button>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </section>
+            <?php endif; ?>
+
 
             <!-- Etiquetas -->
             <?php if ($labels): ?>
