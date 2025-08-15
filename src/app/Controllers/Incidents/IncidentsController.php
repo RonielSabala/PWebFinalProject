@@ -6,6 +6,7 @@ use App\Core\Template;
 use App\Utils\Entities\ProvinceUtils;
 use App\Utils\Entities\IncidenceUtils;
 use App\Utils\Entities\CommentUtils;
+use App\Utils\Entities\LabelUtils;
 
 
 class IncidentsController
@@ -36,10 +37,14 @@ class IncidentsController
 
                 // Cargar la vista
                 if (file_exists($viewPath)) {
+                    $incidence = IncidenceUtils::get($incidenceId);
+                    $labels = LabelUtils::getAllByIncidenceId($incidenceId);
+                    $comments = CommentUtils::getAllByIncidenceId($incidenceId);
                     extract([
-                        'incidence' => IncidenceUtils::get($incidenceId),
-                        'comments' => CommentUtils::getAllByIncidenceId($incidenceId),
-                    ], EXTR_SKIP);
+                        'incidence' => $incidence,
+                        'labels' => $labels,
+                        'comments' => $comments,
+                    ]);
 
                     include $viewPath;
                 }
@@ -56,9 +61,26 @@ class IncidentsController
             exit;
         }
 
+        if (str_contains(template::$viewPath, 'map')) {
+            $button = '
+            <a href="list.php" id="toggleView" class="btn btn-primary btn rounded-pill d-flex align-items-center gap-2 shadow-sm">
+                <i class="bi bi-list-ul fs-5"></i>
+                <span class="fw-semibold">Ver en Lista</span>
+            </a>
+            ';
+        } else {
+            $button = '
+            <a href="map.php" id="toggleView" class="btn btn-primary btn rounded-pill d-flex align-items-center gap-2 shadow-sm">
+                <i class="bi bi-geo-alt-fill fs-5"></i>
+                <span class="fw-semibold">Ver en mapa</span>
+            </a>
+            ';
+        }
+
         $incidents = IncidenceUtils::getAllApproved();
         $provinces = ProvinceUtils::getAll();
         $template->apply([
+            'button' => $button,
             'incidents' => $incidents,
             'provinces' => $provinces,
         ]);

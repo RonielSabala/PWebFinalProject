@@ -15,13 +15,13 @@ class MicrosoftCallbackController
 
         // Validar código
         if (!isset($_GET['code'])) {
-            GeneralUtils::showAlert('Código de autorización no encontrado', "danger");
+            GeneralUtils::showAlert('Código de autorización no encontrado');
             exit;
         }
 
         // Validar estado
         if (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
-            GeneralUtils::showAlert('El estado no es válido o ha expirado.', "danger");
+            GeneralUtils::showAlert('El estado no es válido o ha expirado.');
 
             // Limpiar sesión
             session_unset();
@@ -51,7 +51,7 @@ class MicrosoftCallbackController
 
             LoginController::log_user();
         } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
-            GeneralUtils::showAlert('Error al obtener token: ' . $e->getMessage(), "danger");
+            GeneralUtils::showAlert('Error al obtener token: ' . $e->getMessage());
         }
     }
 }

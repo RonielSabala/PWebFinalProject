@@ -5,8 +5,10 @@
   --text-muted: #6b7280;
 }
 
-.search-bar-container {
-  margin-bottom: 1rem;
+#search-bar-container {
+  position: sticky;
+  top: 25px;
+  z-index: 1000;
 }
 
 .search-bar {
@@ -52,6 +54,7 @@
 #searchButton {
   padding-left: 15px;
   padding-right: 25px;
+  background-color: white;
 }
 
 #searchButton:hover {
@@ -64,6 +67,11 @@
   font-weight: 500;
   font-size: 0.95rem;
   margin-bottom: 1rem;
+  background-color: #fff8;
+}
+
+#toggleView {
+  color: white;
 }
 
 .results-row {

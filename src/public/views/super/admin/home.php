@@ -5,7 +5,7 @@
             <i class="bi bi-shield-lock-fill fs-3" style="color:var(--accent-1)"></i>
         </div>
         <div>
-            <h3 class="mb-0">Vista del administrador</h3>
+            <h3 class="mb-0">Panel del administrador</h3>
             <div class="muted-sm">Bienvenido, <span class="welcome-name"><?= htmlspecialchars($_SESSION['user']['username'] ?? 'Administrador') ?></span>! — Panel para gestionar la aplicación rápidamente.</div>
         </div>
         <div class="ms-auto text-end">

@@ -10,7 +10,7 @@ use App\Utils\Entities\MunicipalityUtils;
 use App\Utils\Entities\NeighborhoodUtils;
 
 
-class EditIncidenceController
+class ReportController
 {
     public function handle(Template $template)
     {

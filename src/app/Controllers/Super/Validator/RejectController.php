@@ -12,7 +12,7 @@ class RejectController
     public function handle(Template $template)
     {
         if (!isset($_GET['id'])) {
-            GeneralUtils::showAlert('No se especificó la incidencia.', 'danger');
+            GeneralUtils::showAlert('No se especificó la incidencia.');
             exit;
         }
 
@@ -31,6 +31,11 @@ class RejectController
         // Obtener incidencia
         $incidence = IncidenceUtils::get($id);
         if (!$incidence) {
+            exit;
+        }
+
+        if ($incidence['is_approved']) {
+            GeneralUtils::showAlert('La incidencia ya se encuentra aprobada.');
             exit;
         }
 

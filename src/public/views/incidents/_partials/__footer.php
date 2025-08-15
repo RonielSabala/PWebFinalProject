@@ -26,7 +26,7 @@
 
                 <!-- Footer -->
                 <div class="modal-footer d-flex align-items-center">
-                    <a id="btnGoToIncidencePage" class="btn btn-primary me-auto" href="#" rel="noopener noreferrer">
+                    <a id="btnGoToIncidencePage" class="btn me-auto btn-sm btn-go" href="#" rel="noopener noreferrer">
                         Abrir
                         <i class="bi bi-box-arrow-up-right"></i>
                     </a>

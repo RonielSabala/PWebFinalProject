@@ -83,7 +83,7 @@ class CorrectionController
 
             // Crear corrección
             if (CorrectionUtils::create($incidenceId, $userId, $correctionData)) {
-                GeneralUtils::showAlert('Corrección creada con éxito!', 'success');
+                GeneralUtils::showAlert('Corrección creada con éxito!', 'success', 'incidence.php?id=' . $incidenceId);
                 exit;
             }
 

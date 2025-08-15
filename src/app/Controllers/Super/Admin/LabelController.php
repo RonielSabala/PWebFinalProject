@@ -46,7 +46,7 @@ class LabelController
             // Validar nombre
             if (LabelUtils::getByName($label_name)) {
                 $template->apply();
-                GeneralUtils::showAlert('Ya existe una etiqueta con ese nombre!', 'danger', showReturn: false);
+                GeneralUtils::showAlert('Ya existe una etiqueta con ese nombre!', showReturn: false);
                 exit;
             }
 
@@ -60,7 +60,7 @@ class LabelController
     public function handle_edit($template)
     {
         if (!isset($_GET['id'])) {
-            GeneralUtils::showAlert('No se especificó la etiqueta.', 'danger');
+            GeneralUtils::showAlert('No se especificó la etiqueta.');
             exit;
         }
 
@@ -80,7 +80,7 @@ class LabelController
             $other_label = LabelUtils::getByName($label['label_name']);
             if ($other_label && $other_label['id'] != $id) {
                 $template->apply(['label' => $label]);
-                GeneralUtils::showAlert('Ya existe una etiqueta con ese nombre!', 'danger', showReturn: false);
+                GeneralUtils::showAlert('Ya existe una etiqueta con ese nombre!', showReturn: false);
                 exit;
             }
 
@@ -95,7 +95,7 @@ class LabelController
     public function handle_delete()
     {
         if (!isset($_GET['id'])) {
-            GeneralUtils::showAlert('No se especificó la etiqueta.', 'danger');
+            GeneralUtils::showAlert('No se especificó la etiqueta.');
             exit;
         }
 

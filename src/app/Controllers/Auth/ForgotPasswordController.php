@@ -24,7 +24,7 @@ class ForgotPasswordController
         // Validar correo
         $email = $_POST['email'] ?? '';
         if (!UserUtils::exists($email)) {
-            GeneralUtils::showAlert("El correo proporcionado no está registrado.", "danger", showReturn: false);
+            GeneralUtils::showAlert('El correo proporcionado no está registrado.', showReturn: false);
             $template->apply();
             exit;
         }
@@ -52,13 +52,13 @@ class ForgotPasswordController
             $mail->addAddress($email);
             $mail->isHTML(true);
             $mail->Subject = 'Code to reset your password';
-            $mail->Body    = "Your code is: <b>{$reset_password_code}</b>. Valid for " . intval(self::$code_expiration_time / 60) . " minutes.";
+            $mail->Body    = 'Your code is: <b>{$reset_password_code}</b>. Valid for ' . intval(self::$code_expiration_time / 60) . ' minutes.';
 
             // Enviar código de recuperación y redirigir            
             $mail->send();
-            header("Location: reset_password.php");
+            header('Location: reset_password.php');
         } catch (Exception $e) {
-            GeneralUtils::showAlert("Error al enviar el correo: " . $mail->ErrorInfo, "danger", false);
+            GeneralUtils::showAlert('Error al enviar el correo: ' . $mail->ErrorInfo, showReturn: false);
             $template->apply();
         }
     }

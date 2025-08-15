@@ -18,7 +18,7 @@ class GenericEntityUtils
             $stmt->execute($params);
             return true;
         } catch (\PDOException $e) {
-            GeneralUtils::showAlert($e->getMessage(), 'danger');
+            GeneralUtils::showAlert($e->getMessage());
             return false;
         }
     }
@@ -33,7 +33,7 @@ class GenericEntityUtils
             $stmt->execute($params);
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
-            GeneralUtils::showAlert($e->getMessage(), 'danger');
+            GeneralUtils::showAlert($e->getMessage());
             return null;
         }
     }
@@ -42,7 +42,7 @@ class GenericEntityUtils
     {
         $obj = self::fetchSql($sql, $params);
         if (!$obj) {
-            GeneralUtils::showAlert($error_msg, 'danger');
+            GeneralUtils::showAlert($error_msg);
         }
 
         return $obj;
@@ -58,7 +58,7 @@ class GenericEntityUtils
             $stmt->execute($params);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
-            GeneralUtils::showAlert($e->getMessage(), 'danger', showReturn: false);
+            GeneralUtils::showAlert($e->getMessage(), showReturn: false);
             return [];
         }
     }

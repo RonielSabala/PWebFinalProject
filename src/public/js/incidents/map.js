@@ -91,13 +91,18 @@ function getMarker(m) {
 }
 
 function initMap() {
-  mapInstance = L.map("incidents-map").setView(
+  // Evitar que clicks en overlay lleguen al mapa
+  const overlay = document.getElementById("search-bar-container");
+  L.DomEvent.disableClickPropagation(overlay);
+  L.DomEvent.disableScrollPropagation(overlay);
+
+  mapInstance = L.map("incidents-map", { zoomControl: false }).setView(
     [defaultLat, defaultLng],
     defaultZoom
   );
+
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
-    attribution: "&copy; OpenStreetMap",
   }).addTo(mapInstance);
   incidenceLayer = L.layerGroup().addTo(mapInstance);
   mapInstance.on("click", onMapClick);

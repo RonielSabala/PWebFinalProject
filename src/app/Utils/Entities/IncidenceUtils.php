@@ -70,7 +70,6 @@ class IncidenceUtils extends GenericEntityUtils
         i.neighborhood_id = n.id
     WHERE
         i.is_approved = 0
-        OR i.is_approved IS NULL
     ORDER BY
         i.creation_date
     DESC
