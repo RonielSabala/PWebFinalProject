@@ -4,7 +4,6 @@ namespace App\Controllers\Incidents;
 
 use App\Core\Template;
 use App\Utils\GeneralUtils;
-use App\Utils\Entities\LabelUtils;
 use App\Utils\Entities\ProvinceUtils;
 use App\Utils\Entities\IncidenceUtils;
 use App\Utils\Entities\CorrectionUtils;
@@ -38,14 +37,14 @@ class CorrectionController
         }
 
         if (!isset($_GET['incidence_id'])) {
-            GeneralUtils::showAlert('No se especificó la incidencia');
+            GeneralUtils::showAlert('No se especificó la incidencia!');
             exit;
         }
 
         $incidenceId = $_GET['incidence_id'];
         $incidence = IncidenceUtils::get($incidenceId);
         if (!$incidence) {
-            GeneralUtils::showAlert('Incidencia no encontrada');
+            GeneralUtils::showAlert('Incidencia no encontrada!');
             exit;
         }
 
@@ -57,25 +56,30 @@ class CorrectionController
             $userId = $_SESSION['user']['id'];
 
             // Formatear coordenadas
-            list($latitude, $longitude) = explode(',', $coordinates);
+            list($latitude, $longitude) = explode(',', $_POST['coordinates']);
             $latitude = trim($latitude);
             $longitude = trim($longitude);
 
             // Preparar datos de corrección
             $correctionData = [
-                'title' => $_POST['title'],
-                'description' => $_POST['incidence_description'],
                 'n_deaths' => $_POST['n_deaths'],
                 'n_injured' => $_POST['n_injured'],
                 'n_losses' => $_POST['n_losses'],
                 'latitude' => $latitude,
                 'longitude' => $longitude,
-                'photo_url' => $_POST['photo_url'],
                 'province_id' => $_POST['province_id'],
-                'municipality_id' => $_POST['municipality_id'],
-                'neighborhood_id' => $_POST['neighborhood_id'],
-                'labels' => isset($_POST['labels']) ? json_encode($_POST['labels']) : null,
+                'municipality_id' => $_POST['municipality_id'] ?? '',
+                'neighborhood_id' => $_POST['neighborhood_id'] ?? '',
             ];
+
+            if (!$this->hasChanges($incidence, $correctionData)) {
+                GeneralUtils::showAlert(
+                    'No se detectaron cambios respecto a la incidencia original!',
+                    'warning',
+                );
+
+                exit;
+            }
 
             // Crear corrección
             if (CorrectionUtils::create($incidenceId, $userId, $correctionData)) {
@@ -87,15 +91,37 @@ class CorrectionController
         }
 
         // Llenar el formulario 
-        $occurrenceDate = new \DateTime($incidence['occurrence_date']);
         $template->apply([
             'incidence' => $incidence,
             'provinces' => ProvinceUtils::getAll(),
             'municipalities' => MunicipalityUtils::getAll(),
             'neighborhoods' => NeighborhoodUtils::getAll(),
-            'labels' => LabelUtils::getAll(),
-            'formattedDate' => $occurrenceDate->format('Y-m-d\TH:i'),
             'coordinates' => $coordinates,
         ]);
+    }
+
+    // Método para comparar cambios
+    private function hasChanges(array $original, array $correction): bool
+    {
+        // Mapeamos $original a las mismas claves que $correction
+        $originalMapped = [
+            'n_deaths'        => (string)($original['n_deaths'] ?? ''),
+            'n_injured'       => (string)($original['n_injured'] ?? ''),
+            'n_losses'        => (string)($original['n_losses'] ?? ''),
+            'latitude'        => trim((string)($original['latitude'] ?? '')),
+            'longitude'       => trim((string)($original['longitude'] ?? '')),
+            'province_id'     => (string)($original['province_id'] ?? ''),
+            'municipality_id' => (string)($original['municipality_id'] ?? ''),
+            'neighborhood_id' => (string)($original['neighborhood_id'] ?? ''),
+        ];
+
+        // Comparar campos
+        foreach ($originalMapped as $key => $value) {
+            if ((string)$value !== (string)($correction[$key] ?? '')) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
