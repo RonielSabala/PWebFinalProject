@@ -4,7 +4,6 @@ namespace App\Controllers\Incidents;
 
 use App\Core\Template;
 use App\Utils\GeneralUtils;
-use App\Utils\Entities\LabelUtils;
 use App\Utils\Entities\ProvinceUtils;
 use App\Utils\Entities\IncidenceUtils;
 use App\Utils\Entities\CorrectionUtils;
@@ -37,16 +36,15 @@ class CorrectionController
             exit;
         }
 
-        $last_uri = GeneralUtils::getNthURI(-2);
         if (!isset($_GET['incidence_id'])) {
-            GeneralUtils::showAlert('No se especificó la incidencia', 'danger', $last_uri);
+            GeneralUtils::showAlert('No se especificó la incidencia!');
             exit;
         }
 
         $incidenceId = $_GET['incidence_id'];
         $incidence = IncidenceUtils::get($incidenceId);
         if (!$incidence) {
-            GeneralUtils::showAlert('Incidencia no encontrada', 'danger', $last_uri);
+            GeneralUtils::showAlert('Incidencia no encontrada!');
             exit;
         }
 
@@ -76,23 +74,21 @@ class CorrectionController
 
             if (!$this->hasChanges($incidence, $correctionData)) {
                 GeneralUtils::showAlert(
-                    'No se detectaron cambios respecto a la incidencia original',
+                    'No se detectaron cambios respecto a la incidencia original!',
                     'warning',
-                    $last_uri
                 );
+
                 exit;
             }
 
             // Crear corrección
             if (CorrectionUtils::create($incidenceId, $userId, $correctionData)) {
-                GeneralUtils::showAlert('Corrección creada con éxito!', 'success', $last_uri);
+                GeneralUtils::showAlert('Corrección creada con éxito!', 'success');
                 exit;
             }
 
-            GeneralUtils::showAlert('Error al crear la corrección', 'danger', showReturn: false);
+            GeneralUtils::showAlert('Error al crear la corrección', showReturn: false);
         }
-
-
 
         // Llenar el formulario 
         $template->apply([
@@ -103,28 +99,29 @@ class CorrectionController
             'coordinates' => $coordinates,
         ]);
     }
+
     // Método para comparar cambios
     private function hasChanges(array $original, array $correction): bool
     {
-        
         // Mapeamos $original a las mismas claves que $correction
         $originalMapped = [
-            'n_deaths'       => (string)($original['n_deaths'] ?? ''),
-            'n_injured'      => (string)($original['n_injured'] ?? ''),
-            'n_losses'       => (string)($original['n_losses'] ?? ''),
-            'latitude'       => trim((string)($original['latitude'] ?? '')),
-            'longitude'      => trim((string)($original['longitude'] ?? '')),
-            'province_id'    => (string)($original['province_id'] ?? ''),
+            'n_deaths'        => (string)($original['n_deaths'] ?? ''),
+            'n_injured'       => (string)($original['n_injured'] ?? ''),
+            'n_losses'        => (string)($original['n_losses'] ?? ''),
+            'latitude'        => trim((string)($original['latitude'] ?? '')),
+            'longitude'       => trim((string)($original['longitude'] ?? '')),
+            'province_id'     => (string)($original['province_id'] ?? ''),
             'municipality_id' => (string)($original['municipality_id'] ?? ''),
             'neighborhood_id' => (string)($original['neighborhood_id'] ?? ''),
         ];
-        
+
         // Comparar campos
         foreach ($originalMapped as $key => $value) {
             if ((string)$value !== (string)($correction[$key] ?? '')) {
                 return true;
             }
         }
+
         return false;
     }
 }
