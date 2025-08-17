@@ -1,128 +1,99 @@
-.passwordField {
-  position: relative;
+:root {
+  --primary: #1976d2;
+  --primary-600: #1565c0;
+  --muted: #6c757d;
+  --radius-lg: 14px;
 }
 
-#togglePassword {
+.input-ghost .input-group-text {
+  background: transparent;
+  border: 1px solid #e6e9ee;
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  padding: 0.6rem 0.75rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-ghost .form-control {
+  border: 1px solid #e6e9ee;
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  padding: 0.6rem 0.75rem;
+  box-shadow: none;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  background: transparent;
+}
+
+.btn-icon {
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 0.35rem;
   transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.passwordField {
-  position: relative;
+.input-ghost .form-control:focus,
+.input-ghost .input-group-text:focus,
+.btn-icon:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.08);
+  border-color: var(--primary-600);
 }
 
-#togglePassword {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-}
-
-/* --- Login Card --- */
-.card {
-  border-radius: 20px;
-  background: #ffffff;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-}
-
-.card-body {
-  font-family: "Inter", sans-serif;
-}
-
-/* --- Inputs --- */
-.form-control {
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
-  border: 1px solid #d0d7de;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.form-control:focus {
-  border-color: #1976d2;
-  box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25);
-}
-
-/* --- Botón principal --- */
 .btn-primary {
-  background: linear-gradient(90deg, #1976d2, #42a5f5);
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
   border: none;
   border-radius: 12px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: background 0.3s ease;
+  padding: 0.6rem 1rem;
+  box-shadow: 0 6px 18px rgba(25, 118, 210, 0.12);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(90deg, #1565c0, #1e88e5);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(25, 118, 210, 0.14);
 }
 
-/* --- Botones sociales --- */
-.btn-outline-danger,
-.btn-outline-primary {
-  border-radius: 12px;
-  font-weight: 500;
-  transition: all 0.2s ease;
+a.text-decoration-none {
+  color: var(--muted);
+  transition: color 0.12s ease;
 }
 
-.btn-outline-danger:hover {
-  background: #db4437;
-  color: #fff;
+a.text-decoration-none:hover {
+  color: var(--primary);
+  text-decoration: none;
 }
 
-.btn-outline-primary:hover {
-  background: #0078d4;
-  color: #fff;
+.login-hr {
+  border: 0;
+  border-top: 2px dashed #000000;
+  margin: 1.25rem 0;
 }
 
-a {
-  transition: color 0.2s ease;
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
 }
 
-a:hover {
-  color: #1976d2 !important;
-}
-
-h3.fw-bold {
-  font-family: "Playfair Display", serif;
-  font-size: 1.75rem;
-  color: #1976d2;
-}
-
-.text-muted {
-  font-size: 0.9rem;
-}
-
-hr {
-  border-top: 1px dashed #ccc;
-  margin: 1.5rem 0;
-}
-
-y este main .view-content {
-  min-height: 600px;
-}
-
-body {
-  background: linear-gradient(135deg, #e3f2fd, #ffffff);
-}
-
-.card {
-  border-radius: 15px;
-}
-
-#togglePassword {
-  background: transparent;
-  cursor: pointer;
-}
-
-#togglePassword:hover {
-  opacity: 0.7;
+@media (max-width: 576px) {
+  .card-body {
+    padding: 1.25rem;
+  }
+  .title {
+    font-size: 1.35rem;
+  }
 }

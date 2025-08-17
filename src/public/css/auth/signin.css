@@ -1,68 +1,42 @@
-body {
-  background: linear-gradient(135deg, #e3f2fd, #ffffff);
+.page-card .heading-with-icon .icon {
+  font-size: 3rem;
+  width: 3.6rem;
+  height: 3.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(46, 125, 50, 0.06);
+  border-radius: 10px;
 }
 
-.card {
-  border-radius: 15px;
+.page-card hr {
+  border: 0;
+  border-top: 1px dashed #e9edf3;
+  margin: 1.25rem 0;
 }
 
-#togglePassword {
-  background: transparent;
-  cursor: pointer;
+.page-card .btn {
+  border-radius: 12px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
 }
 
-#togglePassword:hover {
-  opacity: 0.7;
+.heading-with-icon .icon {
+  font-size: 3rem;
+  width: 3.6rem;
+  height: 3.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(46, 125, 50, 0.08);
+  padding: 0.2rem;
+  box-shadow: none;
 }
 
-body {
-  background: linear-gradient(135deg, #e3f2fd, #ffffff);
-  font-family: "Inter", sans-serif;
-}
-
-.card {
-  border-radius: 20px;
-  background: #ffffff;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-}
-
-.card-body {
-  font-family: "Inter", sans-serif;
-}
-
-h3.fw-bold {
-  font-family: "Playfair Display", serif;
-  font-size: 1.75rem;
-  color: #2e7d32;
-}
-
-.text-muted {
-  font-size: 0.9rem;
-}
-
-.input-group-text {
-  border-radius: 12px 0 0 12px;
-  border: 1px solid #d0d7de;
-  background-color: #f9f9f9;
-}
-
-.form-control {
-  border-radius: 0 12px 12px 0;
-  border: 1px solid #d0d7de;
-  padding: 0.75rem 1rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.form-control:focus {
-  border-color: #2e7d32;
-  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+.form-text {
+  color: #6c757d;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
 }
 
 .btn-success {
@@ -71,39 +45,10 @@ h3.fw-bold {
   border-radius: 12px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  transition: background 0.3s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .btn-success:hover {
-  background: linear-gradient(90deg, #1b5e20, #2e7d32);
-}
-
-.btn-outline-danger,
-.btn-outline-primary {
-  border-radius: 12px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.btn-outline-danger:hover {
-  background: #db4437;
-  color: #fff;
-}
-
-.btn-outline-primary:hover {
-  background: #0078d4;
-  color: #fff;
-}
-
-a {
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: #2e7d32 !important;
-}
-
-hr {
-  border-top: 1px dashed #ccc;
-  margin: 1.5rem 0;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(30, 115, 60, 0.12);
 }
