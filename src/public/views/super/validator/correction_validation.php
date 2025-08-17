@@ -91,9 +91,9 @@ function render_json(string $json_string): string
                         <?= $correction['username'] ?>
                     </td>
                     <td>
-                        <?= (new DateTime($correction['creation_date']))->format('d/m/Y H:i') ?>
+                        <?= GeneralUtils::formatDate($correction['creation_date']) ?>
                     </td>
-                    <td><?= render_json($correction['correction_values']) ?></td>
+                    <td><?= GeneralUtils::render_json($correction['correction_values']) ?></td>
                     <td>
                         <a
                             href="approve_correction.php?id=<?= $correction['id'] ?>"
