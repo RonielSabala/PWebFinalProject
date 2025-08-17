@@ -2,6 +2,8 @@
 
 namespace App\Utils;
 
+use DateTime;
+
 
 class GeneralUtils
 {
@@ -107,5 +109,10 @@ class GeneralUtils
         $uri = implode('/', array_slice($uri_parts, 0, -1));
         $view = end($uri_parts);
         return [$uri, $view];
+    }
+
+    public static function formatDate($date)
+    {
+        return (new DateTime($date))->format('d/m/Y H:i');
     }
 }
