@@ -8,3 +8,126 @@
   right: 0;
   transform: translateY(-50%);
 }
+
+/* Cambios en el diseño */
+.passwordField {
+  position: relative;
+}
+
+#togglePassword {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+/* Cambios en el diseño */
+/* --- Login Card --- */
+.card {
+  border-radius: 20px;
+  background: #ffffff;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.card-body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- Inputs --- */
+.form-control {
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d0d7de;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25);
+}
+
+/* --- Botón principal --- */
+.btn-primary {
+  background: linear-gradient(90deg, #1976d2, #42a5f5);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #1565c0, #1e88e5);
+}
+
+/* --- Botones sociales --- */
+.btn-outline-danger,
+.btn-outline-primary {
+  border-radius: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-danger:hover {
+  background: #db4437;
+  color: #fff;
+}
+
+.btn-outline-primary:hover {
+  background: #0078d4;
+  color: #fff;
+}
+
+/* --- Links --- */
+a {
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #1976d2 !important;
+}
+
+/* --- Header del form --- */
+h3.fw-bold {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  color: #1976d2;
+}
+
+.text-muted {
+  font-size: 0.9rem;
+}
+
+/* --- Línea divisoria --- */
+hr {
+  border-top: 1px dashed #ccc;
+  margin: 1.5rem 0;
+}
+
+y este main .view-content {
+  min-height: 600px;
+}
+
+body {
+  background: linear-gradient(135deg, #e3f2fd, #ffffff);
+}
+
+.card {
+  border-radius: 15px;
+}
+
+#togglePassword {
+  background: transparent;
+  cursor: pointer;
+}
+
+#togglePassword:hover {
+  opacity: 0.7;
+}
