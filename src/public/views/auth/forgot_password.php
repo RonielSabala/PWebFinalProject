@@ -20,7 +20,7 @@
                 </form>
 
                 <div class="mt-3 text-center">
-                    <a href="login.php" class="small text-decoration-none"><i class="bi bi-box-arrow-in-right"></i> Volver al inicio</a>
+                    <a href="login.php" class="text-decoration-none"><i class="bi bi-box-arrow-in-right"></i> Volver al inicio</a>
                 </div>
             </div>
         </div>
