@@ -92,20 +92,37 @@ class IncidenceUtils extends GenericEntityUtils
         i.incidence_description,
         i.creation_date,
         i.is_approved,
-        COUNT(c.id) AS comments
+        COALESCE(c.comments_count, 0)  AS comments_count,
+        COALESCE(co.corrections_count, 0) AS corrections_count
     FROM
         incidents i
-    LEFT JOIN
-        comments c
+    LEFT JOIN (
+        SELECT
+            incidence_id,
+            COUNT(*) AS comments_count
+        FROM
+            comments
+        GROUP BY
+            incidence_id
+    ) c
     ON
         c.incidence_id = i.id
+    LEFT JOIN (
+        SELECT
+            incidence_id,
+            COUNT(*) AS corrections_count
+        FROM
+            corrections
+        GROUP BY
+            incidence_id
+    ) co
+    ON
+        co.incidence_id = i.id
     WHERE
         i.user_id = ?
-    GROUP BY
-        i.id,
-        i.title,
-        i.incidence_description,
+    ORDER BY
         i.creation_date
+    DESC
     ";
 
     private static $createSql = "INSERT INTO

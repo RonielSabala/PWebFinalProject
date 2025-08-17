@@ -19,6 +19,7 @@ use App\Utils\Entities\IncidenceUtils;
             <th>Fecha registrada</th>
             <th>Estatus</th>
             <th>Comentarios</th>
+            <th>Correcciones</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -37,7 +38,8 @@ use App\Utils\Entities\IncidenceUtils;
                         <?= ((int)$incidence['is_approved'] === 1) ? 'Aprobada' : 'No aprobada' ?>
                     </span>
                 </td>
-                <td><?= $incidence['comments'] ?></td>
+                <td><?= $incidence['comments_count'] ?></td>
+                <td><?= $incidence['corrections_count'] ?></td>
                 <td>
                     <a href="/incidents/incidence.php?id=<?= $incidence['id'] ?>" class="btn btn-sm btn-outline-action btn-go">
                         Ver
