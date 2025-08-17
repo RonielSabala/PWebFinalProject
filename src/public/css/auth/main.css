@@ -20,3 +20,92 @@ body {
 }
 
 
+/* --- Card Forgot Password --- */
+.card {
+  border-radius: 20px;
+  background: #ffffff;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Header */
+h3.fw-bold {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  color: #1976d2;
+}
+
+.text-muted {
+  font-size: 0.9rem;
+}
+
+/* Inputs */
+.form-control {
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d0d7de;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25);
+}
+
+/* Botón */
+.btn-primary {
+  background: linear-gradient(90deg, #1976d2, #42a5f5);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #1565c0, #1e88e5);
+}
+
+/* Link */
+a {
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #1976d2 !important;
+}
+
+
+.passwordField {
+  position: relative;
+}
+
+.passwordField span {
+  cursor: pointer;
+  color: #6c757d;
+  font-size: 1.2rem;
+}
+
+.passwordField span:hover {
+  color: #1976d2;
+}
+
+/* Botón guardar contraseña */
+.btn-success {
+  background: linear-gradient(90deg, #2e7d32, #66bb6a);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease;
+}
+
+.btn-success:hover {
+  background: linear-gradient(90deg, #1b5e20, #43a047);
+}
