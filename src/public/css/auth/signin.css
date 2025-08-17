@@ -15,13 +15,11 @@ body {
   opacity: 0.7;
 }
 
-
 body {
   background: linear-gradient(135deg, #e3f2fd, #ffffff);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
-/* --- Card --- */
 .card {
   border-radius: 20px;
   background: #ffffff;
@@ -36,21 +34,19 @@ body {
 }
 
 .card-body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
-/* --- Heading --- */
 h3.fw-bold {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.75rem;
-  color: #2e7d32; /* verde elegante */
+  color: #2e7d32;
 }
 
 .text-muted {
   font-size: 0.9rem;
 }
 
-/* --- Inputs con íconos --- */
 .input-group-text {
   border-radius: 12px 0 0 12px;
   border: 1px solid #d0d7de;
@@ -69,7 +65,6 @@ h3.fw-bold {
   box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
 }
 
-/* --- Botón principal --- */
 .btn-success {
   background: linear-gradient(90deg, #2e7d32, #43a047);
   border: none;
@@ -83,7 +78,6 @@ h3.fw-bold {
   background: linear-gradient(90deg, #1b5e20, #2e7d32);
 }
 
-/* --- Botones sociales --- */
 .btn-outline-danger,
 .btn-outline-primary {
   border-radius: 12px;
@@ -101,7 +95,6 @@ h3.fw-bold {
   color: #fff;
 }
 
-/* --- Link inferior --- */
 a {
   transition: color 0.2s ease;
 }
@@ -110,7 +103,6 @@ a:hover {
   color: #2e7d32 !important;
 }
 
-/* --- Divider --- */
 hr {
   border-top: 1px dashed #ccc;
   margin: 1.5rem 0;
