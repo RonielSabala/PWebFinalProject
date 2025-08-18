@@ -1,6 +1,6 @@
 <?php
 
-use App\Utils\Entities\IncidenceUtils;
+use App\Utils\PrintUtils;
 
 include_once('_partials/__header.php');
 ?>
@@ -26,9 +26,9 @@ include_once('_partials/__header.php');
                 data-lat="<?= $incidence['latitude'] ?>"
                 data-lng="<?= $incidence['longitude'] ?>">
                 <td class="incidence-title"><?= $incidence['title'] ?></td>
-                <td class="incidence-desc"><?= IncidenceUtils::getPrettyDescription($incidence['incidence_description']) ?></td>
+                <td class="incidence-desc"><?= PrintUtils::getPrintableText($incidence['incidence_description']) ?></td>
                 <td class="incidence-type"><?= implode(', ', $incidence['labels']) ?></td>
-                <td class="incidence-date"><?= (new DateTime($incidence['creation_date']))->format('d/m/Y H:i') ?></td>
+                <td class="incidence-date"><?= PrintUtils::getPrintableDate($incidence['creation_date']) ?></td>
                 <td>
                     <div class="d-flex justify-content-end gap-2 align-items-center">
                         <!-- Botón abrir modal -->

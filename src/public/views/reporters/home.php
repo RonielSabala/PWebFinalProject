@@ -1,7 +1,7 @@
 <?php
 
+use App\Utils\PrintUtils;
 use App\Utils\GeneralUtils;
-use App\Utils\Entities\IncidenceUtils;
 ?>
 
 <h2>Incidencias reportadas</h2>
@@ -19,6 +19,7 @@ use App\Utils\Entities\IncidenceUtils;
             <th>Fecha registrada</th>
             <th>Estatus</th>
             <th>Comentarios</th>
+            <th>Correcciones</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -30,14 +31,15 @@ use App\Utils\Entities\IncidenceUtils;
             <tr>
                 <td><?= $i++ ?></td>
                 <td><?= $incidence['title'] ?></td>
-                <td><?= IncidenceUtils::getPrettyDescription($incidence['incidence_description']) ?></td>
+                <td><?= PrintUtils::getPrintableText($incidence['incidence_description']) ?></td>
                 <td><?= $incidence['creation_date'] ?></td>
                 <td>
                     <span class="status-badge <?= ((int)$incidence['is_approved'] === 1) ? 'approved' : 'not-approved' ?>">
                         <?= ((int)$incidence['is_approved'] === 1) ? 'Aprobada' : 'No aprobada' ?>
                     </span>
                 </td>
-                <td><?= $incidence['comments'] ?></td>
+                <td><?= $incidence['comments_count'] ?></td>
+                <td><?= $incidence['corrections_count'] ?></td>
                 <td>
                     <a href="/incidents/incidence.php?id=<?= $incidence['id'] ?>" class="btn btn-sm btn-outline-action btn-go">
                         Ver

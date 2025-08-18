@@ -1,13 +1,14 @@
 <?php
 
+use App\Utils\UriUtils;
 use App\Utils\GeneralUtils;
 
-$uri = GeneralUtils::getURI();
-[$route, $view] = GeneralUtils::splitURI($uri);
+$uri = UriUtils::get();
+[$route, $view] = UriUtils::split($uri);
 $show_incidence = $view === 'incidence.php';
 
-$last_uri = GeneralUtils::getNthURI(-2);
-[$last_route, $last_view] = GeneralUtils::splitURI($last_uri);
+$last_uri = UriUtils::getNthUri(-2);
+[$last_route, $last_view] = UriUtils::split($last_uri);
 $show_return = $last_view === 'home.php' && $view !== 'home.php';
 ?>
 

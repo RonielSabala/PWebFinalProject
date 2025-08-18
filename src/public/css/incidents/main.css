@@ -1,7 +1,6 @@
 :root {
   --accent-1: #4f46e5;
   --accent-2: #06b6d4;
-  --bg-soft: #fbfdff;
   --text-muted: #6b7280;
 }
 
@@ -68,6 +67,7 @@
   font-size: 0.95rem;
   margin-bottom: 1rem;
   background-color: #fff8;
+  user-select: none;
 }
 
 #toggleView {
@@ -140,18 +140,26 @@
   box-shadow: none;
 }
 
+.incidence-container {
+  background-color: white;
+  padding: 2rem;
+  padding-top: 0.5rem;
+}
+
 .modal-content {
   border-radius: 0.9rem;
   overflow: hidden;
 }
 
-.bg-incidence {
+#close-modal {
+  padding-top: 14px;
+  padding-right: 12px;
+  padding-bottom: 5px;
   background: linear-gradient(
-    90deg,
-    rgba(79, 70, 229, 0.12),
-    rgba(6, 182, 212, 0.05)
+    45deg,
+    #ffffff 25%,
+    rgba(14, 233, 116, 0.102) 90%
   );
-  border-bottom: 1px solid rgba(15, 23, 42, 0.04);
 }
 
 .modal-hero-avatar {
@@ -172,11 +180,10 @@
   color: var(--text-muted);
 }
 
-.modal-body {
-  background: var(--bg-soft);
-}
-
 #modalBody {
+  overflow: auto;
+  max-height: 65vh;
+  width: auto;
   background: transparent;
 }
 
@@ -364,17 +371,14 @@
   width: 10px;
   height: 10px;
 }
+
 #modalBody::-webkit-scrollbar-thumb {
   background: rgba(15, 23, 42, 0.06);
   border-radius: 10px;
 }
+
 #modalBody::-webkit-scrollbar-track {
   background: transparent;
-}
-
-.modal-body-content {
-  max-height: 65vh;
-  overflow: auto;
 }
 
 @media (max-width: 576px) {

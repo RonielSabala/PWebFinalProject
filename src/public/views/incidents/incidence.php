@@ -1,15 +1,15 @@
 <?php
 
+use App\Utils\PrintUtils;
 use App\Utils\Entities\UserUtils;
-use App\Utils\Entities\IncidenceUtils;
 
 // Datos
 $photos = $incidence['photo_urls'];
 $incidenceId = $incidence['id'];
 $title = $incidence['title'];
 $description = $incidence['incidence_description'];
-$occurrence = (new DateTime($incidence['occurrence_date']))->format('d/m/Y H:i');
-$created = (new DateTime($incidence['creation_date']))->format('d/m/Y H:i');
+$occurrence = PrintUtils::getPrintableDate($incidence['occurrence_date']);
+$created = PrintUtils::getPrintableDate($incidence['creation_date']);
 $deaths = $incidence['n_deaths'];
 $injured = $incidence['n_injured'];
 $losses = number_format((float)($incidence['n_losses']), 2, ',', '.');
@@ -52,14 +52,14 @@ $current_user_initial = strtoupper(substr($username, 0, 1));
 $current_user_color_idx = avatar_color_index($username, $avatar_colors);
 ?>
 
-<div class="container-incidence">
+<div class="incidence-container">
     <div class="card-min mb-4">
         <!-- Cabecera -->
         <div class="incidence-header">
             <div class="incidence-card">
                 <div class="incidence-main">
                     <div class="incidence-top">
-                        <span class="kicker">NOTICIA</span>
+                        <span class="kicker"><?= empty($labels) ? 'NOTICIA' : strtoupper($labels[0]['label_name']) ?></span>
                         <svg class="icon" viewBox="0 0 24 24" width="16" height="16" focusable="false">
                             <path d="M12 2l2.1 4.6L19 8l-3.6 2.8L16 16l-4-2.5L8 16l.6-5.2L5 8l4.9-1.4L12 2z" />
                         </svg>
@@ -67,30 +67,30 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
 
                     <h2 id="incidence-title" class="title"><?= htmlspecialchars($title) ?></h2>
                     <p class="incidence-meta" aria-label="Metadatos de la noticia">
-                        <time datetime="<?= date('c', strtotime($created)) ?>">Publicado: <strong><?= $created ?></strong></time>
-                        <span class="dot">·</span>
+                        <time datetime="<?= date('c', strtotime($created)) ?>">Fecha de publicación: <strong><?= $created ?></strong></time>
+                        <span class="dot"></span>
                         <span>Ocurrencia: <strong><?= $occurrence ?></strong></span>
-                        <span class="dot">·</span>
-                        <span>Reportaje por: <strong><?= htmlspecialchars($incidence['reporter_name']) ?></strong></span>
+                        <span class="dot"></span>
+                        <span>Publicado por: <strong><?= htmlspecialchars($incidence['reporter_name']) ?></strong></span>
                     </p>
                 </div>
             </div>
         </div>
 
         <!-- Contenido -->
-        <div class="card-section">
+        <div class="card-section pb-4">
             <!-- Descripción -->
             <div class="section-description">
                 <div id="desc-title" class="section-title">Descripción</div>
                 <div class="description-text">
-                    <?= IncidenceUtils::getPrettyDescription($description) ?>
+                    <?= PrintUtils::getPrintableText($description) ?>
                 </div>
                 <div class="sr-only" aria-hidden="false">Enlaces en azul; cada enlace aparece en una línea separada.</div>
             </div>
 
             <!-- Detalles -->
             <div class="mt-1rem">
-                <div class="section-title section-title-small">Detalles</div>
+                <div class="section-title">Detalles</div>
                 <div class="info-grid">
                     <div class="info-row">
                         <div class="info-pill pill-deaths">Muertos: <span class="info-pill-value"><?= $deaths ?></span></div>
@@ -102,13 +102,11 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
 
             <!-- Carrusel de imágenes -->
             <?php if (!empty($photos)): ?>
-                <div class="mt-1rem section-title section-title-small text-center">Imágenes</div>
+                <div class="section-title text-center">Imágenes</div>
 
                 <section class="container-carousel">
                     <div class="slider-wrapper">
-
                         <button class="carousel-arrow arrow-left">&lt;</button>
-
                         <div class="slider" id="slider">
                             <?php foreach ($photos as $index => $photo): ?>
                                 <img
@@ -121,7 +119,6 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                         </div>
 
                         <button class="carousel-arrow arrow-right">&gt;</button>
-
                         <div class="slider-nav" id="sliderNav" role="tablist" aria-label="Carousel navigation">
                             <?php foreach ($photos as $index => $photo): ?>
                                 <button class="dot" type="button" data-index="<?= $index ?>"></button>
@@ -129,17 +126,40 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                         </div>
                     </div>
                 </section>
-            <?php endif; ?>
+            <?php else: ?>
+                <div class="section-title">Imágenes</div>
 
+                <section class="container-carousel no-photos">
+                    <div class="no-photos-card">
+                        <!-- Icono SVG -->
+                        <div class="no-photos-icon" aria-hidden="true">
+                            <svg width="96" height="72" viewBox="0 0 96 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="1" y="1" width="94" height="70" rx="10" stroke="currentColor" stroke-opacity="0.12" stroke-width="2" fill="none" />
+                                <g transform="translate(14,12)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="0" y="6" width="68" height="44" rx="6" fill="none" stroke-opacity="0.14"></rect>
+                                    <circle cx="14" cy="20" r="6" fill="none" stroke-opacity="0.14"></circle>
+                                    <path d="M68 6 L48 30 L34 20 L0 46" fill="none" stroke-opacity="0.14"></path>
+                                </g>
+                                <path d="M18 56 L78 16" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-opacity="0.08" />
+                            </svg>
+                        </div>
+
+                        <div class="no-photos-text">
+                            <h3 id="noPhotosText">No hay imágenes <i class="bi bi-images"></i></h3>
+                            <p class="muted">Aún no se han subido fotos para esta incidencia.</p>
+                        </div>
+                    </div>
+                </section>
+            <?php endif; ?>
 
             <!-- Etiquetas -->
             <?php if ($labels): ?>
                 <div class="mt-1rem">
-                    <div class="section-title section-title-small">Etiquetas</div>
+                    <div class="section-title">Etiquetas</div>
                     <div class="info-grid">
                         <div class="info-row labels-row" role="list" aria-label="Etiquetas">
                             <?php foreach ($labels as $label): ?>
-                                <div class="info-pill">
+                                <div class="info-pill info-pill-label">
                                     <?= $label['label_name'] ?>
                                 </div>
                             <?php endforeach; ?>
@@ -151,21 +171,21 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
             <!-- Botón para sugerir corrección -->
             <div class="text-end">
                 <a id="btnGoToCorrectionPage"
-                    class="btn btn-success btn-sm"
+                    class="btn btn-outline-success btn-sm"
                     href="correction.php?incidence_id=<?= $incidenceId ?>">
-                    Sugerir Corrección
-                    <i class="bi bi-pencil"></i>
+                    Corregir
+                    <i class="bi bi-pencil-square"></i>
                 </a>
             </div>
         </div>
     </div>
 
     <!-- Comentarios -->
-    <div class="mb-3">
+    <div>
         <h5 class="comments-heading">Comentarios <span class="small-muted">· <?= count($comments) ?></span></h5>
 
         <!-- Añadir comentario -->
-        <div class="card card-section mb-3">
+        <div class="card card-section pb-3 mb-3">
             <form method="post" action="incidence.php?id=<?= $incidenceId ?>&action=POST" class="form-comment" autocomplete="off">
                 <div class="comment-form-row">
                     <div class="comment-avatar avatar-color-<?= $current_user_color_idx ?>" aria-hidden="true">
@@ -182,13 +202,13 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
         </div>
 
         <!-- Lista de comentarios -->
-        <div class="card card-section">
+        <div class="card card-section pb-4">
             <?php if (empty($comments)): ?>
                 <div class="py-4 text-center small-muted">Aún no hay comentarios. Sé el primero en comentar.</div>
             <?php else: ?>
                 <?php foreach ($comments as $c):
                     $author = htmlspecialchars($c['username'] ?? 'Usuario');
-                    $cdate = isset($c['creation_date']) ? (new DateTime($c['creation_date']))->format('d/m/Y H:i') : '';
+                    $cdate = isset($c['creation_date']) ? PrintUtils::getPrintableDate($c['creation_date']) : '';
                     $ctext = $c['comment_text'];
                     $initial = strtoupper(substr($author, 0, 1));
                     $acolor_idx = avatar_color_index($author, $avatar_colors);
@@ -226,7 +246,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                                         </form>
                                 </div>
                             </div>
-                            <div class="comment-text"><?= $ctext ?></div>
+                            <div class="comment-text"><?= PrintUtils::getPrintableText($ctext) ?></div>
                         </div>
                     </div>
                 <?php endforeach; ?>
