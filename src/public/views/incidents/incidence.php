@@ -78,7 +78,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
         </div>
 
         <!-- Contenido -->
-        <div class="card-section">
+        <div class="card-section pb-4">
             <!-- Descripción -->
             <div class="section-description">
                 <div id="desc-title" class="section-title">Descripción</div>
@@ -185,7 +185,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
         <h5 class="comments-heading">Comentarios <span class="small-muted">· <?= count($comments) ?></span></h5>
 
         <!-- Añadir comentario -->
-        <div class="card card-section mb-3">
+        <div class="card card-section pb-3 mb-3">
             <form method="post" action="incidence.php?id=<?= $incidenceId ?>&action=POST" class="form-comment" autocomplete="off">
                 <div class="comment-form-row">
                     <div class="comment-avatar avatar-color-<?= $current_user_color_idx ?>" aria-hidden="true">
@@ -202,7 +202,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
         </div>
 
         <!-- Lista de comentarios -->
-        <div class="card card-section">
+        <div class="card card-section pb-4">
             <?php if (empty($comments)): ?>
                 <div class="py-4 text-center small-muted">Aún no hay comentarios. Sé el primero en comentar.</div>
             <?php else: ?>
