@@ -77,12 +77,14 @@ class IncidentsController
             ';
         }
 
+        $labels = LabelUtils::getAll();
         $incidents = IncidenceUtils::getAllApproved();
         $provinces = ProvinceUtils::getAll();
         $template->apply([
             'button' => $button,
             'incidents' => $incidents,
             'provinces' => $provinces,
+            'labels' => $labels,
         ]);
     }
 }

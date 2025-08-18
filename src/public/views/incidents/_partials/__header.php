@@ -3,6 +3,12 @@
     <div id="search-bar-container">
         <div class="search-bar">
             <input type="text" id="titleFilter" class="form-control" placeholder="Buscar por título..." />
+            <select id="labelFilter" class="form-select">
+                <option value="">Todos los tipos</option>
+                <?php foreach ($labels as $label): ?>
+                    <option value="<?= $label['id'] ?>"><?= $label['label_name'] ?></option>
+                <?php endforeach; ?>
+            </select>
             <select id="provinceFilter" class="form-select">
                 <option value="">Todas</option>
                 <?php foreach ($provinces as $prov): ?>
