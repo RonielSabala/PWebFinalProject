@@ -63,18 +63,14 @@
   border-color: #0a58ca;
 }
 
-.vertical-scroll-container {
-    max-height: 84vh;
-    overflow-y: auto;
-    padding-right: 10px;
-}
 .correction-card {
-    background: white;
-    border: 1px solid #eee;
+  background: white;
+  border: 1px solid #eee;
 }
+
 .correction-values {
-    overflow-y: hidden;
-    font-family: monospace;
+  overflow-y: hidden;
+  font-family: monospace;
 }
 
 .json-blob {

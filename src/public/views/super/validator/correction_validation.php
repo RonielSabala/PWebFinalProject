@@ -64,51 +64,49 @@ function render_json(string $json_string): string
     </div>
 </div>
 
-<div class="vertical-scroll-container">
-    <?php if (!empty($corrections)): ?>
-        <?php $i = 1;
-        foreach ($corrections as $correction): ?>
-            <div class="correction-card mb-4 p-4 rounded-3 shadow-sm">
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                    <h4 class="mb-0">Solicitud de corrección #<?= $i++ ?></h4>
-                    <span class="text-muted"><?= (new DateTime($correction['creation_date']))->format('d/m/Y H:i') ?></span>
-                </div>
-                
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <h5 class="text-muted small mb-2">Corrector</h5>
-                            <p class="fs-5"><?= $correction['username'] ?></p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <h5 class="text-muted small mb-2">Incidencia relacionada</h5>
-                            <a href="/incidents/incidence.php?id=<?= $correction['incidence_id'] ?>" class="btn btn-primary-action">
-                                Ver incidencia <i class="bi bi-box-arrow-up-right"></i>
-                            </a>
-                        </div>
+<?php if (!empty($corrections)): ?>
+    <?php $i = 1;
+    foreach ($corrections as $correction): ?>
+        <div class="correction-card mb-4 p-4 rounded-3 shadow-sm">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+                <h4 class="mb-0">Solicitud de corrección #<?= $i++ ?></h4>
+                <span class="text-muted"><?= (new DateTime($correction['creation_date']))->format('d/m/Y H:i') ?></span>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <h5 class="text-muted small mb-2">Corrector</h5>
+                        <p class="fs-5"><?= $correction['username'] ?></p>
                     </div>
                 </div>
-                
-                <div class="mb-4">
-                    <h5 class="text-muted small mb-2">Cambios propuestos</h5>
-                    <div class="correction-values p-3 bg-light rounded-2">
-                        <?= render_json($correction['correction_values']) ?>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <h5 class="text-muted small mb-2">Incidencia relacionada</h5>
+                        <a href="/incidents/incidence.php?id=<?= $correction['incidence_id'] ?>" class="btn btn-primary-action">
+                            Ver incidencia <i class="bi bi-box-arrow-up-right"></i>
+                        </a>
                     </div>
-                </div>
-                
-                <div class="d-flex justify-content-end gap-3">
-                    <a href="reject_correction.php?id=<?= $correction['id'] ?>" class="btn btn-lg btn-outline-danger">
-                        <i class="bi bi-x-lg me-2"></i> Rechazar
-                    </a>
-                    <a href="approve_correction.php?id=<?= $correction['id'] ?>" class="btn btn-lg btn-success">
-                        <i class="bi bi-check-lg me-2"></i> Aprobar
-                    </a>
                 </div>
             </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <?= GeneralUtils::showNoData($corrections, "solicitudes de corrección"); ?>
-    <?php endif; ?>
-</div>
+
+            <div class="mb-4">
+                <h5 class="text-muted small mb-2">Cambios propuestos</h5>
+                <div class="correction-values p-3 bg-light rounded-2">
+                    <?= render_json($correction['correction_values']) ?>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-3">
+                <a href="reject_correction.php?id=<?= $correction['id'] ?>" class="btn btn-lg btn-outline-danger">
+                    <i class="bi bi-x-lg me-2"></i> Rechazar
+                </a>
+                <a href="approve_correction.php?id=<?= $correction['id'] ?>" class="btn btn-lg btn-success">
+                    <i class="bi bi-check-lg me-2"></i> Aprobar
+                </a>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    <?= GeneralUtils::showNoData($corrections, "solicitudes de corrección"); ?>
+<?php endif; ?>
