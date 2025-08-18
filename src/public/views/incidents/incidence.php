@@ -52,7 +52,7 @@ $current_user_initial = strtoupper(substr($username, 0, 1));
 $current_user_color_idx = avatar_color_index($username, $avatar_colors);
 ?>
 
-<div class="container-incidence">
+<div class="incidence-container">
     <div class="card-min mb-4">
         <!-- Cabecera -->
         <div class="incidence-header">
@@ -90,7 +90,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
 
             <!-- Detalles -->
             <div class="mt-1rem">
-                <div class="section-title section-title-small">Detalles</div>
+                <div class="section-title">Detalles</div>
                 <div class="info-grid">
                     <div class="info-row">
                         <div class="info-pill pill-deaths">Muertos: <span class="info-pill-value"><?= $deaths ?></span></div>
@@ -102,7 +102,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
 
             <!-- Carrusel de imágenes -->
             <?php if (!empty($photos)): ?>
-                <div class="mt-3 rem section-title text-center">Imágenes</div>
+                <div class="section-title text-center">Imágenes</div>
 
                 <section class="container-carousel">
                     <div class="slider-wrapper">
@@ -127,7 +127,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                     </div>
                 </section>
             <?php else: ?>
-                <div class="mt-3 rem section-title">Imágenes</div>
+                <div class="section-title">Imágenes</div>
 
                 <section class="container-carousel no-photos">
                     <div class="no-photos-card">
@@ -145,7 +145,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                         </div>
 
                         <div class="no-photos-text">
-                            <h3 id="noPhotosText">No hay imágenes todavía</h3>
+                            <h3 id="noPhotosText">No hay imágenes <i class="bi bi-images"></i></h3>
                             <p class="muted">Aún no se han subido fotos para esta incidencia.</p>
                         </div>
                     </div>
@@ -155,11 +155,11 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
             <!-- Etiquetas -->
             <?php if ($labels): ?>
                 <div class="mt-1rem">
-                    <div class="section-title section-title-small">Etiquetas</div>
+                    <div class="section-title">Etiquetas</div>
                     <div class="info-grid">
                         <div class="info-row labels-row" role="list" aria-label="Etiquetas">
                             <?php foreach ($labels as $label): ?>
-                                <div class="info-pill">
+                                <div class="info-pill info-pill-label">
                                     <?= $label['label_name'] ?>
                                 </div>
                             <?php endforeach; ?>
@@ -171,10 +171,10 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
             <!-- Botón para sugerir corrección -->
             <div class="text-end">
                 <a id="btnGoToCorrectionPage"
-                    class="btn btn-success btn-sm"
+                    class="btn btn-outline-success btn-sm"
                     href="correction.php?incidence_id=<?= $incidenceId ?>">
-                    Sugerir Corrección
-                    <i class="bi bi-pencil"></i>
+                    Corregir
+                    <i class="bi bi-pencil-square"></i>
                 </a>
             </div>
         </div>
