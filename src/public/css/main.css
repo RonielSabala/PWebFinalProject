@@ -160,9 +160,13 @@ html {
   flex-wrap: wrap;
 }
 
-.footer-links {
+.footer-links a {
+  text-decoration: none;
   display: flex;
-  gap: 15px;
+  justify-content: space-between;
+  color: #666;
+  margin: 5px 0;
+  font-size: 14px;
 }
 
 .copyright {
