@@ -2,29 +2,18 @@
 <div class="modal fade" id="incidenceModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-md-down">
         <div class="modal-content border-0 shadow-lg">
-            <!-- Header -->
-            <div class="modal-header p-3 align-items-start bg-incidence">
-                <div class="d-flex align-items-center gap-3 w-100">
-                    <div class="modal-hero-avatar" aria-hidden="true">
-                        <!-- icono opcional -->
-                        <i class="bi bi-exclamation-circle-fill"></i>
-                    </div>
-                    <div class="flex-grow-1">
-                        <h5 class="modal-title mb-0" id="incidenceModalLabel">Detalles de incidencia</h5>
-                    </div>
-
-                    <!-- Close -->
-                    <button type="button" class="btn-close ms-3" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-            </div>
-
             <!-- Body -->
             <div class="modal-body p-0">
+                <!-- Close -->
+                <div id="close-modal" class="text-end">
+                    <button type="button" class="btn-close ms-3 text-end fill-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
                 <div id="modalBody"></div>
             </div>
 
             <!-- Footer -->
-            <div class="modal-footer d-flex align-items-center bg-incidence">
+            <div class="modal-footer d-flex align-items-center">
                 <a id="btnGoToIncidencePage" class="btn me-auto btn-sm btn-go" href="#" rel="noopener noreferrer">
                     Abrir
                     <i class="bi bi-box-arrow-up-right"></i>
