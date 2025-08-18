@@ -5,6 +5,7 @@ namespace App\Controllers\Auth;
 use App\Core\Template;
 use App\Utils\OAuthUtils;
 use App\Utils\GeneralUtils;
+use \League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 
 
 class MicrosoftCallbackController
@@ -15,7 +16,7 @@ class MicrosoftCallbackController
 
         // Validar código
         if (!isset($_GET['code'])) {
-            GeneralUtils::showAlert('Código de autorización no encontrado');
+            GeneralUtils::showAlert('Código de autorización no encontrado.');
             exit;
         }
 
@@ -41,16 +42,16 @@ class MicrosoftCallbackController
             );
 
             $response = $oauthClient->getResponse($request);
-            $user_metadata = json_decode((string)$response->getBody(), true);
+            $userMetadata = json_decode((string)$response->getBody(), true);
 
             // Guardar sesión y hacer login
             $_SESSION['user'] = [
-                'username' => $user_metadata['displayName'],
-                'email' => $user_metadata['userPrincipalName']
+                'username' => $userMetadata['displayName'],
+                'email' => $userMetadata['userPrincipalName']
             ];
 
-            LoginController::log_user();
-        } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
+            LoginController::logUser();
+        } catch (IdentityProviderException $e) {
             GeneralUtils::showAlert('Error al obtener token: ' . $e->getMessage());
         }
     }
