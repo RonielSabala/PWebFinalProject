@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+use App\Utils\UriUtils;
 use App\Utils\GeneralUtils;
 use App\Utils\Entities\UserUtils;
 
@@ -21,8 +22,8 @@ class Router
         }
 
         // Obtener URI y nombre de la vista
-        $uri = GeneralUtils::getURI();
-        [$route, $view] = GeneralUtils::splitURI($uri);
+        $uri = UriUtils::get();
+        [$route, $view] = UriUtils::split($uri);
 
         // Limpiar sesión y redirigir al login si no hay usuario
         if (!UserUtils::isUserInSession($route)) {
