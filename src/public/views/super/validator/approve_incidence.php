@@ -1,6 +1,6 @@
 <?php
 
-use App\Utils\GeneralUtils;
+use App\Utils\PrintUtils;
 ?>
 
 <div class="container center-screen pt-2">
@@ -25,7 +25,7 @@ use App\Utils\GeneralUtils;
                         </div>
                         <div class="field-item">
                             <label for="description" class="field-label">Descripción</label>
-                            <div id="description" name="description" class="field-value"><?= GeneralUtils::getPrintableText($incidence['incidence_description']) ?></div>
+                            <div id="description" name="description" class="field-value"><?= PrintUtils::getPrintableText($incidence['incidence_description']) ?></div>
                         </div>
                         <div class="field-item">
                             <label for="creation_date" class="field-label">Fecha de registro</label>

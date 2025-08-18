@@ -1,5 +1,6 @@
 <?php
 
+use App\Utils\PrintUtils;
 use App\Utils\GeneralUtils;
 ?>
 
@@ -46,9 +47,9 @@ use App\Utils\GeneralUtils;
                         <?= $correction['username'] ?>
                     </td>
                     <td>
-                        <?= GeneralUtils::getPrintableDate($correction['creation_date']) ?>
+                        <?= PrintUtils::getPrintableDate($correction['creation_date']) ?>
                     </td>
-                    <td><?= GeneralUtils::getPrintableJson($correction['correction_values']) ?></td>
+                    <td><?= PrintUtils::getPrintableJson($correction['correction_values']) ?></td>
                     <td>
                         <a
                             href="approve_correction.php?id=<?= $correction['id'] ?>"

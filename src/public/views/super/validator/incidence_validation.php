@@ -1,5 +1,6 @@
 <?php
 
+use App\Utils\PrintUtils;
 use App\Utils\GeneralUtils;
 ?>
 
@@ -36,7 +37,7 @@ use App\Utils\GeneralUtils;
                 <tr>
                     <td><?= $i++ ?></td>
                     <td><?= $incidence['title'] ?></td>
-                    <td><?= GeneralUtils::getPrintableText($incidence['incidence_description']) ?></td>
+                    <td><?= PrintUtils::getPrintableText($incidence['incidence_description']) ?></td>
                     <td><?= $incidence['creation_date'] ?></td>
                     <td>
                         <a

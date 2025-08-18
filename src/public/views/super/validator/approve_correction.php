@@ -1,6 +1,6 @@
 <?php
 
-use App\Utils\GeneralUtils;
+use App\Utils\PrintUtils;
 ?>
 
 <div class="container center-screen pt-2">
@@ -31,7 +31,7 @@ use App\Utils\GeneralUtils;
                         <div class="field-item">
                             <label for="date" class="field-label">Fecha de solicitud</label>
                             <div id="date" name="date" class="field-value">
-                                <?= GeneralUtils::getPrintableDate($correction['creation_date']) ?>
+                                <?= PrintUtils::getPrintableDate($correction['creation_date']) ?>
                             </div>
                         </div>
                         <div class="field-item">
