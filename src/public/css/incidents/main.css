@@ -1,7 +1,6 @@
 :root {
   --accent-1: #4f46e5;
   --accent-2: #06b6d4;
-  --bg-soft: #fbfdff;
   --text-muted: #6b7280;
 }
 
@@ -141,6 +140,11 @@
   box-shadow: none;
 }
 
+.incidence-container {
+  background-color: white;
+  padding: 2rem;
+}
+
 .modal-content {
   border-radius: 0.9rem;
   overflow: hidden;
@@ -152,6 +156,7 @@
     rgba(79, 70, 229, 0.12),
     rgba(6, 182, 212, 0.05)
   );
+  background-color: white;
   border-bottom: 1px solid rgba(15, 23, 42, 0.04);
 }
 
@@ -173,11 +178,10 @@
   color: var(--text-muted);
 }
 
-.modal-body {
-  background: var(--bg-soft);
-}
-
 #modalBody {
+  overflow: auto;
+  max-height: 65vh;
+  width: auto;
   background: transparent;
 }
 
@@ -365,17 +369,14 @@
   width: 10px;
   height: 10px;
 }
+
 #modalBody::-webkit-scrollbar-thumb {
   background: rgba(15, 23, 42, 0.06);
   border-radius: 10px;
 }
+
 #modalBody::-webkit-scrollbar-track {
   background: transparent;
-}
-
-.modal-body-content {
-  max-height: 65vh;
-  overflow: auto;
 }
 
 @media (max-width: 576px) {

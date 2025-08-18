@@ -181,7 +181,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
     </div>
 
     <!-- Comentarios -->
-    <div class="mb-3">
+    <div>
         <h5 class="comments-heading">Comentarios <span class="small-muted">· <?= count($comments) ?></span></h5>
 
         <!-- Añadir comentario -->

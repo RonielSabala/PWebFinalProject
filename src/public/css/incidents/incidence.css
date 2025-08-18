@@ -164,11 +164,6 @@
   margin-top: 1rem;
 }
 
-.modal-body-content {
-  max-height: 65vh;
-  overflow: auto;
-}
-
 .badge-state {
   display: inline-block;
   font-weight: 700;
