@@ -73,12 +73,6 @@ class CorrectionController
             ];
 
             if (!$this->hasChanges($incidence, $correctionData)) {
-                GeneralUtils::showAlert(
-                    'No se detectaron cambios respecto a la incidencia original!',
-                    'warning',
-                    showReturn: false,
-                );
-
                 $template->apply([
                     'incidence' => $incidence,
                     'provinces' => ProvinceUtils::getAll(),
@@ -86,6 +80,12 @@ class CorrectionController
                     'neighborhoods' => NeighborhoodUtils::getAll(),
                     'coordinates' => $coordinates,
                 ]);
+
+                GeneralUtils::showAlert(
+                    'No se detectaron cambios respecto a la incidencia original!',
+                    'warning',
+                    showReturn: false,
+                );
 
                 exit;
             }
