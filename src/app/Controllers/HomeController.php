@@ -2,9 +2,10 @@
 
 namespace App\Controllers;
 
-use DateTime;
 use App\Core\Template;
+use App\Utils\PrintUtils;
 use App\Utils\Entities\IncidenceUtils;
+
 
 class HomeController
 {
@@ -30,7 +31,7 @@ class HomeController
             'incidentsCount' => count($incidents),
             'pendingIncidentsCount' => count($pendingIncidents),
             'recentIncidentsCount' => count($recentIncidents),
-            'lastIncidenceDate' => new DateTime($lastIncidence['creation_date'])->format('d/m/Y H:i'),
+            'lastIncidenceDate' => PrintUtils::getPrintableDate($lastIncidence['creation_date']),
         ]);
     }
 }

@@ -2,7 +2,7 @@
     <!-- Buscador principal -->
     <div id="search-bar-container">
         <div class="search-bar">
-            <input type="text" id="titleFilter" class="form-control" placeholder="Buscar por título…" />
+            <input type="text" id="titleFilter" class="form-control" placeholder="Buscar por título..." />
             <select id="provinceFilter" class="form-select">
                 <option value="">Todas</option>
                 <?php foreach ($provinces as $prov): ?>

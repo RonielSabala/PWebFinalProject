@@ -41,7 +41,7 @@
 }
 
 #search-bar-container {
-  max-width: 800px;
+  width: 750px;
   position: absolute;
   top: 15px;
   left: 50%;
