@@ -5,8 +5,7 @@
                 <div class="text-center mb-4">
                     <div class="heading-with-icon d-inline-flex align-items-center">
                         <div class="text-block text-start">
-                            <h3 id="page-title" class="fw-bold mt-2 mb-1">Crea tu cuenta</h3>
-                            <p class="text-muted mb-0">Regístrate para gestionar tus incidencias y acceder a tus herramientas.</p>
+                            <h3 id="page-title" class="fw-bold mt-2 mb-1">Regístrate</h3>
                         </div>
                         <i class="bi bi-person-plus-fill icon text-success ms-3" title="Crear usuario" aria-hidden="true"></i>
                     </div>
@@ -67,10 +66,10 @@
 
                 <!-- Opciones de autenticación externa -->
                 <div class="text-center">
-                    <a href="<?= $google_auth_url ?>" class="btn btn-social btn-google w-100 mb-2">
+                    <a href="<?= $google_auth_url ?>" id="btn-google" class="btn btn-social w-100 mb-2">
                         <i class="bi bi-google me-2"></i> Continuar con Google
                     </a>
-                    <a href="MicrosoftController.php" class="btn btn-social btn-microsoft w-100">
+                    <a href="MicrosoftController.php" id="btn-microsoft" class="btn btn-social w-100">
                         <i class="bi bi-microsoft me-2"></i> Continuar con Microsoft
                     </a>
                 </div>

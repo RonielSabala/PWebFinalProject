@@ -8,7 +8,7 @@
             <p class="text-muted small mb-0">Revisa tu correo y escribe el código de verificación que recibiste.</p>
           </div>
 
-          <form method="post" id="validateCodeForm" novalidate>
+          <form method="post" id="validateCodeForm">
             <input type="hidden" name="action" value="validate_code">
             <div class="mb-3">
               <label class="form-label" for="code">Código recibido</label>
@@ -27,10 +27,10 @@
         <?php else: ?>
           <div class="text-center mb-4">
             <h3 id="page-title" class="fw-bold">Nueva contraseña</h3>
-            <p class="text-muted small mb-0">Escribe tu nueva contraseña y confírmala para completar el proceso.</p>
+            <p class="text-muted small mb-0">Escriba su nueva contraseña y confírmela para completar el proceso.</p>
           </div>
 
-          <form method="post" id="savePasswordForm" novalidate>
+          <form method="post" id="savePasswordForm">
             <input type="hidden" name="action" value="save_password">
             <div class="mb-3">
               <label class="form-label" for="password">Nueva contraseña</label>

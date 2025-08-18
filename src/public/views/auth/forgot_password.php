@@ -4,10 +4,10 @@
             <div class="card-body p-4 p-md-5">
                 <div class="text-center mb-4">
                     <h3 id="page-title" class="fw-bold">Recuperar contraseña</h3>
-                    <p class="text-muted small">Introduce tu correo y te enviaremos un código para restablecerla</p>
+                    <p class="text-muted small">Introduce tu correo y te enviaremos un código para restablecerla.</p>
                 </div>
 
-                <form id="forgotForm" method="post" novalidate>
+                <form id="forgotForm" method="post">
                     <div class="mb-3">
                         <label class="form-label" for="forgotEmail">Correo electrónico</label>
                         <div class="input-group input-ghost">

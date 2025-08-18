@@ -69,23 +69,25 @@ body {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
 }
 
-.btn-google {
+#btn-google {
   color: #222;
   border: 1px solid #e6e9ee;
   background: #fff;
 }
 
-.btn-microsoft {
+#btn-microsoft {
   background: linear-gradient(180deg, #0078d4, #005ea6);
   color: #ffffff;
   border: none;
   transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
 }
 
-.btn-microsoft:hover,
-.btn-microsoft:focus {
-  color: #ffffff;
-  background: linear-gradient(180deg, #005ea6, #003f75);
+#btn-google:hover {
+  color: #fd4a4a;
+}
+
+#btn-microsoft:hover {
+  color: #9fd5ff;
 }
 
 .btn-social i,

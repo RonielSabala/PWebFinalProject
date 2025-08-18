@@ -3,12 +3,12 @@
         <div class="card page-card" role="region">
             <div class="card-body p-4 p-md-5">
                 <div class="text-center mb-4">
-                    <h3 id="page-title" class="fw-bold">Iniciar Sesión</h3>
-                    <p class="text-muted small">Accede con tu cuenta</p>
+                    <h3 id="page-title" class="fw-bold">Inicia Sesión</h3>
+                    <p class="text-muted small">Accede con tu cuenta.</p>
                 </div>
 
                 <!-- Login manual -->
-                <form id="loginForm" method="post" novalidate>
+                <form id="loginForm" method="post">
                     <!-- Email -->
                     <div class="mb-3">
                         <label class="form-label" for="email">Correo electrónico</label>
@@ -20,10 +20,10 @@
 
                     <!-- Password -->
                     <div class="mb-3">
-                        <label class="form-label" for="signupPassword">Contraseña</label>
+                        <label class="form-label" for="password">Contraseña</label>
                         <div class="input-group passwordField">
                             <span class="input-group-text bg-white"><i class="bi bi-lock"></i></span>
-                            <input id="signupPassword" type="password" name="password" class="form-control" placeholder="********" required autocomplete="new-password" />
+                            <input id="password" type="password" name="password" class="form-control" placeholder="********" required autocomplete="new-password" />
                             <button type="button" id="togglePassword" class="btn btn-outline-secondary" aria-label="Mostrar contraseña">
                                 <i class="bi bi-eye"></i>
                             </button>
@@ -43,10 +43,10 @@
 
                 <!-- Opciones de autenticación externa -->
                 <div class="text-center">
-                    <a href="<?= $google_auth_url ?>" class="btn btn-social btn-google w-100 mb-2">
+                    <a href="<?= $google_auth_url ?>" id="btn-google" class="btn btn-social w-100 mb-2">
                         <i class="bi bi-google me-2"></i> Continuar con Google
                     </a>
-                    <a href="MicrosoftController.php" class="btn btn-social btn-microsoft w-100">
+                    <a href="MicrosoftController.php" id="btn-microsoft" class="btn btn-social w-100">
                         <i class="bi bi-microsoft me-2"></i> Continuar con Microsoft
                     </a>
                 </div>
