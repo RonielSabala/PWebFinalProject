@@ -39,6 +39,6 @@ class GoogleController
             'email' => $user_metadata['email']
         ];
 
-        LoginController::log_user();
+        LoginController::logUser();
     }
 }

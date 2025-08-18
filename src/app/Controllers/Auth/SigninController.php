@@ -4,6 +4,7 @@ namespace App\Controllers\Auth;
 
 use App\Core\Template;
 use App\Utils\OAuthUtils;
+use App\Utils\GeneralUtils;
 
 
 class SigninController
@@ -12,9 +13,10 @@ class SigninController
     {
         // Crear usuario
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $success = LoginController::log_user();
-            if (!$success) {
+            $response = LoginController::logUser();
+            if (is_string($response) && !empty($response)) {
                 $template->apply();
+                GeneralUtils::showAlert($response, showReturn: false);
             }
 
             exit;
