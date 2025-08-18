@@ -1,4 +1,5 @@
 </div>
+</div>
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-content">
@@ -6,7 +7,7 @@
                 <h3>Incidencias RD</h3>
                 <p>Transparencia y acción comunitaria.</p>
             </div>
-            
+
             <div class="footer-section">
                 <h3>Contáctanos</h3>
                 <p><i class="footer-icon">✉</i> algo@incidenciasrd.com</p>
@@ -15,17 +16,14 @@
         </div>
 
         <hr class="footer-divider">
-
         <div class="footer-bottom">
             <p class="copyright">&copy; 2025 Incidencias RD. Todos los derechos reservados.</p>
             <div class="footer-links d-flex">
-                <p href="#" class="mx-2">Política de Privacidad</p>
-                <p href="#">Términos de Servicio</p>
+                <a href="#" class="mx-2">Política de Privacidad</a>
+                <a href="#">Términos de Servicio</a>
             </div>
         </div>
     </div>
 </footer>
-</div>
 </body>
-
 </html>
