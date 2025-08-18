@@ -98,17 +98,20 @@ class UserUtils extends GenericEntityUtils
         return self::fetchAllSql(self::$getAllSql);
     }
 
-    public static function create($fields)
+    public static function create($fields): bool
     {
         global $pdo;
 
         // Insertar usuario
-        self::executeSql(self::$createUserSql, $fields);
+        $response = self::executeSql(self::$createUserSql, $fields);
+        if (!$response) {
+            return False;
+        }
 
         // Insertar relación Usuario-Rol
         $userId = $pdo->lastInsertId();
         $roleId = RoleUtils::getIdByName('default');
-        RoleUtils::assignUserRole($userId, $roleId);
+        return RoleUtils::assignUserRole($userId, $roleId);
     }
 
     public static function updatePassword($userEmail, $newPassword): bool

@@ -1,16 +1,54 @@
-body {
-  background: linear-gradient(135deg, #e3f2fd, #ffffff);
+.page-card .heading-with-icon .icon {
+  font-size: 3rem;
+  width: 3.6rem;
+  height: 3.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(46, 125, 50, 0.06);
+  border-radius: 10px;
 }
 
-.card {
-  border-radius: 15px;
+.page-card hr {
+  border: 0;
+  border-top: 1px dashed #e9edf3;
+  margin: 1.25rem 0;
 }
 
-#togglePassword {
-  background: transparent;
-  cursor: pointer;
+.page-card .btn {
+  border-radius: 12px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
 }
 
-#togglePassword:hover {
-  opacity: 0.7;
+.heading-with-icon .icon {
+  font-size: 3rem;
+  width: 3.6rem;
+  height: 3.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(46, 125, 50, 0.08);
+  padding: 0.2rem;
+  box-shadow: none;
+}
+
+.form-text {
+  color: #6c757d;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.btn-success {
+  background: linear-gradient(90deg, #2e7d32, #43a047);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(30, 115, 60, 0.12);
 }

@@ -25,9 +25,9 @@ _Requisitos_:
 
 ## **1.** Configuración de las credenciales
 
-### **1.1.** Credenciales de base de datos
+Crea un archivo `.env` en la carpeta `src/config` y guarda los siguientes datos.
 
-Crea un archivo `.env` en la ruta `src/config/` con las siguientes variables de conexión para la base de datos.
+### **1.1.** Credenciales para la base de datos
 
 ```
 HOST='TU_HOST'
@@ -35,9 +35,14 @@ USER='TU_USUARIO'
 PASS='TU_CONTRASEÑA'
 ```
 
-### **1.2.** Credenciales de Google y Microsoft
+### **1.2.** Credenciales para el envio de correos
 
-En el archivo `.env` creado anteriormente, crea las siguientes variables para poder usar los servicios de Google y Microsoft.
+```
+MAIL_USER='TU_EMAIL'
+MAIL_PASS='TU_CONTRASEÑA_DE_EMAIL'
+```
+
+### **1.3.** Credenciales para los servicios Google y Microsoft
 
 ```
 GOOGLE_CLIENT_ID='TU_GOOGLE_CLIENT_ID'

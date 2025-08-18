@@ -10,20 +10,20 @@ use App\Utils\Entities\UserUtils;
 
 class LoginController
 {
-    public static function log_user()
+    public static function logUser()
     {
         // Tipos de acceso
-        $by_post = $_SERVER['REQUEST_METHOD'] === 'POST';
-        $by_signin = isset($_POST['username']);
-        $by_external_service = isset($_SESSION['user']);
+        $byPost = $_SERVER['REQUEST_METHOD'] === 'POST';
+        $bySignin = isset($_POST['username']);
+        $byExternalService = isset($_SESSION['user']);
 
-        // Verificar interacción con el login
-        if (!($by_post || $by_external_service)) {
-            return false;
+        // Verificar que se mandó el formulario
+        if (!($byPost || $byExternalService)) {
+            return '';
         }
 
         // Obtener sesión correspondiente
-        if ($by_post) {
+        if ($byPost) {
             // Registro manual
             $user_session = $_POST;
         } else {
@@ -46,16 +46,18 @@ class LoginController
         $user_exists = UserUtils::exists($email);
         if ($user_exists) {
             // Evitar registro si el usuario ya existe
-            if ($by_signin) {
-                GeneralUtils::showAlert('El correo proporcionado ya se encuentra registrado.', showReturn: false);
-                return false;
+            if ($bySignin) {
+                return 'El correo proporcionado ya se encuentra registrado.';
             }
-        } elseif ($by_signin || $by_external_service) {
+        } elseif ($bySignin || $byExternalService) {
             // Registrar usuario
-            UserUtils::create([$username, $email, $phone, password_hash($password, PASSWORD_DEFAULT)]);
+            $response = UserUtils::create([$username, $email, $phone, password_hash($password, PASSWORD_DEFAULT)]);
+
+            if (!$response) {
+                return 'Error al crear usuario.';
+            }
         } else {
-            GeneralUtils::showAlert('El correo proporcionado no está registrado.', showReturn: false);
-            return false;
+            return 'El correo proporcionado no está registrado.';
         }
 
         // Recuperar usuario
@@ -63,10 +65,9 @@ class LoginController
 
         // Verificar contraseña
         $user_password = $user['password_hash'];
-        $is_valid_pass = $by_external_service || password_verify($password, $user_password);
+        $is_valid_pass = $byExternalService || password_verify($password, $user_password);
         if ($user_exists && !$is_valid_pass) {
-            GeneralUtils::showAlert('Credenciales incorrectas!', showReturn: false);
-            return false;
+            return 'Credenciales incorrectas!';
         }
 
         // Registrar sesión
@@ -77,19 +78,26 @@ class LoginController
             'role_name' => $user['role_name'],
         ];
 
-        // Redirigir al index
+        // Redirigir al home
         header('Location: /home.php');
         return true;
     }
 
     public function handle(Template $template)
     {
-        if (self::log_user()) {
+        $response = self::logUser();
+
+        // Login exitoso
+        if ($response === true) {
             exit;
         }
 
         $template->apply([
             'google_auth_url' => OAuthUtils::getGoogleUrl(),
         ]);
+
+        if (is_string($response) && !empty($response)) {
+            GeneralUtils::showAlert($response, showReturn: false);
+        }
     }
 }

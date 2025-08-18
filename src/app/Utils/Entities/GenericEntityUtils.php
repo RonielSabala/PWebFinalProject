@@ -3,6 +3,7 @@
 namespace App\Utils\Entities;
 
 use App\Utils\GeneralUtils;
+use PDOException;
 use PDO;
 
 
@@ -17,7 +18,7 @@ class GenericEntityUtils
             $stmt = $pdo->prepare($sql);
             $stmt->execute($params);
             return true;
-        } catch (\PDOException $e) {
+        } catch (PDOException $e) {
             GeneralUtils::showAlert($e->getMessage());
             return false;
         }
@@ -32,7 +33,7 @@ class GenericEntityUtils
             $stmt = $pdo->prepare($sql);
             $stmt->execute($params);
             return $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (\PDOException $e) {
+        } catch (PDOException $e) {
             GeneralUtils::showAlert($e->getMessage());
             return null;
         }
@@ -57,7 +58,7 @@ class GenericEntityUtils
             $stmt = $pdo->prepare($sql);
             $stmt->execute($params);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (\PDOException $e) {
+        } catch (PDOException $e) {
             GeneralUtils::showAlert($e->getMessage(), showReturn: false);
             return [];
         }
