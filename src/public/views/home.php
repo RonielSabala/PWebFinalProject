@@ -1,7 +1,7 @@
 <div class="container-max">
 
     <!-- HERO -->
-    <section class="hero-overlay" role="region">
+    <section class="hero-overlay">
         <img src="../imgs/home/front_page.jpg" alt="Fondo ilustrativo" loading="lazy" />
         <div class="hero-content">
             <h1 class="display-1">Incidencias RD</h1>
@@ -14,14 +14,14 @@
 
     <!-- Quick access + métricas -->
     <section>
-        <h2 id="accesos-titulo" class="mb-3">Accesos rápidos</h2>
+        <h2 lass="mb-3">Accesos rápidos</h2>
 
-        <div class="quick-access" role="list">
-            <article class="card-dashboard" role="listitem">
+        <div class="quick-access">
+            <article class="card-dashboard">
                 <div class="card-top">
                     <span class="card-icon"><i class="bi bi-map"></i></span>
                     <div>
-                        <h3 id="mapa-title">Mapa de incidencias</h3>
+                        <h3>Mapa de incidencias</h3>
                         <p class="muted">Explora las incidencias en un mapa interactivo con clustering y filtros.</p>
                     </div>
                 </div>
@@ -41,11 +41,11 @@
                 </div>
             </article>
 
-            <article class="card-dashboard" role="listitem">
+            <article class="card-dashboard">
                 <div class="card-top">
                     <span class="card-icon"><i class="bi bi-list-ul"></i></span>
                     <div>
-                        <h3 id="lista-title">Lista de incidencias</h3>
+                        <h3>Lista de incidencias</h3>
                         <p class="muted">Listado completo y paginado con búsqueda por texto y filtros avanzados.</p>
                     </div>
                 </div>
@@ -74,43 +74,43 @@
             Incidencias RD cuenta con todo lo necesario para registrar, visualizar y gestionar incidencias en todo el país.
         </p>
 
-        <div class="features" role="list">
-            <div class="feature-item" role="listitem">
+        <div class="features">
+            <div class="feature-item">
                 <div class="feature-media">
                     <img src="../imgs/home/incidence1.jpg" loading="lazy">
                 </div>
                 <div class="feature-body">
-                    <h4 id="f1">Incidencias Recientes</h4>
+                    <h4>Incidencias Recientes</h4>
                     <p>Puedes ver con facilidad las incidencias de las ultimas 24h.</p>
                 </div>
             </div>
 
-            <div class="feature-item" role="listitem">
+            <div class="feature-item">
                 <div class="feature-media">
                     <img src="../imgs/home/incidence_map.jpg" loading="lazy">
                 </div>
                 <div class="feature-body">
-                    <h4 id="f2">Visualización en Mapa</h4>
+                    <h4>Visualización en Mapa</h4>
                     <p>Íconos por tipo de incidencia y clustering por provincia.</p>
                 </div>
             </div>
 
-            <div class="feature-item" role="listitem">
+            <div class="feature-item">
                 <div class="feature-media">
                     <img src="../imgs/home/incidence_list.jpg" loading="lazy">
                 </div>
                 <div class="feature-body">
-                    <h4 id="f3">Vista en Lista</h4>
+                    <h4>Vista en Lista</h4>
                     <p>Tabla paginada con botones interactivos y mucho más.</p>
                 </div>
             </div>
 
-            <div class="feature-item" role="listitem">
+            <div class="feature-item">
                 <div class="feature-media">
                     <img src="../imgs/home/incidence2.jpg" loading="lazy">
                 </div>
                 <div class="feature-body">
-                    <h4 id="f4">Filtros y Búsqueda</h4>
+                    <h4>Filtros y Búsqueda</h4>
                     <p>Filtra por provincia, tipo, rango de fechas o busca por el título de la incidencia</p>
                 </div>
             </div>
