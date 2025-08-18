@@ -15,7 +15,7 @@ class MicrosoftCallbackController
 
         // Validar código
         if (!isset($_GET['code'])) {
-            GeneralUtils::showAlert('Código de autorización no encontrado');
+            GeneralUtils::showAlert('Código de autorización no encontrado.');
             exit;
         }
 
