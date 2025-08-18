@@ -46,9 +46,9 @@ use App\Utils\GeneralUtils;
                         <?= $correction['username'] ?>
                     </td>
                     <td>
-                        <?= GeneralUtils::formatDate($correction['creation_date']) ?>
+                        <?= GeneralUtils::getPrintableDate($correction['creation_date']) ?>
                     </td>
-                    <td><?= GeneralUtils::renderJson($correction['correction_values']) ?></td>
+                    <td><?= GeneralUtils::getPrintableJson($correction['correction_values']) ?></td>
                     <td>
                         <a
                             href="approve_correction.php?id=<?= $correction['id'] ?>"

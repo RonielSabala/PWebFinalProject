@@ -1,16 +1,15 @@
 <?php
 
-use App\Utils\Entities\UserUtils;
-use App\Utils\Entities\IncidenceUtils;
 use App\Utils\GeneralUtils;
+use App\Utils\Entities\UserUtils;
 
 // Datos
 $photos = $incidence['photo_urls'];
 $incidenceId = $incidence['id'];
 $title = $incidence['title'];
 $description = $incidence['incidence_description'];
-$occurrence = GeneralUtils::formatDate($incidence['occurrence_date']);
-$created = GeneralUtils::formatDate($incidence['creation_date']);
+$occurrence = GeneralUtils::getPrintableDate($incidence['occurrence_date']);
+$created = GeneralUtils::getPrintableDate($incidence['creation_date']);
 $deaths = $incidence['n_deaths'];
 $injured = $incidence['n_injured'];
 $losses = number_format((float)($incidence['n_losses']), 2, ',', '.');
@@ -84,7 +83,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
             <div class="section-description">
                 <div id="desc-title" class="section-title">Descripción</div>
                 <div class="description-text">
-                    <?= IncidenceUtils::getPrettyDescription($description) ?>
+                    <?= GeneralUtils::getPrintableText($description) ?>
                 </div>
                 <div class="sr-only" aria-hidden="false">Enlaces en azul; cada enlace aparece en una línea separada.</div>
             </div>
@@ -209,7 +208,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
             <?php else: ?>
                 <?php foreach ($comments as $c):
                     $author = htmlspecialchars($c['username'] ?? 'Usuario');
-                    $cdate = isset($c['creation_date']) ? GeneralUtils::formatDate($c['creation_date']) : '';
+                    $cdate = isset($c['creation_date']) ? GeneralUtils::getPrintableDate($c['creation_date']) : '';
                     $ctext = $c['comment_text'];
                     $initial = strtoupper(substr($author, 0, 1));
                     $acolor_idx = avatar_color_index($author, $avatar_colors);
@@ -247,7 +246,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                                         </form>
                                 </div>
                             </div>
-                            <div class="comment-text"><?= $ctext ?></div>
+                            <div class="comment-text"><?= GeneralUtils::getPrintableText($ctext) ?></div>
                         </div>
                     </div>
                 <?php endforeach; ?>

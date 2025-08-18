@@ -31,7 +31,7 @@ use App\Utils\GeneralUtils;
                         <div class="field-item">
                             <label for="date" class="field-label">Fecha de solicitud</label>
                             <div id="date" name="date" class="field-value">
-                                <?= GeneralUtils::formatDate($correction['creation_date']) ?>
+                                <?= GeneralUtils::getPrintableDate($correction['creation_date']) ?>
                             </div>
                         </div>
                         <div class="field-item">

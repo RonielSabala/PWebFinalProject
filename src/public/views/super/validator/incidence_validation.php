@@ -1,7 +1,6 @@
 <?php
 
 use App\Utils\GeneralUtils;
-use App\Utils\Entities\IncidenceUtils;
 ?>
 
 <div class="row mb-4">
@@ -37,7 +36,7 @@ use App\Utils\Entities\IncidenceUtils;
                 <tr>
                     <td><?= $i++ ?></td>
                     <td><?= $incidence['title'] ?></td>
-                    <td><?= IncidenceUtils::getPrettyDescription($incidence['incidence_description']) ?></td>
+                    <td><?= GeneralUtils::getPrintableText($incidence['incidence_description']) ?></td>
                     <td><?= $incidence['creation_date'] ?></td>
                     <td>
                         <a
