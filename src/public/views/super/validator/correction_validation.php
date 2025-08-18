@@ -75,18 +75,16 @@ function render_json(string $json_string): string
 
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <div class="mb-3">
-                        <h5 class="text-muted small mb-2">Corrector</h5>
-                        <p class="fs-5"><?= $correction['username'] ?></p>
-                    </div>
+                    <h5 class="text-muted small mb-2">Corrector</h5>
+                    <p class="fs-5"><?= $correction['username'] ?></p>
                 </div>
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <h5 class="text-muted small mb-2">Incidencia relacionada</h5>
-                        <a href="/incidents/incidence.php?id=<?= $correction['incidence_id'] ?>" class="btn btn-primary-action">
-                            Ver incidencia <i class="bi bi-box-arrow-up-right"></i>
-                        </a>
-                    </div>
+
+                <div class="col-md-6 text-end">
+                    <h5 class="text-muted small mb-2">Incidencia relacionada</h5>
+                    <a href="/incidents/incidence.php?id=<?= $correction['incidence_id'] ?>"
+                        class="btn btn-primary-action">
+                        Ver <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
                 </div>
             </div>
 
