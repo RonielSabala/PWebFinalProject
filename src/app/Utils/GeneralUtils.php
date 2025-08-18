@@ -84,7 +84,7 @@ class GeneralUtils
 
     public static function getNthURI(int $n)
     {
-        $length = count($_SESSION['uri_history']);
+        $length = isset($_SESSION['uri_history']) ? count($_SESSION['uri_history']) : 0;
         if ($n < 0) {
             $n += $length;
         }
