@@ -27,20 +27,7 @@ class GeneralUtils
     public static function getActiveClass(string $page): string
     {
         $current = defined('CURRENT_PAGE') ? CURRENT_PAGE : '';
-        return 'custom-link nav-link' . ($current === $page ? ' active' : '');
-    }
-
-    public static function setLogoutButton()
-    {
-        echo '
-        <li class="nav-item ms-auto">
-            <a
-                href="/auth/logout.php"
-                class="btn btn-outline-danger btn-sm">
-                Cerrar sesión
-            </a>
-        </li>
-        ';
+        return 'custom-link nav-link non-selectable' . ($current === $page ? ' active' : '');
     }
 
     public static function showNoData($entities, string $entities_name)

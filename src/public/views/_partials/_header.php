@@ -1,5 +1,12 @@
+<?php
+
+$username = $_SESSION['user']['username'] ?? '';
+$userRole = $_SESSION['user']['role_name'] ?? '';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,20 +18,37 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="/css/main.css">
 </head>
+
 <body>
-    <header class="site-header" role="banner" aria-label="Cabecera del sitio">
-        <div class="header-row d-flex align-items-center justify-content-center">
-            <a href="/home.php">
-                <img
-                    src="/imgs/logo.png"
-                    alt="Logo Incidencias RD"
-                    class="site-logo"
-                    width="96"
-                    height="96" />
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="/home.php">
+                <div class="brand-text">
+                    <span class="brand-title">Incidencias RD</span>
+                    <span class="brand-sub">Transparencia y acción comunitaria.</span>
+                </div>
             </a>
-            <div class="title-wrap">
-                <h1 class="website-title">Incidencias RD</h1>
-                <p class="site-subtitle mb-0">Transparencia y acción comunitaria.</p>
+
+            <div class="actions">
+                <a href="/incidents/map.php" class="incidents">
+                    <i class="bi bi-flag-fill"></i>
+                    <span class="incidents-label non-selectable">Incidencias</span>
+                </a>
+
+                <?php if (isset($_SESSION['user'])): ?>
+                    <div class="user">
+                        <details class="user-menu">
+                            <summary class="user-summary">
+                                <div class="avatar non-selectable"><?= $username[0] ?? '' ?></div>
+                                <div class="user-names">
+                                    <div class="user-name non-selectable"><?= $username ?></div>
+                                    <div class="user-role non-selectable"><?= ($userRole === 'default') ? '' : $userRole ?></div>
+                                </div>
+                            </summary>
+                            <a href="/auth/logout.php" class="btn logout-btn btn-outline-danger btn-sm">Cerrar sesión</a>
+                        </details>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </header>

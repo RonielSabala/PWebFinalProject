@@ -31,7 +31,6 @@ $show_return = $last_view === 'home.php' && $view !== 'home.php';
                         href="">Incidencia</a>
                 </li>
             <?php endif; ?>
-            <?= GeneralUtils::setLogoutButton(); ?>
         </ul>
     </div>
     <div class="view-content">
