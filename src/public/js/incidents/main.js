@@ -1,6 +1,6 @@
 function initFilters() {
   // Búsqueda al cambiar cualquiera de los inputs
-  $("#provinceFilter, #fromFilter, #toFilter").on("change", renderIncidents);
+  $("#provinceFilter, #fromFilter, #toFilter, #labelFilter").on("change", renderIncidents);
 
   // Buscar al escribir titulo y presionar Enter
   $("#titleFilter").on("keydown", (e) => {
