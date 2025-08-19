@@ -1,4 +1,76 @@
 $(document).ready(function () {
+
+  var editingProvinceId = $("#province").val();
+  var editingMunicipalityId = $("#municipality").val();
+  var editingNeighborhoodId = $("#neighborhood").val();
+
+  if (editingProvinceId) {
+    loadMunicipalities(editingProvinceId, editingMunicipalityId);
+  }
+
+  if (editingMunicipalityId && editingNeighborhoodId) {
+    loadNeighborhoods(editingMunicipalityId, editingNeighborhoodId);
+  }
+
+  function loadMunicipalities(provinceId, selectedMunicipalityId = null) {
+    $("#municipality, label[for='municipality']").prop("disabled", true);
+    $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
+    $("#municipality").html('<option value=""></option>');
+    $("#neighborhood").html('<option value=""></option>');
+
+    if (!provinceId) return;
+
+    $.getJSON("report.php", { action: "GET", province_id: provinceId })
+      .done(function (municipalities) {
+        if (municipalities.length > 0) {
+          var html = '<option value="">Seleccione</option>';
+          $.each(municipalities, function (_, mun) {
+            var selected = (selectedMunicipalityId && mun.id == selectedMunicipalityId) ? 'selected' : '';
+            html += '<option value="' + mun.id + '" ' + selected + '>' + mun.municipality_name + '</option>';
+          });
+          $("#municipality").html(html);
+          $("#municipality, label[for='municipality']").prop("disabled", false);
+
+        } else {
+          $("#municipality, label[for='municipality']").prop("disabled", true);
+          $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
+        }
+      })
+      .fail(function () {
+        $("#municipality, label[for='municipality']").prop("disabled", true);
+        $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
+      });
+  }
+
+  function loadNeighborhoods(municipalityId, selectedNeighborhoodId = null) {
+    $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
+    $("#neighborhood").html('<option value=""></option>');
+
+    if (!municipalityId) return;
+
+    $.getJSON("report.php", {
+      action: "GET",
+      municipality_id: municipalityId,
+    })
+      .done(function (neighborhoods) {
+        if (neighborhoods.length > 0) {
+          var html = '<option value="">Seleccione</option>';
+          $.each(neighborhoods, function (_, neigh) {
+            var selected = (selectedNeighborhoodId && neigh.id == selectedNeighborhoodId) ? 'selected' : '';
+            html += '<option value="' + neigh.id + '" ' + selected + '>' + neigh.neighborhood_name + '</option>';
+          });
+          $("#neighborhood").html(html);
+          $("#neighborhood, label[for='neighborhood']").prop("disabled", false);
+        } else {
+          $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
+          $("#neighborhood").html('<option value="">No hay Barrios</option>');
+        }
+      })
+      .fail(function () {
+        $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
+      });
+  }
+
   var regex = /^\(?-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\)?$/;
 
   $("#coordinates").on("input", function () {
@@ -30,31 +102,7 @@ $(document).ready(function () {
     $("#neighborhood").html('<option value=""></option>');
 
     if (!provinceId) return;
-
-    $.getJSON("report.php", { action: "GET", province_id: provinceId })
-      .done(function (municipalities) {
-        if (municipalities.length > 0) {
-          var html = '<option value="">Seleccione</option>';
-          $.each(municipalities, function (_, mun) {
-            html +=
-              '<option value="' +
-              mun.id +
-              '">' +
-              mun.municipality_name +
-              "</option>";
-          });
-          $("#municipality").html(html);
-          $("#municipality, label[for='municipality']").prop("disabled", false);
-        } else {
-          // Si no hay municipios, oculta municipio y barrio
-          $("#municipality, label[for='municipality']").prop("disabled", true);
-          $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
-        }
-      })
-      .fail(function () {
-        $("#municipality, label[for='municipality']").prop("disabled", true);
-        $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
-      });
+    loadMunicipalities(provinceId);
   });
 
   $("#municipality").change(function () {
@@ -63,34 +111,9 @@ $(document).ready(function () {
     $("#neighborhood").html('<option value=""></option>');
 
     if (!municipalityId) return;
-
-    $.getJSON("report.php", {
-      action: "GET",
-      municipality_id: municipalityId,
-    })
-      .done(function (neighborhoods) {
-        if (neighborhoods.length > 0) {
-          var html = '<option value="">Seleccione</option>';
-          $.each(neighborhoods, function (_, neigh) {
-            html +=
-              '<option value="' +
-              neigh.id +
-              '">' +
-              neigh.neighborhood_name +
-              "</option>";
-          });
-          $("#neighborhood").html(html);
-          $("#neighborhood, label[for='neighborhood']").prop("disabled", false);
-        } else {
-          $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
-          $("#neighborhood").html('<option value="">No hay Barrios</option>');
-        }
-      })
-      .fail(function () {
-        $("#neighborhood, label[for='neighborhood']").prop("disabled", true);
-      });
+    loadNeighborhoods(municipalityId);
   });
-  
+
   const $container = $("#photoUrlsContainer");
   const $addBtn = $("#addPhotoBtn");
 
