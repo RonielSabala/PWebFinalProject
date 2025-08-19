@@ -129,6 +129,11 @@ class UserUtils extends GenericEntityUtils
         return self::getById($id)['role_name'];
     }
 
+    public static function isUserReporter($id): bool
+    {
+        return self::getRoleByUserId($id) === 'reporter';
+    }
+
     public static function isUserSuper($id): bool
     {
         return in_array(self::getRoleByUserId($id), ['validator', 'admin']);

@@ -251,6 +251,17 @@
   align-items: flex-start;
 }
 
+.comment-row-reporter {
+  background: linear-gradient(
+    90deg,
+    rgba(11, 145, 38, 0.061),
+    rgba(21, 122, 31, 0.044)
+  );
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 6px 20px rgba(11, 145, 22, 0.03);
+}
+
 .comment-row-super {
   background: linear-gradient(
     90deg,
@@ -274,6 +285,11 @@
   font-size: 18px;
   flex-shrink: 0;
   box-shadow: 0 3px 10px rgba(2, 6, 23, 0.06);
+}
+
+.comment-avatar-reporter {
+  box-shadow: 0 0 0 3px rgba(7, 138, 42, 0.161);
+  transform: scale(1.03);
 }
 
 .comment-avatar-super {
@@ -336,6 +352,20 @@
   margin-top: 6px;
   white-space: pre-wrap;
   color: #0b1220;
+}
+
+.badge-reporter {
+  background: linear-gradient(90deg, #0b911f, #157a49);
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  margin-left: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(11, 145, 114, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .badge-admin {
