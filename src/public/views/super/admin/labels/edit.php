@@ -16,6 +16,10 @@
                         <label for="icon_url" class="form-label">Url del icono</label>
                         <input type="text" id="icon_url" name="icon_url" class="form-control" placeholder="Escribe la url del ícono de la etiqueta" value="<?= $label['icon_url']; ?>" required>
                     </div>
+                    <div class="edit-item mb-2">
+                        <label class="form-label">Vista previa</label>
+                        <img src="<?= $label['icon_url'] ?>" alt="etiqueta" style="width: 150px;">
+                    </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center mt-4 action-buttons">
                     <button type="submit" id="btn-edit" class="btn btn-warning btn-lg text-black">
