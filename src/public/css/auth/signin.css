@@ -52,3 +52,8 @@
   transform: translateY(-2px);
   box-shadow: 0 12px 24px rgba(30, 115, 60, 0.12);
 }
+
+.view-content {
+  margin-top: 0px;
+  margin-bottom: 15dvh;
+}

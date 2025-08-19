@@ -72,7 +72,8 @@ class ResetPasswordController
             'role_name' => $user['role_name'],
         ];
 
-        // Redirigir al index
-        header('Location: /home.php');
+        // Redirigir al home
+        $homePage = GeneralUtils::getUserDefaultRouteByRole($user['role_name']);
+        header('location: ' . $homePage);
     }
 }

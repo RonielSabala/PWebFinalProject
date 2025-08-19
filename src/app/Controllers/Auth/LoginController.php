@@ -79,7 +79,8 @@ class LoginController
         ];
 
         // Redirigir al home
-        header('Location: /home.php');
+        $homePage = GeneralUtils::getUserDefaultRouteByRole($user['role_name']);
+        header('location: ' . $homePage);
         return true;
     }
 

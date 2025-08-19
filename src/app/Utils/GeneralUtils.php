@@ -43,4 +43,16 @@ class GeneralUtils
         </div>
         ';
     }
+
+    public static function getUserDefaultRouteByRole($role)
+    {
+        $route = match ($role) {
+            'reporter'  => '/reporters',
+            'validator' => '/super/validator',
+            'admin'     => '/super/admin',
+            default     => '',
+        };
+
+        return $route . '/home.php';
+    }
 }

@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS roles;
 CREATE TABLE
     roles (
         id INT PRIMARY KEY AUTO_INCREMENT,
-        role_name ENUM ('default', 'reportero', 'validador', 'admin') NOT NULL
+        role_name ENUM ('default', 'reporter', 'validator', 'admin') NOT NULL
     );
 
 -- Relación m:n Usuarios–Roles
