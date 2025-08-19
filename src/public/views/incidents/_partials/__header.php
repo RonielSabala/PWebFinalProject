@@ -6,7 +6,7 @@
             <select id="labelFilter" class="form-select">
                 <option value="">Todos los tipos</option>
                 <?php foreach ($labels as $label): ?>
-                    <option value="<?= $label['id'] ?>"><?= $label['label_name'] ?></option>
+                    <option value="<?= $label['label_name'] ?>"><?= $label['label_name'] ?></option>
                 <?php endforeach; ?>
             </select>
             <select id="provinceFilter" class="form-select">
