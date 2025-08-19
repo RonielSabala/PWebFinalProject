@@ -70,6 +70,126 @@ VALUES
         'elena.ruiz@email.com',
         '5550123456',
         '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'admin',
+        'admin@gmail.com',
+        '5551111111',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Admin Dos',
+        'admin2@gmail.com',
+        '5551111112',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Admin Tres',
+        'admin3@gmail.com',
+        '5551111113',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Validator One',
+        'validator@gmail.com',
+        '5552222221',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Validator Dos',
+        'validator2@gmail.com',
+        '5552222222',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Validator Tres',
+        'validator3@gmail.com',
+        '5552222223',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Juan Romero',
+        'juan.romero@gmail.com',
+        '5553330001',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Patricia Mena',
+        'patricia.mena@gmail.com',
+        '5553330002',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Carlos Martín',
+        'carlos.martin@gmail.com',
+        '5553330003',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Elizabeth Soto',
+        'elizabeth.soto@gmail.com',
+        '5553330004',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Ricardo Vega',
+        'ricardo.vega@gmail.com',
+        '5553330005',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Melissa Ramírez',
+        'melissa.ramirez@gmail.com',
+        '5553330006',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Diego López',
+        'diego.lopez@gmail.com',
+        '5553330007',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Yara Pérez',
+        'yara.perez@gmail.com',
+        '5553330008',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Tomás Suárez',
+        'tomas.suarez@gmail.com',
+        '5553330009',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'reporter',
+        'reporter@gmail.com',
+        '5553340100',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'reporter2',
+        'reporter2@gmail.com',
+        '5553340101',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Carlos Reportero',
+        'carlos.reportero@gmail.com',
+        '5553340102',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Ana Reportera',
+        'ana.reportera@gmail.com',
+        '5553340103',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
+    ),
+    (
+        'Mariana López',
+        'mariana.lopez@gmail.com',
+        '5553340104',
+        '$2y$10$Hhid4w2e2ZQ7SA3uVQxrE.7XlWcB7kUfJWJWfJQmYJZzYdLQ5Q5Oq'
     );
 
 -- Roles de usuarios
@@ -85,7 +205,27 @@ VALUES
     (7, 1),
     (8, 1),
     (9, 1),
-    (10, 2);
+    (10, 2),
+    (11, 4),
+    (12, 4),
+    (13, 4),
+    (14, 3),
+    (15, 3),
+    (16, 3),
+    (17, 1),
+    (18, 2),
+    (19, 1),
+    (20, 2),
+    (21, 1),
+    (22, 1),
+    (23, 2),
+    (24, 1),
+    (25, 1),
+    (26, 2),
+    (27, 2),
+    (28, 2),
+    (29, 2),
+    (30, 2);
 
 -- Provincias
 INSERT INTO
@@ -547,7 +687,7 @@ VALUES
         1,
         1,
         1,
-        1
+        4
     ),
     (
         'Robo en colmado de Villa Mella',
@@ -607,7 +747,7 @@ VALUES
         1,
         1,
         1,
-        1
+        10
     ),
     (
         'Atropello en Malecón de SD',
@@ -622,7 +762,7 @@ VALUES
         1,
         1,
         1,
-        4
+        10
     ),
     (
         'Derrumbe en construcción de Punta Cana',
@@ -637,7 +777,7 @@ VALUES
         1,
         1,
         1,
-        6
+        18
     ),
     (
         'Contaminación en río Ozama',
@@ -667,7 +807,7 @@ VALUES
         1,
         1,
         1,
-        1
+        23
     ),
     (
         'Fuga de gas en Los Alcarrizos',
@@ -682,7 +822,382 @@ VALUES
         1,
         1,
         1,
+        23
+    ),
+    (
+        'Choque múltiple en vía principal',
+        'Varios vehículos implicados, gestión de emergencias en proceso.',
+        '2024-01-11 01:00:00',
+        19.489404,
+        -70.266489,
+        0,
+        0,
+        1,
+        2000.00,
+        31,
+        146,
+        210,
         4
+    ),
+    (
+        'Inundación por fuerte aguacero',
+        'Calles anegadas y daños en viviendas, autoridades despliegan ayuda.',
+        '2024-01-21 02:00:00',
+        18.936944,
+        -70.611521,
+        0,
+        0,
+        0,
+        20000.00,
+        31,
+        147,
+        211,
+        6
+    ),
+    (
+        'Robo a mano armada en comercio',
+        'Sujeto(s) armados sustrajeron dinero y pertenencias.',
+        '2024-01-31 03:00:00',
+        18.812097,
+        -68.300004,
+        0,
+        0,
+        3,
+        3000.00,
+        31,
+        148,
+        212,
+        10
+    ),
+    (
+        'Incendio en establecimiento comercial',
+        'Bomberos controlaron el incendio en local comercial.',
+        '2024-02-10 04:00:00',
+        19.227756,
+        -69.262983,
+        0,
+        0,
+        1,
+        3500.00,
+        31,
+        148,
+        213,
+        18
+    ),
+    (
+        'Colapso de andamio en obra',
+        'Estructura colapsó durante labores, trabajadores heridos.',
+        '2024-02-20 05:00:00',
+        18.480437,
+        -68.698000,
+        0,
+        0,
+        4,
+        5000.00,
+        31,
+        149,
+        214,
+        20
+    ),
+    (
+        'Asalto en transporte público',
+        'Pasajeros agredidos y despojo de pertenencias.',
+        '2024-02-07 20:40:00',
+        19.153147,
+        -70.837831,
+        0,
+        0,
+        2,
+        3000.00,
+        29,
+        134,
+        194,
+        23
+    ),
+    (
+        'Protesta con enfrentamientos',
+        'Manifestación derivó en altercados y daños materiales.',
+        '2024-02-14 23:00:00',
+        19.345497,
+        -70.636021,
+        0,
+        0,
+        3,
+        15000.00,
+        29,
+        134,
+        195,
+        26
+    ),
+    (
+        'Asalto a turistas en zona turística',
+        'Turistas reportaron robos en horas nocturnas.',
+        '2024-01-18 00:30:00',
+        19.229562,
+        -69.694133,
+        0,
+        0,
+        1,
+        2500.00,
+        22,
+        96,
+        144,
+        27
+    ),
+    (
+        'Pelea multitudinaria con heridos',
+        'Pequeña multitud se enfrentó dejando varios lesionados.',
+        '2024-02-01 23:10:00',
+        19.698273,
+        -69.772254,
+        0,
+        1,
+        5,
+        1000.00,
+        22,
+        100,
+        146,
+        28
+    ),
+    (
+        'Deslizamiento en vía rural',
+        'Pequeño deslizamiento bloqueó el paso vehicular por horas.',
+        '2024-03-02 06:40:00',
+        18.919895,
+        -70.245536,
+        0,
+        0,
+        0,
+        5000.00,
+        15,
+        69,
+        99,
+        29
+    ),
+    (
+        'Incidente reportado en La Romana',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-02-08 08:00:00',
+        19.412099,
+        -69.561107,
+        1,
+        0,
+        1,
+        5000.00,
+        14,
+        63,
+        101,
+        30
+    ),
+    (
+        'Incendio doméstico en San Cristóbal',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-02-15 15:00:00',
+        18.802809,
+        -70.022849,
+        1,
+        0,
+        0,
+        12000.00,
+        25,
+        118,
+        131,
+        4
+    ),
+    (
+        'Inundación por crecida de río',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-02-22 22:00:00',
+        18.608818,
+        -69.162130,
+        1,
+        0,
+        0,
+        80000.00,
+        19,
+        120,
+        147,
+        6
+    ),
+    (
+        'Robo a conductor en carretera costera',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-02-29 09:15:00',
+        18.715109,
+        -69.512849,
+        1,
+        0,
+        0,
+        2000.00,
+        31,
+        148,
+        213,
+        10
+    ),
+    (
+        'Derrumbe en obra de construcción',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-03-07 11:30:00',
+        18.161501,
+        -71.414701,
+        1,
+        0,
+        0,
+        60000.00,
+        3,
+        17,
+        33,
+        18
+    ),
+    (
+        'Contaminación en tramo fluvial',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-03-14 07:00:00',
+        19.518803,
+        -69.140976,
+        1,
+        0,
+        0,
+        15000.00,
+        21,
+        52,
+        121,
+        20
+    ),
+    (
+        'Asesinato reportado en zona rural',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-03-21 04:20:00',
+        18.275208,
+        -71.193041,
+        1,
+        1,
+        0,
+        0.00,
+        27,
+        136,
+        165,
+        23
+    ),
+    (
+        'Incendio forestal reportado',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-04-01 13:50:00',
+        19.339681,
+        -69.647692,
+        1,
+        0,
+        0,
+        10000.00,
+        23,
+        104,
+        157,
+        26
+    ),
+    (
+        'Accidente múltiple en vía principal',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-04-08 08:05:00',
+        19.154544,
+        -69.889091,
+        1,
+        0,
+        4,
+        25000.00,
+        6,
+        39,
+        56,
+        27
+    ),
+    (
+        'Explosión reportada en establecimiento comercial',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-04-15 18:30:00',
+        18.309087,
+        -69.052667,
+        1,
+        0,
+        5,
+        90000.00,
+        13,
+        61,
+        83,
+        28
+    ),
+    (
+        'Asalto en avenida principal',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-04-21 20:00:00',
+        18.372034,
+        -69.472852,
+        1,
+        0,
+        1,
+        1500.00,
+        28,
+        112,
+        138,
+        29
+    ),
+    (
+        'Inundación y daños en cultivos',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-04-28 06:10:00',
+        18.124361,
+        -69.573682,
+        1,
+        0,
+        0,
+        40000.00,
+        21,
+        59,
+        95,
+        30
+    ),
+    (
+        'Tránsito obstruido por accidente',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-05-02 09:00:00',
+        19.093556,
+        -71.156344,
+        1,
+        0,
+        2,
+        18000.00,
+        18,
+        125,
+        133,
+        4
+    ),
+    (
+        'Corte eléctrico y disturbios',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-05-10 22:45:00',
+        19.047872,
+        -69.187759,
+        1,
+        0,
+        0,
+        0.00,
+        9,
+        34,
+        48,
+        6
+    ),
+    (
+        'Desastre natural - marejada costera',
+        'Reporte ciudadano con detalles en proceso de verificación.',
+        '2024-05-18 05:30:00',
+        17.929661,
+        -71.148690,
+        1,
+        0,
+        0,
+        120000.00,
+        20,
+        150,
+        122,
+        10
     );
 
 -- Etiquetas
@@ -712,6 +1227,22 @@ VALUES
     (
         'Desastre natural',
         'https://cdn-icons-png.flaticon.com/512/13063/13063838.png'
+    ),
+    (
+        'Vandalismo',
+        'https://cdn-icons-png.flaticon.com/512/3154/3154230.png'
+    ),
+    (
+        'Actividad sospechosa',
+        'https://thumbs.dreamstime.com/b/suspicious-man-18883141.jpg'
+    ),
+    (
+        'Derrumbe',
+        'https://cdn-icons-png.flaticon.com/512/3436/3436765.png'
+    ),
+    (
+        'Problemas de servicio',
+        'https://cdn-icons-png.flaticon.com/512/9210/9210011.png'
     );
 
 -- Etiquetas de incidencias
@@ -725,11 +1256,36 @@ VALUES
     (4, 6),
     (5, 5),
     (6, 1),
-    (7, 6),
+    (7, 9),
     (8, 6),
     (9, 2),
     (9, 5),
-    (10, 6);
+    (10, 6),
+    (11, 1),
+    (12, 6),
+    (13, 2),
+    (14, 3),
+    (15, 1),
+    (16, 2),
+    (17, 5),
+    (18, 2),
+    (19, 5),
+    (20, 6),
+    (21, 2),
+    (22, 3),
+    (23, 6),
+    (24, 2),
+    (25, 1),
+    (26, 6),
+    (27, 4),
+    (28, 3),
+    (29, 1),
+    (30, 3),
+    (31, 2),
+    (32, 6),
+    (33, 1),
+    (34, 5),
+    (35, 6);
 
 -- Comentarios
 INSERT INTO
@@ -782,4 +1338,84 @@ VALUES
         3,
         '¿Alguien tiene descripción de los asaltantes?'
     ),
-    (10, 7, 'Bomberos ya están en el lugar revisando.');
+    (10, 7, 'Bomberos ya están en el lugar revisando.'),
+    (
+        21,
+        30,
+        'Testigo afirma que el peatón fue embestido por una motocicleta fuera de la vía principal.'
+    ),
+    (
+        22,
+        4,
+        'Bomberos informan que el incendio se originó por un cortocircuito.'
+    ),
+    (
+        23,
+        6,
+        'Familias evacuadas y alojadas en un centro comunitario temporal.'
+    ),
+    (
+        24,
+        10,
+        'Se recuperaron pertenencias, el caso está en manos de la policía local.'
+    ),
+    (
+        25,
+        18,
+        'Inspección técnica recomendó suspensión de labores hasta nueva evaluación.'
+    ),
+    (
+        26,
+        20,
+        'Muestras tomadas para análisis, posible vertido desde una actividad cercana.'
+    ),
+    (
+        27,
+        23,
+        'La escena permanece acordonada, la policía solicita colaboración ciudadana.'
+    ),
+    (
+        27,
+        26,
+        'Se solicita realizar autopsia para esclarecer las causas.'
+    ),
+    (
+        28,
+        27,
+        'Brigadas trabajando en el perímetro, se pide a la población evitar la zona.'
+    ),
+    (
+        29,
+        28,
+        'Tránsito restablecido parcialmente, varios vehículos con daños.'
+    ),
+    (
+        30,
+        29,
+        'Evacuación preventiva realizada, comercios afectados reciben atención.'
+    ),
+    (
+        31,
+        4,
+        'Cámaras de seguridad pueden aportar pruebas, testimonios recabados.'
+    ),
+    (
+        32,
+        6,
+        'Productores reportan pérdidas significativas, solicitan apoyo técnico.'
+    ),
+    (
+        33,
+        10,
+        'Remolque especializado requerido para retirar el camión volcado.'
+    ),
+    (
+        34,
+        18,
+        'Vecinos protestan por falta de información tras el corte prolongado.'
+    ),
+    (
+        35,
+        20,
+        'Protección Civil iniciará evaluación de daños y plan de recuperación.'
+    );
