@@ -7,7 +7,7 @@ class UserUtils extends GenericEntityUtils
 {
     private static $userExistSql = "SELECT 1 FROM users WHERE email = ?";
 
-    private static $getSql = "SELECT
+    private static $getByIdSql = "SELECT
         u.id,
         u.username,
         u.email,
@@ -83,9 +83,9 @@ class UserUtils extends GenericEntityUtils
         return self::fetchSql(self::$userExistSql, [$userEmail]) ? true : false;
     }
 
-    public static function get($id)
+    public static function getById($id)
     {
-        return self::saveFetchSql(self::$getSql, [$id], 'No se encontró el usuario.');
+        return self::saveFetchSql(self::$getByIdSql, [$id], 'No se encontró el usuario.');
     }
 
     public static function getByEmail(string $userEmail)
@@ -124,9 +124,13 @@ class UserUtils extends GenericEntityUtils
         return $route == 'auth' || (isset($_SESSION['user']) && UserUtils::exists($_SESSION['user']['email']));
     }
 
+    public static function getRoleByUserId($id)
+    {
+        return self::getById($id)['role_name'];
+    }
+
     public static function isUserSuper($id): bool
     {
-        $user = self::get($id);
-        return in_array($user['role_name'], ['validator', 'admin']);
+        return in_array(self::getRoleByUserId($id), ['validator', 'admin']);
     }
 }

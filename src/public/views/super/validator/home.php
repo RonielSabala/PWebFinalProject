@@ -1,3 +1,12 @@
+<?php
+
+use App\Utils\Entities\UserUtils;
+
+$user = $_SESSION['user'];
+$username = $user['username'];
+$userRole = UserUtils::getRoleByUserId($user['id']);
+?>
+
 <!-- Header -->
 <div class="row align-items-center mb-4">
     <div class="hero d-flex gap-3 align-items-center">
@@ -7,12 +16,12 @@
         <div>
             <h3 class="mb-0">Panel del validador</h3>
             <div class="muted-sm">
-                Bienvenido, <span class="welcome-name"><?= htmlspecialchars($_SESSION['user']['username'] ?? 'Validador') ?></span>! —
+                Bienvenido, <span class="welcome-name"><?= $username ?></span>! —
                 Panel para gestionar las incidencias pendientes y sus correcciones.
             </div>
         </div>
         <div class="ms-auto text-end">
-            <span class="badge badge-accent px-3 py-2">Rol: Validador</span>
+            <span class="badge badge-accent px-3 py-2">Rol: <?= $userRole ?></span>
         </div>
     </div>
 </div>
