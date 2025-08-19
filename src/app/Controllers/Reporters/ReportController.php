@@ -18,14 +18,15 @@ class ReportController
         // Obtener incidencia
         if (!empty($_GET['id'])) {
             $incidence = IncidenceUtils::get($_GET['id']);
+            if ($incidence['is_approved'] == 1) {
+                header('Location: home.php'); // Volver a home
+                exit();
+            }
         } else {
             $incidence = null;
         }
 
-        if ($incidence['is_approved'] == 1) {
-            header('Location: home.php'); // Volver a home
-            exit();
-        }
+
 
         // Manejar peticiones por GET
         if (($_GET['action'] ?? '') === 'GET') {
