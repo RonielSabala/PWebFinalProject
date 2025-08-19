@@ -127,7 +127,7 @@
                                     <label for="province" class="form-label">Provincia</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
-                                        <select id="province" class="form-select" name="province_id" required>
+                                        <select id="province" class="form-select" name="province_id" data-editing-province="<?php echo $incidence->province_id ?? ''; ?>" required>
                                             <option selected value="">Seleccione</option>
                                             <?php foreach ($provinces as $prov): ?>
                                                 <option value="<?= $prov['id'] ?>" <?= (isset($incidence['province_id']) && $incidence['province_id'] === $prov['id']) ? 'selected' : '' ?>><?= $prov['province_name'] ?></option>
@@ -141,10 +141,10 @@
                                     <label for="municipality" class="form-label">Municipio</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-map"></i></span>
-                                        <select id="municipality" class="form-select" name="municipality_id" <?= empty($incidence['province_id']) ? 'disabled' : '' ?>>
+                                        <select id="municipality" data-editing-municipality="<?php echo $incidence->municipality_id ?? ''; ?>" class="form-select" name="municipality_id" <?= empty($incidence['province_id']) ? 'disabled' : '' ?>>
                                             <?php if (!empty($incidence['municipality_id']) && !empty($municipality_name)): ?>
                                                 <option value="<?= htmlspecialchars($incidence['municipality_id']) ?>" selected>
-                                                    <?= htmlspecialchars($municipality_name['municipality_name'] ?? 'No hay Municipio') ?>
+                                                    
                                                 </option>
                                             <?php else: ?>
                                                 <option value="" selected disabled>Seleccione un municipio</option>
@@ -158,10 +158,10 @@
                                     <label for="neighborhood" class="form-label">Barrio</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-house"></i></span>
-                                        <select id="neighborhood" class="form-select" name="neighborhood_id" <?= empty($incidence['municipality_id']) ? 'disabled' : '' ?>>
+                                        <select id="neighborhood" class="form-select" name="neighborhood_id" data-editing-neighborhood="<?php echo $incidence->neighborhood_id ?? ''; ?>" <?= empty($incidence['municipality_id']) ? 'disabled' : '' ?>>
                                             <?php if (!empty($incidence['neighborhood_id']) && !empty($neighborhood_name)): ?>
                                                 <option value="<?= htmlspecialchars($incidence['neighborhood_id']) ?>" selected>
-                                                    <?= htmlspecialchars($neighborhood_name['neighborhood_name'] ?? 'No hay barrio') ?>
+                                                    
                                                 </option>
                                             <?php else: ?>
                                                 <option value="" selected disabled>Seleccione un barrio</option>
