@@ -191,21 +191,22 @@ function renderIncidents() {
 
   $("#resultsCount").text(`Se encontraron ${filtered.length} incidencias.`);
 
-// Cluster de todas las incidencias
-const clusterGroup = L.markerClusterGroup({
-  showCoverageOnHover: false,
-});
+  // Cluster de todas las incidencias
+  const clusterGroup = L.markerClusterGroup({
+    showCoverageOnHover: false,
+  });
 
-filtered.forEach((m) => {
-  const marker = getMarker(m);
-  marker.on("click", () => showModal("map.php", m.id));
-  clusterGroup.addLayer(marker);
-});
+  filtered.forEach((m) => {
+    const marker = getMarker(m);
+    marker.on("click", () => showModal("map.php", m.id));
+    clusterGroup.addLayer(marker);
+  });
 
-incidenceLayer.addLayer(clusterGroup);
+  incidenceLayer.addLayer(clusterGroup);
 
-function addMarkerToCluster(m, clusterGroup) {
-  const marker = getMarker(m);
-  marker.on("click", () => showModal("map.php", m.id));
-  clusterGroup.addLayer(marker);
-}}
+  function addMarkerToCluster(m, clusterGroup) {
+    const marker = getMarker(m);
+    marker.on("click", () => showModal("map.php", m.id));
+    clusterGroup.addLayer(marker);
+  }
+}
