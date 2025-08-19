@@ -8,6 +8,7 @@ $photos = $incidence['photo_urls'];
 $incidenceId = $incidence['id'];
 $title = $incidence['title'];
 $description = $incidence['incidence_description'];
+$isApproved = $incidence['is_approved'];
 $occurrence = PrintUtils::getPrintableDate($incidence['occurrence_date']);
 $created = PrintUtils::getPrintableDate($incidence['creation_date']);
 $deaths = $incidence['n_deaths'];
@@ -146,7 +147,11 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
 
                         <div class="no-photos-text">
                             <h3 id="noPhotosText">No hay imágenes <i class="bi bi-images"></i></h3>
-                            <p class="muted">Aún no se han subido fotos para esta incidencia.</p>
+                            <?php if ($isApproved): ?>
+                                <p class="muted">No hay fotos disponibles para esta incidencia.</p>
+                            <?php else: ?>
+                                <p class="muted">Aún no se han subido fotos para esta incidencia.</p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </section>
