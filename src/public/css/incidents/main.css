@@ -155,6 +155,7 @@
   padding-top: 14px;
   padding-right: 12px;
   padding-bottom: 5px;
+  border-bottom: 7px solid rgba(1, 92, 5, 0.054);
   background: linear-gradient(
     45deg,
     #ffffff 25%,

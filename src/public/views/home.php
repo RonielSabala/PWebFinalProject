@@ -7,7 +7,7 @@
             <h1 class="display-1">Incidencias RD</h1>
             <h2 class="display-5">¡En donde todo pasa!</h2>
             <p>
-                Visualiza las incidencias mas recientes en el país, comenta en ellas y crea sugerencias.
+                Visualiza las incidencias mas recientes en el país, crea comentarios y sugiere cambios para mantener las incidencias actualizadas.
             </p>
         </div>
     </section>
@@ -22,7 +22,7 @@
                     <span class="card-icon"><i class="bi bi-map"></i></span>
                     <div>
                         <h3>Mapa de incidencias</h3>
-                        <p class="muted">Explora las incidencias en un mapa interactivo con clustering y filtros.</p>
+                        <p class="muted">Explora las incidencias en un mapa interactivo.</p>
                     </div>
                 </div>
 
@@ -111,7 +111,7 @@
                 </div>
                 <div class="feature-body">
                     <h4>Filtros y Búsqueda</h4>
-                    <p>Filtra por provincia, tipo, rango de fechas o busca por el título de la incidencia</p>
+                    <p>Filtra por provincia, tipo, rango de fechas o busca por el título de la incidencia.</p>
                 </div>
             </div>
         </div>
