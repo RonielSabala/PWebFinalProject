@@ -27,7 +27,7 @@ use App\Utils\GeneralUtils;
         <?php
         $i = 1;
         foreach ($incidents as $incidence) {
-            $isApproved = ((int)$incidence['is_approved'] === 1);
+            $isApproved = $incidence['is_approved'] == 1;
         ?>
             <tr>
                 <td><?= $i++ ?></td>
@@ -47,12 +47,12 @@ use App\Utils\GeneralUtils;
                         <i class="bi bi-box-arrow-up-right"></i>
                     </a>
                     <?php if (!$isApproved): ?>
-                        <a href="/reporters/report.php?id=<?= $incidence['id'] ?>" class="btn btn-sm btn-outline-action btn-go ms-2">
+                        <a href="/reporters/report.php?id=<?= $incidence['id'] ?>" class="btn btn-sm btn-outline-action btn-edit ms-2">
                             Editar
                             <i class="bi bi-pencil-square"></i>
                         </a>
                     <?php else: ?>
-                        <button class="btn btn-sm btn-outline-action btn-go ms-2" disabled>
+                        <button class="btn btn-sm btn-outline-action btn-edit ms-2" disabled>
                             Editar
                             <i class="bi bi-pencil-square"></i>
                         </button>

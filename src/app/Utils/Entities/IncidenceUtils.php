@@ -144,7 +144,8 @@ class IncidenceUtils extends GenericEntityUtils
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ";
 
-    private static $updateSql = "UPDATE incidents  
+    private static $updateSql = "UPDATE
+        incidents  
     SET
         title = ?,
         incidence_description = ?,
