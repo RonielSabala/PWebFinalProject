@@ -1,7 +1,10 @@
 <?php
 
+use App\Utils\GeneralUtils;
+
 $username = $_SESSION['user']['username'] ?? '';
 $userRole = $_SESSION['user']['role_name'] ?? '';
+$homePage = GeneralUtils::getUserDefaultRouteByRole($userRole);
 ?>
 
 <!DOCTYPE html>
@@ -20,13 +23,17 @@ $userRole = $_SESSION['user']['role_name'] ?? '';
 <body>
     <header class="site-header">
         <div class="header-inner">
-            <a class="brand" href="/home.php">
-                <i class="bi bi-house-exclamation brand-icon" aria-hidden="true"></i>
-                <div class="brand-text">
-                    <span class="brand-title">Incidencias RD</span>
-                    <span class="brand-sub">Transparencia y acción comunitaria.</span>
-                </div>
-            </a>
+            <div class="brand">
+                <a href="/home.php">
+                    <i class="bi bi-house-exclamation brand-icon" aria-hidden="true"></i>
+                </a>
+                <a href="<?= $homePage ?>">
+                    <div class="brand-text">
+                        <span class="brand-title">Incidencias RD</span>
+                        <span class="brand-sub">Transparencia y acción comunitaria.</span>
+                    </div>
+                </a>
+            </div>
 
             <div class="actions">
                 <a href="/incidents/map.php" class="incidents">
