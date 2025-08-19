@@ -128,6 +128,10 @@ h2 {
   transition: background var(--btn-transition);
 }
 
+.btn:disabled {
+  border: 4px dashed rgba(0, 0, 0, 0.1);
+}
+
 .status-badge {
   display: inline-block;
   padding: 3px 8px;

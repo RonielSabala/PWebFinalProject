@@ -41,7 +41,7 @@ use App\Utils\GeneralUtils;
                 </td>
                 <td><?= $incidence['comments_count'] ?></td>
                 <td><?= $incidence['corrections_count'] ?></td>
-                <td class="d-flex">
+                <td class="d-flex justify-content-end">
                     <a href="/incidents/incidence.php?id=<?= $incidence['id'] ?>" class="btn btn-sm btn-outline-action btn-go">
                         Ver
                         <i class="bi bi-box-arrow-up-right"></i>
