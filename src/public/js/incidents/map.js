@@ -192,7 +192,9 @@ function renderIncidents() {
   $("#resultsCount").text(`Se encontraron ${filtered.length} incidencias.`);
 
 // Cluster de todas las incidencias
-const clusterGroup = L.markerClusterGroup();
+const clusterGroup = L.markerClusterGroup({
+  showCoverageOnHover: false,
+});
 
 filtered.forEach((m) => {
   const marker = getMarker(m);
