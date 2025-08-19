@@ -37,7 +37,7 @@ class CorrectionController
         }
 
         if (!isset($_GET['incidence_id'])) {
-            GeneralUtils::showAlert('No se especificó la incidencia!');
+            GeneralUtils::showAlert('No se especificó la incidencia.');
             exit;
         }
 
