@@ -144,9 +144,30 @@ class IncidenceUtils extends GenericEntityUtils
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ";
 
+    private static $updateSql = "UPDATE
+        incidents  
+    SET
+        title = ?,
+        incidence_description = ?,
+        occurrence_date = ?,
+        latitude = ?,
+        longitude = ?,
+        n_deaths = ?,
+        n_injured = ?,
+        n_losses = ?,
+        province_id = ?,
+        municipality_id = ?,
+        neighborhood_id = ?,
+        user_id = ?
+    WHERE  
+        id = ?
+    ";
+
     private static $deleteSql = "DELETE FROM incidents WHERE id = ?";
 
     private static $createLabelRelationSql = "INSERT INTO incidence_labels (incidence_id, label_id) VALUES (?, ?)";
+
+    private static $deleteLabelRelationsSql = "DELETE FROM incidence_labels WHERE incidence_id = ?";
 
     private static $setApprovalSql = "UPDATE incidents SET is_approved = 1 WHERE id = ?";
 
@@ -199,6 +220,27 @@ class IncidenceUtils extends GenericEntityUtils
         }
 
         // Insertar relación Incidencia-Etiqueta
+        foreach ($labels as $labelId) {
+            self::executeSql(self::$createLabelRelationSql, [$incidenceId, $labelId]);
+        }
+    }
+
+    public static function update($incidenceId, $fields, $photoUrl, $labels)
+    {
+
+        $fields[] = $incidenceId;
+        self::executeSql(self::$updateSql, $fields);
+
+        // Eliminamos fotos existentes y agregamos nuevas
+        PhotoUtils::deleteByIncidenceId($incidenceId);
+        if (!empty($photoUrl)) {
+            foreach ((array)$photoUrl as $url) {
+                PhotoUtils::create([$incidenceId, $url]);
+            }
+        }
+
+        //  Eliminamos las relaciones existentes y luego agregamos las nuevas
+        self::executeSql(self::$deleteLabelRelationsSql, [$incidenceId]);
         foreach ($labels as $labelId) {
             self::executeSql(self::$createLabelRelationSql, [$incidenceId, $labelId]);
         }

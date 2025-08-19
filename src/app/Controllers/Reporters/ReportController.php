@@ -14,6 +14,18 @@ class ReportController
 {
     public function handle(Template $template)
     {
+
+        // Obtener incidencia
+        if (!empty($_GET['id'])) {
+            $incidence = IncidenceUtils::get($_GET['id']);
+            if ($incidence['is_approved'] == 1) {
+                header('Location: home.php'); // Volver a home
+                exit();
+            }
+        } else {
+            $incidence = null;
+        }
+
         // Manejar peticiones por GET
         if (($_GET['action'] ?? '') === 'GET') {
             Template::enableJsonMode();
@@ -59,17 +71,47 @@ class ReportController
                 $_SESSION['user']['id'],
             ];
 
-            // Crear incidencia
-            IncidenceUtils::create($fields, $photo_url, $labels);
+            // Actualizar o crear incidencia
+            if (!empty($_POST['id'])) {
+                $id = $_POST['id'];
+                IncidenceUtils::update($id, $fields, $photo_url, $labels);
+            } else {
+                IncidenceUtils::create($fields, $photo_url, $labels);
+            }
 
             // Redirigir
             header('Location: home.php');
             exit;
         }
 
+        $incidence = null;
+        $municipality_name = null;
+        $neighborhood_name = null;
+
+        if (!empty($_GET['id'])) {
+            $incidence = IncidenceUtils::get($_GET['id']);
+        }
+
+        // Formatear datos de la incidencia
+        if ($incidence !== null) {
+            // Combinar latitud y longitud en un mismo string
+            $incidence['latitude'] = $incidence['latitude'] . ',' . $incidence['longitude'];
+            $incidence['photo_urls'] = array_filter(array_map('trim', explode(',', $incidence['photo_urls'])));
+            $incidence['label_ids'] = array_map('intval', explode(',', $incidence['label_ids'] ?? ''));
+
+            // Obtener nombre del municipio y del barrio
+            $municipalityId = $incidence['municipality_id'];
+            $neighborhoodId = $incidence['neighborhood_id'];
+            $municipality_name = ($municipalityId) ? MunicipalityUtils::get($municipalityId) : null;
+            $neighborhood_name = ($neighborhoodId) ? NeighborhoodUtils::get($neighborhoodId) : null;
+        }
+
         $template->apply([
             'provinces' => ProvinceUtils::getAll(),
             'labels' => LabelUtils::getAll(),
+            'incidence' => $incidence,
+            'municipality_name' => $municipality_name,
+            'neighborhood_name' => $neighborhood_name,
         ]);
     }
 }

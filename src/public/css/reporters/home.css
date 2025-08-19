@@ -7,8 +7,11 @@
   --primary: #007bff;
   --primary-hover: #0056b3;
 
-  --go: #ffc107;
-  --go-hover: #e0a800;
+  --go: #025e1f6a;
+  --go-hover: #025e1f6a;
+
+  --edit: #ffc107;
+  --edit-hover: #e0a800;
 }
 
 h2 {
@@ -50,17 +53,31 @@ h2 {
   border: 1px solid;
   padding: 6px 12px;
   margin-right: 2px;
-}
-
-.btn-go {
+  width: 100px;
   background: var(--go);
   border-color: var(--go);
+  color: #212529;
+}
+
+.btn-edit {
+  border: 1px solid;
+  padding: 6px 12px;
+  margin-right: 2px;
+  min-width: 100px;
+  background: var(--edit);
+  border-color: var(--edit);
   color: #212529;
 }
 
 .btn-go:hover {
   background: var(--go-hover);
   border-color: var(--go-hover);
+  color: #fff;
+}
+
+.btn-edit:hover {
+  background: var(--edit-hover);
+  border-color: var(--edit-hover);
   color: #fff;
 }
 
@@ -73,6 +90,11 @@ h2 {
 
 .btn-outline-action.btn-go:hover {
   border-color: var(--go);
+  color: white;
+}
+
+.btn-outline-action.btn-edit:hover {
+  border-color: var(--edit);
   color: white;
 }
 
