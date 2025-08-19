@@ -112,7 +112,7 @@ class PrintUtils
             } elseif (is_int($value) || is_float($value)) {
                 $html .= '<span class="mono">' . htmlspecialchars((string)$value) . '</span>';
             } else {
-                $html .= htmlspecialchars((string)$value);
+                $html .= '<span class="mono">' . htmlspecialchars((string)$value) . '</span>';
             }
 
             $html .= '</dd>';
