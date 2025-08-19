@@ -40,8 +40,13 @@
   position: relative;
 }
 
+#labelFilter {
+  min-width: 180px;
+  width: auto;
+}
+
 #search-bar-container {
-  width: 750px;
+  width: 875px;
   position: absolute;
   top: 15px;
   left: 50%;
@@ -54,6 +59,7 @@
     align-items: flex-start;
     gap: 8px;
   }
+
   .results-row .d-flex.align-items-center {
     align-self: stretch;
     justify-content: flex-end;

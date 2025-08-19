@@ -1,1 +1,2 @@
-<div class="view-content">
+<div class="container">
+    <div class="view-content">

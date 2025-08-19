@@ -177,13 +177,15 @@ function renderIncidents() {
   const title = $("#titleFilter").val().toLowerCase();
   const from = $("#fromFilter").val();
   const to = $("#toFilter").val();
+  const label = $("#labelFilter").val();
 
   const filtered = incidents.filter((incidence) => {
     return (
       (!title || incidence.title.toLowerCase().includes(title)) &&
       (!prov || incidence.province_id == prov) &&
       (!from || incidence.creation_date >= from) &&
-      (!to || incidence.creation_date <= to)
+      (!to || incidence.creation_date <= to) &&
+      (!label || incidence.labels[0] == label)
     );
   });
 
