@@ -423,6 +423,7 @@ VALUES
     ('Mao', 32),
     ('Esperanza', 32),
     ('Laguna Salada', 32);
+    
 
 -- Barrios
 INSERT INTO
@@ -520,6 +521,7 @@ VALUES
     ('La Colonia', 62),
     ('Guayabal', 63),
     ('La Otra Banda', 64),
+    ('Centro de higuey', 64),
     ('Lagunas de Nisibón', 64),
     ('Verón-Punta Cana', 64),
     ('Bayahibe', 65),
@@ -645,6 +647,7 @@ VALUES
     ('La Guáyiga', 149),
     ('Hato Viejo', 150),
     ('La Victoria', 151),
+    ('Villa Mella', 151),
     ('Ámina', 153),
     ('Guatapanal', 153),
     ('Jaibón (Pueblo Nuevo)', 153),
@@ -654,7 +657,22 @@ VALUES
     ('Paradero', 154),
     ('Cruce de Guayacanes', 155),
     ('Jaibón', 155),
-    ('La Caya', 155);
+    ('La Caya', 155),
+    ('Ciudad Colonial', 1),
+    ('Gazcue', 1),
+    ('Ensanche Quizqueya', 1),
+    ('Bella Vista', 1),
+    ('Ensanche Naco', 1),
+    ('Mirador Sur', 1), 
+    ('Mirador Norte', 151),
+    ('Guaricano', 151),
+    ('Manganagua', 1),
+    ('Piantini', 1),
+    ('Paraíso', 1),
+    ('Los Cacicazgos', 1);
+
+
+
 
 -- Incidencias
 INSERT INTO
@@ -678,30 +696,30 @@ VALUES
         'Accidente múltiple en Av. 27 de Febrero',
         'Colisión entre 3 vehículos en la avenida. Se reportan heridos.',
         '2023-11-01 08:30:00',
-        18.4861,
-        -69.9312,
+        18.471409,
+        -69.920523,
         1,
         0,
         3,
         15000.00,
+        5,
         1,
-        1,
-        1,
+        236,
         4
     ),
     (
         'Robo en colmado de Villa Mella',
         'Dos sujetos armados robaron efectivo y mercancía.',
         '2023-11-02 22:45:00',
-        18.5667,
-        -69.9833,
+        18.551499,
+        -69.900348,
         1,
         0,
         1,
         5000.00,
-        1,
-        1,
-        1,
+        31,
+        151,
+        218,
         4
     ),
     (
@@ -729,9 +747,9 @@ VALUES
         0,
         0,
         30000.00,
-        1,
-        1,
-        1,
+        25,
+        107,
+        157,
         10
     ),
     (
@@ -744,9 +762,9 @@ VALUES
         0,
         0,
         0.00,
-        1,
-        1,
-        1,
+        6,
+        33,
+        46,
         10
     ),
     (
@@ -819,9 +837,9 @@ VALUES
         0,
         0,
         0.00,
-        1,
-        1,
-        1,
+        31,
+        148,
+        213,
         23
     ),
     (
@@ -993,15 +1011,15 @@ VALUES
         'Incendio doméstico en San Cristóbal',
         'Reporte ciudadano con detalles en proceso de verificación.',
         '2024-02-15 15:00:00',
-        18.802809,
-        -70.022849,
+        18.418613,
+        -70.114973,
         1,
         0,
         0,
         12000.00,
         25,
-        118,
-        131,
+        107,
+        157,
         4
     ),
     (
@@ -1053,15 +1071,15 @@ VALUES
         'Contaminación en tramo fluvial',
         'Reporte ciudadano con detalles en proceso de verificación.',
         '2024-03-14 07:00:00',
-        19.518803,
-        -69.140976,
+        18.740085,
+        -69.238119,
         1,
         0,
         0,
         15000.00,
         21,
-        52,
-        121,
+        93,
+        131,
         20
     ),
     (
@@ -1098,8 +1116,8 @@ VALUES
         'Accidente múltiple en vía principal',
         'Reporte ciudadano con detalles en proceso de verificación.',
         '2024-04-08 08:05:00',
-        19.154544,
-        -69.889091,
+        19.179337,
+        -69.910726,
         1,
         0,
         4,
@@ -1110,48 +1128,48 @@ VALUES
         27
     ),
     (
-        'Explosión reportada en establecimiento comercial',
+        'Explosión reportada en Jumbo de Higuey',
         'Reporte ciudadano con detalles en proceso de verificación.',
         '2024-04-15 18:30:00',
-        18.309087,
-        -69.052667,
+        18.618545,
+        -68.724044,
         1,
         0,
         5,
         90000.00,
         13,
-        61,
-        83,
+        64,
+        93,
         28
     ),
     (
         'Asalto en avenida principal',
         'Reporte ciudadano con detalles en proceso de verificación.',
         '2024-04-21 20:00:00',
-        18.372034,
-        -69.472852,
+        18.761474,
+        -69.461365,
         1,
         0,
         1,
         1500.00,
         28,
-        112,
-        138,
+        129,
+        184,
         29
     ),
     (
         'Inundación y daños en cultivos',
         'Reporte ciudadano con detalles en proceso de verificación.',
         '2024-04-28 06:10:00',
-        18.124361,
-        -69.573682,
+        18.354138,
+        -70.251770,
         1,
         0,
         0,
         40000.00,
         21,
-        59,
-        95,
+        93,
+        134,
         30
     ),
     (
@@ -1214,7 +1232,7 @@ VALUES
     ),
     (
         'Incendio',
-        'https://cdn-icons-png.flaticon.com/512/599/599502.png'
+        'https://cdn-icons-png.flaticon.com/512/2321/2321785.png'
     ),
     (
         'Asesinato',
@@ -1226,7 +1244,7 @@ VALUES
     ),
     (
         'Desastre natural',
-        'https://cdn-icons-png.flaticon.com/512/13063/13063838.png'
+        'https://cdn-icons-png.flaticon.com/512/15566/15566657.png'
     ),
     (
         'Vandalismo',
@@ -1419,3 +1437,38 @@ VALUES
         20,
         'Protección Civil iniciará evaluación de daños y plan de recuperación.'
     );
+
+
+-- Correcciones
+INSERT INTO corrections (incidence_id, user_id, correction_values, is_approved)
+VALUES
+(
+	35, 
+    28, 
+    '{"latitude": 17.851099, "longitude": -71.285782, "n_deaths": 0,  "n_injured": 0, "n_losses": 12000,  "province_id": 20,  "municipality_id": 91, "neighborhood_id": "130"}', 
+    0
+),
+(
+	25, 
+    18, 
+    '{"latitude": 18.225116, "longitude": -71.101711, "n_deaths": 0,  "n_injured": 4, "n_losses": 60000,  "province_id": 3,  "municipality_id": 17, "neighborhood_id": "33"}', 
+    0
+),
+(
+	33, 
+    4, 
+    '{"latitude": 19.753379, "longitude": -71.552990, "n_deaths": 0,  "n_injured": 2, "n_losses": 18000,  "province_id": 18,  "municipality_id": 81, "neighborhood_id": "119"}', 
+    0
+),
+(
+	3, 
+    6, 
+    '{"latitude": 19.451684, "longitude": -70.690976, "n_deaths": 1,  "n_injured": 2, "n_losses": 200000,  "province_id": 29,  "municipality_id": 134, "neighborhood_id": "195"}', 
+    0
+),
+(
+	9, 
+    23, 
+    '{"latitude": 19.792285, "longitude": -70.706186, "n_deaths": 0,  "n_injured": 0, "n_losses": 8000,  "province_id": 20,  "municipality_id": 100, "neighborhood_id": "146"}', 
+    0
+);
