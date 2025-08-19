@@ -6,7 +6,6 @@ $userRole = $_SESSION['user']['role_name'] ?? '';
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,11 +17,11 @@ $userRole = $_SESSION['user']['role_name'] ?? '';
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="/css/main.css">
 </head>
-
 <body>
     <header class="site-header">
         <div class="header-inner">
             <a class="brand" href="/home.php">
+                <i class="bi bi-house-exclamation brand-icon" aria-hidden="true"></i>
                 <div class="brand-text">
                     <span class="brand-title">Incidencias RD</span>
                     <span class="brand-sub">Transparencia y acción comunitaria.</span>
@@ -36,16 +35,18 @@ $userRole = $_SESSION['user']['role_name'] ?? '';
                 </a>
 
                 <?php if (isset($_SESSION['user'])): ?>
-                    <div class="user">
-                        <details class="user-menu">
-                            <summary class="user-summary">
-                                <div class="avatar non-selectable"><?= $username[0] ?? '' ?></div>
-                                <div class="user-names">
-                                    <div class="user-name non-selectable"><?= $username ?></div>
-                                    <div class="user-role non-selectable"><?= ($userRole === 'default') ? '' : $userRole ?></div>
+                    <div class="app-user">
+                        <details class="app-user-menu">
+                            <summary class="app-user-summary">
+                                <div class="app-user-avatar non-selectable"><?= $username[0] ?? '' ?></div>
+                                <div class="app-user-names">
+                                    <div class="app-user-name non-selectable"><?= $username ?></div>
+                                    <div class="app-user-role non-selectable"><?= ($userRole === 'default') ? '' : $userRole ?></div>
                                 </div>
                             </summary>
-                            <a href="/auth/logout.php" class="btn logout-btn btn-outline-danger btn-sm">Cerrar sesión</a>
+                            <div class="text-end">
+                                <a href="/auth/logout.php" class="btn logout-btn btn-outline-danger btn-sm">Cerrar sesión</a>
+                            </div>
                         </details>
                     </div>
                 <?php endif; ?>
