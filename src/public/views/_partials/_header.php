@@ -12,20 +12,19 @@
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <div class="container">
-        <header class="site-header" role="banner" aria-label="Cabecera del sitio">
-            <div class="header-row d-flex align-items-center justify-content-center">
-                <a href="/home.php">
-                    <img
-                        src="/imgs/logo.png"
-                        alt="Logo Incidencias RD"
-                        class="site-logo"
-                        width="96"
-                        height="96" />
-                </a>
-                <div class="title-wrap">
-                    <h1 class="website-title">Incidencias RD</h1>
-                    <p class="site-subtitle mb-0">Transparencia y acción comunitaria.</p>
-                </div>
+    <header class="site-header" role="banner" aria-label="Cabecera del sitio">
+        <div class="header-row d-flex align-items-center justify-content-center">
+            <a href="/home.php">
+                <img
+                    src="/imgs/logo.png"
+                    alt="Logo Incidencias RD"
+                    class="site-logo"
+                    width="96"
+                    height="96" />
+            </a>
+            <div class="title-wrap">
+                <h1 class="website-title">Incidencias RD</h1>
+                <p class="site-subtitle mb-0">Transparencia y acción comunitaria.</p>
             </div>
-        </header>
+        </div>
+    </header>
