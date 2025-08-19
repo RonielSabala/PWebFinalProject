@@ -7,6 +7,7 @@ class IncidenceUtils extends GenericEntityUtils
 {
     private static $getSql = "SELECT 
         i.*,
+        u.id as reporter_id,
         u.username as reporter_name,
         GROUP_CONCAT(DISTINCT l.label_name) AS labels,
         GROUP_CONCAT(DISTINCT l.icon_url) AS label_icons,

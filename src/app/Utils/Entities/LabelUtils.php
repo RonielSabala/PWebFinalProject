@@ -38,7 +38,7 @@ class LabelUtils extends GenericEntityUtils
 
     public static function getByName($labelName)
     {
-        return self::saveFetchSql(self::$getByNameSql, [$labelName], 'No se encontró la etiqueta.');
+        return self::fetchSql(self::$getByNameSql, [$labelName]);
     }
 
     public static function getAll(): array

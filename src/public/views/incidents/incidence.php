@@ -9,6 +9,8 @@ $incidenceId = $incidence['id'];
 $title = $incidence['title'];
 $description = $incidence['incidence_description'];
 $isApproved = $incidence['is_approved'];
+$reporterId = $incidence['reporter_id'];
+$reporterName = $incidence['reporter_name'];
 $occurrence = PrintUtils::getPrintableDate($incidence['occurrence_date']);
 $created = PrintUtils::getPrintableDate($incidence['creation_date']);
 $deaths = $incidence['n_deaths'];
@@ -48,7 +50,7 @@ function avatar_color($seed, $colors)
 $user = $_SESSION['user'];
 $user_id = $user['id'];
 $username = $user['username'];
-$is_super = UserUtils::isUserSuper($user_id);
+$isUserSuper = UserUtils::isUserSuper($user_id);
 $current_user_initial = strtoupper(substr($username, 0, 1));
 $current_user_color_idx = avatar_color_index($username, $avatar_colors);
 ?>
@@ -66,13 +68,13 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                         </svg>
                     </div>
 
-                    <h2 id="incidence-title" class="title"><?= htmlspecialchars($title) ?></h2>
+                    <h2 id="incidence-title" class="title"><?= $title ?></h2>
                     <p class="incidence-meta" aria-label="Metadatos de la noticia">
                         <time datetime="<?= date('c', strtotime($created)) ?>">Fecha de publicación: <strong><?= $created ?></strong></time>
                         <span class="dot"></span>
                         <span>Ocurrencia: <strong><?= $occurrence ?></strong></span>
                         <span class="dot"></span>
-                        <span>Publicado por: <strong><?= htmlspecialchars($incidence['reporter_name']) ?></strong></span>
+                        <span>Publicado por: <strong><?= $reporterName ?></strong></span>
                     </p>
                 </div>
             </div>
@@ -120,7 +122,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                         </div>
 
                         <button class="carousel-arrow arrow-right">&gt;</button>
-                        <div class="slider-nav" id="sliderNav" role="tablist" aria-label="Carousel navigation">
+                        <div class="slider-nav" id="sliderNav" aria-label="Carousel navigation">
                             <?php foreach ($photos as $index => $photo): ?>
                                 <button class="dot" type="button" data-index="<?= $index ?>"></button>
                             <?php endforeach; ?>
@@ -162,7 +164,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                 <div class="mt-1rem">
                     <div class="section-title">Etiquetas</div>
                     <div class="info-grid">
-                        <div class="info-row labels-row" role="list" aria-label="Etiquetas">
+                        <div class="info-row labels-row" aria-label="Etiquetas">
                             <?php foreach ($labels as $label): ?>
                                 <div class="info-pill info-pill-label">
                                     <?= $label['label_name'] ?>
@@ -217,27 +219,46 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                     $ctext = $c['comment_text'];
                     $initial = strtoupper(substr($author, 0, 1));
                     $acolor_idx = avatar_color_index($author, $avatar_colors);
-                    $is_comment_super = UserUtils::isUserSuper($c['user_id']);
+                    $userId = $c['user_id'];
+                    $isValidator = UserUtils::isUserValidator($userId);
+                    $isAdmin = UserUtils::isUserAdmin($userId);
+
+                    // Obtener estilo del comentario según rol
+                    $commentRow = '';
+                    $commentAvatar = '';
+                    $badge = [];
+                    if ($userId == $reporterId) {
+                        $commentRow = 'comment-row-reporter';
+                        $commentAvatar = 'comment-avatar-reporter';
+                        $badge = ['badge-reporter', 'REPORTER'];
+                    } elseif ($isValidator) {
+                        $commentRow = 'comment-row-validator';
+                        $commentAvatar = 'comment-avatar-validator';
+                        $badge = ['badge-validator', 'VALIDATOR'];
+                    } elseif ($isAdmin) {
+                        $commentRow = 'comment-row-admin';
+                        $commentAvatar = 'comment-avatar-admin';
+                        $badge = ['badge-admin', 'ADMIN'];
+                    }
                 ?>
-                    <div class="comment-row d-flex align-items-start<?= $is_comment_super ? ' comment-row-super' : '' ?>" role="article">
+                    <div class="comment-row d-flex align-items-start <?= $commentRow ?>">
                         <!-- Avatar: clase de color en vez de style -->
-                        <div class="comment-avatar<?= $is_comment_super ? ' comment-avatar-super' : '' ?> avatar-color-<?= $acolor_idx ?>" aria-hidden="true"><?= $initial ?></div>
+                        <div class="comment-avatar <?= $commentAvatar ?> avatar-color-<?= $acolor_idx ?>" aria-hidden="true"><?= $initial ?></div>
 
                         <div class="comment-body">
                             <div class="d-flex align-items-center comment-author-row">
                                 <div>
                                     <div class="comment-author">
                                         <?= $author ?>
-                                        <?php if ($is_comment_super): ?>
-                                            <!-- Badge para roles super -->
-                                            <span class="badge-admin">ADMIN</span>
+                                        <?php if (!empty($badge)): ?>
+                                            <span class="<?= $badge[0] ?>"><?= $badge[1] ?></span>
                                         <?php endif; ?>
                                     </div>
                                     <div class="comment-meta"><?= $cdate ?></div>
                                 </div>
 
                                 <div class="ms-auto d-flex align-items-center">
-                                    <?php if (($is_super && !$is_comment_super) || $c['user_id'] == $user_id): ?>
+                                    <?php if ($isUserSuper || $c['user_id'] == $user_id): ?>
                                         <!-- Botón de eliminar pequeño y elegante (Bootstrap) -->
                                         <form method="post" action="incidence.php?id=<?= $incidenceId ?>&action=DELETE" onsubmit="return confirmDelete()">
                                             <input type="hidden" name="comment_id" value="<?= (int)$c['id'] ?>">
@@ -247,8 +268,8 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                                                 title="Eliminar comentario">
                                                 <i class="bi bi-trash"></i>
                                             </button>
-                                        <?php endif; ?>
                                         </form>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="comment-text"><?= PrintUtils::getPrintableText($ctext) ?></div>
