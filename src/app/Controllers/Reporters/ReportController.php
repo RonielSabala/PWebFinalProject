@@ -26,8 +26,6 @@ class ReportController
             $incidence = null;
         }
 
-
-
         // Manejar peticiones por GET
         if (($_GET['action'] ?? '') === 'GET') {
             Template::enableJsonMode();

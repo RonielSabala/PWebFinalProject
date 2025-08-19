@@ -1,7 +1,7 @@
 <div class="container mt-4">
     <div class="card shadow-lg border-0">
         <div class="card-header bg-gradient-primary text-white py-3">
-            <h3 class="mb-0"><i class="bi bi-exclamation-triangle-fill me-2"></i> Reportar Nueva Incidencia</h3>
+            <h3 class="mb-0"><i class="bi bi-exclamation-triangle-fill me-2"></i> <?= isset($incidence['id']) ? 'Editar Incidencia' : 'Reportar Nueva Incidencia' ?></h3>
         </div>
         <div class="card-body px-4 py-4">
             <form id="incidenceForm" method="post">
