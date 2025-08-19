@@ -27,6 +27,7 @@ use App\Utils\GeneralUtils;
         <?php
         $i = 1;
         foreach ($incidents as $incidence) {
+            $isApproved = ((int)$incidence['is_approved'] === 1);
         ?>
             <tr>
                 <td><?= $i++ ?></td>
@@ -34,8 +35,8 @@ use App\Utils\GeneralUtils;
                 <td><?= PrintUtils::getPrintableText($incidence['incidence_description']) ?></td>
                 <td><?= $incidence['creation_date'] ?></td>
                 <td>
-                    <span class="status-badge <?= ((int)$incidence['is_approved'] === 1) ? 'approved' : 'not-approved' ?>">
-                        <?= ((int)$incidence['is_approved'] === 1) ? 'Aprobada' : 'No aprobada' ?>
+                    <span class="status-badge <?= $isApproved ? 'approved' : 'not-approved' ?>">
+                        <?= $isApproved ? 'Aprobada' : 'No aprobada' ?>
                     </span>
                 </td>
                 <td><?= $incidence['comments_count'] ?></td>
@@ -45,10 +46,17 @@ use App\Utils\GeneralUtils;
                         Ver
                         <i class="bi bi-box-arrow-up-right"></i>
                     </a>
-                    <a href="/reporters/report.php?id=<?= $incidence['id'] ?>" class="btn btn-sm btn-outline-action btn-go">
-                        Editar
-                        <i class="bi bi-pencil-square"></i>
-                    </a>
+                    <?php if (!$isApproved): ?>
+                        <a href="/reporters/report.php?id=<?= $incidence['id'] ?>" class="btn btn-sm btn-outline-action btn-go ms-2">
+                            Editar
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                    <?php else: ?>
+                        <button class="btn btn-sm btn-outline-action btn-go ms-2" disabled>
+                            Editar
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
+                    <?php endif; ?>
                 </td>
             </tr>
         <?php
