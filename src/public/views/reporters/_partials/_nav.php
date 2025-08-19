@@ -10,7 +10,6 @@ use App\Utils\GeneralUtils;
                 <a class="<?= GeneralUtils::getActiveClass('reports') ?>"
                     href="/reporters/home.php">Reportajes</a>
             </li>
-            <?= GeneralUtils::setLogoutButton(); ?>
         </ul>
     </div>
     <div class="view-content">

@@ -30,7 +30,6 @@ use App\Utils\GeneralUtils;
                 <a class="<?= GeneralUtils::getActiveClass('labels') ?>"
                     href="/super/admin/labels/home.php">Etiquetas</a>
             </li>
-            <?= GeneralUtils::setLogoutButton(); ?>
         </ul>
     </div>
     <div class="view-content">

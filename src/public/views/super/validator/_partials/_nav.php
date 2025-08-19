@@ -18,7 +18,6 @@ use App\Utils\GeneralUtils;
                 <a class="<?= GeneralUtils::getActiveClass('correction_validation') ?>"
                     href="/super/validator/correction_validation.php">Validar correcciones</a>
             </li>
-            <?= GeneralUtils::setLogoutButton(); ?>
         </ul>
     </div>
     <div class="view-content">

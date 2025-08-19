@@ -2,7 +2,7 @@
 
     <!-- HERO -->
     <section class="hero-overlay">
-        <img src="../imgs/home/front_page.jpg" alt="Fondo ilustrativo" loading="lazy" />
+        <img src="../imgs/home/front_page.jpg" class="non-selectable" alt="Fondo ilustrativo" loading="lazy" />
         <div class="hero-content">
             <h1 class="display-1">Incidencias RD</h1>
             <h2 class="display-5">¡En donde todo pasa!</h2>
