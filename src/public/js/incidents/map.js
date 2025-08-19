@@ -191,25 +191,19 @@ function renderIncidents() {
 
   $("#resultsCount").text(`Se encontraron ${filtered.length} incidencias.`);
 
-  const clusters = {};
-  filtered.forEach((m) => {
-    if (!clusters[m.province_id])
-      clusters[m.province_id] = L.markerClusterGroup();
+// Cluster de todas las incidencias
+const clusterGroup = L.markerClusterGroup();
 
-    const marker = getMarker(m);
-    marker.on("click", () => showModal("map.php", m.id));
-    clusters[m.province_id].addLayer(marker);
-  });
-
-  Object.values(clusters).forEach((c) => incidenceLayer.addLayer(c));
-}
-
-function addMarkerToCluster(m, clusters) {
-  if (!clusters[m.province_id]) {
-    clusters[m.province_id] = L.markerClusterGroup();
-  }
-
+filtered.forEach((m) => {
   const marker = getMarker(m);
   marker.on("click", () => showModal("map.php", m.id));
-  clusters[m.province_id].addLayer(marker);
-}
+  clusterGroup.addLayer(marker);
+});
+
+incidenceLayer.addLayer(clusterGroup);
+
+function addMarkerToCluster(m, clusterGroup) {
+  const marker = getMarker(m);
+  marker.on("click", () => showModal("map.php", m.id));
+  clusterGroup.addLayer(marker);
+}}
