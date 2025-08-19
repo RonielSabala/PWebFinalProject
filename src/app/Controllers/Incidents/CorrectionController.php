@@ -32,6 +32,7 @@ class CorrectionController
                 $data = NeighborhoodUtils::getAllByMunicipalityId($municipalityId);
             }
 
+
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             exit;
         }
@@ -47,6 +48,12 @@ class CorrectionController
             GeneralUtils::showAlert('Incidencia no encontrada!');
             exit;
         }
+
+        // Obtener nombre del municipio y del barrio
+        $municipalityId = $incidence['municipality_id'];
+        $neighborhoodId = $incidence['neighborhood_id'];
+        $municipality_name = ($municipalityId) ? MunicipalityUtils::get($municipalityId) : null;
+        $neighborhood_name = ($neighborhoodId) ? NeighborhoodUtils::get($neighborhoodId) : null;
 
         $coordinates = $incidence['latitude'] . ', ' . $incidence['longitude'];
 
@@ -103,9 +110,9 @@ class CorrectionController
         $template->apply([
             'incidence' => $incidence,
             'provinces' => ProvinceUtils::getAll(),
-            'municipalities' => MunicipalityUtils::getAll(),
-            'neighborhoods' => NeighborhoodUtils::getAll(),
             'coordinates' => $coordinates,
+            'municipality_name' => $municipality_name['municipality_name'] ?? null,
+            'neighborhood_name' => $neighborhood_name['neighborhood_name'] ?? null,
         ]);
     }
 
