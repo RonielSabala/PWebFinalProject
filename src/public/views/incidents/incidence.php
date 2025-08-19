@@ -50,7 +50,7 @@ function avatar_color($seed, $colors)
 $user = $_SESSION['user'];
 $user_id = $user['id'];
 $username = $user['username'];
-$is_super = UserUtils::isUserSuper($user_id);
+$isUserSuper = UserUtils::isUserSuper($user_id);
 $current_user_initial = strtoupper(substr($username, 0, 1));
 $current_user_color_idx = avatar_color_index($username, $avatar_colors);
 ?>
@@ -220,6 +220,8 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                     $initial = strtoupper(substr($author, 0, 1));
                     $acolor_idx = avatar_color_index($author, $avatar_colors);
                     $userId = $c['user_id'];
+                    $isValidator = UserUtils::isUserValidator($userId);
+                    $isAdmin = UserUtils::isUserAdmin($userId);
 
                     // Obtener estilo del comentario según rol
                     $commentRow = '';
@@ -229,9 +231,13 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                         $commentRow = 'comment-row-reporter';
                         $commentAvatar = 'comment-avatar-reporter';
                         $badge = ['badge-reporter', 'REPORTER'];
-                    } elseif (UserUtils::isUserSuper($userId)) {
-                        $commentRow = ' comment-row-super';
-                        $commentAvatar = 'comment-avatar-super';
+                    } elseif ($isValidator) {
+                        $commentRow = 'comment-row-validator';
+                        $commentAvatar = 'comment-avatar-validator';
+                        $badge = ['badge-validator', 'VALIDATOR'];
+                    } elseif ($isAdmin) {
+                        $commentRow = 'comment-row-admin';
+                        $commentAvatar = 'comment-avatar-admin';
                         $badge = ['badge-admin', 'ADMIN'];
                     }
                 ?>
@@ -252,7 +258,7 @@ $current_user_color_idx = avatar_color_index($username, $avatar_colors);
                                 </div>
 
                                 <div class="ms-auto d-flex align-items-center">
-                                    <?php if (($is_super && !$is_super) || $c['user_id'] == $user_id): ?>
+                                    <?php if ($isUserSuper || $c['user_id'] == $user_id): ?>
                                         <!-- Botón de eliminar pequeño y elegante (Bootstrap) -->
                                         <form method="post" action="incidence.php?id=<?= $incidenceId ?>&action=DELETE" onsubmit="return confirmDelete()">
                                             <input type="hidden" name="comment_id" value="<?= (int)$c['id'] ?>">

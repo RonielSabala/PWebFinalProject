@@ -262,7 +262,7 @@
   box-shadow: 0 6px 20px rgba(11, 145, 22, 0.03);
 }
 
-.comment-row-super {
+.comment-row-validator {
   background: linear-gradient(
     90deg,
     rgba(11, 61, 145, 0.03),
@@ -271,6 +271,17 @@
   border-radius: 8px;
   padding: 8px;
   box-shadow: 0 6px 20px rgba(11, 61, 145, 0.03);
+}
+
+.comment-row-admin {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.102),
+    rgba(255, 255, 255, 0.02)
+  );
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 6px 20px rgba(145, 11, 145, 0.03);
 }
 
 .comment-avatar {
@@ -288,12 +299,18 @@
 }
 
 .comment-avatar-reporter {
+  border: 4px groove rgba(255, 255, 255, 0.317);
   box-shadow: 0 0 0 3px rgba(7, 138, 42, 0.161);
   transform: scale(1.03);
 }
 
-.comment-avatar-super {
+.comment-avatar-validator {
   box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.12);
+  transform: scale(1.03);
+}
+
+.comment-avatar-admin {
+  border: 4px dashed rgba(255, 255, 255, 0.317);
   transform: scale(1.03);
 }
 
@@ -368,7 +385,7 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.badge-admin {
+.badge-validator {
   background: linear-gradient(90deg, #0b3d91, #15327a);
   color: #ffffff;
   padding: 3px 8px;
@@ -379,6 +396,20 @@
   letter-spacing: 0.03em;
   text-transform: uppercase;
   box-shadow: 0 4px 12px rgba(11, 61, 145, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.badge-admin {
+  background: linear-gradient(90deg, #e12b2b, #750909);
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  margin-left: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(132, 11, 145, 0.18);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
