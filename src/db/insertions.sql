@@ -423,8 +423,6 @@ VALUES
     ('Mao', 32),
     ('Esperanza', 32),
     ('Laguna Salada', 32);
-    
-    
 
 -- Barrios
 INSERT INTO
@@ -664,7 +662,7 @@ VALUES
     ('Ensanche Quizqueya', 1),
     ('Bella Vista', 1),
     ('Ensanche Naco', 1),
-    ('Mirador Sur', 1), 
+    ('Mirador Sur', 1),
     ('Mirador Norte', 151),
     ('Guaricano', 151),
     ('Manganagua', 1),
@@ -672,9 +670,6 @@ VALUES
     ('Paraíso', 1),
     ('Los Cacicazgos', 1),
     ('Malecon', 1);
-
-
-
 
 -- Incidencias
 INSERT INTO
@@ -1440,37 +1435,42 @@ VALUES
         'Protección Civil iniciará evaluación de daños y plan de recuperación.'
     );
 
-
 -- Correcciones
-INSERT INTO corrections (incidence_id, user_id, correction_values, is_approved)
+INSERT INTO
+    corrections (
+        incidence_id,
+        user_id,
+        correction_values,
+        is_approved
+    )
 VALUES
-(
-	35, 
-    28, 
-    '{"latitude": 17.851099, "longitude": -71.285782, "n_deaths": 0,  "n_injured": 0, "n_losses": 12000,  "province_id": 20,  "municipality_id": 91, "neighborhood_id": "130"}', 
-    0
-),
-(
-	25, 
-    18, 
-    '{"latitude": 18.225116, "longitude": -71.101711, "n_deaths": 0,  "n_injured": 4, "n_losses": 60000,  "province_id": 3,  "municipality_id": 17, "neighborhood_id": "33"}', 
-    0
-),
-(
-	33, 
-    4, 
-    '{"latitude": 19.753379, "longitude": -71.552990, "n_deaths": 0,  "n_injured": 2, "n_losses": 18000,  "province_id": 18,  "municipality_id": 81, "neighborhood_id": "119"}', 
-    0
-),
-(
-	3, 
-    6, 
-    '{"latitude": 19.451684, "longitude": -70.690976, "n_deaths": 1,  "n_injured": 2, "n_losses": 200000,  "province_id": 29,  "municipality_id": 134, "neighborhood_id": "195"}', 
-    0
-),
-(
-	9, 
-    23, 
-    '{"latitude": 19.792285, "longitude": -70.706186, "n_deaths": 0,  "n_injured": 0, "n_losses": 8000,  "province_id": 20,  "municipality_id": 100, "neighborhood_id": "146"}', 
-    0
-);
+    (
+        35,
+        28,
+        '{"latitude": 17.851099, "longitude": -71.285782, "n_deaths": 0,  "n_injured": 0, "n_losses": 12000,  "province_id": 20,  "municipality_id": 91, "neighborhood_id": "130"}',
+        0
+    ),
+    (
+        25,
+        18,
+        '{"latitude": 18.225116, "longitude": -71.101711, "n_deaths": 0,  "n_injured": 4, "n_losses": 60000,  "province_id": 3,  "municipality_id": 17, "neighborhood_id": "33"}',
+        0
+    ),
+    (
+        33,
+        4,
+        '{"latitude": 19.753379, "longitude": -71.552990, "n_deaths": 0,  "n_injured": 2, "n_losses": 18000,  "province_id": 18,  "municipality_id": 81, "neighborhood_id": "119"}',
+        0
+    ),
+    (
+        3,
+        6,
+        '{"latitude": 19.451684, "longitude": -70.690976, "n_deaths": 1,  "n_injured": 2, "n_losses": 200000,  "province_id": 29,  "municipality_id": 134, "neighborhood_id": "195"}',
+        0
+    ),
+    (
+        9,
+        23,
+        '{"latitude": 19.792285, "longitude": -70.706186, "n_deaths": 0,  "n_injured": 0, "n_losses": 8000,  "province_id": 20,  "municipality_id": 100, "neighborhood_id": "146"}',
+        0
+    );
