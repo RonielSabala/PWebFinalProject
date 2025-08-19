@@ -20,7 +20,7 @@ use App\Utils\GeneralUtils;
             <th>Estatus</th>
             <th>Comentarios</th>
             <th>Correcciones</th>
-            <th>Acciones</th>
+            <th class="text-center">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -40,10 +40,14 @@ use App\Utils\GeneralUtils;
                 </td>
                 <td><?= $incidence['comments_count'] ?></td>
                 <td><?= $incidence['corrections_count'] ?></td>
-                <td>
+                <td class="d-flex">
                     <a href="/incidents/incidence.php?id=<?= $incidence['id'] ?>" class="btn btn-sm btn-outline-action btn-go">
                         Ver
                         <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                    <a href="/reporters/report.php?id=<?= $incidence['id'] ?>" class="btn btn-sm btn-outline-action btn-go">
+                        Editar
+                        <i class="bi bi-pencil-square"></i>
                     </a>
                 </td>
             </tr>

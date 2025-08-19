@@ -53,6 +53,7 @@ h2 {
 }
 
 .btn-go {
+  min-width: 100px;
   background: var(--go);
   border-color: var(--go);
   color: #212529;

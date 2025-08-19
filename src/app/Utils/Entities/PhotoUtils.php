@@ -11,4 +11,10 @@ class PhotoUtils extends GenericEntityUtils
     {
         return self::executeSql(self::$createSql, $fields);
     }
+
+    public static function deleteByIncidenceId($incidenceId): bool
+    {
+        $sql = "DELETE FROM photos WHERE incidence_id = ?";
+        return self::executeSql($sql, [$incidenceId]);
+    }
 }
