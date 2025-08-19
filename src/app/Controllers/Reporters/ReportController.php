@@ -101,8 +101,10 @@ class ReportController
             $incidence['label_ids'] = array_map('intval', explode(',', $incidence['label_ids'] ?? ''));
 
             // Obtener nombre del municipio y del barrio
-            $municipality_name = MunicipalityUtils::get($incidence['municipality_id']);
-            $neighborhood_name = NeighborhoodUtils::get($incidence['neighborhood_id']);
+            $municipalityId = $incidence['municipality_id'];
+            $neighborhoodId = $incidence['neighborhood_id'];
+            $municipality_name = ($municipalityId) ? MunicipalityUtils::get($municipalityId) : null;
+            $neighborhood_name = ($neighborhoodId) ? NeighborhoodUtils::get($neighborhoodId) : null;
         }
 
         $template->apply([
