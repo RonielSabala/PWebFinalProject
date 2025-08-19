@@ -1,6 +1,6 @@
 (function () {
   const toggle = document.getElementById("togglePassword");
-  const pwd = document.getElementById("signupPassword");
+  const pwd = document.getElementById("password");
   if (!toggle || !pwd) return;
   toggle.addEventListener("click", () => {
     const isHidden = pwd.type === "password";

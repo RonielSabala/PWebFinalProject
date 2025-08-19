@@ -45,10 +45,10 @@
                     <div class="mb-3">
                         <label class="form-label" for="signupPassword">Contraseña</label>
                         <div class="input-group passwordField">
-                            <span class="input-group-text bg-white" aria-hidden="true"><i class="bi bi-lock"></i></span>
+                            <span class="input-group-text bg-white"><i class="bi bi-lock"></i></span>
                             <input id="signupPassword" type="password" name="password" class="form-control" placeholder="********" required autocomplete="new-password" />
                             <button type="button" id="togglePassword" class="btn btn-outline-secondary" aria-label="Mostrar contraseña">
-                                <i class="bi bi-eye" aria-hidden="true"></i>
+                                <i class="bi bi-eye"></i>
                             </button>
                         </div>
                         <div class="form-text">Mínimo 8 caracteres. Usa letras y números para mayor seguridad.</div>
