@@ -31,7 +31,7 @@ class HomeController
             'incidentsCount' => count($incidents),
             'pendingIncidentsCount' => count($pendingIncidents),
             'recentIncidentsCount' => count($recentIncidents),
-            'lastIncidenceDate' => PrintUtils::getPrintableDate($lastIncidence['creation_date']),
+            'lastIncidenceDate' => PrintUtils::getPrintableDate($lastIncidence['creation_date'] ?? ''),
         ]);
     }
 }

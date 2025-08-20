@@ -26,7 +26,7 @@ use App\Utils\GeneralUtils;
     <tbody>
         <?php
         $i = 1;
-        foreach ($incidents as $incidence) {
+        foreach (($incidents ?? []) as $incidence) {
             $isApproved = $incidence['is_approved'] == 1;
         ?>
             <tr>

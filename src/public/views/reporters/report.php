@@ -34,25 +34,15 @@
                         <div class="mb-4">
                             <label class="form-label">Imágenes de referencia (URLs)</label>
                             <div id="photoUrlsContainer">
-                                <?php if (empty($incidence['photo_urls'])): ?>
+                                <?php foreach (($incidence['photo_urls'] ?? ['']) as $url): ?>
                                     <div class="input-group mb-2">
                                         <span class="input-group-text"><i class="bi bi-image"></i></span>
-                                        <input name="photo_url[]" type="url" class="form-control" placeholder="https://ejemplo.com/imagen.jpg">
+                                        <input name="photo_url[]" value="<?= htmlspecialchars($url) ?>" type="url" class="form-control" placeholder="https://ejemplo.com/imagen.jpg">
                                         <button type="button" class="btn btn-danger remove-photo-btn d-flex align-items-center justify-content-center" style="width: 42px;">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </div>
-                                <?php else: ?>
-                                    <?php foreach ($incidence['photo_urls'] as $url): ?>
-                                        <div class="input-group mb-2">
-                                            <span class="input-group-text"><i class="bi bi-image"></i></span>
-                                            <input name="photo_url[]" value="<?= htmlspecialchars($url) ?>" type="url" class="form-control" placeholder="https://ejemplo.com/imagen.jpg">
-                                            <button type="button" class="btn btn-danger remove-photo-btn d-flex align-items-center justify-content-center" style="width: 42px;">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </div>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
+                                <?php endforeach; ?>
                             </div>
                             <button type="button" id="addPhotoBtn" class="btn btn-outline-primary">
                                 <i class="bi bi-plus"></i> Añadir otra imagen
@@ -144,7 +134,7 @@
                                         <select id="municipality" data-editing-municipality="<?php echo $incidence->municipality_id ?? ''; ?>" class="form-select" name="municipality_id" <?= empty($incidence['province_id']) ? 'disabled' : '' ?>>
                                             <?php if (!empty($incidence['municipality_id']) && !empty($municipality_name)): ?>
                                                 <option value="<?= htmlspecialchars($incidence['municipality_id']) ?>" selected>
-                                                    
+
                                                 </option>
                                             <?php else: ?>
                                                 <option value="" selected disabled>Seleccione un municipio</option>
@@ -161,7 +151,7 @@
                                         <select id="neighborhood" class="form-select" name="neighborhood_id" data-editing-neighborhood="<?php echo $incidence->neighborhood_id ?? ''; ?>" <?= empty($incidence['municipality_id']) ? 'disabled' : '' ?>>
                                             <?php if (!empty($incidence['neighborhood_id']) && !empty($neighborhood_name)): ?>
                                                 <option value="<?= htmlspecialchars($incidence['neighborhood_id']) ?>" selected>
-                                                    
+
                                                 </option>
                                             <?php else: ?>
                                                 <option value="" selected disabled>Seleccione un barrio</option>
