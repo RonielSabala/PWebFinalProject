@@ -2,8 +2,8 @@ $(document).ready(function () {
   var regex = /^\(?-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\)?$/;
 
   var editingProvinceId = $("#province").val();
-  var editingMunicipalityId = $("#municipality").val();
-  var editingNeighborhoodId = $("#neighborhood").val();
+  var editingMunicipalityId = $("#municipality").data('editing-municipality');
+  var editingNeighborhoodId = $("#neighborhood").data('editing-neighborhood');
 
   if (editingProvinceId) {
     loadMunicipalities(editingProvinceId, editingMunicipalityId);
@@ -112,3 +112,5 @@ $(document).ready(function () {
     loadNeighborhoods(municipalityId);
   });
 });
+
+
