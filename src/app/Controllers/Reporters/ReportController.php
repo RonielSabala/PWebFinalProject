@@ -96,8 +96,14 @@ class ReportController
         if ($incidence !== null) {
             // Combinar latitud y longitud en un mismo string
             $incidence['latitude'] = $incidence['latitude'] . ',' . $incidence['longitude'];
-            $incidence['photo_urls'] = array_filter(array_map('trim', explode(',', $incidence['photo_urls'])));
-            $incidence['label_ids'] = array_map('intval', explode(',', $incidence['label_ids'] ?? ''));
+
+            if (isset($incidence['photo_urls'])) {
+                $incidence['photo_urls'] = array_filter(array_map('trim', explode(',', $incidence['photo_urls'])));
+            }
+
+            if (isset($incidence['label_ids'])) {
+                $incidence['label_ids'] = array_map('intval', explode(',', $incidence['label_ids']));
+            }
 
             // Obtener nombre del municipio y del barrio
             $municipalityId = $incidence['municipality_id'];
