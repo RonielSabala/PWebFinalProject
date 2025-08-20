@@ -23,9 +23,11 @@ _Requisitos_:
 - PHP 7.4+
 - Composer
 
-## **1.** Creación de credenciales
+## **1.** Creación del .env
 
-Crea un archivo `.env` en la carpeta `src/config` y crea las siguientes variables.
+Crea un archivo `.env` en la carpeta `src/config` con las siguientes variables.
+
+- **Nota**: Las variables de los pasos **opcionales** pueden estar vacias pero deben de estar creadas.
 
 ### **1.1.** Credenciales para la base de datos
 
@@ -35,7 +37,7 @@ USER='TU_USUARIO'
 PASS='TU_CONTRASEÑA'
 ```
 
-### **1.2.** Credenciales para el envio de correos
+### **1.2.** Credenciales para el envio de correos (Opcional)
 
 ```
 MAIL_USER='TU_EMAIL_DE_GOOGLE'
@@ -54,7 +56,7 @@ Para obtener `MAIL_PASS` haz lo siguiente:
 
 5. Copia el código generado y ponlo en `MAIL_PASS`.
 
-### **1.3.** Credenciales para iniciar sesión con Google
+### **1.3.** Credenciales para iniciar sesión con Google (Opcional)
 
 ```
 GOOGLE_CLIENT_ID='TU_GOOGLE_CLIENT_ID'
@@ -79,7 +81,7 @@ http://localhost:1111/auth/GoogleCallbackController.php
 
 6. Copia el `CLIENT_ID` y el `CLIENT_SECRET`.
 
-### **1.4.** Credenciales para iniciar sesión con Microsoft
+### **1.4.** Credenciales para iniciar sesión con Microsoft (Opcional)
 
 ```
 MICROSOFT_CLIENT_ID='TU_MICROSOFT_CLIENT_ID'
@@ -108,7 +110,7 @@ Para ello, ejecuta el siguiente comando:
 php src/db/install.php
 ```
 
-## **3.** Instalación de librerías necesarias
+## **3.** Instalación de las librerías necesarias
 
 En la raíz del proyecto (`src/`), ejecuta los siguientes comandos:
 
