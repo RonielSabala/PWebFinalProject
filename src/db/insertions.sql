@@ -724,7 +724,7 @@ VALUES
         'Fuego en apartamento del 3er piso, bomberos en el lugar.',
         '2023-11-05 03:15:00',
         19.4517,
-        -70.6970,
+        -70.697,
         1,
         1,
         2,
@@ -739,7 +739,7 @@ VALUES
         'Agua acumulada por más de 12 horas.',
         '2023-11-07 14:00:00',
         18.4167,
-        -70.1000,
+        -70.1,
         1,
         0,
         0,
@@ -753,8 +753,8 @@ VALUES
         'Protesta en la Duarte',
         'Manifestantes bloquean carretera.',
         '2023-11-10 09:00:00',
-        19.3000,
-        -70.2500,
+        19.3,
+        -70.25,
         1,
         0,
         0,
@@ -783,8 +783,8 @@ VALUES
         'Derrumbe en construcción de Punta Cana',
         'Colapso de fachada en obra.',
         '2023-11-15 11:00:00',
-        18.5600,
-        -68.3700,
+        18.56,
+        -68.37,
         1,
         0,
         0,
@@ -813,8 +813,8 @@ VALUES
         'Asalto en guagua de Puerto Plata',
         'Robo colectivo en transporte público.',
         '2023-11-20 21:15:00',
-        19.8000,
-        -70.7000,
+        19.8,
+        -70.7,
         1,
         0,
         0,
@@ -825,9 +825,9 @@ VALUES
         23
     ),
     (
-        'Fuga de gas en Los Alcarrizos',
-        'Olor a gas fuerte en el sector.',
-        '2023-11-25 16:45:00',
+        'Vandalismo reportado en Los Alcarrizos',
+        'La tarde del lunes pasado 18 de agosto del 2025 han habido varios reportes de bandalismo en el area de los Alcarrizos',
+        '2025-08-18 17:45:00',
         18.5167,
         -70.0167,
         1,
@@ -841,17 +841,17 @@ VALUES
     ),
     (
         'Choque múltiple en vía principal',
-        'Varios vehículos implicados, gestión de emergencias en proceso.',
+        'Varios vehículos implicados, gestión de emergencias en proceso. 2 Muertes',
         '2024-01-11 01:00:00',
         19.489404,
         -70.266489,
         0,
-        0,
+        2,
+        6,
+        70000.00,
+        5,
         1,
-        2000.00,
-        31,
-        146,
-        210,
+        239,
         4
     ),
     (
@@ -866,7 +866,7 @@ VALUES
         20000.00,
         31,
         147,
-        211,
+        212,
         6
     ),
     (
@@ -881,7 +881,7 @@ VALUES
         3000.00,
         31,
         148,
-        212,
+        213,
         10
     ),
     (
@@ -904,14 +904,14 @@ VALUES
         'Estructura colapsó durante labores, trabajadores heridos.',
         '2024-02-20 05:00:00',
         18.480437,
-        -68.698000,
+        -68.698,
         0,
         0,
         4,
-        5000.00,
+        50000.00,
         31,
         149,
-        214,
+        215,
         20
     ),
     (
@@ -926,7 +926,7 @@ VALUES
         3000.00,
         29,
         134,
-        194,
+        196,
         23
     ),
     (
@@ -950,28 +950,28 @@ VALUES
         '2024-01-18 00:30:00',
         19.229562,
         -69.694133,
-        0,
+        1,
         0,
         1,
         2500.00,
         22,
         96,
-        144,
+        145,
         27
     ),
     (
         'Pelea multitudinaria con heridos',
         'Pequeña multitud se enfrentó dejando varios lesionados.',
         '2024-02-01 23:10:00',
-        19.698273,
-        -69.772254,
-        0,
+        19.767003,
+        -70.514138,
         1,
+        0,
         5,
         1000.00,
         22,
-        100,
-        146,
+        101,
+        150,
         28
     ),
     (
@@ -980,7 +980,7 @@ VALUES
         '2024-03-02 06:40:00',
         18.919895,
         -70.245536,
-        0,
+        1,
         0,
         0,
         5000.00,
@@ -990,8 +990,8 @@ VALUES
         29
     ),
     (
-        'Incidente reportado en La Romana',
-        'Reporte ciudadano con detalles en proceso de verificación.',
+        'Robo reportado en La Romana',
+        'Reporte ciudadano sobre robo en su vehiculo en medio de un semaforo.',
         '2024-02-08 08:00:00',
         18.422126,
         -68.969345,
@@ -1006,13 +1006,13 @@ VALUES
     ),
     (
         'Incendio doméstico en San Cristóbal',
-        'Reporte ciudadano con detalles en proceso de verificación.',
-        '2024-02-15 15:00:00',
+        'Incendio en una casa afecto todo el vecindario, bomberos vinieron al rescate y estan en proceso de evacuacion',
+        '2025-08-18 16:00:00',
         18.418613,
         -70.114973,
         1,
         0,
-        0,
+        3,
         12000.00,
         25,
         107,
@@ -1023,7 +1023,7 @@ VALUES
         'Inundación por crecida de río',
         'Reporte ciudadano con detalles en proceso de verificación.',
         '2024-02-22 22:00:00',
-        18.784120,
+        18.78412,
         -69.771128,
         1,
         0,
@@ -1038,7 +1038,7 @@ VALUES
         'Robo a conductor en carretera costera',
         'Reporte ciudadano con detalles en proceso de verificación.',
         '2024-02-29 09:15:00',
-        18.519580,
+        18.51958,
         -70.007513,
         1,
         0,
@@ -1057,7 +1057,7 @@ VALUES
         -71.414701,
         1,
         0,
-        0,
+        3,
         60000.00,
         3,
         17,
@@ -1125,7 +1125,7 @@ VALUES
         27
     ),
     (
-        'Explosión reportada en Jumbo de Higuey',
+        'Incendio reportado en Jumbo de Higuey',
         'Reporte ciudadano con detalles en proceso de verificación.',
         '2024-04-15 18:30:00',
         18.618545,
@@ -1159,7 +1159,7 @@ VALUES
         'Reporte ciudadano con detalles en proceso de verificación.',
         '2024-04-28 06:10:00',
         18.354138,
-        -70.251770,
+        -70.25177,
         1,
         0,
         0,
@@ -1174,7 +1174,7 @@ VALUES
         'Reporte ciudadano con detalles en proceso de verificación.',
         '2024-05-02 09:00:00',
         19.669812,
-        -71.397090,
+        -71.39709,
         1,
         0,
         2,
@@ -1204,7 +1204,7 @@ VALUES
         'Reporte ciudadano con detalles en proceso de verificación.',
         '2024-05-18 05:30:00',
         17.929661,
-        -71.148690,
+        -71.14869,
         1,
         0,
         0,
@@ -1213,6 +1213,81 @@ VALUES
         91,
         131,
         10
+    ),
+    (
+        'Corte de electricidad en el sector Norte',
+        'Se reporta un corte de electricidad que afecta varias calles del sector Norte. La situación ha generado inconvenientes en el comercio local y retrasos en el transporte.',
+        '2025-08-15 20:41:00',
+        18.562955,
+        -69.909553,
+        1,
+        0,
+        0,
+        0.00,
+        31,
+        151,
+        219,
+        23
+    ),
+    (
+        'Interrupción del suministro de agua potable',
+        'La red de agua potable ha presentado fallas técnicas, dejando a cientos de familias sin agua durante varias horas.',
+        '2025-08-15 09:59:00',
+        18.461106,
+        -69.600784,
+        1,
+        0,
+        0,
+        0.00,
+        31,
+        147,
+        212,
+        20
+    ),
+    (
+        'Persona merodeando instalaciones gubernamentales',
+        'Se detectó un individuo intentando ingresar a instalaciones gubernamentales sin autorización. La policía intervino a tiempo y no hubo incidentes graves.',
+        '2025-08-06 11:10:00',
+        18.467384,
+        -69.893996,
+        1,
+        0,
+        0,
+        0.00,
+        5,
+        1,
+        230,
+        20
+    ),
+    (
+        'Vehículo sospechoso estacionado cerca de colegio',
+        'Un vehículo sin placas fue observado cerca de un colegio, causando alarma entre los vecinos. La policía realizó inspección preventiva.',
+        '2025-05-06 21:23:00',
+        18.533859,
+        -69.902796,
+        1,
+        0,
+        0,
+        0.00,
+        31,
+        151,
+        219,
+        30
+    ),
+    (
+        'Rotura de vidrios en parque público',
+        'Vándalos rompieron los vidrios de kioscos y bancos en un parque público durante la madrugada. No hubo víctimas físicas, solo daños materiales.',
+        '2025-07-15 01:27:00',
+        18.671568,
+        -70.174177,
+        1,
+        0,
+        0,
+        20000.00,
+        25,
+        113,
+        161,
+        30
     );
 
 -- Etiquetas
@@ -1253,11 +1328,11 @@ VALUES
     ),
     (
         'Derrumbe',
-        'https://cdn-icons-png.flaticon.com/512/3436/3436765.png'
+        'https://cdn-icons-png.flaticon.com/512/9210/9210011.png'
     ),
     (
         'Problemas de servicio',
-        'https://cdn-icons-png.flaticon.com/512/9210/9210011.png'
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbDORXSxKNqtCRsMmuJu1w_zC3j5LVRAxHOw&s'
     );
 
 -- Etiquetas de incidencias
@@ -1265,42 +1340,284 @@ INSERT INTO
     incidence_labels (incidence_id, label_id)
 VALUES
     (1, 1),
-    (2, 2),
-    (2, 5),
-    (3, 3),
-    (4, 6),
-    (5, 5),
     (6, 1),
-    (7, 9),
-    (8, 6),
-    (9, 2),
-    (9, 5),
-    (10, 6),
     (11, 1),
-    (12, 6),
-    (13, 2),
-    (14, 3),
-    (15, 1),
-    (16, 2),
-    (17, 5),
-    (18, 2),
-    (19, 5),
-    (20, 6),
-    (21, 2),
-    (22, 3),
-    (23, 6),
-    (24, 2),
-    (25, 9),
-    (26, 6),
-    (27, 4),
-    (28, 3),
     (29, 1),
-    (30, 3),
-    (31, 2),
-    (32, 6),
     (33, 1),
-    (34, 5),
-    (35, 6);
+    (2, 2),
+    (9, 2),
+    (13, 2),
+    (16, 2),
+    (18, 2),
+    (21, 2),
+    (24, 2),
+    (31, 2),
+    (3, 3),
+    (14, 3),
+    (22, 3),
+    (28, 3),
+    (30, 3),
+    (27, 4),
+    (2, 5),
+    (5, 5),
+    (9, 5),
+    (10, 5),
+    (17, 5),
+    (19, 5),
+    (4, 6),
+    (8, 6),
+    (12, 6),
+    (20, 6),
+    (23, 6),
+    (26, 6),
+    (32, 6),
+    (35, 6),
+    (10, 7),
+    (19, 7),
+    (40, 7),
+    (38, 8),
+    (39, 8),
+    (7, 9),
+    (15, 9),
+    (25, 9),
+    (26, 10),
+    (34, 10),
+    (36, 10),
+    (37, 10);
+
+-- fotos
+INSERT INTO
+    photos (incidence_id, photo_url)
+VALUES
+    (
+        1,
+        'https://elonce-media.elonce.com/fotos-nuevo/2022/06/29/o_1656533397_1.jpg'
+    ),
+    (
+        2,
+        'https://www.meganoticias.mx/uploads/noticias/robo-a-negocios-registra-mayor-incidencia-en-tiendas-de-abarrotes-504148.jpg'
+    ),
+    (
+        11,
+        'https://eldia.com.do/wp-content/uploads/2017/05/tra-1.webp'
+    ),
+    (
+        11,
+        'https://eldia.com.do/wp-content/uploads/2017/05/DAG45SrV0AEFa_h-300x229.jpg'
+    ),
+    (
+        11,
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSItjHhDLLF80UM1Ec3XpCnW_TaZ--b53BiSQ&s'
+    ),
+    (
+        22,
+        'https://resources.diariolibre.com/images/2023/08/30/image-explosion-eddy-vittini-3a323bc0-focus-0-0-608-342_wam.jpg'
+    ),
+    (
+        22,
+        'https://resources.diariolibre.com/images/2023/08/30/image-explosion-eddy-vittini-3a323bc0-focus-0-0-608-342.jpg'
+    ),
+    (
+        33,
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjRnkEqiNYP0W0SWJNs7B9Ovng3qBFIlaxYg&s'
+    ),
+    (
+        33,
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo55V6PBaMy2M8luVw5YZ_Ho9DQp_3NSqM-w&s'
+    ),
+    (
+        19,
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvRBoSmG6dhj8OaOLccJnmcqoal3lSSn8l7Q&s'
+    ),
+    (
+        19,
+        'https://s2.ppllstatics.com/laverdad/www/multimedia/202302/03/media/cortadas/pelea2-RMeFYhIOqwrOZliLMC3bkiP-624x385@La%20Verdad.jpg'
+    ),
+    (
+        19,
+        'https://img.lavdg.com/sc/M7Iez9NbIcE_Kzqlp5PDpu7Vccg=/480x/2025/07/02/00121751444341666395759/Foto/b_20250702_092606000.jpg'
+    ),
+    (
+        30,
+        'https://ingeseg.es/wp-content/uploads/2021/10/2EPJAGAJWZET5CH5GCNDBM2KXA-1080x675.jpg'
+    ),
+    (
+        10,
+        'https://azcriminalandfamilylaw.com/wp-content/uploads/2023/09/criminal-damage-to-property-in-arizona.jpeg'
+    ),
+    (
+        10,
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl9a9Y3uyP2z2qVodtUojwCnv-agvSIkGo0A&s'
+    ),
+    (
+        10,
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRta-iexV5Z6XMrQwe7mi9RUZ0QXIxMxJp29A&s'
+    ),
+    (
+        16,
+        'https://diariobasta.com/wp-content/uploads/2022/01/Siguen-los-asaltos-al-transporte-publico-de-Toluca.jpg'
+    ),
+    (
+        27,
+        'https://elnortehoy.com/wp-content/uploads/2024/02/joven-asesinado-en-zona-rural-puerto-libertador-700x431-1132x670_1_0.jpg'
+    ),
+    (
+        9,
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpuMb38SXOzkCq7DL5BwOlghThon4BRAT0qA&s'
+    ),
+    (36, ''),
+    (
+        4,
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB9_s93SSRl8kv_NgqKgm6CzxMw6WsLlJHuQ&s'
+    ),
+    (
+        4,
+        'https://i.prcdn.co/img?regionKey=izAm7XgBBM8ToV2KKPuDuA=='
+    ),
+    (
+        5,
+        'https://c.files.bbci.co.uk/8BC0/production/_111067753_gettyimages-1201951850.jpg'
+    ),
+    (
+        5,
+        'https://www.swissinfo.ch/content/wp-content/uploads/sites/13/2024/10/17df1711cb3d2f720bbb2d81e48f0df1-87688572.jpg?ver=6f0e1e98'
+    ),
+    (
+        6,
+        'https://acentotv.acento.com.do/media/uploads/2022/11/637662bb2ae0f1549444420-e9b5c2196b1b3b2dbfe366c97f23e0f30e0e2276ef4f5f223b41611bc97e5f03-d-728x410.webp'
+    ),
+    (
+        6,
+        'https://estaticos-cdn.prensaiberica.es/clip/d2a07090-338e-4c27-9763-ecb4611c62c6_alta-libre-aspect-ratio_default_0.jpg'
+    ),
+    (
+        13,
+        'https://infobrisas-s3.cdn.net.ar/s3i233/2025/04/infobrisas/images/01/83/30/1833090_1b2c738eeeb672ff1924b24e8dbec462fc9eab4115cc258d7f0f3f452e13a13d/md.webp'
+    ),
+    (
+        13,
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz128zxC1lNfjFhWhb_iPV_8Hi6fn9bNtQPw&s'
+    ),
+    (
+        24,
+        'https://redmas.com.co/__export/1703702521422/sites/redmas/img/2023/12/27/robo_a_camixn_en_magdalena__foto_captura_de_video_redes_sociales_.jpg_1955811105.jpg'
+    ),
+    (
+        24,
+        'https://oem.com.mx/elsoldepuebla/img/24710115/1752242692/BASE_LANDSCAPE/480/image.webp'
+    ),
+    (
+        35,
+        'https://media.acento.com.do/media/storage01/uploads/103461236_pared.jpg'
+    ),
+    (
+        35,
+        'https://c.files.bbci.co.uk/1267A/production/_128468357_rupe.jpg'
+    ),
+    (
+        37,
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqVwQ2A9pLUy6f-XVaw4MI9--oikPVIhZMVQ&s'
+    ),
+    (
+        37,
+        'https://img.mmc.com.do/elcaribe-bucket/uploads/2025/05/682bdcaac496e_averia-sde.jpg.webp'
+    ),
+    (
+        38,
+        'https://imagenes.elpais.com/resizer/v2/GOYL3BGNBFHXZBRISHA7VEIR3U?auth=aad99dd84e34f0bc43a68e19e5beed13da2fba618a97d866e9eb9f7c47690611&width=414'
+    ),
+    (
+        15,
+        'https://www.univision.com/_next/image?url=https%3A%2F%2Fst1.uvnimg.com%2F3c%2Fe2%2F420b35c4425d88defddf9e6a6870%2Fchina-accidente2.jpg&w=1280&q=75'
+    ),
+    (
+        26,
+        'https://blog.oxfamintermon.org/wp-content/uploads/2016/05/contaminacion-del-agua.jpg'
+    ),
+    (
+        39,
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkHBF8_r_it-GvsgSwcsAcls7MFyRHBFZVLA&s'
+    ),
+    (
+        39,
+        'https://www.radioformula.com.mx/img/2023/01/01/20250726_075708115_Elementos_de_la_Secretarxa_de_Seguridad_Pxblica_del_Estadox_aseguran_vehxculo_sospechoso_.jpg?__scale=w:412,h:231,t:2,'
+    ),
+    (
+        40,
+        'https://www.elchaplon.com/wp-content/uploads/2025/07/cristales-rotos.jpg'
+    ),
+    (
+        40,
+        'https://s3.ppllstatics.com/laverdad/www/multimedia/202107/20/media/cortadas/162596943--1248x664.JPG'
+    ),
+    (
+        40,
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUBaFftWmoRdJ5PChJyINFf9j9WuejAmazvQ&s'
+    ),
+    (
+        21,
+        'https://www.one.gob.do/media/50wgu5r1/atraco.jpg?center=0.07934597031913497'
+    ),
+    (
+        21,
+        'https://www.one.gob.do/media/50wgu5r1/atraco.jpg?center=0.07934597031913497,0.54666666666666663&mode=crop&width=730&height=345'
+    ),
+    (
+        32,
+        'https://thumbs.dreamstime.com/b/da%C3%B1os-en-los-cultivos-de-las-inundaciones-campos-ma%C3%ADz-y-erosi%C3%B3n-del-suelo-por-fuertes-lluvias-tormentas-concepto-seguro-247931000.jpg'
+    ),
+    (
+        32,
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWAllgneXJ4SGbTGCgFcsA-yDdv4VS-j8A2w&s'
+    ),
+    (
+        7,
+        'https://www.arecoa.com/wp-content/uploads/2022/12/serenade-accidente-2.jpeg'
+    ),
+    (
+        14,
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMQNp63j2gjYVs2OveDIn3-maw0_75r1AOMw&s'
+    ),
+    (
+        25,
+        'https://resources.diariolibre.com/images/2025/01/31/rescatan-dos-personas-con-vida-tras-derrumbe-de-obra-en-la-romana-focus-0-0-375-240.jpg'
+    ),
+    (
+        17,
+        'https://nuevodiario-assets.s3.us-east-2.amazonaws.com/wp-content/uploads/2023/01/11175549/ap23004651353078-focus-0-0-696-423.jpg'
+    ),
+    (
+        28,
+        'https://s.yimg.com/ny/api/res/1.2/uG1S9TjztUfFedcTYDc6sQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNw--/https://media.zenfs.com/es/efe.es/292dc045806a7c061c350a0b4ba030a3'
+    ),
+    (
+        18,
+        'https://resources.diariolibre.com/images/2024/08/11/asalto-en-vimenca-western-union-en-sosua-focus-0-0-608-342.jpg'
+    ),
+    (
+        29,
+        'https://i0.wp.com/bavarodigital.net/wp-content/uploads/2022/12/accidente-en-autopista-duarte-ffb5a21b-focus-0.09-0.28-375-240.jpg'
+    ),
+    (
+        3,
+        'https://listindiario.com/files/article_main_microformat/uploads/2023/10/27/653bacaae187e.jpeg'
+    ),
+    (
+        12,
+        'https://resources.diariolibre.com/images/documents/10157/0/image_content_8169937_20170425174646.jpg'
+    ),
+    (
+        23,
+        'https://ecoexploratorio.org/wp-content/uploads/2022/08/impacto-de-una-inundacion.jpg'
+    ),
+    (
+        34,
+        'https://www.lanacion.com.py/resizer/v2/I3AZN74YR5D4DIW2VA76T4LJKA.jpg?auth=4c95539865a3f03a05eaea72ac6b91d9286f51cb171baf51a3f932dc2b3ce3df&width=900&smart=true'
+    ),
+    (
+        34,
+        'https://www.24horas.cl/24horas/site/artic/20240803/imag/foto_0000000720240803235719/Manifestaciones.jpg'
+    );
 
 -- Comentarios
 INSERT INTO
@@ -1447,30 +1764,36 @@ VALUES
     (
         35,
         28,
-        '{"latitude": 17.851099, "longitude": -71.285782, "n_deaths": 0,  "n_injured": 0, "n_losses": 12000,  "province_id": 20,  "municipality_id": 91, "neighborhood_id": "130"}',
+        '{"latitude": 17.851099, "n_deaths": 0, "n_losses": 12000, "longitude": -71.285782, "n_injured": 0, "province_id": 20, "municipality_id": 91, "neighborhood_id": "130"}',
         0
     ),
     (
         25,
         18,
-        '{"latitude": 18.225116, "longitude": -71.101711, "n_deaths": 0,  "n_injured": 4, "n_losses": 60000,  "province_id": 3,  "municipality_id": 17, "neighborhood_id": "33"}',
+        '{"latitude": 18.225116, "n_deaths": 0, "n_losses": 60000, "longitude": -71.101711, "n_injured": 4, "province_id": 3, "municipality_id": 17, "neighborhood_id": "33"}',
         0
     ),
     (
         33,
         4,
-        '{"latitude": 19.753379, "longitude": -71.552990, "n_deaths": 0,  "n_injured": 2, "n_losses": 18000,  "province_id": 18,  "municipality_id": 81, "neighborhood_id": "119"}',
+        '{"latitude": 19.753379, "n_deaths": 0, "n_losses": 18000, "longitude": -71.55299, "n_injured": 2, "province_id": 18, "municipality_id": 81, "neighborhood_id": "119"}',
         0
     ),
     (
         3,
         6,
-        '{"latitude": 19.451684, "longitude": -70.690976, "n_deaths": 1,  "n_injured": 2, "n_losses": 200000,  "province_id": 29,  "municipality_id": 134, "neighborhood_id": "195"}',
+        '{"latitude": 19.451684, "n_deaths": 1, "n_losses": 200000, "longitude": -70.690976, "n_injured": 2, "province_id": 29, "municipality_id": 134, "neighborhood_id": "195"}',
         0
     ),
     (
         9,
         23,
-        '{"latitude": 19.792285, "longitude": -70.706186, "n_deaths": 0,  "n_injured": 0, "n_losses": 8000,  "province_id": 20,  "municipality_id": 100, "neighborhood_id": "146"}',
+        '{"latitude": 19.792285, "n_deaths": 0, "n_losses": 8000, "longitude": -70.706186, "n_injured": 0, "province_id": 20, "municipality_id": 100, "neighborhood_id": "146"}',
+        0
+    ),
+    (
+        13,
+        14,
+        '{"latitude": 18.538115, "n_deaths": 0, "n_losses": 3000, "longitude": -70.00897, "n_injured": 3, "province_id": 31, "municipality_id": 148, "neighborhood_id": 213}',
         0
     );
